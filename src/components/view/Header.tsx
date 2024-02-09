@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-        <div className="flex">
+        <div>
             <input placeholder="Search" />
             <button>Settings</button>
         </div>

@@ -9,7 +9,8 @@ module.exports = {
                 DEFAULT: '#ffffff'
             },
             gray: {
-                500: '#2c2c30',
+                300: '#2c2c30',
+                500: '#18181b',
                 700: '#111111'
             }
         }

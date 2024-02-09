@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-        <div>
+        <div className="flex justify-between">
             <input placeholder="Search" />
             <button>Settings</button>
         </div>

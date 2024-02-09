@@ -6,4 +6,20 @@
     html {
         @apply bg-gray-700;
     }
+
+    h1 {
+        @apply text-white;
+    }
+
+    p {
+        @apply text-white;
+    }
+
+    a {
+        @apply text-white;
+    }
+
+    button {
+        @apply text-white;
+    }
 }

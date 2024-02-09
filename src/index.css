@@ -4,6 +4,6 @@
 
 @layer components {
     html {
-        @apply bg-black;
+        @apply bg-gray-700;
     }
 }

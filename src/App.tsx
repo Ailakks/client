@@ -1,9 +1,7 @@
-function App() {
+import Layout from "./components/view/Layout";
+
+export default function App() {
   return (
-    <>
-      <p>test</p>
-    </>
+    <Layout />
   )
 }
-
-export default App

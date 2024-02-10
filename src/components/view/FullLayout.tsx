@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Layout({ head, side, header, children }) {
+export default function FullLayout({ head, side, header, children }) {
     return (
         <div className="flex h-full">
             <aside className="flex flex-col w-64 divide-y divide-gray-500">

@@ -1,5 +1,5 @@
 export default function AuthHeader() {
     return (
-        <a>Bill Manager</a>
+        <a href="/">Bill Manager</a>
     )
 }

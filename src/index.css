@@ -26,4 +26,8 @@
     button {
         @apply text-white;
     }
+
+    .navlink {
+        @apply rounded-lg px-5 py-2;
+    }
 }

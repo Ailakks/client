@@ -7,6 +7,10 @@
         @apply bg-gray-700;
     }
 
+    html, body, #root {
+        @apply h-full
+    }
+
     h1 {
         @apply text-white;
     }

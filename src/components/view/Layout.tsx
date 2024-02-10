@@ -11,7 +11,7 @@ export default function Layout({ head, side, header, children }) {
                     {side}
                 </div>
             </aside>
-            <div className="h-full grow divide-y divide-gray-300">
+            <div className="h-full grow divide-y divide-gray-500">
                 <header className="flex items-center bg-gray-700 h-14 pr-8">
                     {header}
                 </header>

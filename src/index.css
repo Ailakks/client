@@ -10,7 +10,7 @@ html {
 
 @layer components {
     html {
-        @apply bg-gray-700;
+        @apply bg-gray-900;
     }
 
     html, body, #root {
@@ -35,5 +35,9 @@ html {
 
     .navlink {
         @apply rounded-lg px-5 py-2;
+    }
+
+    .input {
+        @apply bg-white;
     }
 }

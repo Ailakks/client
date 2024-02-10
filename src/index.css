@@ -42,7 +42,7 @@ html {
     }
 
     button.main, input[type = "submit"].main {
-        @apply bg-gray-500 cursor-pointer px-5 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-700 transition-colors duration-150 ease-out;
+        @apply bg-gray-500 h-12 cursor-pointer px-5 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-700 transition-colors duration-150 ease-out;
     }
 
     hr {

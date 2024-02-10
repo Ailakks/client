@@ -22,7 +22,7 @@ const pages = [
     }
 ]
 
-export default function Side() {
+export default function AppSide() {
     return (
         <div className="flex flex-col justify-between">
             {

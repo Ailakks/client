@@ -1,4 +1,4 @@
-export default function Header() {
+export default function AppHeader() {
     return (
         <div className="flex grow justify-between">
             <input className="input" placeholder="Search" />

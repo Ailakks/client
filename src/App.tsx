@@ -9,10 +9,16 @@ export default function App() {
     const location = useLocation();
 
     return (
+        <Routes location={location}>
+            <Route path="/" element={<AppLayout><Home /></AppLayout>} />
+        </Routes>
+    )
+}
+
+function AppLayout({ children }) {
+    return (
         <Layout head={<Head />} side={<Side />} header={<Header />}>
-            <Routes location={location}>
-                <Route path="/" element={<Home />} />
-            </Routes>
+            {children}
         </Layout>
     )
 }

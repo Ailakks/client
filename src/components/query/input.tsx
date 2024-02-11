@@ -8,9 +8,9 @@ export default class Input extends React.Component<Props, any> {
     static contextType = FormContext;
 
     handleChange = (event) => {
-        const { form } = this.context;
+        const { form, set } = this.context;
 
-        form({ form: { ...form, [event.target.name]: event.target.value } });
+        set({ ...form, [event.target.name]: event.target.value });
     };
 
     render() {

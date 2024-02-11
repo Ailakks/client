@@ -26,15 +26,15 @@ export default class Form extends React.Component<Props, any> {
         await onSubmit(form);
     };
 
-    set = async (data) => {
-        this.setState(data);
+    set = async (form) => {
+        this.setState({ form });
     };
 
     render() {
         const { children, ...props } = this.props;
 
         return (
-            <FormContext.Provider value={{ form: this.set, submit: this.submit }}>
+            <FormContext.Provider value={{ form: this.state.form, set: this.set, submit: this.submit }}>
                 <form ref={this.ref} onSubmit={this.submit} {...props}>
                     {children}
                 </form>

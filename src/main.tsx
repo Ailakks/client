@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import {BrowserRouter} from "react-router-dom";
-import ApolloWrapper from "./wrapper/Apollo";
 import cookie from 'react-cookies';
+import ApolloWrapper from "./wrapper/Apollo";
 import AccountWrapper from "./wrapper/Account";
 
 export const setCookie = (name, value) => {

@@ -1,5 +1,6 @@
 import {createContext, useContext} from 'react';
-import Query from "../components/query/Query";
+import Query, {QueryContext} from "../components/query/Query";
+import {gql, useQuery} from "@apollo/client";
 
 export const AccountContext = createContext(null);
 
@@ -40,7 +41,7 @@ function Body({ children }) {
     const { response, refetch } = useContext(QueryContext);
 
     return (
-        <AccountContext.Provider value={{ response, refetch, logout }}>
+        <AccountContext.Provider value={{ response, refetch }}>
             {children}
         </AccountContext.Provider>
     );

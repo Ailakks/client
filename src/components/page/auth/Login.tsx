@@ -33,7 +33,7 @@ export default function Login() {
                     </button>
                     <hr />
                     <Form className="space-y-2" submit={(variables) => update({ variables })}>
-                        <Input name="email" type="email" className="main w-full" placeholder="Email" />
+                        <Input name="email" type="email" className="main w-full" placeholder="Email" required />
                         <PasswordInput />
                         <LoadStatus loading={loading} loader={
                             <div className="flex items-center justify-center space-x-4">

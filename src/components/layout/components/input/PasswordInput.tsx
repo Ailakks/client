@@ -7,7 +7,7 @@ export default function PasswordInput() {
 
     return (
         <div className="flex items-center relative">
-            <Input name="password" type={visible ? 'text' : 'password'} className="main w-full" placeholder="Password" />
+            <Input name="password" type={visible ? 'text' : 'password'} className="main w-full" placeholder="Password" required />
             <span onClick={() => setVisible((prevState) => !prevState)} className="absolute cursor-pointer right-2 p-2">
                 <i className={clsx(visible ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye', 'text-white')} />
             </span>

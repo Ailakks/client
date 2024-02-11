@@ -5,6 +5,7 @@ import './index.css'
 import {BrowserRouter} from "react-router-dom";
 import ApolloWrapper from "./wrapper/Apollo";
 import cookie from 'react-cookies';
+import AccountWrapper from "./wrapper/Account";
 
 export const setCookie = (name, value) => {
     cookie.save(name, value, { path: "/" });
@@ -26,7 +27,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
         <ApolloWrapper>
-            <App />
+            <AccountWrapper>
+                <App />
+            </AccountWrapper>
         </ApolloWrapper>
     </BrowserRouter>
   </React.StrictMode>,

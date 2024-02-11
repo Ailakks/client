@@ -3,7 +3,7 @@ import React, { createContext } from 'react';
 export const FormContext = createContext(null);
 
 interface Props extends React.FormHTMLAttributes<HTMLFormElement> {
-    onSubmit: (data: FormData) => Promise<void>;
+    submit: (data: FormData) => Promise<void>;
 }
 
 export default class Form extends React.Component<Props, any> {
@@ -18,12 +18,12 @@ export default class Form extends React.Component<Props, any> {
     }
 
     submit = async (event: React.FormEvent<HTMLFormElement>) => {
-        const { onSubmit } = this.props;
+        const { submit } = this.props;
         const { form } = this.state;
 
         event.preventDefault();
 
-        await onSubmit(form);
+        await submit(form);
     };
 
     set = async (form) => {

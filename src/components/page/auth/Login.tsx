@@ -30,7 +30,7 @@ export default function Login() {
                         <span>Continue with Google</span>
                     </button>
                     <hr />
-                    <Form className="space-y-2" onSubmit={(data) => update(data)}>
+                    <Form className="space-y-2" submit={(data) => update(data)}>
                         <Input name="email" type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
                         <input type="submit" className="main w-full" value="Login" />

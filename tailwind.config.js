@@ -5,6 +5,9 @@ module.exports = {
     ],
     theme: {
         colors: {
+            transparent: {
+                DEFAULT: 'rgba(0,0,0,0)',
+            },
             blue: {
                 500: '#1472ff',
                 700: '#0160F0',

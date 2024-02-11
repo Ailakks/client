@@ -3,6 +3,7 @@ import Form from "../../query/Form";
 import Input from "../../query/Input";
 import {gql, useLazyQuery} from "@apollo/client";
 import LoadStatus from "../../load/LoadStatus";
+import LoadSpinner from "../../load/spinner/LoadSpinner";
 
 export default function Login() {
     const [update, { loading }] = useLazyQuery(gql`
@@ -34,7 +35,12 @@ export default function Login() {
                     <Form className="space-y-2" submit={(variables) => update({ variables })}>
                         <Input name="email" type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
-                        <LoadStatus loading={loading}>
+                        <LoadStatus loading={loading} loader={
+                            <div className="flex items-center justify-center space-x-4">
+                                <LoadSpinner />
+                                <p>Decrypting...</p>
+                            </div>
+                        }>
                             <button type="submit" className="main w-full">Login</button>
                         </LoadStatus>
                     </Form>

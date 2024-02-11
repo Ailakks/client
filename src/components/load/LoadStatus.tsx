@@ -1,10 +1,9 @@
 import {cloneElement} from "react";
-import LoadSpinner from "./spinner/LoadSpinner";
 
-export default function LoadStatus({ loading, children }) {
-    if (!loading) {
+export default function LoadStatus({ loading, loader, children }) {
+    if (loading) {
         return (
-            cloneElement(children,[], <LoadSpinner />)
+            cloneElement(children,[], loader)
         )
     }
 

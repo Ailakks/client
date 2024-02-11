@@ -1,4 +1,5 @@
 import PasswordInput from "../../layout/components/input/PasswordInput";
+import Form from "../../query/form";
 
 export default function Login() {
     return (
@@ -11,11 +12,11 @@ export default function Login() {
                         <span>Continue with Google</span>
                     </button>
                     <hr />
-                    <form className="space-y-2">
+                    <Form className="space-y-2">
                         <input type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
                         <input type="submit" className="main w-full" value="Login" />
-                    </form>
+                    </Form>
                     <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>
                     <hr />
                     <div className="text-center space-x-2">

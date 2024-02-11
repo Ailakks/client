@@ -1,5 +1,5 @@
 import {createContext, useContext} from 'react';
-import Query, {QueryContext} from "../components/query/Query";
+import Query, {QueryContext} from "../../components/query/Query";
 import {gql, useQuery} from "@apollo/client";
 
 export const KeyContext = createContext(null);

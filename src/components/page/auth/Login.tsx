@@ -1,8 +1,25 @@
 import PasswordInput from "../../layout/components/input/PasswordInput";
-import Form from "../../query/form";
-import Input from "../../query/input";
+import Form from "../../query/Form";
+import Input from "../../query/Input";
+import {gql, useLazyQuery} from "@apollo/client";
 
 export default function Login() {
+    const [update] = useLazyQuery(gql`
+        query KeyLogin($email: String!, $password: String!) {
+            keyLogin(payload: {
+                email: $email,
+                password: $password
+            }) {
+                token
+                __typename
+            }
+        }`, {
+        onCompleted: () => {
+        },
+        onError: () => {
+        }
+    });
+
     return (
         <div className="h-full flex flex-col">
             <div className="h-full flex justify-center items-center">
@@ -13,8 +30,8 @@ export default function Login() {
                         <span>Continue with Google</span>
                     </button>
                     <hr />
-                    <Form className="space-y-2">
-                        <Input type="email" className="main w-full" placeholder="Email" />
+                    <Form className="space-y-2" onSubmit={(data) => update(data)}>
+                        <Input name="email" type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
                         <input type="submit" className="main w-full" value="Login" />
                     </Form>

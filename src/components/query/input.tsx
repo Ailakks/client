@@ -1,5 +1,5 @@
 import React  from 'react';
-import {FormContext} from "./form";
+import {FormContext} from "./Form";
 
 interface Props extends React.FormHTMLAttributes<HTMLInputElement> {
 }

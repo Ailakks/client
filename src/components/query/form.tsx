@@ -12,6 +12,9 @@ export default class Form extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
 
+
+        this.state = { form: { ...form, [event.target.name]: event.target.value } };
+
         this.ref = React.createRef();
     }
 

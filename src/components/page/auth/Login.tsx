@@ -1,5 +1,6 @@
 import PasswordInput from "../../layout/components/input/PasswordInput";
 import Form from "../../query/form";
+import Input from "../../query/input";
 
 export default function Login() {
     return (
@@ -13,7 +14,7 @@ export default function Login() {
                     </button>
                     <hr />
                     <Form className="space-y-2">
-                        <input type="email" className="main w-full" placeholder="Email" />
+                        <Input type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
                         <input type="submit" className="main w-full" value="Login" />
                     </Form>

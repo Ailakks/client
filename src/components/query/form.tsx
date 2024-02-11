@@ -12,30 +12,29 @@ export default class Form extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
 
-
-        this.state = { form: { ...form, [event.target.name]: event.target.value } };
+        this.state = { form: null };
 
         this.ref = React.createRef();
     }
 
-    handle = async (event: React.FormEvent<HTMLFormElement>) => {
+    submit = async (event: React.FormEvent<HTMLFormElement>) => {
         const { onSubmit } = this.props;
 
         event.preventDefault();
 
-        if (this.ref.current) {
-            const data = new FormData(this.ref.current);
+        console.log(this.state);
+    };
 
-            await onSubmit(data);
-        }
+    set = async (data) => {
+        this.setState(data);
     };
 
     render() {
         const { children, ...props } = this.props;
 
         return (
-            <FormContext.Provider value={{ submit: this.submit }}>
-                <form ref={this.ref} onSubmit={this.handle} {...props}>
+            <FormContext.Provider value={{ form: this.set, submit: this.submit }}>
+                <form ref={this.ref} onSubmit={this.submit} {...props}>
                     {children}
                 </form>
             </FormContext.Provider>

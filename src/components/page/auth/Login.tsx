@@ -35,7 +35,7 @@ export default function Login() {
                         <Input name="email" type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
                         <LoadStatus loading={loading}>
-                            <input type="submit" className="main w-full" value="Login" />
+                            <button type="submit" className="main w-full">Login</button>
                         </LoadStatus>
                     </Form>
                     <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>

@@ -31,7 +31,7 @@ export default class Form extends React.Component<Props, any> {
     };
 
     render() {
-        const { children, ...props } = this.props;
+        const { submit, children, ...props } = this.props;
 
         return (
             <FormContext.Provider value={{ form: this.state.form, set: this.set, submit: this.submit }}>

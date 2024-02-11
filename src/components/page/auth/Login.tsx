@@ -2,7 +2,7 @@ import PasswordInput from "../../layout/components/input/PasswordInput";
 import Form from "../../query/Form";
 import Input from "../../query/Input";
 import {gql, useLazyQuery} from "@apollo/client";
-import LoadStatus from "../../query/LoadStatus";
+import LoadStatus from "../../load/LoadStatus";
 
 export default function Login() {
     const [update, { loading }] = useLazyQuery(gql`

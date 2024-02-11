@@ -1,9 +1,10 @@
 import {cloneElement} from "react";
+import LoadSpinner from "./spinner/LoadSpinner";
 
 export default function LoadStatus({ loading, children }) {
-    if (loading) {
+    if (!loading) {
         return (
-            cloneElement(children,[], <p>test</p>)
+            cloneElement(children,[], <LoadSpinner />)
         )
     }
 

@@ -4,8 +4,12 @@ import Input from "../../query/Input";
 import {gql, useLazyQuery} from "@apollo/client";
 import LoadStatus from "../../load/LoadStatus";
 import LoadSpinner from "../../load/spinner/LoadSpinner";
+import {setToken} from "../../../main";
+import {useNavigate} from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate();
+
     const [update, { loading }] = useLazyQuery(gql`
         query KeyLogin($email: String!, $password: String!) {
             keyLogin(payload: {
@@ -16,7 +20,11 @@ export default function Login() {
                 __typename
             }
         }`, {
-        onCompleted: () => {
+        onCompleted: ({ keyLogin: { token } }) => {
+            setToken(token);
+            navigate('/');
+
+            window.location.reload();
         },
         onError: () => {
         }

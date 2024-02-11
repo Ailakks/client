@@ -19,10 +19,11 @@ export default class Form extends React.Component<Props, any> {
 
     submit = async (event: React.FormEvent<HTMLFormElement>) => {
         const { onSubmit } = this.props;
+        const { form } = this.state;
 
         event.preventDefault();
 
-        console.log(this.state);
+        await onSubmit(form);
     };
 
     set = async (data) => {

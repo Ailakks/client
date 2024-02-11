@@ -2,9 +2,10 @@ import PasswordInput from "../../layout/components/input/PasswordInput";
 import Form from "../../query/Form";
 import Input from "../../query/Input";
 import {gql, useLazyQuery} from "@apollo/client";
+import LoadStatus from "../../query/LoadStatus";
 
 export default function Login() {
-    const [update] = useLazyQuery(gql`
+    const [update, { loading }] = useLazyQuery(gql`
         query KeyLogin($email: String!, $password: String!) {
             keyLogin(payload: {
                 email: $email,
@@ -30,10 +31,12 @@ export default function Login() {
                         <span>Continue with Google</span>
                     </button>
                     <hr />
-                    <Form className="space-y-2" submit={(data) => update(data)}>
+                    <Form className="space-y-2" submit={(variables) => update({ variables })}>
                         <Input name="email" type="email" className="main w-full" placeholder="Email" />
                         <PasswordInput />
-                        <input type="submit" className="main w-full" value="Login" />
+                        <LoadStatus loading={loading}>
+                            <input type="submit" className="main w-full" value="Login" />
+                        </LoadStatus>
                     </Form>
                     <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>
                     <hr />

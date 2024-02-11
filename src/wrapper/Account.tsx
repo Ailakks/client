@@ -38,10 +38,10 @@ export default function AccountWrapper({ children }) {
 }
 
 function Body({ children }) {
-    const { response, refetch } = useContext(QueryContext);
+    const { data, refetch } = useContext(QueryContext);
 
     return (
-        <AccountContext.Provider value={{ response, refetch }}>
+        <AccountContext.Provider value={{ data, refetch }}>
             {children}
         </AccountContext.Provider>
     );

@@ -6,6 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import cookie from 'react-cookies';
 import ApolloWrapper from "./wrapper/Apollo";
 import AccountWrapper from "./wrapper/Account";
+import KeyWrapper from "./wrapper/Key";
 
 export const setCookie = (name, value) => {
     cookie.save(name, value, { path: "/" });
@@ -28,7 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <ApolloWrapper>
             <AccountWrapper>
-                <App />
+                <KeyWrapper>
+                    <App />
+                </KeyWrapper>
             </AccountWrapper>
         </ApolloWrapper>
     </BrowserRouter>

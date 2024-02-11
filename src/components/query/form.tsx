@@ -2,15 +2,16 @@ import React, { createContext } from 'react';
 
 export const FormContext = createContext(null);
 
-interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+interface Props extends React.FormHTMLAttributes<HTMLFormElement> {
     onSubmit: (data: FormData) => Promise<void>;
 }
 
-class Form extends React.Component<FormProps, any> {
+export default class Form extends React.Component<Props, any> {
     private readonly ref: RefObject<HTMLFormElement>;
 
-    constructor(props: FormProps) {
+    constructor(props: Props) {
         super(props);
+
         this.ref = React.createRef();
     }
 
@@ -21,7 +22,7 @@ class Form extends React.Component<FormProps, any> {
 
         if (this.ref.current) {
             const data = new FormData(this.ref.current);
-            
+
             await onSubmit(data);
         }
     };
@@ -38,5 +39,3 @@ class Form extends React.Component<FormProps, any> {
         );
     }
 }
-
-export default Form;

@@ -2,18 +2,21 @@ import {gql, useLazyQuery} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
 import {setToken} from "../../../wrapper/Apollo";
 import Form from "../../query/Form";
-import Input from "../../query/Input";
 import PasswordInput from "../../layout/components/input/PasswordInput";
 import LoadStatus from "../../load/LoadStatus";
 import LoadSpinner from "../../load/spinner/LoadSpinner";
+import {useContext, useEffect} from "react";
+import {KeyContext} from "../../../wrapper/logged/Key";
 
 export default function SessionKey() {
+    const { data, refetch } = useContext(KeyContext);
+
     const navigate = useNavigate();
 
     const [update, { loading }] = useLazyQuery(gql`
-        query KeyLogin($key: String!) {
+        query KeyLogin($password: String!) {
             authKey(payload: {
-                key: $key
+                key: $password
             }) {
                 token
                 __typename
@@ -23,11 +26,19 @@ export default function SessionKey() {
             setToken(token);
             navigate('/');
 
+            refetch();
+
             window.location.reload();
         },
         onError: () => {
         }
     });
+
+    useEffect(() => {
+        if (data) {
+            navigate('/');
+        }
+    }, [data]);
 
     return (
         <div className="h-full flex flex-col">

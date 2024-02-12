@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 export default function KeyRestricted({ children }) {
     const navigate = useNavigate();
 
-    const { loading, data } = useContext(KeyContext);
+    const { data, loading } = useContext(KeyContext);
 
     useEffect(() => {
         if (!data) {

@@ -24,10 +24,10 @@ export default function KeyWrapper({ children }) {
 }
 
 function Body({ children }) {
-    const { response, refetch } = useContext(QueryContext);
+    const { data, refetch } = useContext(QueryContext);
 
     return (
-        <KeyContext.Provider value={{ response, refetch }}>
+        <KeyContext.Provider value={{ data, refetch }}>
             {children}
         </KeyContext.Provider>
     );

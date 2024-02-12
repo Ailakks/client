@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {removeToken} from "../../../wrapper/Apollo";
 
 export default function AppHeader() {
-    const { refetch } = useContext(AccountContext);
+    const { data: { currentUser: { name } }, refetch } = useContext(AccountContext);
 
     const navigate = useNavigate();
 
@@ -16,7 +16,10 @@ export default function AppHeader() {
     return (
         <div className="flex grow justify-between items-center">
             <input className="main" placeholder="Search" />
-            <button className="secondary" onClick={logout}>Logout</button>
+            <div className="flex items-center space-x-4">
+                <p>{name}</p>
+                <button className="secondary" onClick={logout}>Logout</button>
+            </div>
         </div>
     )
 }

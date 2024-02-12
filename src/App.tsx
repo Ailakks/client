@@ -3,7 +3,8 @@ import Home from "./components/page/Home";
 import AuthLayout from "./components/layout/auth/Auth";
 import Login from "./components/page/auth/Login";
 import AppLayout from "./components/layout/app/App";
-import SessionKey from "./components/page/auth/SessionKey";
+import Key from "./components/page/auth/Key";
+import Logout from "./components/page/auth/Logout";
 
 export default function App() {
     const location = useLocation();
@@ -12,7 +13,8 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<AppLayout><Home /></AppLayout>} />
 
-            <Route path="/key" element={<AuthLayout><SessionKey /></AuthLayout>} />
+            <Route path="/key" element={<AuthLayout><Key /></AuthLayout>} />
+            <Route path="/logout" element={<AuthLayout><Logout /></AuthLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
         </Routes>

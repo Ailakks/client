@@ -8,7 +8,7 @@ import {useContext, useEffect} from "react";
 import {KeyContext} from "../../../wrapper/logged/Key";
 import {useNavigate} from "react-router-dom";
 
-export default function SessionKey() {
+export default function Key() {
     const { data, loading } = useContext(KeyContext);
 
     useEffect(() => {

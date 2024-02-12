@@ -10,7 +10,7 @@ export default function KeyRestricted({ children }) {
 
     useEffect(() => {
         if (!data) {
-            navigate('/auth/key')
+            navigate('/key')
         }
     }, [data]);
 

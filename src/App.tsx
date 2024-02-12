@@ -12,7 +12,7 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<AppLayout><Home /></AppLayout>} />
 
-            <Route path="/auth/key" element={<AuthLayout><SessionKey /></AuthLayout>} />
+            <Route path="/key" element={<AuthLayout><SessionKey /></AuthLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
         </Routes>

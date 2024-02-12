@@ -19,17 +19,31 @@ export default function SessionKey() {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center">
-                <LoadSpinner />
-                <p>Decrypting...</p>
+            <div className="h-full flex flex-col justify-center items-center space-y-12">
+                <i className="text-white text-6xl fa-solid fa-lock" />
+                <div className="flex space-x-4">
+                    <LoadSpinner />
+                    <p>Decrypting...</p>
+                </div>
             </div>
         )
     }
 
     return (
-        <div className="h-full flex flex-col justify-center items-center space-y-6">
-            <LoadSpinner />
-            <p>Decrypting...</p>
+        <div className="h-full flex flex-col">
+            <div className="h-full flex justify-center items-center">
+                <div className="w-80 space-y-5">
+                    <h1>Password required</h1>
+                    <p>Your password is required to decrypt files.</p>
+                    <hr />
+                    <AuthForm />
+                    <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>
+                </div>
+            </div>
+            <div className="flex justify-center space-x-16">
+                <a href="">Terms and conditions</a>
+                <a href="">Need help?</a>
+            </div>
         </div>
     )
 }

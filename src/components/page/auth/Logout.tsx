@@ -1,17 +1,16 @@
 import LoadSpinner from "../../load/spinner/LoadSpinner";
-import {useContext, useEffect} from "react";
-import {AccountContext} from "../../../wrapper/Account";
+import {useEffect} from "react";
 import {removeToken} from "../../../wrapper/Apollo";
 import {useNavigate} from "react-router-dom";
 
 export default function Logout() {
     const navigate = useNavigate();
 
-    const { refetch } = useContext(AccountContext);
-
     useEffect(() => {
         removeToken();
-        refetch().then(() => navigate('/login'));
+        navigate('/login');
+
+        window.location.reload();
     }, []);
 
     return (

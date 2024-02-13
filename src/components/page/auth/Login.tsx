@@ -6,13 +6,23 @@ import LoadStatus from "../../load/LoadStatus";
 import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useNavigate} from "react-router-dom";
 import {setToken} from "../../../wrapper/Apollo";
+import {useContext, useEffect} from "react";
+import {AccountContext} from "../../../wrapper/Account";
 
 export default function Login() {
     const navigate = useNavigate();
 
+    const { data } = useContext(AccountContext);
+
+    useEffect(() => {
+       if (data) {
+           navigate('/');
+       }
+    }, [data]);
+
     const [update, { loading }] = useLazyQuery(gql`
-        query KeyLogin($email: String!, $password: String!) {
-            keyLogin(payload: {
+        query Login($email: String!, $password: String!) {
+            login(payload: {
                 email: $email,
                 password: $password
             }) {

@@ -1,9 +1,12 @@
-import KeyRestricted from "../restricted/KeyRestricted";
+import KeyRestricted from "../restricted/Key";
+import AccountRestricted from "../restricted/Account";
 
 export default function Home() {
     return (
-        <KeyRestricted>
-            <h1>Content</h1>
-        </KeyRestricted>
+        <AccountRestricted>
+            <KeyRestricted>
+                <h1>Content</h1>
+            </KeyRestricted>
+        </AccountRestricted>
     )
 }

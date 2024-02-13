@@ -23,5 +23,9 @@ export default function KeyRestricted({ children }) {
         );
     }
 
+    if (!data) {
+        return null;
+    }
+
     return children;
 }

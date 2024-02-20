@@ -18,7 +18,8 @@ export default function Home() {
                 }
                 __typename
             }
-        }`);
+        }`
+    );
 
     return (
         <Query request={request}>

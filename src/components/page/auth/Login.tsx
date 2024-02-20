@@ -30,7 +30,7 @@ export default function Login() {
                 __typename
             }
         }`, {
-        onCompleted: ({ keyLogin: { token } }) => {
+        onCompleted: ({ login: { token } }) => {
             setToken(token);
             navigate('/');
 

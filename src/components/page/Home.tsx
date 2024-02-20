@@ -1,6 +1,7 @@
 import {gql, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../query/Query";
 import {useContext} from "react";
+import Folder from "../data/Folder";
 
 export default function Home() {
     const request = useQuery(gql`
@@ -29,9 +30,9 @@ export default function Home() {
 }
 
 function Body() {
-    const { data: { getMainVault: { id, root } } } = useContext(QueryContext);
+    const { data: { getMainVault: { root: { id } } } } = useContext(QueryContext);
 
     return (
-        <p>{id}</p>
+        <Folder id={id} />
     )
 }

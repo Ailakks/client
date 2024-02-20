@@ -1,6 +1,6 @@
 import {gql, useQuery} from "@apollo/client";
 import {useContext} from "react";
-import {QueryContext} from "../query/Query";
+import Query, {QueryContext} from "../query/Query";
 
 export default function Folder({ id }) {
     const request = useQuery(gql`
@@ -41,11 +41,18 @@ export default function Folder({ id }) {
                 removed
                 __typename
             }
-        }`
+        }`,
+        {
+            variables: {
+                id: id
+            }
+        }
     );
 
     return (
-        <Body />
+        <Query request={request}>
+            <Body />
+        </Query>
     )
 }
 

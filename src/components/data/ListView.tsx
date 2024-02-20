@@ -21,7 +21,7 @@ export default function ListView() {
 }
 
 function FileItem() {
-    const { item: { name, date, size } } = useContext(ListContext);
+    const { item: { name, date, source: { meta: { size } } } } = useContext(ListContext);
 
     return (
         <tr>

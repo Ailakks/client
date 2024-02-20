@@ -15,11 +15,14 @@ export default function Folder({ id }) {
                     name
                     source {
                         uuid
-                        name
                         path
                         url
-                        mime
-                        size
+                        meta {
+                            name
+                            mime
+                            size
+                            __typename
+                        }
                         __typename
                     }
                     removed

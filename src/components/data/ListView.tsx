@@ -6,9 +6,9 @@ export default function ListView() {
     const { data: { getFolder: { files } } } = useContext(QueryContext);
 
     return (
-        <table>
+        <table className="w-full text-white">
             <tbody>
-                <tr>
+                <tr className="text-left">
                     <th>Name</th>
                     <th>Date</th>
                     <th>Size</th>
@@ -21,11 +21,18 @@ export default function ListView() {
 }
 
 function FileItem() {
-    const { item: { name } } = useContext(ListContext);
+    const { item: { name, date, size } } = useContext(ListContext);
 
     return (
         <tr>
             <td>{name}</td>
+            <td>{date}</td>
+            <td>{size}</td>
+            <td>
+                <div className="flex space-x-5">
+                    <i className="fa-regular fa-trash" />
+                </div>
+            </td>
         </tr>
     )
 }

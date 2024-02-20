@@ -1,6 +1,6 @@
 import {gql, useQuery} from "@apollo/client";
-import {useContext} from "react";
-import Query, {QueryContext} from "../query/Query";
+import Query from "../query/Query";
+import ListView from "./ListView";
 
 export default function Folder({ id }) {
     const request = useQuery(gql`
@@ -57,9 +57,7 @@ export default function Folder({ id }) {
 }
 
 function Body() {
-    const { data: { getFolder: { files } } } = useContext(QueryContext);
-
     return (
-        <p>{JSON.stringify(files)}</p>
+        <ListView />
     )
 }

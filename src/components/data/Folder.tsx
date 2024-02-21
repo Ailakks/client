@@ -16,7 +16,13 @@ export default function Folder({ id }) {
                     source {
                         uuid
                         path
-                        url
+                        storage {
+                            tag
+                            url
+                            key
+                            bucket
+                            __typename
+                        }
                         meta {
                             name
                             mime

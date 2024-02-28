@@ -15,7 +15,7 @@ export default function ListView() {
         if (selected.length > 0) {
             setSelected([]);
 
-            return;
+            return false;
         }
 
         setSelected(files);

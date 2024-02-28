@@ -1,8 +1,6 @@
-import {createContext, useContext, useEffect, useRef, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
-import {Simulate} from "react-dom/test-utils";
-import select = Simulate.select;
 
 export const SelectedContext = createContext();
 
@@ -48,7 +46,7 @@ function FileItem() {
 }
 
 function FileCheck() {
-    const checkRef = useRef();
+    const [checked, setChecked] = useState(false);
 
     const { item } = useContext(ListContext);
 
@@ -69,12 +67,10 @@ function FileCheck() {
     }
 
     useEffect(() => {
-        const status = selected.includes(item);
-
-        checkRef.current.checked = status;
-    }, [selected]);
+        setChecked(selected.includes(item));
+    }, [selected])
 
     return (
-        <input type="checkbox" ref={checkRef} onClick={toggle} />
+        <input type="checkbox" checked={checked} onClick={toggle} />
     )
 }

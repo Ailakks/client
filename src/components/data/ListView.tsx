@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
+import Checkbox from "../input/Checkbox";
 
 export const SelectedContext = createContext();
 
@@ -10,9 +11,7 @@ export default function ListView() {
 
     const { data: { getFolder: { files } } } = useContext(QueryContext);
 
-    const toggleAll = (event) => {
-        event.preventDefault();
-
+    const toggleAll = () => {
         if (selected.length > 0) {
             setSelected([]);
 
@@ -54,7 +53,7 @@ export default function ListView() {
                         <tbody>
                         <tr className="text-left">
                             <th>
-                                <input type="checkbox" checked={checked} onChange={toggleAll} />
+                                <Checkbox status={checked} change={toggleAll} />
                             </th>
                             <th>Name</th>
                             <th>Date</th>
@@ -103,11 +102,7 @@ function FileCheck() {
     const { item } = useContext(ListContext);
     const { selected, setSelected } = useContext(SelectedContext);
 
-    const add = (event) => {
-        event.preventDefault();
-
-        const status = event.target.checked;
-
+    const add = (status) => {
         if (status) {
             setSelected((previous) => [...previous, item]);
 
@@ -122,6 +117,6 @@ function FileCheck() {
     }, [selected])
 
     return (
-        <input type="checkbox" checked={checked} onChange={add} />
+        <Checkbox status={checked} change={add} />
     )
 }

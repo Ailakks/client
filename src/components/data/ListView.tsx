@@ -41,7 +41,7 @@ export default function ListView() {
                         {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
-                                <p>{selected.length} items selected</p>
+                                {selected.length > 1 && <p>{selected.length} items selected</p>}
                                 <div>
                                     <i className="fa-regular fa-trash text-white" />
                                 </div>
@@ -74,26 +74,18 @@ function FileItem() {
     const { item } = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;
 
-    const { selected, setSelected } = useContext(SelectedContext);
+    const { setSelected } = useContext(SelectedContext);
 
     const select = () => {
-        const status = selected.includes(item);
-
-        if (status) {
-            setSelected([]);
-
-            return;
-        }
-
         setSelected([item]);
     }
 
     return (
-        <tr onClick={select}>
+        <tr>
             <td>
                 <FileCheck />
             </td>
-            <td>{name}</td>
+            <td onClick={select}>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
             <td>
@@ -113,7 +105,6 @@ function FileCheck() {
 
     const add = (event) => {
         event.preventDefault();
-        event.stopPropagation();
 
         const status = event.target.checked;
 

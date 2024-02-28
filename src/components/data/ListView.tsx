@@ -13,7 +13,7 @@ export default function ListView() {
     const toggleAll = (event) => {
         event.preventDefault();
 
-        if (selected.length == files.length) {
+        if (selected.length > 0) {
             setSelected([]);
 
             return;
@@ -28,22 +28,44 @@ export default function ListView() {
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
-            <div className="flex space-x-6">
-                <input type="checkbox" checked={checked} onChange={toggleAll} />
-                <p>{selected.length} items selected.</p>
+            <div className="space-y-6">
+                <div className="flex space-x-6 h-12 px-6 items-center justify-between">
+                    <div>
+                        <p>Drive</p>
+                    </div>
+                    <div className="flex space-x-6">
+                        <div className="flex space-x-4 items-center">
+                            <button className="main">New folder</button>
+                            <button className="main">Upload</button>
+                        </div>
+                        {
+                            selected.length > 0 &&
+                            <div className="flex space-x-4 items-center">
+                                <p>{selected.length} items selected</p>
+                                <div>
+                                    <i className="fa-regular fa-trash text-white" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div className="px-6">
+                    <table className="w-full text-white">
+                        <tbody>
+                        <tr className="text-left">
+                            <th>
+                                <input type="checkbox" checked={checked} onChange={toggleAll} />
+                            </th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Size</th>
+                            <th>Options</th>
+                        </tr>
+                        <List list={files}><FileItem /></List>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table className="w-full text-white">
-                <tbody>
-                <tr className="text-left">
-                    <th />
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Size</th>
-                    <th>Options</th>
-                </tr>
-                <List list={files}><FileItem /></List>
-                </tbody>
-            </table>
         </SelectedContext.Provider>
     )
 }

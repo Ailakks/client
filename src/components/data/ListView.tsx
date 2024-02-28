@@ -53,7 +53,7 @@ export default function ListView() {
                         <tbody>
                         <tr className="text-left">
                             <th>
-                                <Checkbox status={checked} change={toggleAll} icon={selected.length === files.length && `fa-solid fa-hyphen`} />
+                                <Checkbox status={checked} change={toggleAll} icon={selected.length === files.length ? `fa-solid fa-check` : selected.length > 0 && `fa-solid fa-hyphen`} />
                             </th>
                             <th>Name</th>
                             <th>Date</th>
@@ -117,6 +117,6 @@ function FileCheck() {
     }, [selected])
 
     return (
-        <Checkbox status={checked} change={add} />
+        <Checkbox status={checked} change={add} icon={checked && `fa-solid fa-check`} />
     )
 }

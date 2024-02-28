@@ -1,13 +1,18 @@
+import {createContext, useContext, useState} from "react";
 import List, {ListContext} from "../list/List";
-import {useContext} from "react";
 import {QueryContext} from "../query/Query";
 
+export const SelectedContext = createContext();
+
 export default function ListView() {
+    const [selected, setSelected] = useState([]);
+
     const { data: { getFolder: { files } } } = useContext(QueryContext);
 
     return (
-        <table className="w-full text-white">
-            <tbody>
+        <SelectedContext.Provider value={{ selected, setSelected }}>
+            <table className="w-full text-white">
+                <tbody>
                 <tr className="text-left">
                     <th />
                     <th>Name</th>
@@ -16,8 +21,9 @@ export default function ListView() {
                     <th>Options</th>
                 </tr>
                 <List list={files}><FileItem /></List>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </SelectedContext.Provider>
     )
 }
 
@@ -42,8 +48,18 @@ function FileItem() {
 function FileCheck() {
     const { item } = useContext(ListContext);
 
+    const { setSelected } = useContext(SelectedContext);
+
     const toggle = (event) => {
         const status = event.target.checked;
+
+        if (status) {
+            setSelected((previous) => [...previous, item]);
+
+            return;
+        }
+
+        setSelected((previous) => previous.filter((target) => target != item));
     }
 
     return (

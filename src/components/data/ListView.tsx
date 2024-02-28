@@ -9,8 +9,22 @@ export default function ListView() {
 
     const { data: { getFolder: { files } } } = useContext(QueryContext);
 
+    const toggleAll = (event) => {
+        if (event.target.checked) {
+            setSelected(files);
+
+            return;
+        }
+
+        setSelected([]);
+    }
+
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
+            <div className="flex space-x-6">
+                <input type="checkbox" onChange={toggleAll} />
+                <p>{selected.length} items selected.</p>
+            </div>
             <table className="w-full text-white">
                 <tbody>
                 <tr className="text-left">
@@ -32,7 +46,9 @@ function FileItem() {
 
     return (
         <tr>
-            <FileCheck />
+            <td>
+                <FileCheck />
+            </td>
             <td>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
@@ -71,6 +87,6 @@ function FileCheck() {
     }, [selected])
 
     return (
-        <input type="checkbox" checked={checked} onClick={toggle} />
+        <input type="checkbox" checked={checked} onChange={toggle} />
     )
 }

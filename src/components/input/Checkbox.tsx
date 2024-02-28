@@ -9,9 +9,11 @@ export default function Checkbox({ icon, status, change }) {
     }, [status]);
 
     const handle = () => {
-      setSelected((previous) => !previous);
+      setSelected((previous) => {
+          change(!previous);
 
-      change();
+          return !previous;
+      });
     };
 
     return (

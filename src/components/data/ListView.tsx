@@ -71,10 +71,25 @@ export default function ListView() {
 }
 
 function FileItem() {
-    const { item: { name, date, source: { meta: { size } } } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
+    const { name, date, source: { meta: { size } } } = item;
+
+    const { selected, setSelected } = useContext(SelectedContext);
+
+    const select = () => {
+        const status = selected.includes(item);
+
+        if (status) {
+            setSelected([]);
+
+            return;
+        }
+
+        setSelected([item]);
+    }
 
     return (
-        <tr>
+        <tr onClick={select}>
             <td>
                 <FileCheck />
             </td>
@@ -94,11 +109,11 @@ function FileCheck() {
     const [checked, setChecked] = useState(false);
 
     const { item } = useContext(ListContext);
-
     const { selected, setSelected } = useContext(SelectedContext);
 
-    const toggle = (event) => {
+    const add = (event) => {
         event.preventDefault();
+        event.stopPropagation();
 
         const status = event.target.checked;
 
@@ -116,6 +131,6 @@ function FileCheck() {
     }, [selected])
 
     return (
-        <input type="checkbox" checked={checked} onChange={toggle} />
+        <input type="checkbox" checked={checked} onChange={add} />
     )
 }

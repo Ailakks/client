@@ -6,23 +6,30 @@ export const SelectedContext = createContext();
 
 export default function ListView() {
     const [selected, setSelected] = useState([]);
+    const [checked, setChecked] = useState(false);
 
     const { data: { getFolder: { files } } } = useContext(QueryContext);
 
     const toggleAll = (event) => {
-        if (event.target.checked) {
-            setSelected(files);
+        event.preventDefault();
+
+        if (selected.length == files.length) {
+            setSelected([]);
 
             return;
         }
 
-        setSelected([]);
+        setSelected(files);
     }
+
+    useEffect(() => {
+        setChecked(selected.length === files.length);
+    }, [selected])
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
             <div className="flex space-x-6">
-                <input type="checkbox" onChange={toggleAll} />
+                <input type="checkbox" checked={checked} onChange={toggleAll} />
                 <p>{selected.length} items selected.</p>
             </div>
             <table className="w-full text-white">

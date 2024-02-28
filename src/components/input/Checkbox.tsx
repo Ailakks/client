@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {clsx} from "clsx";
 
-export default function Checkbox({ icon, status, change }) {
+export default function Checkbox({ status, change, icon }) {
     const [selected, setSelected] = useState(status);
 
     useEffect(() => {

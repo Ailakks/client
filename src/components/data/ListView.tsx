@@ -28,7 +28,7 @@ export default function ListView() {
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
             <div className="space-y-6">
-                <div className="flex space-x-6 h-12 px-6 items-center justify-between">
+                <div className="flex space-x-6 h-12 p-6 items-center justify-between">
                     <div>
                         <p>Drive</p>
                     </div>
@@ -48,7 +48,7 @@ export default function ListView() {
                         }
                     </div>
                 </div>
-                <div className="px-6">
+                <div>
                     <table className="w-full text-white">
                         <tbody>
                         <tr className="text-left">
@@ -80,7 +80,7 @@ function FileItem() {
     }
 
     return (
-        <tr>
+        <tr className="h-14 hover:bg-gray-700 [&>*:first-child]:pl-5 [&>*:last-child]:pr-5">
             <td>
                 <FileCheck />
             </td>

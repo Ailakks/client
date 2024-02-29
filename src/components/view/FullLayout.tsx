@@ -15,7 +15,7 @@ export default function FullLayout({ head, side, header, children }) {
                 <header className="flex items-center bg-gray-700 h-14 pr-8">
                     {header}
                 </header>
-                <main className="p-3">
+                <main>
                     {children}
                 </main>
             </div>

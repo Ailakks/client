@@ -17,8 +17,8 @@ export default function Checkbox({ status, change, icon }) {
     };
 
     return (
-        <div className="flex items-center justify-center h-4 w-4 bg-white" onClick={handle}>
-            <i className={clsx('text-blue-700', selected ? `fa-solid fa-check` : icon)}/>
+        <div className={clsx('flex items-center justify-center h-5 aspect-square text-white rounded border border-gray-300', (selected || icon) && 'bg-blue-500 border-none')} onClick={handle}>
+            <i className={clsx('text-xs', selected ? 'fa-solid fa-check' : icon)}/>
         </div>
     )
 }

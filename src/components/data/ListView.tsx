@@ -60,7 +60,7 @@ export default function ListView() {
                             <th>Size</th>
                             <th>Options</th>
                         </tr>
-                        <List list={files}><FileItem /></List>
+                        <List list={files}><Item /></List>
                         </tbody>
                     </table>
                 </div>
@@ -69,7 +69,7 @@ export default function ListView() {
     )
 }
 
-function FileItem() {
+function Item() {
     const { item } = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;
 
@@ -82,21 +82,19 @@ function FileItem() {
     return (
         <tr className="h-14 hover:bg-gray-700">
             <td>
-                <FileCheck />
+                <Check />
             </td>
             <td onClick={select}>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
             <td>
-                <div className="flex space-x-5">
-                    <i className="fa-regular fa-trash" />
-                </div>
+                <Options />
             </td>
         </tr>
     )
 }
 
-function FileCheck() {
+function Check() {
     const [checked, setChecked] = useState(false);
 
     const { item } = useContext(ListContext);
@@ -118,5 +116,13 @@ function FileCheck() {
 
     return (
         <Checkbox status={checked} change={add} />
+    )
+}
+
+function Options() {
+    return (
+        <div className="flex space-x-5">
+            <i className="fa-regular fa-ellipsis-vertical" />
+        </div>
     )
 }

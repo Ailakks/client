@@ -1,6 +1,7 @@
 import {gql, useQuery} from "@apollo/client";
 import Query from "../query/Query";
 import ListView from "./ListView";
+import Scopes, {Scope} from "../context/Scopes";
 
 export default function Folder({ id }) {
     const request = useQuery(gql`
@@ -71,6 +72,8 @@ export default function Folder({ id }) {
 
 function Body() {
     return (
-        <ListView />
+        <Scopes scopes={[Scope.VIEW, Scope.OPEN]}>
+            <ListView />
+        </Scopes>
     )
 }

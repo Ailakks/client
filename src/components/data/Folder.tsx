@@ -58,6 +58,10 @@ export default function Folder({ id }) {
         }
     );
 
+    const scopes = [
+
+    ]
+
     return (
         <Query request={request}>
             <Body />

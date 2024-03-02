@@ -49,7 +49,7 @@ export default function ListView() {
                     </div>
                 </div>
                 <div>
-                    <table className="w-full text-white">
+                    <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
                         <tbody>
                         <tr className="text-left">
                             <th>
@@ -80,7 +80,7 @@ function FileItem() {
     }
 
     return (
-        <tr className="h-14 hover:bg-gray-700 [&>*:first-child]:pl-5 [&>*:last-child]:pr-5">
+        <tr className="h-14 hover:bg-gray-700">
             <td>
                 <FileCheck />
             </td>

@@ -132,9 +132,11 @@ function Item() {
     return (
         <Fragment>
             <Modal isOpen={isOpen}>
-                <Popup>
-                    <FilePopup />
-                </Popup>
+                <ModalContent>
+                    <Popup>
+                        <FilePopup />
+                    </Popup>
+                </ModalContent>
             </Modal>
             <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
                 <td>

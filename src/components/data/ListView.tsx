@@ -2,6 +2,7 @@ import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
+import ItemContext from "./ItemContext";
 
 export const SelectedContext = createContext();
 
@@ -121,8 +122,10 @@ function Check() {
 
 function Options() {
     return (
-        <div className="flex space-x-5">
-            <i className="fa-regular fa-ellipsis-vertical" />
-        </div>
+        <ItemContext>
+            <div className="flex space-x-5">
+                <i className="fa-regular fa-ellipsis-vertical" />
+            </div>
+        </ItemContext>
     )
 }

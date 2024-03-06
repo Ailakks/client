@@ -17,6 +17,10 @@ const files = {
     [Scope.VIEW]: {
         icon: 'fa-regular fa-eye',
         name: 'View'
+    },
+    [Scope.OPEN]: {
+        icon: 'fa-regular fa-eye',
+        name: 'Open'
     }
 }
 

@@ -1,13 +1,10 @@
 import {useContext} from "react";
-import {ScopesContext} from "../context/Scopes";
 import List, {ListContext} from "../list/List";
 
-export default function ToolList() {
-    const { files } = useContext(ScopesContext);
-
+export default function ItemTool({ scopes }) {
     return (
         <div>
-            <List list={Object.values(files)}><Category /></List>
+            <List list={Object.values(scopes)}><Category /></List>
         </div>
     )
 }
@@ -26,8 +23,10 @@ function Item() {
     const { item: { icon } } = useContext(ListContext);
 
     return (
-        <div>
-            <i className={icon} />
+        <div className="flex">
+            <button className="menu">
+                <i className={icon} />
+            </button>
         </div>
     )
 }

@@ -8,7 +8,7 @@ export const Category = {
     ORGANIZE: "organize",
     SHARE: "share",
     MANAGE: "manage",
-    DELETE: "delete"
+    DELETE: "delete",
 }
 
 export const Scope = {
@@ -25,13 +25,28 @@ export const Scope = {
     DELETE: "delete",
 }
 
+const massive = {
+    [Category.VIEW]: {
+        [Scope.DOWNLOAD]: {
+            icon: 'fa-regular fa-arrow-down-to-bracket',
+            name: 'Download'
+        }
+    },
+    [Category.DELETE]: {
+        [Scope.TRASH]: {
+            icon: 'fa-regular fa-trash',
+            name: 'Move to trash'
+        },
+    },
+}
+
 const files = {
     [Category.VIEW]: {
         [Scope.VIEW]: {
             icon: 'fa-regular fa-eye',
             name: 'View'
         },
-        [Scope.OPEN]: {
+        [Scope.DOWNLOAD]: {
             icon: 'fa-regular fa-arrow-down-to-bracket',
             name: 'Download'
         },
@@ -67,7 +82,7 @@ const folders = {
 
 export default function Scopes({ scopes, children }) {
     return (
-        <ScopesContext.Provider value={{ scopes, files, folders }}>
+        <ScopesContext.Provider value={{ scopes, massive, files, folders }}>
             {children}
         </ScopesContext.Provider>
     )

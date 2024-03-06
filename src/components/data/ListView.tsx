@@ -3,7 +3,8 @@ import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
 import ItemContext from "./ItemContext";
-import ToolList from "./ToolList";
+import ItemTool from "./ItemTool";
+import {ScopesContext} from "../context/Scopes";
 
 export const SelectedContext = createContext();
 
@@ -43,7 +44,7 @@ export default function ListView() {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
                                 {selected.length > 1 && <p>{selected.length} items selected</p>}
-                                <ToolList />
+                                <Tool size={selected.length} />
                             </div>
                         }
                     </div>
@@ -65,6 +66,14 @@ export default function ListView() {
                 </div>
             </div>
         </SelectedContext.Provider>
+    )
+}
+
+function Tool({ size }) {
+    const { massive, files } = useContext(ScopesContext);
+
+    return (
+        size > 1 ? <ItemTool scopes={massive} /> : <ItemTool scopes={files} />
     )
 }
 

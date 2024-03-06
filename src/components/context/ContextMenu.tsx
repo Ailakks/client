@@ -20,7 +20,6 @@ function Category() {
     )
 }
 
-
 function Item() {
     const { item: { icon, name } } = useContext(ListContext);
 

@@ -30,20 +30,26 @@ export default function ListView() {
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
-            <div className="space-y-6">
-                <div className="flex space-x-6 h-12 p-6 items-center justify-between">
+            <div>
+                <div className="flex space-x-6 p-6 items-center justify-between">
                     <div>
                         <p>Drive</p>
                     </div>
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
-                            <button className="main">New folder</button>
-                            <button className="main">Upload</button>
+                            <button className="main flex items-center space-x-4">
+                                <i className="fa-regular fa-plus" />
+                                <p>New</p>
+                            </button>
+                            <button className="main flex items-center space-x-4">
+                                <i className="fa-regular fa-arrow-up-from-bracket" />
+                                <p>Upload</p>
+                            </button>
                         </div>
                         {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
-                                <p>{selected.length} {selected.length === 1 ? `item` : `items`} selected</p>
+                                <p>{selected.length === 1 ? `${selected.length} item selected` : `${selected.length} items selected`}</p>
                                 <Tool size={selected.length} />
                             </div>
                         }
@@ -56,6 +62,7 @@ export default function ListView() {
                             <th>
                                 <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`} />
                             </th>
+                            <th />
                             <th>Name</th>
                             <th>Date</th>
                             <th>Size</th>
@@ -92,10 +99,13 @@ function Item() {
             <td>
                 <Check />
             </td>
+            <td>
+                <i className="fa-solid fa-file" />
+            </td>
             <td onClick={select}>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
-            <td>
+            <td className="w-0">
                 <Options />
             </td>
         </tr>

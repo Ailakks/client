@@ -9,6 +9,7 @@ import {ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
 import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
 import Popup from "../ui/Popup";
+import FilePopup from "../item/FilePopup";
 
 export const SelectedContext = createContext();
 
@@ -117,7 +118,7 @@ function Item() {
         <Fragment>
             <Modal isOpen={isOpen}>
                 <Popup>
-                    
+                    <FilePopup />
                 </Popup>
             </Modal>
             <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>

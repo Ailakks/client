@@ -4,10 +4,8 @@ import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
 import ItemContext from "./list/ItemContext";
 import ItemTool from "./list/ItemTool";
-import {ScopesContext} from "../context/Scopes";
-import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
-import ContextMenu from "../context/ContextMenu";
 import NewButton from "./list/NewButton";
+import {ScopesContext} from "../context/Scopes";
 
 export const SelectedContext = createContext();
 

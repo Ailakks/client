@@ -5,7 +5,7 @@ import {clsx} from "clsx";
 export default function ContextMenu({ list }) {
     return (
         <div className="bg-gray-500 rounded-xl min-w-52 divide-y-2 divide-gray-300 divide- overflow-hidden">
-            <List list={list}><Category /></List>
+            <List list={Object.values(list)}><Category /></List>
         </div>
     )
 }

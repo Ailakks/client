@@ -43,7 +43,7 @@ export default function ListView() {
                         {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
-                                {selected.length > 1 && <p>{selected.length} items selected</p>}
+                                <p>{selected.length} {selected.length === 1 ? `item` : `items`} selected</p>
                                 <Tool size={selected.length} />
                             </div>
                         }

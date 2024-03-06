@@ -3,7 +3,7 @@ import List, {ListContext} from "../list/List";
 
 export default function ItemTool({ scopes }) {
     return (
-        <div className="flex divide-x-2 divide-gray-300">
+        <div className="flex">
             <List list={Object.values(scopes)}><Category /></List>
         </div>
     )

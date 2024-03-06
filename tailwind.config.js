@@ -23,6 +23,9 @@ module.exports = {
                 700: '#18181b',
                 900: '#111111'
             }
+        },
+        divideWidth: {
+                2: '1px'
         }
     },
     variants: {

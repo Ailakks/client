@@ -1,5 +1,4 @@
 import {gql, useLazyQuery} from "@apollo/client";
-import {setToken} from "../../../wrapper/Apollo";
 import Form from "../../query/Form";
 import PasswordInput from "../../layout/components/input/PasswordInput";
 import LoadStatus from "../../load/LoadStatus";
@@ -7,6 +6,7 @@ import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useContext, useEffect} from "react";
 import {KeyContext} from "../../../wrapper/logged/Key";
 import {useNavigate} from "react-router-dom";
+import {setToken} from "../../../main";
 
 export default function Key() {
     const { data, loading } = useContext(KeyContext);

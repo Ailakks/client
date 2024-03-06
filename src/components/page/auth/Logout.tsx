@@ -1,7 +1,7 @@
 import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useEffect} from "react";
-import {removeToken} from "../../../wrapper/Apollo";
 import {useNavigate} from "react-router-dom";
+import {removeToken} from "../../../main";
 
 export default function Logout() {
     const navigate = useNavigate();

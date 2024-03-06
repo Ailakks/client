@@ -5,9 +5,9 @@ import {gql, useLazyQuery} from "@apollo/client";
 import LoadStatus from "../../load/LoadStatus";
 import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useNavigate} from "react-router-dom";
-import {setToken} from "../../../wrapper/Apollo";
 import {useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/Account";
+import {setToken} from "../../../main";
 
 export default function Login() {
     const navigate = useNavigate();

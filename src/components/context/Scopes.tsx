@@ -1,4 +1,5 @@
 import {createContext} from "react";
+import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
 
 export const ScopesContext = createContext();
 
@@ -81,8 +82,15 @@ const folders = {
 }
 
 export default function Scopes({ scopes, children }) {
+    const { isOpen, onOpen } = useDisclosure();
+
     return (
         <ScopesContext.Provider value={{ scopes, massive, files, folders }}>
+            <Modal isOpen={isOpen}>
+                <ModalContent>
+                    <p>test</p>
+                </ModalContent>
+            </Modal>
             {children}
         </ScopesContext.Provider>
     )

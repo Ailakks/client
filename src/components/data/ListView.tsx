@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, Fragment, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
@@ -7,6 +7,8 @@ import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
+import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
+import Popup from "../ui/Popup";
 
 export const SelectedContext = createContext();
 
@@ -91,6 +93,8 @@ function Item() {
 
     const { selected, setSelected } = useContext(SelectedContext);
 
+    const { isOpen, onOpen } = useDisclosure();
+
     useEffect(() => {
         setChecked(selected.includes(item));
     }, [selected])
@@ -110,20 +114,27 @@ function Item() {
     }
 
     return (
-        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
-            <td>
-                <Check checked={checked} add={add} />
-            </td>
-            <td>
-                <i className="fa-solid fa-file" />
-            </td>
-            <td onClick={select}>{name}</td>
-            <td>{date}</td>
-            <td>{size}</td>
-            <td className="w-0">
-                <Options />
-            </td>
-        </tr>
+        <Fragment>
+            <Modal isOpen={isOpen}>
+                <Popup>
+                    
+                </Popup>
+            </Modal>
+            <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
+                <td>
+                    <Check checked={checked} add={add} />
+                </td>
+                <td onClick={select}>
+                    <i className="fa-solid fa-file" />
+                </td>
+                <td onClick={onOpen}>{name}</td>
+                <td>{date}</td>
+                <td>{size}</td>
+                <td className="w-0">
+                    <Options />
+                </td>
+            </tr>
+        </Fragment>
     )
 }
 

@@ -40,12 +40,6 @@ const files = {
             name: 'Link'
         }
     },
-    [Category.ORGANIZE]: {
-        [Scope.TAG]: {
-            icon: 'fa-regular fa-tag',
-            name: 'Tags'
-        }
-    },
     [Category.MANAGE]: {
         [Scope.CLONE]: {
             icon: 'fa-regular fa-copy',

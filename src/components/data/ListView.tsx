@@ -123,9 +123,9 @@ function Check() {
 function Options() {
     return (
         <ItemContext>
-            <div className="flex space-x-5">
+            <button className="menu">
                 <i className="fa-regular fa-ellipsis-vertical" />
-            </div>
+            </button>
         </ItemContext>
     )
 }

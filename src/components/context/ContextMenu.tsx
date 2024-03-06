@@ -1,5 +1,6 @@
 import List, {ListContext} from "../list/List";
 import {useContext} from "react";
+import {clsx} from "clsx";
 
 export default function ContextMenu({ list }) {
     return (
@@ -25,7 +26,7 @@ function Item() {
 
     return (
         <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300">
-            <i className={icon} />
+            <i className={clsx('w-6', icon)} />
             <p>{name}</p>
         </div>
     )

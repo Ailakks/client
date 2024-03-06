@@ -49,6 +49,10 @@ html {
         @apply bg-gray-500 h-10 cursor-pointer px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
     }
 
+    button.menu {
+        @apply hover:bg-gray-500 outline-none h-10 cursor-pointer px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
+    }
+
     hr {
         @apply border-gray-300;
     }

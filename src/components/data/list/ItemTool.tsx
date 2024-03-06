@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import List, {ListContext} from "../list/List";
+import List, {ListContext} from "../../list/List";
 
 export default function ItemTool({ scopes }) {
     return (

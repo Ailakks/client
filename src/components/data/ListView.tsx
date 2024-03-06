@@ -2,9 +2,12 @@ import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
-import ItemContext from "./ItemContext";
-import ItemTool from "./ItemTool";
+import ItemContext from "./list/ItemContext";
+import ItemTool from "./list/ItemTool";
 import {ScopesContext} from "../context/Scopes";
+import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
+import ContextMenu from "../context/ContextMenu";
+import NewButton from "./list/NewButton";
 
 export const SelectedContext = createContext();
 
@@ -37,10 +40,7 @@ export default function ListView() {
                     </div>
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
-                            <button className="main flex items-center space-x-4">
-                                <i className="fa-regular fa-plus" />
-                                <p>New</p>
-                            </button>
+                            <NewButton />
                             <button className="main flex items-center space-x-4">
                                 <i className="fa-regular fa-arrow-up-from-bracket" />
                                 <p>Upload</p>

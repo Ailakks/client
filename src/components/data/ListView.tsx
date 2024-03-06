@@ -3,6 +3,7 @@ import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
 import ItemContext from "./ItemContext";
+import ToolList from "./ToolList";
 
 export const SelectedContext = createContext();
 
@@ -42,9 +43,7 @@ export default function ListView() {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
                                 {selected.length > 1 && <p>{selected.length} items selected</p>}
-                                <div>
-                                    <i className="fa-regular fa-trash text-white" />
-                                </div>
+                                <ToolList />
                             </div>
                         }
                     </div>
@@ -59,7 +58,6 @@ export default function ListView() {
                             <th>Name</th>
                             <th>Date</th>
                             <th>Size</th>
-                            <th>Options</th>
                         </tr>
                         <List list={files}><Item /></List>
                         </tbody>

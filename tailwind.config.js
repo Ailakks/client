@@ -5,6 +5,9 @@ module.exports = {
     ],
     theme: {
         colors: {
+            black: {
+                DEFAULT: '#000000'
+            },
             transparent: {
                 DEFAULT: 'rgba(0,0,0,0)',
             },

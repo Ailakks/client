@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import ApolloWrapper from "./wrapper/Apollo";
 import AccountWrapper from "./wrapper/Account";
 import LoggedWrapper from "./wrapper/Logged";
-import PopupRender from "./wrapper/render/PopupRender";
+import PopupProvider from "./wrapper/ui/PopupProvider";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -14,9 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ApolloWrapper>
             <AccountWrapper>
                 <LoggedWrapper>
-                    <PopupRender>
+                    <PopupProvider>
                         <App />
-                    </PopupRender>
+                    </PopupProvider>
                 </LoggedWrapper>
             </AccountWrapper>
         </ApolloWrapper>

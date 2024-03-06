@@ -1,17 +1,12 @@
-import {createContext, useState} from 'react';
-
-export const PopupContext = createContext(null);
+import {Fragment, useContext} from 'react';
 
 export default function PopupRender({ children }) {
-    const [popup, setPopup] = useState(null);
-
-    const close = () => {
-        setPopup(null);
-    }
+    const { popup } = useContext(PopupContext);
 
     return (
-        <PopupContext.Provider value={{ popup, setPopup, close }}>
+        <Fragment>
+            {popup}
             {children}
-        </PopupContext.Provider>
+        </Fragment>
     );
 }

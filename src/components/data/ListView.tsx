@@ -7,7 +7,7 @@ import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
-import {PopupContext} from "../../wrapper/render/PopupRender";
+import {PopupContext} from "../../wrapper/ui/PopupProvider";
 
 export const SelectedContext = createContext();
 

@@ -2,7 +2,7 @@ import {useContext} from "react";
 import {Category, Scope, ScopesContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import FilePreview from "./FilePreview";
-import {PopupContext} from "../../wrapper/render/PopupRender";
+import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import Popup from "../ui/Popup";
 
 export default function FilePopup() {

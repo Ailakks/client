@@ -1,5 +1,5 @@
 import {createContext, useContext} from "react";
-import {PopupContext} from "../../wrapper/render/PopupRender";
+import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import FilePopup from "../item/FilePopup";
 
 export const ScopesContext = createContext();

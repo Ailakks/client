@@ -2,6 +2,12 @@ import {createContext} from "react";
 
 export const ScopesContext = createContext();
 
+export const Category = {
+    VIEW: "view",
+    USE: "use",
+    MANAGE: "manage"
+}
+
 export const Scope = {
     VIEW: "view",
     OPEN: "open",
@@ -14,14 +20,22 @@ export const Scope = {
 }
 
 const files = {
-    [Scope.VIEW]: {
-        icon: 'fa-regular fa-eye',
-        name: 'View'
+    [Category.VIEW]: {
+        [Scope.VIEW]: {
+            icon: 'fa-regular fa-eye',
+            name: 'View'
+        },
+        [Scope.OPEN]: {
+            icon: 'fa-regular fa-eye',
+            name: 'Open'
+        },
     },
-    [Scope.OPEN]: {
-        icon: 'fa-regular fa-eye',
-        name: 'Open'
-    }
+    [Category.MANAGE]: {
+        [Scope.DELETE]: {
+            icon: 'fa-regular fa-eye',
+            name: 'Delete'
+        },
+    },
 }
 
 const folders = {

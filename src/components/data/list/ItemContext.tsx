@@ -9,7 +9,7 @@ export default function ItemContext({ children }) {
     const { files } = useContext(ScopesContext);
 
     return (
-        <Popover isOpen={open} onOpenChange={status => setOpen(status)} onClick={() => setOpen(false)} placement="bottom" shouldCloseOnBlur={true}>
+        <Popover isOpen={open} onOpenChange={status => setOpen(status)} onClick={() => setOpen(false)} placement="bottom">
             <PopoverTrigger>
                 {children}
             </PopoverTrigger>

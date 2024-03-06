@@ -6,6 +6,7 @@ import ItemContext from "./list/ItemContext";
 import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {ScopesContext} from "../context/Scopes";
+import {clsx} from "clsx";
 
 export const SelectedContext = createContext();
 
@@ -83,19 +84,35 @@ function Tool({ size }) {
 }
 
 function Item() {
+    const [checked, setChecked] = useState(false);
+
     const { item } = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;
 
-    const { setSelected } = useContext(SelectedContext);
+    const { selected, setSelected } = useContext(SelectedContext);
+
+    useEffect(() => {
+        setChecked(selected.includes(item));
+    }, [selected])
 
     const select = () => {
         setSelected([item]);
     }
 
+    const add = (status) => {
+        if (status) {
+            setSelected((previous) => [...previous, item]);
+
+            return;
+        }
+
+        setSelected((previous) => previous.filter((target) => target != item));
+    }
+
     return (
-        <tr className="h-14 hover:bg-gray-700">
+        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
             <td>
-                <Check />
+                <Check checked={checked} add={add} />
             </td>
             <td>
                 <i className="fa-solid fa-file" />
@@ -110,26 +127,7 @@ function Item() {
     )
 }
 
-function Check() {
-    const [checked, setChecked] = useState(false);
-
-    const { item } = useContext(ListContext);
-    const { selected, setSelected } = useContext(SelectedContext);
-
-    const add = (status) => {
-        if (status) {
-            setSelected((previous) => [...previous, item]);
-
-            return;
-        }
-
-        setSelected((previous) => previous.filter((target) => target != item));
-    }
-
-    useEffect(() => {
-        setChecked(selected.includes(item));
-    }, [selected])
-
+function Check({ checked, add }) {
     return (
         <Checkbox status={checked} change={add} />
     )

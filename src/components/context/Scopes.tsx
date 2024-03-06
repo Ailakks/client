@@ -26,21 +26,6 @@ export const Scope = {
     DELETE: "delete",
 }
 
-const massive = {
-    [Category.VIEW]: {
-        [Scope.DOWNLOAD]: {
-            icon: 'fa-regular fa-arrow-down-to-bracket',
-            name: 'Download'
-        }
-    },
-    [Category.DELETE]: {
-        [Scope.TRASH]: {
-            icon: 'fa-regular fa-trash',
-            name: 'Move to trash'
-        },
-    },
-}
-
 const files = {
     [Category.VIEW]: {
         [Scope.VIEW]: {
@@ -82,10 +67,10 @@ const folders = {
 }
 
 export default function Scopes({ scopes, children }) {
-    const { isOpen, onOpen } = useDisclosure();
+    const { isOpen } = useDisclosure();
 
     return (
-        <ScopesContext.Provider value={{ scopes, massive, files, folders }}>
+        <ScopesContext.Provider value={{ scopes, files, folders }}>
             <Modal isOpen={isOpen}>
                 <ModalContent>
                     <p>test</p>

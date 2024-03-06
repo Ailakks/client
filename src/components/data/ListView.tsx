@@ -5,7 +5,7 @@ import Checkbox from "../input/Checkbox";
 import ItemContext from "./list/ItemContext";
 import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
-import {ScopesContext} from "../context/Scopes";
+import {Category, Scope, ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
 import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
 import Popup from "../ui/Popup";
@@ -79,7 +79,22 @@ export default function ListView() {
 }
 
 function Tool({ size }) {
-    const { massive, files } = useContext(ScopesContext);
+    const massive = {
+        [Category.VIEW]: {
+            [Scope.DOWNLOAD]: {
+                icon: 'fa-regular fa-arrow-down-to-bracket',
+                name: 'Download'
+            }
+        },
+        [Category.DELETE]: {
+            [Scope.TRASH]: {
+                icon: 'fa-regular fa-trash',
+                name: 'Move to trash'
+            },
+        },
+    };
+
+    const { files } = useContext(ScopesContext);
 
     return (
         size > 1 ? <ItemTool scopes={massive} /> : <ItemTool scopes={files} />

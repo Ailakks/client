@@ -5,6 +5,7 @@ export const ScopesContext = createContext();
 export const Category = {
     VIEW: "view",
     USE: "use",
+    ORGANIZE: "organize",
     SHARE: "share",
     MANAGE: "manage",
     DELETE: "delete"
@@ -16,6 +17,7 @@ export const Scope = {
     SHARE: "share",
     LINK: "link",
     DETAILS: "details",
+    TAG: "tag",
     DOWNLOAD: "download",
     CLONE: "clone",
     RENAME: "rename",
@@ -30,23 +32,27 @@ const files = {
             name: 'View'
         },
         [Scope.OPEN]: {
-            icon: 'fa-regular fa-download',
+            icon: 'fa-regular fa-arrow-down-to-bracket',
             name: 'Download'
         },
-    },
-    [Category.SHARE]: {
         [Scope.LINK]: {
             icon: 'fa-regular fa-link',
             name: 'Link'
         }
     },
+    [Category.ORGANIZE]: {
+        [Scope.TAG]: {
+            icon: 'fa-regular fa-tag',
+            name: 'Tags'
+        }
+    },
     [Category.MANAGE]: {
         [Scope.CLONE]: {
-            icon: 'fa-regular fa-pencil',
+            icon: 'fa-regular fa-copy',
             name: 'Clone'
         },
         [Scope.RENAME]: {
-            icon: 'fa-regular fa-pencil',
+            icon: 'fa-regular fa-pen',
             name: 'Rename'
         }
     },

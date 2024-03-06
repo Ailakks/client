@@ -10,8 +10,7 @@ export default function PopupRender({ children }) {
     }
 
     return (
-        <PopupContext.Provider value={{ setPopup, close }}>
-            {popup}
+        <PopupContext.Provider value={{ popup, setPopup, close }}>
             {children}
         </PopupContext.Provider>
     );

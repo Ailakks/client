@@ -1,4 +1,4 @@
-import {createContext, Fragment, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
@@ -7,13 +7,13 @@ import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
-import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
-import Popup from "../ui/Popup";
-import FilePopup from "../item/FilePopup";
+import {PopupContext} from "../../wrapper/render/PopupRender";
 
 export const SelectedContext = createContext();
 
 export default function ListView() {
+    const { popup } = useContext(PopupContext);
+
     const [selected, setSelected] = useState([]);
     const [checked, setChecked] = useState(false);
 
@@ -35,6 +35,7 @@ export default function ListView() {
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
+            {popup}
             <div>
                 <div className="flex space-x-6 p-6 items-center justify-between">
                     <div>
@@ -109,8 +110,6 @@ function Item() {
 
     const { selected, setSelected } = useContext(SelectedContext);
 
-    const { isOpen, onOpen } = useDisclosure();
-
     useEffect(() => {
         setChecked(selected.includes(item));
     }, [selected])
@@ -130,29 +129,20 @@ function Item() {
     }
 
     return (
-        <Fragment>
-            <Modal isOpen={isOpen}>
-                <ModalContent>
-                    <Popup>
-                        <FilePopup />
-                    </Popup>
-                </ModalContent>
-            </Modal>
-            <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
-                <td>
-                    <Check checked={checked} add={add} />
-                </td>
-                <td onClick={select}>
-                    <i className="fa-solid fa-file" />
-                </td>
-                <td onClick={onOpen}>{name}</td>
-                <td>{date}</td>
-                <td>{size}</td>
-                <td className="w-0">
-                    <Options />
-                </td>
-            </tr>
-        </Fragment>
+        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
+            <td>
+                <Check checked={checked} add={add} />
+            </td>
+            <td onClick={select}>
+                <i className="fa-solid fa-file" />
+            </td>
+            <td>{name}</td>
+            <td>{date}</td>
+            <td>{size}</td>
+            <td className="w-0">
+                <Options />
+            </td>
+        </tr>
     )
 }
 

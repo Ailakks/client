@@ -21,10 +21,10 @@ function Category() {
 }
 
 function Item() {
-    const { item: { icon, name } } = useContext(ListContext);
+    const { item: { icon, name, action } } = useContext(ListContext);
 
     return (
-        <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300">
+        <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={action}>
             <i className={clsx('w-6', icon)} />
             <p>{name}</p>
         </div>

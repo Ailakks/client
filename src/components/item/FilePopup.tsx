@@ -2,10 +2,11 @@ import {useContext} from "react";
 import {Category, Scope, ScopesContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import FilePreview from "./FilePreview";
-import {PopupContext} from "../ui/Popup";
+import {PopupContext} from "../../wrapper/render/PopupRender";
+import Popup from "../ui/Popup";
 
 export default function FilePopup() {
-    const { onClose } = useContext(PopupContext);
+    const { close } = useContext(PopupContext);
     const { files } = useContext(ScopesContext);
 
     const list = {
@@ -23,14 +24,16 @@ export default function FilePopup() {
     };
 
     return (
-        <div className="space-y-10">
-            <div className="flex justify-center">
-                <ItemTool scopes={list} />
-                <button className="menu" onClick={onClose}>
-                    <i className="fa-regular fa-xmark" />
-                </button>
+        <Popup>
+            <div className="space-y-10">
+                <div className="flex justify-center">
+                    <ItemTool scopes={list} />
+                    <button className="menu" onClick={close}>
+                        <i className="fa-regular fa-xmark" />
+                    </button>
+                </div>
+                <FilePreview />
             </div>
-            <FilePreview />
-        </div>
+        </Popup>
     )
 }

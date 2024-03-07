@@ -102,6 +102,7 @@ function Item() {
     const [checked, setChecked] = useState(false);
 
     const { item } = useContext(ListContext);
+    const { files } = useContext(ScopesContext);
     const { name, date, source: { meta: { size } } } = item;
 
     const { selected, setSelected } = useContext(SelectedContext);
@@ -132,7 +133,7 @@ function Item() {
             <td onClick={select}>
                 <i className="fa-solid fa-file" />
             </td>
-            <td>{name}</td>
+            <td onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
             <td className="w-0">

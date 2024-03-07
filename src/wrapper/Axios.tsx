@@ -8,6 +8,7 @@ export default function AxiosWrapper({ children }) {
     const { getToken } = useContext(CookiesContext);
 
     const axiosClient = axios.create({
+        baseURL: import.meta.env.VITE_API_REST_BASE_URL,
         headers: {
             'Authorization': `Bearer ${getToken()}`
         },

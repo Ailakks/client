@@ -7,7 +7,7 @@ export default function ApolloWrapper({ children }) {
     const { getToken } = useContext(CookiesContext);
 
     const ApiClient = new ApolloClient({
-        uri: import.meta.env.VITE_API_BASE_URL,
+        uri: import.meta.env.VITE_API_GRAPH_BASE_URL,
         cache: new InMemoryCache(),
         headers: {
             'Authorization': `Bearer ${getToken()}`

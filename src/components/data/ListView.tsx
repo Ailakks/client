@@ -1,4 +1,4 @@
-import {createContext, Fragment, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
@@ -128,23 +128,20 @@ function Item() {
     }
 
     return (
-        <Fragment>
-            {popup}
-            <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
-                <td>
-                    <Check checked={checked} add={add} />
-                </td>
-                <td onClick={select}>
-                    <i className="fa-solid fa-file" />
-                </td>
-                <td>{name}</td>
-                <td>{date}</td>
-                <td>{size}</td>
-                <td className="w-0">
-                    <Options />
-                </td>
-            </tr>
-        </Fragment>
+        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
+            <td>
+                <Check checked={checked} add={add} />
+            </td>
+            <td onClick={select}>
+                <i className="fa-solid fa-file" />
+            </td>
+            <td>{name}</td>
+            <td>{date}</td>
+            <td>{size}</td>
+            <td className="w-0">
+                <Options />
+            </td>
+        </tr>
     )
 }
 

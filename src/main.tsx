@@ -9,6 +9,7 @@ import LoggedWrapper from "./wrapper/Logged";
 import PopupProvider from "./wrapper/ui/PopupProvider";
 import CookiesWrapper from "./wrapper/Cookies";
 import AxiosWrapper from "./wrapper/Axios";
+import RenderProvider from "./wrapper/Render";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <AccountWrapper>
                         <LoggedWrapper>
                             <PopupProvider>
-                                <App />
+                                <RenderProvider>
+                                    <App />
+                                </RenderProvider>
                             </PopupProvider>
                         </LoggedWrapper>
                     </AccountWrapper>

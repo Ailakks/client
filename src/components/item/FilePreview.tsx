@@ -27,6 +27,6 @@ function Body() {
     }, [data]);
 
     return (
-        <iframe src={blob} />
+        <iframe className="w-full h-full" src={blob} />
     )
 }

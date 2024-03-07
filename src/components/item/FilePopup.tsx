@@ -25,8 +25,8 @@ export default function FilePopup() {
 
     return (
         <Popup>
-            <div className="space-y-10">
-                <div className="flex justify-center">
+            <div className="grid grid-rows-[auto_1fr] h-full">
+                <div className="flex justify-center fr-1">
                     <ItemTool scopes={list} />
                     <button className="menu" onClick={close}>
                         <i className="fa-regular fa-xmark" />

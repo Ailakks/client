@@ -1,7 +1,6 @@
 import {createContext, useContext} from "react";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import FilePopup from "../item/FilePopup";
-import ItemContext from "../data/list/ItemContext";
 
 export const ScopesContext = createContext();
 export const ScopesDataContext = createContext();
@@ -37,9 +36,9 @@ export default function Scopes({ scopes, children }) {
             [Scope.VIEW]: {
                 icon: 'fa-regular fa-eye',
                 name: 'View',
-                action: (data) => {
+                action: (list, item) => {
                     setPopup(
-                        <ScopesDataContext.Provider value={{ data }}>
+                        <ScopesDataContext.Provider value={{ list, item }}>
                             <FilePopup />
                         </ScopesDataContext.Provider>
                     );
@@ -47,27 +46,42 @@ export default function Scopes({ scopes, children }) {
             },
             [Scope.DOWNLOAD]: {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
-                name: 'Download'
+                name: 'Download',
+                action: (list, item) => {
+
+                }
             },
             [Scope.LINK]: {
                 icon: 'fa-regular fa-link',
-                name: 'Link'
+                name: 'Link',
+                action: (list, item) => {
+
+                }
             }
         },
         [Category.MANAGE]: {
             [Scope.CLONE]: {
                 icon: 'fa-regular fa-copy',
-                name: 'Clone'
+                name: 'Clone',
+                action: (list, item) => {
+
+                }
             },
             [Scope.RENAME]: {
                 icon: 'fa-regular fa-pen',
-                name: 'Rename'
+                name: 'Rename',
+                action: (list, item) => {
+
+                }
             }
         },
         [Category.DELETE]: {
             [Scope.TRASH]: {
                 icon: 'fa-regular fa-trash',
-                name: 'Move to trash'
+                name: 'Move to trash',
+                action: (list, item) => {
+
+                }
             },
         },
     }
@@ -75,7 +89,10 @@ export default function Scopes({ scopes, children }) {
     const folders = {
         [Scope.OPEN]: {
             icon: 'fa-regular fa-eye',
-            name: 'Open'
+            name: 'Open',
+            action: (list, item) => {
+
+            }
         }
     }
 

@@ -7,19 +7,19 @@ import Popup from "../ui/Popup";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
-    const { files } = useContext(ScopesContext);
+    const { list } = useContext(ScopesContext);
 
     const list = {
         [Category.VIEW]: {
-            [Scope.DOWNLOAD]: { ...files[Category.VIEW][Scope.DOWNLOAD] },
-            [Scope.LINK]: { ...files[Category.VIEW][Scope.LINK] }
+            [Scope.DOWNLOAD]: { ...list[Category.VIEW][Scope.DOWNLOAD] },
+            [Scope.LINK]: { ...list[Category.VIEW][Scope.LINK] }
         },
         [Category.MANAGE]: {
-            [Scope.CLONE]: { ...files[Category.MANAGE][Scope.CLONE] },
-            [Scope.RENAME]: { ...files[Category.MANAGE][Scope.RENAME] }
+            [Scope.CLONE]: { ...list[Category.MANAGE][Scope.CLONE] },
+            [Scope.RENAME]: { ...list[Category.MANAGE][Scope.RENAME] }
         },
         [Category.DELETE]: {
-            [Scope.TRASH]: { ...files[Category.DELETE][Scope.TRASH] }
+            [Scope.TRASH]: { ...list[Category.DELETE][Scope.TRASH] }
         },
     };
 

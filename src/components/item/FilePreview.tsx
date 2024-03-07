@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {ListContext} from "../list/List";
 import {AxiosContext} from "../../wrapper/Axios";
+import Request from "../query/Request";
 
 export default function FilePreview() {
     const { useClient } = useContext(AxiosContext);
@@ -9,6 +10,8 @@ export default function FilePreview() {
     const request = useClient(`file/${id}`);
 
     return (
-        <p>{id}</p>
+        <Request request={request}>
+            
+        </Request>
     )
 }

@@ -52,11 +52,11 @@ export default function Scopes({ scopes, children }) {
             [Scope.DOWNLOAD]: {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
                 name: 'Download',
-                action: (scopes, item) => {
+                action: async (scopes, item) => {
                     const { id, source: { meta: { name, mime } } } = item;
 
-                    const data = client.get({ url: `file/${id}`, responseType: 'arrayBuffer' }).then(({ data }) => data);
-                    const blob = URL.createObjectURL(new Blob([data], { type: mime }));
+                    const { data } = await client.get(`file/${id}`, { responseType: 'arraybuffer' });
+                    const blob = new Blob([data], { type: mime });
 
                     download(name, blob);
                 }

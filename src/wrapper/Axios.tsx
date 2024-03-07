@@ -1,5 +1,5 @@
 import {createContext, useContext} from 'react';
-import {CookiesContext} from "./Cookies";
+import {CookiesContext} from "./tool/Cookies";
 import axios from "axios";
 import {makeUseAxios} from "axios-hooks";
 

@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import {CookiesContext} from "./Cookies";
+import {CookiesContext} from "./tool/Cookies";
 
 export default function ApolloWrapper({ children }) {
     const { getToken } = useContext(CookiesContext);

@@ -1,7 +1,7 @@
 import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {CookiesContext} from "../../../wrapper/Cookies";
+import {CookiesContext} from "../../../wrapper/tool/Cookies";
 
 export default function Logout() {
     const navigate = useNavigate();

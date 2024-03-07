@@ -7,7 +7,7 @@ import {useContext, useEffect} from "react";
 import {KeyContext} from "../../../wrapper/logged/Key";
 import {useNavigate} from "react-router-dom";
 import {setToken} from "../../../main";
-import {CookiesContext} from "../../../wrapper/Cookies";
+import {CookiesContext} from "../../../wrapper/tool/Cookies";
 
 export default function Key() {
     const { data, loading } = useContext(KeyContext);

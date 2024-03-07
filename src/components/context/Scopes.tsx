@@ -48,7 +48,7 @@ export default function Scopes({ scopes, children }) {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
                 name: 'Download',
                 action: (scopes, data) => {
-
+                    alert('hi');
                 }
             },
             [Scope.LINK]: {

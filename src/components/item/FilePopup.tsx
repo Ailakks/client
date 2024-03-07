@@ -7,8 +7,7 @@ import Popup from "../ui/Popup";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
-    const { scopes } = useContext(ScopesDataContext);
-    const { item: { name } } = useContext(ScopesDataContext);
+    const { scopes, item: { name } } = useContext(ScopesDataContext);
 
     const list = {
         [Category.VIEW]: {

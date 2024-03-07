@@ -98,7 +98,7 @@ function Tool() {
     const item = selected.length > 1 ? selected : selected[0];
 
     return (
-        <ScopesDataContext.Provider value={{ item }}>
+        <ScopesDataContext.Provider value={{ scopes: files, item }}>
             <ItemTool scopes={selected.length > 1 ? massive : files} />
         </ScopesDataContext.Provider>
     )
@@ -132,18 +132,21 @@ function Item() {
     }
 
     return (
-        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')}>
+        <tr className={clsx(checked && '!bg-blue-900', 'relative h-14 hover:bg-gray-700')}>
             <td>
                 <Check checked={checked} add={add} />
             </td>
-            <td onClick={select}>
+            <td>
                 <i className="fa-solid fa-file" />
             </td>
             <td onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
             <td>{date}</td>
             <td>{size}</td>
             <td className="w-0">
-                <Options />
+                <div className="absolute top-0 bottom-0 right-0 left-0 -z-10" onClick={select} />
+                <div className="z-10">
+                    <Options />
+                </div>
             </td>
         </tr>
     )

@@ -7,7 +7,6 @@ import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext} from "../context/Scopes";
 import {clsx} from "clsx";
-import {PopupContext} from "../../wrapper/ui/PopupProvider";
 
 export const SelectedContext = createContext();
 
@@ -101,8 +100,6 @@ function Tool({ size }) {
 
 function Item() {
     const [checked, setChecked] = useState(false);
-
-    const { popup } = useContext(PopupContext);
 
     const { item } = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;

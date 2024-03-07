@@ -1,11 +1,11 @@
 import {useContext, useEffect, useState} from "react";
-import {ListContext} from "../list/List";
 import {AxiosContext} from "../../wrapper/Axios";
 import Request, {RequestContext} from "../query/Request";
+import {ScopesDataContext} from "../context/Scopes";
 
 export default function FilePreview() {
     const { useClient } = useContext(AxiosContext);
-    const { item: { id } } = useContext(ListContext);
+    const { data: { id } } = useContext(ScopesDataContext);
 
     const request = useClient({ url: `file/${id}`, responseType: 'arraybuffer' });
 
@@ -18,7 +18,7 @@ export default function FilePreview() {
 
 function Body() {
     const { data } = useContext(RequestContext);
-    const { item: { source: { meta: { mime } } } } = useContext(ListContext);
+    const { data: { source: { meta: { mime } } } } = useContext(ScopesDataContext);
 
     const [blob, setBlob] = useState(null);
 

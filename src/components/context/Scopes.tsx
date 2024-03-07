@@ -1,8 +1,10 @@
 import {createContext, useContext} from "react";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import FilePopup from "../item/FilePopup";
+import ItemContext from "../data/list/ItemContext";
 
 export const ScopesContext = createContext();
+export const ScopesDataContext = createContext();
 
 export const Category = {
     VIEW: "view",
@@ -36,7 +38,11 @@ export default function Scopes({ scopes, children }) {
                 icon: 'fa-regular fa-eye',
                 name: 'View',
                 action: (data) => {
-                    setPopup(<FilePopup />);
+                    setPopup(
+                        <ScopesDataContext.Provider value={{ data }}>
+                            <FilePopup />
+                        </ScopesDataContext.Provider>
+                    );
                 }
             },
             [Scope.DOWNLOAD]: {

@@ -1,6 +1,8 @@
 import {createContext, useContext} from "react";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import FilePopup from "../item/FilePopup";
+import {DownloadContext} from "../../wrapper/tool/Download";
+import {AxiosContext} from "../../wrapper/Axios";
 
 export const ScopesContext = createContext();
 export const ScopesDataContext = createContext();
@@ -31,6 +33,9 @@ export const Scope = {
 export default function Scopes({ scopes, children }) {
     const { setPopup } = useContext(PopupContext);
 
+    const { client } = useContext(AxiosContext);
+    const { download } = useContext(DownloadContext);
+
     const files = {
         [Category.VIEW]: {
             [Scope.VIEW]: {
@@ -48,7 +53,12 @@ export default function Scopes({ scopes, children }) {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
                 name: 'Download',
                 action: (scopes, item) => {
+                    const { id, source: { meta: { name, mime } } } = item;
 
+                    const data = client.get({ url: `file/${id}`, responseType: 'arrayBuffer' }).then(({ data }) => data);
+                    const blob = URL.createObjectURL(new Blob([data], { type: mime }));
+
+                    download(name, blob);
                 }
             },
             [Scope.LINK]: {

@@ -1,5 +1,6 @@
 import {createContext, useContext} from 'react';
 import {CookiesContext} from "./Cookies";
+import axios from "axios";
 
 export const AxiosContext = createContext(null);
 

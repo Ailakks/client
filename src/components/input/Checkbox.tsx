@@ -8,7 +8,9 @@ export default function Checkbox({ status, change, icon }) {
         setSelected(status);
     }, [status]);
 
-    const handle = () => {
+    const handle = (event) => {
+        event.stopPropagation();
+
         const response = change(!status);
 
         if (response) {

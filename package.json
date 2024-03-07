@@ -13,6 +13,7 @@
     "@nextui-org/react": "^2.2.9",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
+    "axios-hooks": "^5.0.2",
     "clsx": "^2.1.0",
     "react": "^18.2.0",
     "react-cookies": "^0.1.1",

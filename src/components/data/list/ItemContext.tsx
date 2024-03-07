@@ -14,7 +14,9 @@ export default function ItemContext({ children }) {
                 {children}
             </PopoverTrigger>
             <PopoverContent>
-                <ContextMenu list={Object.values(files)} />
+                <ScopesContext.Provider value={files}>
+                    <ContextMenu list={Object.values(files)} />
+                </ScopesContext.Provider>
             </PopoverContent>
         </Popover>
     )

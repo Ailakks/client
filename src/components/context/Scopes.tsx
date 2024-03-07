@@ -36,9 +36,9 @@ export default function Scopes({ scopes, children }) {
             [Scope.VIEW]: {
                 icon: 'fa-regular fa-eye',
                 name: 'View',
-                action: (list, item) => {
+                action: (scopes, data) => {
                     setPopup(
-                        <ScopesDataContext.Provider value={{ list, item }}>
+                        <ScopesDataContext.Provider value={{ scopes, data }}>
                             <FilePopup />
                         </ScopesDataContext.Provider>
                     );
@@ -47,14 +47,14 @@ export default function Scopes({ scopes, children }) {
             [Scope.DOWNLOAD]: {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
                 name: 'Download',
-                action: (list, item) => {
+                action: (scopes, data) => {
 
                 }
             },
             [Scope.LINK]: {
                 icon: 'fa-regular fa-link',
                 name: 'Link',
-                action: (list, item) => {
+                action: (scopes, data) => {
 
                 }
             }
@@ -63,14 +63,14 @@ export default function Scopes({ scopes, children }) {
             [Scope.CLONE]: {
                 icon: 'fa-regular fa-copy',
                 name: 'Clone',
-                action: (list, item) => {
+                action: (scopes, data) => {
 
                 }
             },
             [Scope.RENAME]: {
                 icon: 'fa-regular fa-pen',
                 name: 'Rename',
-                action: (list, item) => {
+                action: (scopes, data) => {
 
                 }
             }
@@ -79,7 +79,7 @@ export default function Scopes({ scopes, children }) {
             [Scope.TRASH]: {
                 icon: 'fa-regular fa-trash',
                 name: 'Move to trash',
-                action: (list, item) => {
+                action: (scopes, data) => {
 
                 }
             },
@@ -90,7 +90,7 @@ export default function Scopes({ scopes, children }) {
         [Scope.OPEN]: {
             icon: 'fa-regular fa-eye',
             name: 'Open',
-            action: (list, item) => {
+            action: (scopes, data) => {
 
             }
         }

@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {Category, Scope, ScopesContext} from "../context/Scopes";
+import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import FilePreview from "./FilePreview";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
@@ -7,19 +7,19 @@ import Popup from "../ui/Popup";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
-    const { list } = useContext(ScopesContext);
+    const { scopes } = useContext(ScopesDataContext);
 
     const list = {
         [Category.VIEW]: {
-            [Scope.DOWNLOAD]: { ...list[Category.VIEW][Scope.DOWNLOAD] },
-            [Scope.LINK]: { ...list[Category.VIEW][Scope.LINK] }
+            [Scope.DOWNLOAD]: { ...scopes[Category.VIEW][Scope.DOWNLOAD] },
+            [Scope.LINK]: { ...scopes[Category.VIEW][Scope.LINK] }
         },
         [Category.MANAGE]: {
-            [Scope.CLONE]: { ...list[Category.MANAGE][Scope.CLONE] },
-            [Scope.RENAME]: { ...list[Category.MANAGE][Scope.RENAME] }
+            [Scope.CLONE]: { ...scopes[Category.MANAGE][Scope.CLONE] },
+            [Scope.RENAME]: { ...scopes[Category.MANAGE][Scope.RENAME] }
         },
         [Category.DELETE]: {
-            [Scope.TRASH]: { ...list[Category.DELETE][Scope.TRASH] }
+            [Scope.TRASH]: { ...scopes[Category.DELETE][Scope.TRASH] }
         },
     };
 
@@ -32,7 +32,7 @@ export default function FilePopup() {
                         <i className="fa-regular fa-xmark" />
                     </button>
                 </div>
-                <FilePreview />
+               
             </div>
         </Popup>
     )

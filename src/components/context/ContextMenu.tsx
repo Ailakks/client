@@ -6,8 +6,10 @@ import {ScopesContext} from "./Scopes";
 export const ContextMenuContext = createContext();
 
 export default function ContextMenu({ list }) {
+    const { item } = useContext(ListContext);
+
     return (
-        <ContextMenuContext.Provider value={{ list }}>
+        <ContextMenuContext.Provider value={{ item }}>
             <div className="bg-gray-500 rounded-xl min-w-52 divide-y-2 divide-gray-300 divide- overflow-hidden">
                 <List list={Object.values(list)}><Category /></List>
             </div>

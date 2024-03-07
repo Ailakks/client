@@ -32,7 +32,7 @@ export default function FilePopup() {
                         <i className="fa-regular fa-xmark" />
                     </button>
                 </div>
-               
+                <FilePreview />
             </div>
         </Popup>
     )

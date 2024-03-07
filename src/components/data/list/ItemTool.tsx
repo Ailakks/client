@@ -21,10 +21,8 @@ function Category() {
 }
 
 function Item() {
-    const { scopes } = useContext(ScopesDataContext);
-    const { data } = useContext(ScopesDataContext);
-
     const { item: { icon, action } } = useContext(ListContext);
+    const { scopes, data } = useContext(ScopesDataContext);
 
     return (
         <button className="menu" onClick={() => action(scopes, data)}>

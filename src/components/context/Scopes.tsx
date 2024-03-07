@@ -36,9 +36,9 @@ export default function Scopes({ scopes, children }) {
             [Scope.VIEW]: {
                 icon: 'fa-regular fa-eye',
                 name: 'View',
-                action: (scopes, data) => {
+                action: (scopes, item) => {
                     setPopup(
-                        <ScopesDataContext.Provider value={{ scopes, data }}>
+                        <ScopesDataContext.Provider value={{ scopes, item }}>
                             <FilePopup />
                         </ScopesDataContext.Provider>
                     );
@@ -47,14 +47,13 @@ export default function Scopes({ scopes, children }) {
             [Scope.DOWNLOAD]: {
                 icon: 'fa-regular fa-arrow-down-to-bracket',
                 name: 'Download',
-                action: (scopes, data) => {
-                    alert('hi');
+                action: (scopes, item) => {
                 }
             },
             [Scope.LINK]: {
                 icon: 'fa-regular fa-link',
                 name: 'Link',
-                action: (scopes, data) => {
+                action: (scopes, item) => {
 
                 }
             }
@@ -63,14 +62,14 @@ export default function Scopes({ scopes, children }) {
             [Scope.CLONE]: {
                 icon: 'fa-regular fa-copy',
                 name: 'Clone',
-                action: (scopes, data) => {
+                action: (scopes, item) => {
 
                 }
             },
             [Scope.RENAME]: {
                 icon: 'fa-regular fa-pen',
                 name: 'Rename',
-                action: (scopes, data) => {
+                action: (scopes, item) => {
 
                 }
             }
@@ -79,7 +78,7 @@ export default function Scopes({ scopes, children }) {
             [Scope.TRASH]: {
                 icon: 'fa-regular fa-trash',
                 name: 'Move to trash',
-                action: (scopes, data) => {
+                action: (scopes, item) => {
 
                 }
             },
@@ -90,7 +89,7 @@ export default function Scopes({ scopes, children }) {
         [Scope.OPEN]: {
             icon: 'fa-regular fa-eye',
             name: 'Open',
-            action: (scopes, data) => {
+            action: (scopes, item) => {
 
             }
         }

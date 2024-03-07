@@ -5,7 +5,7 @@ import Checkbox from "../input/Checkbox";
 import ItemContext from "./list/ItemContext";
 import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
-import {Category, Scope, ScopesContext} from "../context/Scopes";
+import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scopes";
 import {clsx} from "clsx";
 
 export const SelectedContext = createContext();
@@ -49,7 +49,7 @@ export default function ListView() {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
                                 <p>{selected.length === 1 ? `${selected.length} item selected` : `${selected.length} items selected`}</p>
-                                <Tool size={selected.length} />
+                                <Tool />
                             </div>
                         }
                     </div>
@@ -75,7 +75,9 @@ export default function ListView() {
     )
 }
 
-function Tool({ size }) {
+function Tool() {
+    const { selected } = useContext(SelectedContext);
+
     const massive = {
         [Category.VIEW]: {
             [Scope.DOWNLOAD]: {
@@ -93,8 +95,12 @@ function Tool({ size }) {
 
     const { files } = useContext(ScopesContext);
 
+    const item = selected.length > 1 ? selected : selected[0];
+
     return (
-        size > 1 ? <ItemTool scopes={massive} /> : <ItemTool scopes={files} />
+        <ScopesDataContext.Provider value={{ item }}>
+            <ItemTool scopes={selected.length > 1 ? massive : files} />
+        </ScopesDataContext.Provider>
     )
 }
 

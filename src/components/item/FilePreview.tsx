@@ -5,7 +5,7 @@ import {ScopesDataContext} from "../context/Scopes";
 
 export default function FilePreview() {
     const { useClient } = useContext(AxiosContext);
-    const { data: { id } } = useContext(ScopesDataContext);
+    const { item: { id } } = useContext(ScopesDataContext);
 
     const request = useClient({ url: `file/${id}`, responseType: 'arraybuffer' });
 
@@ -18,7 +18,7 @@ export default function FilePreview() {
 
 function Body() {
     const { data } = useContext(RequestContext);
-    const { data: { source: { meta: { mime } } } } = useContext(ScopesDataContext);
+    const { item: { source: { meta: { mime } } } } = useContext(ScopesDataContext);
 
     const [blob, setBlob] = useState(null);
 

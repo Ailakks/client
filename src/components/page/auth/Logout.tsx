@@ -1,10 +1,12 @@
 import LoadSpinner from "../../load/spinner/LoadSpinner";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {removeToken} from "../../../main";
+import {CookiesContext} from "../../../wrapper/Cookies";
 
 export default function Logout() {
     const navigate = useNavigate();
+
+    const { removeToken } = useContext(CookiesContext);
 
     useEffect(() => {
         removeToken();

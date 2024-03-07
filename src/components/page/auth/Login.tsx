@@ -7,10 +7,12 @@ import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useNavigate} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/Account";
-import {setToken} from "../../../main";
+import {CookiesContext} from "../../../wrapper/Cookies";
 
 export default function Login() {
     const navigate = useNavigate();
+
+    const { setToken } = useContext(CookiesContext);
 
     const { data } = useContext(AccountContext);
 

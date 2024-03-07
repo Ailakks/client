@@ -28,11 +28,11 @@ export default function FilePopup() {
         <Popup>
             <div className="flex flex-col h-full space-y-6">
                 <div className="relative flex justify-center">
-                    <div className="absolute left-3">
+                    <div className="absolute left-3 top-0 bottom-0 flex items-center">
                         <p>{name}</p>
                     </div>
                     <ItemTool scopes={list} />
-                    <div className="absolute right-0">
+                    <div className="absolute right-0 top-0 bottom-0 flex items-center">
                         <button className="menu" onClick={close}>
                             <i className="fa-regular fa-xmark" />
                         </button>

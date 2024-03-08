@@ -4,6 +4,9 @@ import ItemTool from "../data/list/ItemTool";
 import FilePreview from "./FilePreview";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import Popup from "../ui/Popup";
+import {Tabs} from "@nextui-org/react";
+import List from "../list/List";
+import Integration from "../file/Integration";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
@@ -23,6 +26,8 @@ export default function FilePopup() {
         },
     };
 
+    const integrations = [<FilePreview />];
+
     return (
         <Popup>
             <div className="flex flex-col h-full space-y-6">
@@ -38,7 +43,9 @@ export default function FilePopup() {
                     </div>
                 </div>
                 <div className="flex grow justify-center">
-                    <FilePreview />
+                    <Tabs>
+                        <List list={integrations}><Integration /></List>
+                    </Tabs>
                 </div>
             </div>
         </Popup>

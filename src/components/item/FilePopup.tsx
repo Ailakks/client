@@ -37,7 +37,9 @@ export default function FilePopup() {
                         </button>
                     </div>
                 </div>
-                <FilePreview />
+                <div className="flex grow justify-center">
+                    <FilePreview />
+                </div>
             </div>
         </Popup>
     )

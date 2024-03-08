@@ -11,11 +11,11 @@ export default function FullLayout({ head, side, header, children }) {
                     {side}
                 </div>
             </aside>
-            <div className="h-full grow divide-y divide-gray-500">
+            <div className="h-full flex flex-col grow divide-y divide-gray-500">
                 <header className="flex items-center bg-gray-700 h-14 pr-8">
                     {header}
                 </header>
-                <main>
+                <main className="grow">
                     {children}
                 </main>
             </div>

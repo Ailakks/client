@@ -8,7 +8,7 @@ export default function Query({ request, fallback, children }) {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center h-full">
                 <LoadSpinner />
             </div>
         )

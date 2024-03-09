@@ -61,14 +61,12 @@ function Integration() {
     const { item } = useContext(ListContext);
 
     if (meta) {
-        const { name } = meta;
-
         return (
             <IntegrationContext.Provider value={{ meta, setMeta }}>
                 <Tab>
-                    <p>{name}</p>
+                    <p>Title</p>
                     <TabContent>
-                        <FilePreview />
+                        {item}
                     </TabContent>
                 </Tab>
             </IntegrationContext.Provider>

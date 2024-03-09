@@ -8,6 +8,7 @@ export default function Tabs({ children }) {
     return (
         <TabsContext.Provider value={{ current, setCurrent }}>
             {children}
+            {current}
         </TabsContext.Provider>
     )
 }

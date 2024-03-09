@@ -3,8 +3,11 @@ import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import Popup from "../ui/Popup";
-import {Tabs, Tab} from "@nextui-org/react";
-import Preview from "../file/Preview";
+import FilePreview from "../file/FilePreview";
+import Tabs from "../native/Tabs";
+import List, {ListContext} from "../list/List";
+import Tab from "../native/Tab";
+import TabContent from "../native/TabContent";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
@@ -24,13 +27,7 @@ export default function FilePopup() {
         },
     };
 
-    const integrations = [
-        {
-            id: "preview",
-            label: "Preview",
-            content: <Preview />
-        }
-    ];
+    const integrations = [<FilePreview />];
 
     return (
         <Popup>
@@ -47,15 +44,25 @@ export default function FilePopup() {
                     </div>
                 </div>
                 <div className="flex grow justify-center">
-                    <Tabs items={integrations}>
-                        {(item) => (
-                            <Tab key={item.id} title={item.label}>
-                                {item.content}
-                            </Tab>
-                        )}
+                    <Tabs>
+                        <List list={integrations}><Integration /></List>
                     </Tabs>
                 </div>
             </div>
         </Popup>
+    )
+}
+
+
+function Integration() {
+    const { item } = useContext(ListContext);
+
+    return (
+        <Tab>
+            <p>a</p>
+            <TabContent>
+                {item}
+            </TabContent>
+        </Tab>
     )
 }

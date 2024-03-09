@@ -3,7 +3,7 @@ import {AxiosContext} from "../../wrapper/Axios";
 import Request, {RequestContext} from "../query/Request";
 import {ScopesDataContext} from "../context/Scopes";
 
-export default function Preview() {
+export default function FilePreview() {
     const { useClient } = useContext(AxiosContext);
     const { item: { id } } = useContext(ScopesDataContext);
 

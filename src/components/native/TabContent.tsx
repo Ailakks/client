@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from "react";
+import {TabContext} from "./Tab";
 
 export default function TabContent({ children }) {
     const { setContent } = useContext(TabContext);
@@ -6,6 +7,4 @@ export default function TabContent({ children }) {
     useEffect(() => {
         setContent(children);
     }, []);
-
-    return children;
 }

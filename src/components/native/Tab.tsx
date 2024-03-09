@@ -4,9 +4,8 @@ import {TabsContext} from "./Tabs";
 export const TabContext = createContext();
 
 export default function Tab({ children }) {
+    const [current, setCurrent] = useState();
     const [content, setContent] = useState();
-
-    const { current, setCurrent } = useContext(TabsContext);
 
     useEffect(() => {
         if (!current) {
@@ -23,6 +22,7 @@ export default function Tab({ children }) {
             <button onClick={update}>
                 {children}
             </button>
+            {current}
         </TabContext.Provider>
     )
 }

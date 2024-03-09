@@ -2,8 +2,15 @@ import {useContext, useEffect, useState} from "react";
 import {AxiosContext} from "../../wrapper/Axios";
 import Request, {RequestContext} from "../query/Request";
 import {ScopesDataContext} from "../context/Scopes";
+import {IntegrationContext} from "../item/FilePopup";
 
 export default function FilePreview() {
+    const { setMeta } = useContext(IntegrationContext);
+
+    useEffect(() => {
+        setMeta({ name: 'Preview' });
+    }, []);
+
     const { useClient } = useContext(AxiosContext);
     const { item: { id } } = useContext(ScopesDataContext);
 

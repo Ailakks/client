@@ -1,5 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {TabsContext} from "./Tabs";
+
+export const TabContext = createContext();
 
 export default function Tab({ children }) {
     const [content, setContent] = useState();
@@ -10,15 +12,17 @@ export default function Tab({ children }) {
         if (!current) {
             setCurrent(content);
         }
-    })
+    }, []);
 
     const update = () => {
         setCurrent(content);
     };
 
     return (
-        <button onClick={update}>
-            {children}
-        </button>
+        <TabContext.Provider value={{ content, setContent }}>
+            <button onClick={update}>
+                {children}
+            </button>
+        </TabContext.Provider>
     )
 }

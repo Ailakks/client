@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useState} from "react";
 import {TabsContext} from "./Tabs";
+import {clsx} from "clsx";
 
 export const TabContext = createContext();
 
@@ -14,7 +15,7 @@ export default function Tab({ children }) {
 
     return (
         <TabContext.Provider value={{ content, setContent }}>
-            <button onClick={update}>
+            <button className={clsx("px-4 py-2 rounded-md", content == current && "bg-gray-500")} onClick={update}>
                 {children}
             </button>
         </TabContext.Provider>

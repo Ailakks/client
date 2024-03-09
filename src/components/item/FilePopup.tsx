@@ -9,6 +9,7 @@ import List, {ListContext} from "../list/List";
 import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import Integration from "./Integration";
+import FileSpreadsheet from "../file/FileSpreadsheet";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
@@ -28,7 +29,7 @@ export default function FilePopup() {
         },
     };
 
-    const integrations = [<FilePreview />, <FilePreview />];
+    const integrations = [<FilePreview />, <FileSpreadsheet />];
 
     return (
         <Popup>
@@ -45,7 +46,7 @@ export default function FilePopup() {
                     </div>
                 </div>
                 <div className="flex grow justify-center">
-                    <Tabs>
+                    <Tabs def={<FilePreview />}>
                         <List list={integrations}><Integration /></List>
                     </Tabs>
                 </div>

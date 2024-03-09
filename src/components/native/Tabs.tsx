@@ -2,8 +2,8 @@ import React, {createContext, useState} from "react";
 
 export const TabsContext = createContext();
 
-export default function Tabs({ children }) {
-    const [current, setCurrent] = useState(null);
+export default function Tabs({ def, children }) {
+    const [current, setCurrent] = useState(def);
 
     return (
         <TabsContext.Provider value={{ current, setCurrent }}>

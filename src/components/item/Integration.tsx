@@ -1,16 +1,33 @@
-import {useContext, useEffect} from "react";
-import {IntegrationContext} from "./FilePopup";
+import {createContext, useContext, useState} from "react";
+import {ListContext} from "../list/List";
+import Tab from "../native/Tab";
+import TabContent from "../native/TabContent";
 
-export default function Integration({ name, children }) {
-    const meta = useContext(IntegrationContext);
+export const IntegrationContext = createContext();
 
-    useEffect(() => {
-        if (meta) {
-            const { setMeta } = meta;
+export default function Integration() {
+    const [meta, setMeta] = useState();
 
-            setMeta({ name });
-        }
-    }, []);
+    const { item } = useContext(ListContext);
 
-    return children;
+    if (meta) {
+        const { name } = meta;
+
+        return (
+            <IntegrationContext.Provider value={{ meta, setMeta }}>
+                <Tab>
+                    <p>{name}</p>
+                    <TabContent>
+                        {item}
+                    </TabContent>
+                </Tab>
+            </IntegrationContext.Provider>
+        )
+    }
+
+    return (
+        <IntegrationContext.Provider value={{ meta, setMeta }}>
+            {item}
+        </IntegrationContext.Provider>
+    );
 }

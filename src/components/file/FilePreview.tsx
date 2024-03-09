@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import {AxiosContext} from "../../wrapper/Axios";
 import Request, {RequestContext} from "../query/Request";
 import {ScopesDataContext} from "../context/Scopes";
-import Integration from "../item/Integration";
+import IntegrationMeta from "../item/IntegrationMeta";
 
 export default function FilePreview() {
     const { useClient } = useContext(AxiosContext);
@@ -11,11 +11,11 @@ export default function FilePreview() {
     const request = useClient({ url: `file/${id}`, responseType: 'arraybuffer' });
 
     return (
-        <Integration name="Preview">
+        <IntegrationMeta name="Preview">
             <Request request={request}>
                 <Body />
             </Request>
-        </Integration>
+        </IntegrationMeta>
     )
 }
 

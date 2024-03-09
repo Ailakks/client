@@ -12,7 +12,7 @@ export default function Tab({ children }) {
         if (!current) {
             setCurrent(content);
         }
-    }, []);
+    }, [content]);
 
     const update = () => {
         setCurrent(content);

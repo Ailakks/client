@@ -27,7 +27,7 @@ export default function FilePopup() {
         },
     };
 
-    const integrations = [<FilePreview />];
+    const integrations = [<FilePreview />, <FilePreview />];
 
     return (
         <Popup>
@@ -61,10 +61,12 @@ function Integration() {
     const { item } = useContext(ListContext);
 
     if (meta) {
+        const { name } = meta;
+
         return (
             <IntegrationContext.Provider value={{ meta, setMeta }}>
                 <Tab>
-                    <p>Title</p>
+                    <p>{name}</p>
                     <TabContent>
                         {item}
                     </TabContent>
@@ -73,5 +75,9 @@ function Integration() {
         )
     }
 
-    return item;
+    return (
+        <IntegrationContext.Provider value={{ meta, setMeta }}>
+            {item}
+        </IntegrationContext.Provider>
+    );
 }

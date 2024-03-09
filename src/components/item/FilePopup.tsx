@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {createContext, useContext, useState} from "react";
 import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
@@ -53,16 +53,25 @@ export default function FilePopup() {
     )
 }
 
+export const IntegrationContext = createContext();
 
 function Integration() {
+    const [meta, setMeta] = useState();
+
     const { item } = useContext(ListContext);
 
-    return (
-        <Tab>
-            <p>a</p>
-            <TabContent>
-                {item}
-            </TabContent>
-        </Tab>
-    )
+    if (meta) {
+        return (
+            <IntegrationContext.Provider value={{ meta, setMeta }}>
+                <Tab>
+                    <p>Title</p>
+                    <TabContent>
+                        {item}
+                    </TabContent>
+                </Tab>
+            </IntegrationContext.Provider>
+        )
+    }
+
+    return item;
 }

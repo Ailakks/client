@@ -1,5 +1,6 @@
 import {useContext} from "react";
 import DropZoneProvider, {DropZoneContext} from "./DropZoneProvider";
+import {clsx} from "clsx";
 
 export default function FileDropZone({ clickable, action, children }) {
     return (
@@ -19,8 +20,7 @@ function Body({ clickable, children }) {
     };
 
     return (
-        <div className="relative" onClick={handle} {...child}>
-            {isDragging && <div className="absolute top-0 bottom-0 right-0 left-0 bg-blue-900 outline-dashed outline-blue-500 outline-2"/>}
+        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2")} onClick={handle} {...child}>
             <div className="pointer-events-none">
                 {children}
             </div>

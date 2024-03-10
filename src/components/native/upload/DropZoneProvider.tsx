@@ -22,11 +22,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
         event.preventDefault();
     };
 
-    const onDragLeave = (event) => {
-        if (event.target !== zone.current) {
-            return;
-        }
-
+    const onDragLeave = () => {
         setIsDragging(false);
         onEnd();
     };

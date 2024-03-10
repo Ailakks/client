@@ -9,14 +9,15 @@ export default function Modal({ title, children }) {
     };
 
     return (
-        <div className="absolute bottom-0 left-0 p-10 bg-gray-500">
-            <div className="flex flex-col space-y-6">
-                <div className="flex justify-between">
+        <div className="absolute bottom-0 right-0 bg-gray-500 p-4 m-6 rounded-md min-w-80">
+            <div className="flex flex-col space-y-4">
+                <div className="flex justify-between items-center h-5">
                     <p>{title}</p>
                     <button className="secondary" onClick={close}>
                         <i className="fa-regular fa-xmark" />
                     </button>
                 </div>
+                <hr />
                 {children}
             </div>
         </div>

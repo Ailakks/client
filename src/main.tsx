@@ -23,11 +23,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         <AccountWrapper>
                             <LoggedWrapper>
                                 <PopupProvider>
-                                    <RenderProvider>
-                                        <QueueWrapper>
+                                    <QueueWrapper>
+                                        <RenderProvider>
                                             <App />
-                                        </QueueWrapper>
-                                    </RenderProvider>
+                                        </RenderProvider>
+                                    </QueueWrapper>
                                 </PopupProvider>
                             </LoggedWrapper>
                         </AccountWrapper>

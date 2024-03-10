@@ -31,7 +31,7 @@ export const Scope = {
 }
 
 export default function Scopes({ scopes, children }) {
-    const { setPopup } = useContext(PopupContext);
+    const { setCurrent } = useContext(PopupContext);
 
     const { client } = useContext(AxiosContext);
     const { download } = useContext(DownloadContext);
@@ -42,7 +42,7 @@ export default function Scopes({ scopes, children }) {
                 icon: 'fa-regular fa-eye',
                 name: 'View',
                 action: (scopes, item) => {
-                    setPopup(
+                    setCurrent(
                         <ScopesDataContext.Provider value={{ scopes, item }}>
                             <FilePopup />
                         </ScopesDataContext.Provider>

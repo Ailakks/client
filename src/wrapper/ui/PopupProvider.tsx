@@ -10,7 +10,7 @@ export default function PopupProvider({ children }) {
     }
 
     return (
-        <PopupContext.Provider value={{ popup: current, setPopup: setCurrent, close }}>
+        <PopupContext.Provider value={{ current, setCurrent, close }}>
             {children}
         </PopupContext.Provider>
     );

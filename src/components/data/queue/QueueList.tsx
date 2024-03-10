@@ -21,7 +21,7 @@ function Item() {
             <p className="max-w-52 text-nowrap overflow-hidden text-ellipsis">{name}</p>
             <div className="flex items-center space-x-4">
                 <progress className="w-20 h-1 rounded-full overflow-hidden [&::-webkit-progress-value]:bg-blue-500 [&::-webkit-progress-value]:rounded-full" value={progress} max={1} />
-                <p>{total}</p>
+                <p className="w-5">{total}</p>
             </div>
         </div>
     )

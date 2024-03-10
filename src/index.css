@@ -10,7 +10,7 @@ html {
 
 @layer components {
     html {
-        @apply bg-gray-900;
+        @apply bg-gray-900 overflow-x-hidden;
     }
 
     html, body, #root {

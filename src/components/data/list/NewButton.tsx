@@ -1,5 +1,9 @@
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
 import ContextMenu from "../../context/ContextMenu";
+import {useContext} from "react";
+import {QueryContext} from "../../query/Query";
+import {ListContext} from "../../list/List";
+import {clsx} from "clsx";
 
 const Category = {
     UPLOAD: "upload",
@@ -16,13 +20,19 @@ export default function NewButton() {
         [Category.CREATE]: {
             [Scope.FOLDER]: {
                 icon: 'fa-regular fa-folder',
-                name: 'Create folder'
+                name: 'Create folder',
+                action: (data) => {
+
+                }
             }
         },
         [Category.UPLOAD]: {
             [Scope.FILE]: {
                 icon: 'fa-regular fa-arrow-up-from-bracket',
-                name: 'Upload file'
+                name: 'Upload file',
+                action: (data) => {
+
+                }
             }
         }
     };
@@ -36,10 +46,20 @@ export default function NewButton() {
                 </button>
             </PopoverTrigger>
             <PopoverContent>
-                <ContextMenu list={list}>
-
-                </ContextMenu>
+                <ContextMenu list={list}><Item /></ContextMenu>
             </PopoverContent>
         </Popover>
+    )
+}
+
+function Item() {
+    const { data } = useContext(QueryContext);
+    const { item: { icon, name, action } } = useContext(ListContext);
+
+    return (
+        <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={() => action(data)}>
+            <i className={clsx('w-6', icon)} />
+            <p>{name}</p>
+        </div>
     )
 }

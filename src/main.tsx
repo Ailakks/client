@@ -23,15 +23,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <ApolloWrapper>
                         <AccountWrapper>
                             <LoggedWrapper>
-                                <QueueWrapper>
-                                    <PopupProvider>
-                                        <ModalProvider>
+                                <PopupProvider>
+                                    <ModalProvider>
+                                        <QueueWrapper>
                                             <RenderProvider>
                                                 <App />
                                             </RenderProvider>
-                                        </ModalProvider>
-                                    </PopupProvider>
-                                </QueueWrapper>
+                                        </QueueWrapper>
+                                    </ModalProvider>
+                                </PopupProvider>
                             </LoggedWrapper>
                         </AccountWrapper>
                     </ApolloWrapper>

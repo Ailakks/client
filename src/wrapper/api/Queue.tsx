@@ -1,5 +1,7 @@
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import {AxiosContext} from "../Axios";
+import {ModalContext} from "../ui/ModalProvider";
+import QueueList from "../../components/data/queue/QueueList";
 
 export const QueueContext = createContext(null);
 
@@ -7,6 +9,8 @@ export default function QueueWrapper({ children }) {
     const [queue, setQueue] = useState([]);
 
     const { uploadClient } = useContext(AxiosContext);
+
+    const { setCurrent } = useContext(ModalContext);
 
     const upload = async (folder, files) => {
         for (const file of files) {
@@ -23,6 +27,14 @@ export default function QueueWrapper({ children }) {
                 }});
         }
     };
+
+    useEffect(() => {
+        if (queue.length < 1) {
+            return;
+        }
+
+        setCurrent(<QueueList />);
+    }, [queue]);
 
     return (
         <QueueContext.Provider value={{ upload, queue }}>

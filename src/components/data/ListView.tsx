@@ -49,6 +49,10 @@ export default function ListView() {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
                                 <p>{selected.length === 1 ? `${selected.length} item selected` : `${selected.length} items selected`}</p>
+                                <button className="main flex items-center space-x-4">
+                                    <i className="fa-regular fa-sparkles" />
+                                    <p>Convert to Spreadsheet</p>
+                                </button>
                                 <Tool />
                             </div>
                         }

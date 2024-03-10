@@ -46,7 +46,7 @@ export default function FilePopup() {
                     </div>
                 </div>
                 <div className="flex grow justify-center">
-                    <Tabs def={<FilePreview />}>
+                    <Tabs def={integrations[0]}>
                         <List list={integrations}><Integration /></List>
                     </Tabs>
                 </div>

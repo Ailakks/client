@@ -36,7 +36,9 @@ export default function NewButton() {
                 </button>
             </PopoverTrigger>
             <PopoverContent>
-                <ContextMenu list={list} />
+                <ContextMenu list={list}>
+
+                </ContextMenu>
             </PopoverContent>
         </Popover>
     )

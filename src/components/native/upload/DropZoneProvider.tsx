@@ -38,7 +38,9 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
         setIsDragging(false);
         onEnd();
 
-        action(event.dataTransfer.files);
+        if (action) {
+            action(event.dataTransfer.files);
+        }
     };
 
     const onStart = () => {

@@ -1,19 +1,17 @@
-import style from "./style.module.css";
-
 import {useContext} from "react";
-import Container from "../../native/display/container";
-import FileDropZoneProvider, {FileDropZoneContext} from "./file-drop-zone-provider";
+import DropZoneProvider, {DropZoneContext} from "./DropZoneProvider";
+import {clsx} from "clsx";
 
-export default function FileDropZone({ clickable, ...props }) {
+export default function FileDropZone({ clickable, action, children }) {
     return (
-        <FileDropZoneProvider {...props}>
-            <Content clickable={clickable} {...props} />
-        </FileDropZoneProvider>
+        <DropZoneProvider clickable={clickable} action={action}>
+            <Body>{children}</Body>
+        </DropZoneProvider>
     );
 };
 
-function Content({ clickable, children }) {
-    const { wrapper, child: { onClick, ...child } } = useContext(FileDropZoneContext);
+function Body({ clickable, children }) {
+    const { wrapper, isDragging, child: { onClick, ...child } } = useContext(DropZoneContext);
 
     const handle = () => {
       if (clickable) {
@@ -22,7 +20,7 @@ function Content({ clickable, children }) {
     };
 
     return (
-        <div className="" ref={wrapper} onClick={handle} {...child}>
+        <div className={clsx(isDragging && "bg-blue-900")} ref={wrapper} onClick={handle} {...child}>
             <div className="" />
             {children}
         </div>

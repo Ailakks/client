@@ -7,6 +7,7 @@ import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scopes";
 import {clsx} from "clsx";
+import FileDropZone from "../native/upload/FileDropZone";
 
 export const SelectedContext = createContext();
 
@@ -32,7 +33,7 @@ export default function ListView() {
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
-            <div>
+            <div className="flex flex-col h-full">
                 <div className="flex space-x-6 p-6 items-center justify-between">
                     <div>
                         <p>Drive</p>
@@ -58,21 +59,23 @@ export default function ListView() {
                         }
                     </div>
                 </div>
-                <div>
-                    <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
-                        <tbody>
-                        <tr className="text-left">
-                            <th>
-                                <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`} />
-                            </th>
-                            <th />
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Size</th>
-                        </tr>
-                        <List list={files}><Item /></List>
-                        </tbody>
-                    </table>
+                <div className="grow">
+                    <FileDropZone action={() => alert(1)}>
+                        <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
+                            <tbody>
+                            <tr className="text-left">
+                                <th>
+                                    <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`} />
+                                </th>
+                                <th />
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Size</th>
+                            </tr>
+                            <List list={files}><Item /></List>
+                            </tbody>
+                        </table>
+                    </FileDropZone>
                 </div>
             </div>
         </SelectedContext.Provider>

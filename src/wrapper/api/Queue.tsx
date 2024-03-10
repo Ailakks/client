@@ -6,11 +6,11 @@ export const QueueContext = createContext(null);
 export default function QueueWrapper({ children }) {
     const [queue, setQueue] = useState([]);
 
-    const { client } = useContext(AxiosContext);
+    const { uploadClient } = useContext(AxiosContext);
 
     const upload = async (folder, files) => {
         for (const file of files) {
-            await client.post('file', { folder, file }, { onUploadProgress: (event) => {
+            await uploadClient.post('file', { folder, file }, { onUploadProgress: (event) => {
                     const index = queue.findIndex(({ file: { name } }) => name === file.name);
 
                     if (index > -1) {

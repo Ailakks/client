@@ -15,12 +15,21 @@ export default function AxiosWrapper({ children }) {
         },
     });
 
+    const uploadClient = axios.create({
+        ...client.defaults,
+        timeout: -1,
+        headers: {
+            ...client.defaults.headers,
+            "Content-Type": "multipart/form-data"
+        },
+    });
+
     const useClient = makeUseAxios({
         axios: client,
     });
 
     return (
-        <AxiosContext.Provider value={{ client, useClient }}>
+        <AxiosContext.Provider value={{ useClient, client, uploadClient }}>
             {children}
         </AxiosContext.Provider>
     );

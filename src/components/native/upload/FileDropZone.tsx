@@ -20,7 +20,7 @@ function Body({ clickable, children }) {
     };
 
     return (
-        <div className={clsx(isDragging && "bg-blue-900 border-dashed border-blue-500 border-2")} onClick={handle} {...child}>
+        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2")} onClick={handle} {...child}>
             <div className="pointer-events-none">
                 {children}
             </div>

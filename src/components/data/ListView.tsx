@@ -41,10 +41,12 @@ export default function ListView() {
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
                             <NewButton />
-                            <button className="main flex items-center space-x-4">
-                                <i className="fa-regular fa-arrow-up-from-bracket" />
-                                <p>Upload</p>
-                            </button>
+                            <FileDropZone clickable>
+                                <button className="main flex items-center space-x-4">
+                                    <i className="fa-regular fa-arrow-up-from-bracket" />
+                                    <p>Upload</p>
+                                </button>
+                            </FileDropZone>
                         </div>
                         {
                             selected.length > 0 &&

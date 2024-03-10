@@ -29,7 +29,7 @@ export default function ListView() {
 
     useEffect(() => {
         setChecked(selected.length === files.length);
-    }, [selected])
+    }, [selected]);
 
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
@@ -41,7 +41,7 @@ export default function ListView() {
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
                             <NewButton />
-                            <FileDropZone clickable={true}>
+                            <FileDropZone clickable>
                                 <button className="main flex items-center space-x-4">
                                     <i className="fa-regular fa-arrow-up-from-bracket" />
                                     <p>Upload</p>

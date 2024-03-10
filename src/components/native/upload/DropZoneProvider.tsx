@@ -60,7 +60,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
     };
 
     return (
-        <DropZoneContext.Provider value={{ button, clickable, isDragging, child: { onClick, onDragEnter, onDragOver, onDragLeave, onDrop } }}>
+        <DropZoneContext.Provider value={{ wrapper, button, clickable, isDragging, child: { onClick, onDragEnter, onDragOver, onDragLeave, onDrop } }}>
             <input ref={button} type="file" hidden onChange={handleChange} />
             {children}
         </DropZoneContext.Provider>

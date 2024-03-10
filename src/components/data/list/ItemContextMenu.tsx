@@ -1,11 +1,13 @@
-import {useContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
 import {ScopesContext, ScopesDataContext} from "../../context/Scopes";
-import ContextMenu, {ContextMenuContext} from "../../context/ContextMenu";
+import ContextMenu from "../../context/ContextMenu";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
 
-export default function ItemContext({ children }) {
+export const ItemContext = createContext();
+
+export default function ItemContextMenu({ children }) {
     const [open, setOpen] = useState(false);
 
     const { item } = useContext(ListContext);
@@ -18,9 +20,9 @@ export default function ItemContext({ children }) {
             </PopoverTrigger>
             <PopoverContent>
                 <ScopesContext.Provider value={files}>
-                    <ContextMenuContext.Provider value={{ item }}>
+                    <ItemContext.Provider value={{ item }}>
                         <ContextMenu list={Object.values(files)}><Item /></ContextMenu>
-                    </ContextMenuContext.Provider>
+                    </ItemContext.Provider>
                 </ScopesContext.Provider>
             </PopoverContent>
         </Popover>
@@ -28,9 +30,9 @@ export default function ItemContext({ children }) {
 }
 
 function Item() {
-    const { scopes } = useContext(ScopesDataContext);
+    const scopes = useContext(ScopesContext);
 
-    const { item } = useContext(ContextMenuContext);
+    const { item } = useContext(ItemContext);
     const { item: { icon, name, action } } = useContext(ListContext);
 
     return (

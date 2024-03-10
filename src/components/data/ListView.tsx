@@ -3,7 +3,7 @@ import {clsx} from "clsx";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
-import ItemContext from "./list/ItemContext";
+import ItemContext from "./list/ItemContextMenu";
 import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scopes";

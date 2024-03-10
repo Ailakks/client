@@ -8,6 +8,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
     const button = useRef<HTMLInputElement>(null);
 
     const onClick = () => {
+        console.log(button)
         button.current.click();
     };
 

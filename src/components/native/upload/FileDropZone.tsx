@@ -4,8 +4,8 @@ import {clsx} from "clsx";
 
 export default function FileDropZone({ clickable, action, children }) {
     return (
-        <DropZoneProvider clickable={clickable} action={action}>
-            <Body>{children}</Body>
+        <DropZoneProvider action={action}>
+            <Body clickable={clickable}>{children}</Body>
         </DropZoneProvider>
     );
 };
@@ -14,13 +14,13 @@ function Body({ clickable, children }) {
     const { isDragging, child: { onClick, ...child } } = useContext(DropZoneContext);
 
     const handle = () => {
-      if (clickable) {
-          onClick();
-      }
+        if (clickable) {
+            onClick();
+        }
     };
 
     return (
-        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2")} onClick={handle} {...child}>
+        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} onClick={handle} {...child}>
             <div className="pointer-events-none">
                 {children}
             </div>

@@ -24,6 +24,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
     };
 
     const onDragLeave = (event) => {
+        console.log({a: event.target, b: zone.current})
         if (event.target !== zone.current) {
             return;
         }

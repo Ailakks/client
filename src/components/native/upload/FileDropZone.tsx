@@ -20,7 +20,8 @@ function Body({ clickable, children }) {
     };
 
     return (
-        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} ref={zone} onClick={handle} {...child}>
+        <div className="relative">
+            <div className={clsx("absolute top-0 bottom-0 right-0 left-0", isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} ref={zone} onClick={handle} {...child} />
             {children}
         </div>
     );

@@ -27,6 +27,9 @@ module.exports = {
                 900: '#111111'
             }
         },
+        borderWidth: {
+            2: '1px'
+        },
         divideWidth: {
                 2: '1px'
         }

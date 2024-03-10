@@ -25,7 +25,7 @@ export default function QueueWrapper({ children }) {
     };
 
     return (
-        <QueueContext.Provider value={{ upload }}>
+        <QueueContext.Provider value={{ upload, queue }}>
             {children}
         </QueueContext.Provider>
     );

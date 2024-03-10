@@ -1,4 +1,5 @@
 import {createContext, useContext, useEffect, useState} from "react";
+import {clsx} from "clsx";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
 import Checkbox from "../input/Checkbox";
@@ -6,8 +7,7 @@ import ItemContext from "./list/ItemContext";
 import ItemTool from "./list/ItemTool";
 import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scopes";
-import {clsx} from "clsx";
-import FileDropZone from "../native/upload/FileDropZone";
+import UploadZone from "../native/upload/UploadZone";
 
 export const SelectedContext = createContext();
 
@@ -41,12 +41,12 @@ export default function ListView() {
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
                             <NewButton />
-                            <FileDropZone clickable>
+                            <UploadZone clickable>
                                 <button className="main flex items-center space-x-4">
                                     <i className="fa-regular fa-arrow-up-from-bracket" />
                                     <p>Upload</p>
                                 </button>
-                            </FileDropZone>
+                            </UploadZone>
                         </div>
                         {
                             selected.length > 0 &&
@@ -62,7 +62,7 @@ export default function ListView() {
                     </div>
                 </div>
                 <div className="grow">
-                    <FileDropZone action={() => alert(1)}>
+                    <UploadZone action={() => alert(1)}>
                         <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
                             <tbody>
                             <tr className="text-left">
@@ -77,7 +77,7 @@ export default function ListView() {
                             <List list={files}><Item /></List>
                             </tbody>
                         </table>
-                    </FileDropZone>
+                    </UploadZone>
                 </div>
             </div>
         </SelectedContext.Provider>

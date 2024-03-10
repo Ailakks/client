@@ -11,7 +11,7 @@ import CookiesWrapper from "./wrapper/tool/Cookies";
 import AxiosWrapper from "./wrapper/Axios";
 import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
-import UploadWrapper from "./wrapper/api/Upload";
+import QueueWrapper from "./wrapper/api/Queue";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -24,9 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                             <LoggedWrapper>
                                 <PopupProvider>
                                     <RenderProvider>
-                                        <UploadWrapper>
+                                        <QueueWrapper>
                                             <App />
-                                        </UploadWrapper>
+                                        </QueueWrapper>
                                     </RenderProvider>
                                 </PopupProvider>
                             </LoggedWrapper>

@@ -21,9 +21,7 @@ function Body({ clickable, children }) {
 
     return (
         <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} onClick={handle} {...child}>
-            <div className="pointer-events-none">
-                {children}
-            </div>
+            {children}
         </div>
     );
 }

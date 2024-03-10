@@ -6,7 +6,6 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
     const [isDragging, setIsDragging] = useState(false);
 
     const button = useRef<HTMLInputElement>(null);
-    const wrapper = useRef();
 
     const onClick = () => {
         button.current.click();
@@ -23,11 +22,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
         event.preventDefault();
     };
 
-    const onDragLeave = (event) => {
-        if (event.target !== wrapper.current) {
-            return;
-        }
-
+    const onDragLeave = () => {
         setIsDragging(false);
         onEnd();
     };
@@ -60,7 +55,7 @@ export default function DropZoneProvider({ start, end, clickable, action, childr
     };
 
     return (
-        <DropZoneContext.Provider value={{ wrapper, button, clickable, isDragging, child: { onClick, onDragEnter, onDragOver, onDragLeave, onDrop } }}>
+        <DropZoneContext.Provider value={{ button, clickable, isDragging, child: { onClick, onDragEnter, onDragOver, onDragLeave, onDrop } }}>
             <input ref={button} type="file" hidden onChange={handleChange} />
             {children}
         </DropZoneContext.Provider>

@@ -64,7 +64,7 @@ export default function ListView() {
                 <div className="grow overflow-y-auto">
                     <UploadZone action={() => alert(1)}>
                         <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
-                            <thead className="sticky top-0 bg-gray-900 border-b-1 border-gray-300 h-14">
+                            <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
                             <tr className="text-left">
                                 <th>
                                     <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`} />
@@ -73,6 +73,7 @@ export default function ListView() {
                                 <th>Name</th>
                                 <th>Date</th>
                                 <th>Size</th>
+                                <th />
                             </tr>
                             </thead>
                             <tbody>

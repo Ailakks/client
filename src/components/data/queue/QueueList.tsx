@@ -2,7 +2,6 @@ import Modal from "../../ui/Modal";
 import {useContext} from "react";
 import {QueueContext} from "../../../wrapper/api/Queue";
 import List, {ListContext} from "../../list/List";
-import {Progress} from "@nextui-org/react";
 
 export default function QueueList() {
     const { queue } = useContext(QueueContext);
@@ -21,7 +20,7 @@ function Item() {
         <div className="flex justify-between items-center">
             <p>{name}</p>
             <div className="flex items-center">
-                <Progress aria-label="loading" value={progress} maxValue={1} className="w-20 h-10 bg-blue-900" classNames={{ indicator: "bg-blue-500" }} />
+                <progress className="bg-blue-900 w-32 h-1 rounded-full overflow-hidden [&::-webkit-progress-value]:bg-blue-500 [&::-webkit-progress-value]:rounded-full" value={progress} max={1} />
                 <p>{total}</p>
             </div>
         </div>

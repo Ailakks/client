@@ -11,6 +11,7 @@ import CookiesWrapper from "./wrapper/tool/Cookies";
 import AxiosWrapper from "./wrapper/Axios";
 import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
+import ModalProvider from "./wrapper/ui/ModalProvider";
 import QueueWrapper from "./wrapper/api/Queue";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -22,13 +23,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <ApolloWrapper>
                         <AccountWrapper>
                             <LoggedWrapper>
-                                <PopupProvider>
-                                    <QueueWrapper>
-                                        <RenderProvider>
-                                            <App />
-                                        </RenderProvider>
-                                    </QueueWrapper>
-                                </PopupProvider>
+                                <QueueWrapper>
+                                    <PopupProvider>
+                                        <ModalProvider>
+                                            <RenderProvider>
+                                                <App />
+                                            </RenderProvider>
+                                        </ModalProvider>
+                                    </PopupProvider>
+                                </QueueWrapper>
                             </LoggedWrapper>
                         </AccountWrapper>
                     </ApolloWrapper>

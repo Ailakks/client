@@ -3,14 +3,14 @@ import {createContext, useState} from 'react';
 export const PopupContext = createContext(null);
 
 export default function PopupProvider({ children }) {
-    const [popup, setPopup] = useState(null);
+    const [current, setCurrent] = useState(null);
 
     const close = () => {
-        setPopup(null);
+        setCurrent(null);
     }
 
     return (
-        <PopupContext.Provider value={{ popup, setPopup, close }}>
+        <PopupContext.Provider value={{ popup: current, setPopup: setCurrent, close }}>
             {children}
         </PopupContext.Provider>
     );

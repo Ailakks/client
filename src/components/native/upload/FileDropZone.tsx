@@ -11,7 +11,7 @@ export default function FileDropZone({ clickable, action, children }) {
 };
 
 function Body({ clickable, children }) {
-    const { isDragging, child: { onClick, ...child } } = useContext(DropZoneContext);
+    const { zone, isDragging, child: { onClick, ...child } } = useContext(DropZoneContext);
 
     const handle = () => {
         if (clickable) {
@@ -20,7 +20,7 @@ function Body({ clickable, children }) {
     };
 
     return (
-        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} onClick={handle} {...child}>
+        <div className={clsx(isDragging && "bg-blue-900 outline-dashed outline-blue-500 outline-2", clickable && "cursor-pointer")} ref={zone} onClick={handle} {...child}>
             {children}
         </div>
     );

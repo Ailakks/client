@@ -61,7 +61,7 @@ export default function ListView() {
                         }
                     </div>
                 </div>
-                <div className="grow">
+                <div className="grow overflow-y-auto">
                     <UploadZone action={() => alert(1)}>
                         <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
                             <tbody>

@@ -28,10 +28,10 @@ module.exports = {
             }
         },
         borderWidth: {
-            2: '1px'
+            1: '1px'
         },
         divideWidth: {
-                2: '1px'
+            1: '1px'
         }
     },
     variants: {

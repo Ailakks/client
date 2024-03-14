@@ -64,19 +64,21 @@ function Body() {
     ];
 
     return (
-        <Table aria-label="Example table with dynamic content">
-            <TableHeader>
-                <TableColumn>
+        <table>
+            <thead>
+            <tr>
+                <th>
                     <p>header</p>
-                </TableColumn>
-            </TableHeader>
-            <TableBody>
-                <TableRow>
-                    <TableCell>
-                        <p>body</p>
-                    </TableCell>
-                </TableRow>
-            </TableBody>
-        </Table>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <p>body</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     )
 }

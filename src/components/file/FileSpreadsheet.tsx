@@ -2,8 +2,11 @@ import IntegrationMeta from "../item/IntegrationMeta";
 import {useContext} from "react";
 import Query, {QueryContext} from "../query/Query";
 import {gql, useQuery} from "@apollo/client";
+import {ScopesDataContext} from "../context/Scopes";
 
 export default function FileSpreadsheet() {
+    const { item: { id } } = useContext(ScopesDataContext);
+
     const request = useQuery(gql`
         query Login($file: String!) {
             generateSheet(payload: {
@@ -27,13 +30,17 @@ export default function FileSpreadsheet() {
                 }
                 __typename
             }
-        }`
+        }`, { variables: {
+            file: id
+        } }
     );
 
     return (
-        <Query request={request}>
-            <Body />
-        </Query>
+        <IntegrationMeta name="Spreadsheet">
+            <Query request={request}>
+                <Body />
+            </Query>
+        </IntegrationMeta>
     );
 }
 
@@ -41,8 +48,6 @@ function Body() {
     const { data: { generateSheet: { result: { list } } } } = useContext(QueryContext);
 
     return (
-        <IntegrationMeta name="Spreadsheet">
-            <p>{JSON.stringify(list)}</p>
-        </IntegrationMeta>
+        <p>{JSON.stringify(list)}</p>
     )
 }

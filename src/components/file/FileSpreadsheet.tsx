@@ -38,11 +38,11 @@ export default function FileSpreadsheet() {
 }
 
 function Body() {
-    const { data } = useContext(QueryContext);
+    const { data: { generateSheet: { result: { list } } } } = useContext(QueryContext);
 
     return (
         <IntegrationMeta name="Spreadsheet">
-            <p>{JSON.stringify(data)}</p>
+            <p>{JSON.stringify(list)}</p>
         </IntegrationMeta>
     )
 }

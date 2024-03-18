@@ -55,14 +55,14 @@ function TemplateTab() {
             <p>{name}</p>
             <TabContent>
                 <TemplateContext.Provider value={{ item }}>
-                    <TemplateSheet />
+                    <FileSheet />
                 </TemplateContext.Provider>
             </TabContent>
         </Tab>
     )
 }
 
-function TemplateSheet() {
+function FileSheet() {
     const { item: { id } } = useContext(ScopesDataContext);
 
     const request = useQuery(gql`
@@ -99,7 +99,51 @@ function TemplateSheet() {
 
     return (
         <Query request={request}>
-            <Body/>
+            <FileExport/>
         </Query>
     );
+}
+
+
+function FileExport() {
+    const { item: { id: template } } = useContext(TemplateContext);
+    const { data: { generateSheet: { id: sheet } } } = useContext(QueryContext);
+
+    const request = useQuery(gql`
+        query ExportSheet($sheet: String!, $template: String!) {
+            exportSheet(payload: {
+                sheet: $sheet,
+                template: $template
+            }) {
+                items {
+                    list {
+                        id
+                        name
+                        value {
+                            string
+                            number
+                        }
+                        __typename
+                    }
+                }
+                __typename
+            }
+        }`,
+        {
+            variables: {
+                sheet,
+                template
+            }
+        }
+    );
+
+    return (
+        <Query request={request}>
+            <ExportTable/>
+        </Query>
+    );
+}
+
+function ExportTable() {
+
 }

@@ -6,8 +6,9 @@ import Tabs from "../native/Tabs";
 import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
-import {ScopesDataContext} from "../context/Scopes";
+import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import Checkbox from "../input/Checkbox";
+import {clsx} from "clsx";
 
 export const TemplateContext = createContext();
 
@@ -153,20 +154,32 @@ function ExportTable() {
         <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
             <thead>
             <tr className="text-left">
-                <List list={keys}><TableHead /></List>
+                <List list={keys}><Head /></List>
             </tr>
             </thead>
             <tbody>
-            <List list={files}><Item/></List>
+            <List list={items}><Item/></List>
             </tbody>
         </table>
     )
 }
 
-function TableHead() {
+function Head() {
     const { item: { name } } = useContext(ListContext);
 
     return (
         <th>{name}</th>
+    )
+}
+
+function Item() {
+    const { item } = useContext(ListContext);
+
+    return (
+        <tr>
+            <td>
+                <p>{JSON.stringify(item)}</p>
+            </td>
+        </tr>
     )
 }

@@ -2,81 +2,42 @@ import IntegrationMeta from "../item/IntegrationMeta";
 import {useContext} from "react";
 import Query, {QueryContext} from "../query/Query";
 import {gql, useQuery} from "@apollo/client";
-import {ScopesDataContext} from "../context/Scopes";
-import List, {ListContext} from "../list/List";
+import List from "../list/List";
+import Tabs from "../native/Tabs";
 
 export default function FileSpreadsheet() {
-    const {item: {id}} = useContext(ScopesDataContext);
-
     const request = useQuery(gql`
-                query Login($file: String!) {
-                    generateSheet(payload: {
-                        file: $file,
-                    }) {
-                        file {
-                            id
-                            __typename
-                        }
-                        result {
-                            list {
-                                code
-                                quantity
-                                tax_amount
-                                tax_rate
-                                price_unit
-                                price_total
-                                __typename
-                            }
-                            __typename
-                        }
-                        __typename
-                    }
-                }`, {
-            variables: {
-                file: id
+        query {
+            listTemplates {
+                id
+                name
+                keys {
+                    id
+                    name
+                    __typename
+                }
+                __typename
             }
-        }
+        }`
     );
 
     return (
-        <IntegrationMeta name="Spreadsheet">
-            <Query request={request}>
-                <Body/>
-            </Query>
-        </IntegrationMeta>
+        <Query request={request}>
+            <Body/>
+        </Query>
     );
 }
 
 function Body() {
-    const { data: { generateSheet: { result: { list } } } } = useContext(QueryContext);
+    const { data: { listTemplates } } = useContext(QueryContext);
 
     return (
-        <table>
-            <thead>
-            <tr>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <List list={list}><Item /></List>
-            </tr>
-            </tbody>
-        </table>
+        <Tabs>
+            <List list={listTemplates}></List>
+        </Tabs>
     )
 }
 
-function Item() {
-    const { item } = useContext(ListContext);
+function TemplateTab() {
 
-    return (
-        <th>
-            {
-                    Object.entries(item).map(([key, value]) => (
-                    <div key={key}>
-                        <p>{value}</p>
-                    </div>
-                ))
-            }
-        </th>
-    )
 }

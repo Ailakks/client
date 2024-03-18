@@ -6,9 +6,7 @@ import Tabs from "../native/Tabs";
 import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
-import {Category, Scope, ScopesDataContext} from "../context/Scopes";
-import Checkbox from "../input/Checkbox";
-import {clsx} from "clsx";
+import {ScopesDataContext} from "../context/Scopes";
 
 export const TemplateContext = createContext();
 
@@ -19,7 +17,7 @@ export default function FileSpreadsheet() {
                 id
                 name
                 keys {
-                    id
+                    key
                     name
                     __typename
                 }
@@ -118,18 +116,23 @@ function FileExport() {
                 template: $template
             }) {
                 items {
+                    id
                     list {
                         id
+                        key
                         name
                         value {
                             string
                             number
+                            __typename
                         }
                         __typename
                     }
+                    __typename
                 }
                 __typename
             }
+            __typename
         }`,
         {
             variables: {
@@ -148,7 +151,7 @@ function FileExport() {
 
 function ExportTable() {
     const { item: { keys } } = useContext(TemplateContext);
-    const { data: { exportSheet: { items } } } = useContext(QueryContext);
+    const { data } = useContext(QueryContext);
 
     return (
         <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
@@ -158,7 +161,7 @@ function ExportTable() {
             </tr>
             </thead>
             <tbody>
-            <List list={items}><Item/></List>
+            <p>{console.log(data)}</p>
             </tbody>
         </table>
     )
@@ -172,14 +175,22 @@ function Head() {
     )
 }
 
-function Item() {
+function Row() {
     const { item } = useContext(ListContext);
 
     return (
         <tr>
-            <td>
-                <p>{JSON.stringify(item)}</p>
-            </td>
+            <p>{JSON.stringify(item.list)}</p>
         </tr>
+    )
+}
+
+function Item() {
+    const { item } = useContext(ListContext);
+
+    return (
+        <td>
+            <p>{JSON.stringify(item)}</p>
+        </td>
     )
 }

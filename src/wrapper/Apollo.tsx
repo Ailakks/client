@@ -8,7 +8,7 @@ export default function ApolloWrapper({ children }) {
 
     const ApiClient = new ApolloClient({
         uri: import.meta.env.VITE_API_GRAPH_BASE_URL,
-        cache: new InMemoryCache(),
+        cache: new InMemoryCache({ dataIdFromObject: false }),
         headers: {
             'Authorization': `Bearer ${getToken()}`
         }

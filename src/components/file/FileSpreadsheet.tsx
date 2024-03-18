@@ -1,9 +1,13 @@
-import IntegrationMeta from "../item/IntegrationMeta";
-import {useContext} from "react";
+import {createContext, useContext} from "react";
 import Query, {QueryContext} from "../query/Query";
 import {gql, useQuery} from "@apollo/client";
-import List from "../list/List";
+import List, {ListContext} from "../list/List";
 import Tabs from "../native/Tabs";
+import Tab from "../native/Tab";
+import TabContent from "../native/TabContent";
+import IntegrationMeta from "../item/IntegrationMeta";
+
+export const TemplateContext = createContext();
 
 export default function FileSpreadsheet() {
     const request = useQuery(gql`
@@ -22,9 +26,11 @@ export default function FileSpreadsheet() {
     );
 
     return (
-        <Query request={request}>
-            <Body/>
-        </Query>
+        <IntegrationMeta name="Spreadsheet">
+            <Query request={request}>
+                <Body/>
+            </Query>
+        </IntegrationMeta>
     );
 }
 
@@ -33,11 +39,22 @@ function Body() {
 
     return (
         <Tabs>
-            <List list={listTemplates}></List>
+            <List list={listTemplates}><TemplateTab /></List>
         </Tabs>
     )
 }
 
 function TemplateTab() {
+    const { item: { id, name } } = useContext(ListContext);
 
+    return (
+        <Tab>
+            <p>{name}</p>
+            <TabContent>
+                <TemplateContext.Provider value={{ id }}>
+
+                </TemplateContext.Provider>
+            </TabContent>
+        </Tab>
+    )
 }

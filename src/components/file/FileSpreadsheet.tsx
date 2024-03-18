@@ -7,6 +7,7 @@ import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
 import {ScopesDataContext} from "../context/Scopes";
+import Checkbox from "../input/Checkbox";
 
 export const TemplateContext = createContext();
 
@@ -145,5 +146,27 @@ function FileExport() {
 }
 
 function ExportTable() {
+    const { item: { keys } } = useContext(TemplateContext);
+    const { data: { exportSheet: { items } } } = useContext(QueryContext);
 
+    return (
+        <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
+            <thead>
+            <tr className="text-left">
+                <List list={keys}><TableHead /></List>
+            </tr>
+            </thead>
+            <tbody>
+            <List list={files}><Item/></List>
+            </tbody>
+        </table>
+    )
+}
+
+function TableHead() {
+    const { item: { name } } = useContext(ListContext);
+
+    return (
+        <th>{name}</th>
+    )
 }

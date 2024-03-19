@@ -151,9 +151,9 @@ function ExportTable() {
     const { data: { exportSheet: { items } } } = useContext(QueryContext);
 
     return (
-        <div className="w-full bg-gray-300 p-5 rounded-2xl">
-            <table className="w-full text-white divide-y-2 divide-gray-500">
-                <thead>
+        <div className="w-full bg-gray-300 p-5 rounded-xl">
+            <table className="w-full text-white">
+                <thead className="bg-gray-500">
                 <tr className="text-left">
                     <List list={keys}><Head/></List>
                 </tr>
@@ -188,7 +188,7 @@ function Item() {
     const { item: { value: { string, number } } } = useContext(ListContext);
 
     return (
-        <td className="p-5">
+        <td className="p-3">
             <p>{string ?? number ?? `—`}</p>
         </td>
     )

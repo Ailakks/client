@@ -3,7 +3,7 @@ import React from "react";
 export default function FullLayout({ head, side, header, children }) {
     return (
         <div className="flex h-full">
-            <aside className="w-64 divide-y divide-gray-500">
+            <aside className="w-64 divide-y-1 divide-gray-500">
                 <header className="grid items-center bg-gray-700 px-8 h-20">
                     {head}
                 </header>
@@ -11,7 +11,7 @@ export default function FullLayout({ head, side, header, children }) {
                     {side}
                 </div>
             </aside>
-            <div className="grow flex flex-col h-full">
+            <div className="grow flex flex-col h-full divide-y-1 divide-gray-500">
                 <header className="flex items-center bg-gray-700 pr-8 h-20">
                     {header}
                 </header>

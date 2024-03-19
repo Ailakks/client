@@ -151,16 +151,18 @@ function ExportTable() {
     const { data: { exportSheet: { items } } } = useContext(QueryContext);
 
     return (
-        <table className="w-full text-white bg-gray-300 p-5 rounded-b bg-gray-300">
-            <thead>
-            <tr className="text-left">
-                <List list={keys}><Head /></List>
-            </tr>
-            </thead>
-            <tbody>
-            <List list={items}><Row/></List>
-            </tbody>
-        </table>
+        <div className="w-full bg-gray-300 p-5 rounded-2xl">
+            <table className="w-full text-white divide-y-2 divide-gray-500">
+                <thead>
+                <tr className="text-left">
+                    <List list={keys}><Head/></List>
+                </tr>
+                </thead>
+                <tbody className="divide-y-1 divide-gray-500">
+                <List list={items}><Row/></List>
+                </tbody>
+            </table>
+        </div>
     )
 }
 
@@ -168,7 +170,7 @@ function Head() {
     const { item: { name } } = useContext(ListContext);
 
     return (
-        <th>{name}</th>
+        <th className="p-5">{name}</th>
     )
 }
 
@@ -177,7 +179,7 @@ function Row() {
 
     return (
         <tr>
-            <List list={list}><Item /></List>
+            <List list={list}><Item/></List>
         </tr>
     )
 }
@@ -186,7 +188,7 @@ function Item() {
     const { item: { value: { string, number } } } = useContext(ListContext);
 
     return (
-        <td>
+        <td className="p-5">
             <p>{string ?? number ?? `—`}</p>
         </td>
     )

@@ -31,7 +31,8 @@ module.exports = {
             1: '1px'
         },
         divideWidth: {
-            1: '1px'
+            1: '1px',
+            2: '2px'
         }
     },
     variants: {

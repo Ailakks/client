@@ -151,7 +151,7 @@ function ExportTable() {
     const { data: { exportSheet: { items } } } = useContext(QueryContext);
 
     return (
-        <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
+        <table className="w-full text-white bg-gray-300 p-5 rounded-b bg-gray-300">
             <thead>
             <tr className="text-left">
                 <List list={keys}><Head /></List>

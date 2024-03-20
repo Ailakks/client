@@ -44,7 +44,7 @@ export default function CreateTemplatePopup() {
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
-                        <Form className="h-full space-y-5" submit={({ name }) => update({ variables: { name, keys } })}>
+                        <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, keys } })}>
                             <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
                             <div>
                                 <TemplateKeyList />
@@ -64,7 +64,9 @@ const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price
 
 function TemplateKeyList() {
     return (
-        <List list={keys}><TemplateKey /></List>
+        <table className="w-full">
+            <List list={keys}><TemplateKey /></List>
+        </table>
     )
 }
 
@@ -72,25 +74,23 @@ function TemplateKey() {
     const { item } = useContext(ListContext);
 
     return (
-        <table className="w-full">
-            <tbody>
-            <tr>
-                <td>
-                    <p>{item}</p>
-                </td>
-                <td>
-                    <TemplateInput />
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <tbody>
+        <tr>
+            <td>
+                <p>{item}</p>
+            </td>
+            <td>
+                <TemplateInput/>
+            </td>
+        </tr>
+        </tbody>
     )
 }
 
 function TemplateInput() {
-    const { item } = useContext(ListContext);
+    const {item} = useContext(ListContext);
 
-    const { setKeys } = useContext(TemplateContext);
+    const {setKeys} = useContext(TemplateContext);
 
     const handle = (value) => {
         setKeys((previous) => {

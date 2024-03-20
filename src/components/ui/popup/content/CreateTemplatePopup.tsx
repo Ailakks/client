@@ -43,7 +43,7 @@ export default function CreateTemplatePopup() {
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
-                        <Form className="h-full space-y-5" submit={({ name }) => update({ name })}>
+                        <Form className="h-full space-y-5" submit={({ name }) => update({ name, keys })}>
                             <Input name="name" type="text" className="main w-full" placeholder="Name" required />
                             <div>
                                 <TemplateKeyList />
@@ -93,11 +93,17 @@ function TemplateInput() {
 
     const handle = (value) => {
         setKeys((previous) => {
-            previous.map((current) => {
+            const contains = previous.find(({ id }) => id === item);
+
+            if (!contains) {
+                return [...previous, { id: item, name: value }];
+            }
+
+            return previous.map((current) => {
                 const { id } = current;
 
                 if (id === item) {
-                    return { id: item, name: value }
+                    return { id: item, name: value };
                 }
 
                 return current;

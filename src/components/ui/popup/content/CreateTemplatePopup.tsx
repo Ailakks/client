@@ -1,16 +1,20 @@
+import {createContext, useContext, useState} from "react";
 import {gql, useMutation} from "@apollo/client";
 import Popup from "../Popup";
 import LoadStatus from "../../../load/LoadStatus";
 import LoadSpinner from "../../../load/spinner/LoadSpinner";
-import Form, {FormContext} from "../../../query/Form";
+import Form from "../../../query/Form";
 import Input from "../../../query/Input";
 import List, {ListContext} from "../../../list/List";
-import {useContext} from "react";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
 
+export const TemplateContext = createContext();
+
 export default function CreateTemplatePopup() {
     const { close } = useContext(PopupContext);
+
+    const [keys, setKeys] = useState([]);
 
     const [update, { loading }] = useMutation(gql`
         mutation CreateTemplate($name: String!) {
@@ -29,27 +33,29 @@ export default function CreateTemplatePopup() {
     );
 
     return (
-        <Popup>
-            <PopupWindows>
-                <div className="h-full flex flex-col justify-between space-y-5">
-                    <div className="flex justify-between items-center">
-                        <h1>Create template</h1>
-                        <button className="round" onClick={close}>
-                            <i className="fa-regular fa-xmark"/>
-                        </button>
-                    </div>
-                    <Form className="h-full space-y-5" submit={({ name }) => update({ name })}>
-                        <Input name="name" type="text" className="main w-full" placeholder="Name" required />
-                        <div>
-                            <TemplateKeyList />
+        <TemplateContext.Provider value={{ keys, setKeys }}>
+            <Popup>
+                <PopupWindows>
+                    <div className="h-full flex flex-col justify-between space-y-5">
+                        <div className="flex justify-between items-center">
+                            <h1>Create template</h1>
+                            <button className="round" onClick={close}>
+                                <i className="fa-regular fa-xmark"/>
+                            </button>
                         </div>
-                    </Form>
-                    <LoadStatus loading={loading} loader={<LoadSpinner />}>
-                        <button type="submit" className="main w-full">Save</button>
-                    </LoadStatus>
-                </div>
-            </PopupWindows>
-        </Popup>
+                        <Form className="h-full space-y-5" submit={({ name }) => update({ name })}>
+                            <Input name="name" type="text" className="main w-full" placeholder="Name" required />
+                            <div>
+                                <TemplateKeyList />
+                            </div>
+                        </Form>
+                        <LoadStatus loading={loading} loader={<LoadSpinner />}>
+                            <button type="submit" className="main w-full">Save</button>
+                        </LoadStatus>
+                    </div>
+                </PopupWindows>
+            </Popup>
+        </TemplateContext.Provider>
     )
 }
 
@@ -57,9 +63,7 @@ const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price
 
 function TemplateKeyList() {
     return (
-        <Form submit={() => null}>
-            <List list={keys}><TemplateKey /></List>
-        </Form>
+        <List list={keys}><TemplateKey /></List>
     )
 }
 
@@ -74,9 +78,7 @@ function TemplateKey() {
                     <p>{item}</p>
                 </td>
                 <td>
-                    <Form submit={() => null}>
-                        <TemplateInput />
-                    </Form>
+                    <TemplateInput />
                 </td>
             </tr>
             </tbody>
@@ -87,8 +89,20 @@ function TemplateKey() {
 function TemplateInput() {
     const { item } = useContext(ListContext);
 
-    const handle = (name) => {
+    const { setKeys } = useContext(TemplateContext);
 
+    const handle = (value) => {
+        setKeys((previous) => {
+            previous.map((current) => {
+                const { id } = current;
+
+                if (id === item) {
+                    return { id: item, name: value }
+                }
+
+                return current;
+            });
+        });
     };
 
     return (

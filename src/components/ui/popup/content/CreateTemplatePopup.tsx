@@ -44,14 +44,16 @@ export default function CreateTemplatePopup() {
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
-                        <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, keys } })}>
+                        <Form className="h-full space-y-5" submit={({ name }) => update({ variables: { name, keys } })}>
                             <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
-                            <div>
-                                <TemplateKeyList />
+                            <div className="h-full flex flex-col justify-between">
+                                <div>
+                                    <TemplateKeyList/>
+                                </div>
+                                <LoadStatus loading={loading} loader={<LoadSpinner/>}>
+                                    <button type="submit" className="main w-full">Save</button>
+                                </LoadStatus>
                             </div>
-                            <LoadStatus loading={loading} loader={<LoadSpinner />}>
-                                <button type="submit" className="main w-full">Save</button>
-                            </LoadStatus>
                         </Form>
                     </div>
                 </PopupWindows>

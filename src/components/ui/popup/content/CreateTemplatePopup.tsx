@@ -2,7 +2,7 @@ import {gql, useMutation} from "@apollo/client";
 import Popup from "../Popup";
 import LoadStatus from "../../../load/LoadStatus";
 import LoadSpinner from "../../../load/spinner/LoadSpinner";
-import Form from "../../../query/Form";
+import Form, {FormContext} from "../../../query/Form";
 import Input from "../../../query/Input";
 import List, {ListContext} from "../../../list/List";
 import {useContext} from "react";
@@ -57,7 +57,9 @@ const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price
 
 function TemplateKeyList() {
     return (
-        <List list={keys}><TemplateKey /></List>
+        <Form submit={() => null}>
+            <List list={keys}><TemplateKey /></List>
+        </Form>
     )
 }
 
@@ -72,10 +74,21 @@ function TemplateKey() {
                     <p>{item}</p>
                 </td>
                 <td>
-                    <input className="main" name="name" type="text" placeholder="Name" />
+                    <Form submit={() => null}>
+                        <TemplateInput />
+                    </Form>
                 </td>
             </tr>
             </tbody>
         </table>
+    )
+}
+
+function TemplateInput() {
+    const { item } = useContext(ListContext);
+    const { form } = useContext(FormContext);
+
+    return (
+        <Input className="main" name="name" type="text" placeholder="Name" />
     )
 }

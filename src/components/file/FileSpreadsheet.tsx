@@ -6,9 +6,9 @@ import Tabs from "../native/Tabs";
 import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
-import {Category, Scope, ScopesDataContext} from "../context/Scopes";
-import Checkbox from "../input/Checkbox";
-import {clsx} from "clsx";
+import {ScopesDataContext} from "../context/Scopes";
+import {PopupContext} from "../../wrapper/ui/PopupProvider";
+import CreateTemplatePopup from "../popup/CreateTemplatePopup";
 
 export const TemplateContext = createContext();
 
@@ -40,9 +40,19 @@ export default function FileSpreadsheet() {
 function Body() {
     const { data: { listTemplates } } = useContext(QueryContext);
 
+    const { setCurrent } = useContext(PopupContext);
+
+    const add = () => {
+        setCurrent(<CreateTemplatePopup />);
+    };
+
     return (
         <Tabs>
             <List list={listTemplates}><TemplateTab /></List>
+            <button className="flex space-x-2 items-center px-6 py-1" onClick={add}>
+                <i className="fa-regular fa-plus" />
+                <p>New</p>
+            </button>
         </Tabs>
     )
 }

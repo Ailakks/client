@@ -28,10 +28,10 @@ export default function CreateTemplatePopup() {
     return (
         <Popup>
             <PopupWindows>
-                <div className="h-full flex flex-col justify-around">
-                    <Form className="grow flex flex-col justify-around space-y-2 divide-y-1 divide-gray-300" submit={({ name }) => update({ name })}>
+                <div className="h-full flex flex-col justify-between">
+                    <Form className="h-full space-y-2 divide-y-1 divide-gray-300" submit={({ name }) => update({ name })}>
                         <Input name="name" type="text" className="main w-full" placeholder="Name" required />
-                        <div>
+                        <div className="h-full flex flex-col justify-center">
                             <TemplateKeyList />
                         </div>
                     </Form>

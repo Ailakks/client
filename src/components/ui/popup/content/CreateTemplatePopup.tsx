@@ -1,11 +1,12 @@
 import {gql, useMutation} from "@apollo/client";
-import Popup from "../ui/Popup";
-import LoadStatus from "../load/LoadStatus";
-import LoadSpinner from "../load/spinner/LoadSpinner";
-import Form from "../query/Form";
-import Input from "../query/Input";
-import List, {ListContext} from "../list/List";
+import Popup from "../Popup";
+import LoadStatus from "../../../load/LoadStatus";
+import LoadSpinner from "../../../load/spinner/LoadSpinner";
+import Form from "../../../query/Form";
+import Input from "../../../query/Input";
+import List, {ListContext} from "../../../list/List";
 import {useContext} from "react";
+import PopupWindows from "../style/PopupWindows";
 
 export default function CreateTemplatePopup() {
     const [update, { loading }] = useMutation(gql`
@@ -26,13 +27,15 @@ export default function CreateTemplatePopup() {
 
     return (
         <Popup>
-            <Form className="space-y-2" submit={({ name }) => update({ name })}>
-                <Input name="name" type="text" className="main w-full" placeholder="Name" required />
-                <LoadStatus loading={loading} loader={<LoadSpinner />}>
-                    <button type="submit" className="main w-full">Create</button>
-                </LoadStatus>
-                <TemplateKeyList />
-            </Form>
+            <PopupWindows>
+                <Form className="space-y-2" submit={({ name }) => update({ name })}>
+                    <Input name="name" type="text" className="main w-full" placeholder="Name" required />
+                    <LoadStatus loading={loading} loader={<LoadSpinner />}>
+                        <button type="submit" className="main w-full">Create</button>
+                    </LoadStatus>
+                    <TemplateKeyList />
+                </Form>
+            </PopupWindows>
         </Popup>
     )
 }
@@ -56,7 +59,7 @@ function TemplateKey() {
                     <p>{item}</p>
                 </td>
                 <td>
-                    <input name="name" type="text" placeholder="Name" />
+                    <input className="main" name="name" type="text" placeholder="Name" />
                 </td>
             </tr>
             </tbody>

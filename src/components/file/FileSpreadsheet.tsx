@@ -8,7 +8,7 @@ import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
 import {ScopesDataContext} from "../context/Scopes";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
-import CreateTemplatePopup from "../popup/CreateTemplatePopup";
+import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
 
 export const TemplateContext = createContext();
 

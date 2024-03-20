@@ -7,8 +7,11 @@ import Input from "../../../query/Input";
 import List, {ListContext} from "../../../list/List";
 import {useContext} from "react";
 import PopupWindows from "../style/PopupWindows";
+import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
 
 export default function CreateTemplatePopup() {
+    const { close } = useContext(PopupContext);
+
     const [update, { loading }] = useMutation(gql`
         mutation CreateTemplate($name: String!) {
             createTemplate(payload: {
@@ -28,10 +31,16 @@ export default function CreateTemplatePopup() {
     return (
         <Popup>
             <PopupWindows>
-                <div className="h-full flex flex-col justify-between">
-                    <Form className="h-full space-y-2 divide-y-1 divide-gray-300" submit={({ name }) => update({ name })}>
+                <div className="h-full flex flex-col justify-between space-y-5">
+                    <div className="flex justify-between items-center">
+                        <h1>Create template</h1>
+                        <button className="round" onClick={close}>
+                            <i className="fa-regular fa-xmark"/>
+                        </button>
+                    </div>
+                    <Form className="h-full space-y-5" submit={({ name }) => update({ name })}>
                         <Input name="name" type="text" className="main w-full" placeholder="Name" required />
-                        <div className="h-full flex flex-col justify-center">
+                        <div>
                             <TemplateKeyList />
                         </div>
                     </Form>

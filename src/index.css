@@ -30,7 +30,7 @@ html {
     }
 
     button {
-        @apply text-white;
+        @apply text-white cursor-pointer;
     }
 
     .navlink {
@@ -42,15 +42,19 @@ html {
     }
 
     button.main, input[type = "submit"].main {
-        @apply bg-blue-500 h-12 cursor-pointer px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
+        @apply bg-blue-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
     }
 
     button.secondary {
-        @apply bg-gray-500 h-10 cursor-pointer px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
+        @apply bg-gray-500 h-10 px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
     }
 
     button.menu {
-        @apply hover:bg-gray-500 outline-none h-10 cursor-pointer px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
+        @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
+    }
+
+    button.round {
+        @apply hover:bg-gray-300 h-10 aspect-square rounded-full;
     }
 
     hr {

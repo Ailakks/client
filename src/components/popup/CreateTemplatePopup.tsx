@@ -4,6 +4,8 @@ import LoadStatus from "../load/LoadStatus";
 import LoadSpinner from "../load/spinner/LoadSpinner";
 import Form from "../query/Form";
 import Input from "../query/Input";
+import List, {ListContext} from "../list/List";
+import {useContext} from "react";
 
 export default function CreateTemplatePopup() {
     const [update, { loading }] = useMutation(gql`
@@ -29,7 +31,35 @@ export default function CreateTemplatePopup() {
                 <LoadStatus loading={loading} loader={<LoadSpinner />}>
                     <button type="submit" className="main w-full">Create</button>
                 </LoadStatus>
+                <TemplateKeyList />
             </Form>
         </Popup>
+    )
+}
+
+const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price_total"]
+
+function TemplateKeyList() {
+    return (
+        <List list={keys}><TemplateKey /></List>
+    )
+}
+
+function TemplateKey() {
+    const { item } = useContext(ListContext);
+
+    return (
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <p>{item}</p>
+                </td>
+                <td>
+                    <input name="name" type="text" placeholder="Name" />
+                </td>
+            </tr>
+            </tbody>
+        </table>
     )
 }

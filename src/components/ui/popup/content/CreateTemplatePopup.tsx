@@ -45,7 +45,7 @@ export default function CreateTemplatePopup() {
                             </button>
                         </div>
                         <Form className="h-full space-y-5" submit={({ name }) => update({ variables: { name, keys } })}>
-                            <Input name="name" type="text" className="main w-full" placeholder="Name" required />
+                            <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
                             <div>
                                 <TemplateKeyList />
                             </div>

@@ -49,7 +49,7 @@ function Body() {
     return (
         <Tabs>
             <List list={listTemplates}><TemplateTab /></List>
-            <button className="flex space-x-2 items-center px-6 py-1" onClick={add}>
+            <button className="tab flex space-x-2 items-center px-6 py-1" onClick={add}>
                 <i className="fa-regular fa-plus" />
                 <p>New</p>
             </button>

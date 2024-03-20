@@ -28,13 +28,17 @@ export default function CreateTemplatePopup() {
     return (
         <Popup>
             <PopupWindows>
-                <Form className="space-y-2" submit={({ name }) => update({ name })}>
-                    <Input name="name" type="text" className="main w-full" placeholder="Name" required />
+                <div className="h-full flex flex-col justify-around">
+                    <Form className="grow flex flex-col justify-around space-y-2 divide-y-1 divide-gray-300" submit={({ name }) => update({ name })}>
+                        <Input name="name" type="text" className="main w-full" placeholder="Name" required />
+                        <div>
+                            <TemplateKeyList />
+                        </div>
+                    </Form>
                     <LoadStatus loading={loading} loader={<LoadSpinner />}>
-                        <button type="submit" className="main w-full">Create</button>
+                        <button type="submit" className="main w-full">Save</button>
                     </LoadStatus>
-                    <TemplateKeyList />
-                </Form>
+                </div>
             </PopupWindows>
         </Popup>
     )
@@ -52,7 +56,7 @@ function TemplateKey() {
     const { item } = useContext(ListContext);
 
     return (
-        <table>
+        <table className="w-full">
             <tbody>
             <tr>
                 <td>

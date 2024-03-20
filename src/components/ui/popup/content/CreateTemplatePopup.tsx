@@ -30,7 +30,12 @@ export default function CreateTemplatePopup() {
                 }
                 __typename
             }
-        }`
+        }`,
+        {
+            onCompleted: () => {
+                close();
+            }
+        }
     );
 
     return (
@@ -39,21 +44,19 @@ export default function CreateTemplatePopup() {
                 <PopupWindows>
                     <div className="h-full flex flex-col justify-between space-y-5">
                         <div className="flex justify-between items-center">
-                            <h1>Create template</h1>
+                            <h1>Create a template</h1>
                             <button className="round" onClick={close}>
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
-                        <Form className="h-full space-y-5" submit={({ name }) => update({ variables: { name, keys } })}>
-                            <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
-                            <div className="h-full flex flex-col justify-between">
-                                <div>
-                                    <TemplateKeyList/>
-                                </div>
-                                <LoadStatus loading={loading} loader={<LoadSpinner/>}>
-                                    <button type="submit" className="main w-full">Save</button>
-                                </LoadStatus>
+                        <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, keys } })}>
+                            <div className="space-y-5">
+                                <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
+                                <TemplateKeyList/>
                             </div>
+                            <LoadStatus loading={loading} loader={<LoadSpinner/>}>
+                                <button type="submit" className="main w-full">Save</button>
+                            </LoadStatus>
                         </Form>
                     </div>
                 </PopupWindows>

@@ -86,9 +86,12 @@ function TemplateKey() {
 
 function TemplateInput() {
     const { item } = useContext(ListContext);
-    const { form } = useContext(FormContext);
+
+    const handle = (name) => {
+
+    };
 
     return (
-        <Input className="main" name="name" type="text" placeholder="Name" />
+        <Input className="main" type="text" placeholder="Name" onChange={({ target: { value } }) => handle(value)} />
     )
 }

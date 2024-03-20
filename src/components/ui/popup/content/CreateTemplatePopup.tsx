@@ -17,9 +17,10 @@ export default function CreateTemplatePopup() {
     const [keys, setKeys] = useState([]);
 
     const [update, { loading }] = useMutation(gql`
-        mutation CreateTemplate($name: String!) {
+        mutation CreateTemplate($name: String!, $keys: [TemplateKeyDto!]!) {
             createTemplate(payload: {
                 name: $name
+                keys: $keys
             }) {
                 id
                 keys {
@@ -43,15 +44,15 @@ export default function CreateTemplatePopup() {
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
-                        <Form className="h-full space-y-5" submit={({ name }) => update({ name, keys })}>
+                        <Form className="h-full space-y-5" submit={({ name }) => update({ variables: { name, keys } })}>
                             <Input name="name" type="text" className="main w-full" placeholder="Name" required />
                             <div>
                                 <TemplateKeyList />
                             </div>
+                            <LoadStatus loading={loading} loader={<LoadSpinner />}>
+                                <button type="submit" className="main w-full">Save</button>
+                            </LoadStatus>
                         </Form>
-                        <LoadStatus loading={loading} loader={<LoadSpinner />}>
-                            <button type="submit" className="main w-full">Save</button>
-                        </LoadStatus>
                     </div>
                 </PopupWindows>
             </Popup>

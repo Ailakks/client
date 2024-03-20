@@ -9,6 +9,7 @@ import IntegrationMeta from "../item/IntegrationMeta";
 import {ScopesDataContext} from "../context/Scopes";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
+import TabDefault from "../native/TabDefault";
 
 export const TemplateContext = createContext();
 
@@ -53,6 +54,9 @@ function Body() {
                 <i className="fa-regular fa-plus" />
                 <p>New</p>
             </button>
+            <TabDefault>
+                <p>Select a template to see the summary</p>
+            </TabDefault>
         </Tabs>
     )
 }

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {TabContext} from "./Tab";
 
 export default function TabContent({ children }) {

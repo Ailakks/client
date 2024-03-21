@@ -10,6 +10,8 @@ import {ScopesDataContext} from "../context/Scopes";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
 import TabDefault from "../native/TabDefault";
+import {AxiosContext} from "../../wrapper/Axios";
+import {DownloadContext} from "../../wrapper/tool/Download";
 
 export const TemplateContext = createContext();
 
@@ -154,24 +156,43 @@ function FileExport() {
     );
 
     return (
-        <Query request={request}>
-            <div className="w-full space-y-5">
-                <div className="flex justify-between items-center">
-                    <p>File spreadsheet</p>
-                    <button className="main">
-                        <i className="fa-regular fa-arrow-down-to-bracket" />
-                        <p>Download as Excel</p>
-                    </button>
-                </div>
-                <ExportTable/>
+        <div className="w-full space-y-5">
+            <div className="flex justify-between items-center">
+                <p>File spreadsheet</p>
+                <DownloadExcelButton/>
             </div>
-        </Query>
+            <Query request={request}>
+                <ExportTable/>
+            </Query>
+        </div>
     );
 }
 
+function DownloadExcelButton() {
+    const {client} = useContext(AxiosContext);
+    const {download} = useContext(DownloadContext);
+
+    const {item: {id: template}} = useContext(TemplateContext);
+    const {data: {generateSheet: {id: sheet}}} = useContext(QueryContext);
+
+    const handle = async () => {
+        const { data } = await client.post(`export`, { sheet, template }, { responseType: 'arraybuffer' });
+        const blob = new Blob([data]);
+
+        download(`Export.xlsx`, blob);
+    }
+
+    return (
+        <button className="main" onClick={handle}>
+            <i className="fa-regular fa-arrow-down-to-bracket"/>
+            <p>Download as Excel</p>
+        </button>
+    )
+}
+
 function ExportTable() {
-    const { item: { keys } } = useContext(TemplateContext);
-    const { data: { exportSheet: { items } } } = useContext(QueryContext);
+    const {item: {keys}} = useContext(TemplateContext);
+    const {data: {exportSheet: {items}}} = useContext(QueryContext);
 
     return (
         <div className="w-full bg-gray-300 p-8 rounded-xl">

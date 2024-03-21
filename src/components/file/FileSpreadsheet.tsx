@@ -155,7 +155,16 @@ function FileExport() {
 
     return (
         <Query request={request}>
-            <ExportTable/>
+            <div className="w-full space-y-5">
+                <div className="flex justify-between items-center">
+                    <p>File spreadsheet</p>
+                    <button className="main">
+                        <i className="fa-regular fa-arrow-down-to-bracket" />
+                        <p>Download as Excel</p>
+                    </button>
+                </div>
+                <ExportTable/>
+            </div>
         </Query>
     );
 }

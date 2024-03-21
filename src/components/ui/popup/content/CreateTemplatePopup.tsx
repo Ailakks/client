@@ -8,6 +8,7 @@ import Input from "../../../query/Input";
 import List, {ListContext} from "../../../list/List";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
+import Checkbox from "../../../input/Checkbox";
 
 export const TemplateContext = createContext();
 
@@ -51,7 +52,7 @@ export default function CreateTemplatePopup() {
                         </div>
                         <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, keys } })}>
                             <div className="space-y-5">
-                                <Input name="name" type="text" className=" menu w-full" placeholder="Name" required />
+                                <Input name="name" type="text" className="menu w-full" placeholder="Name" required />
                                 <TemplateKeyList/>
                             </div>
                             <LoadStatus loading={loading} loader={<LoadSpinner/>}>
@@ -69,7 +70,12 @@ const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price
 
 function TemplateKeyList() {
     return (
-        <table className="w-full">
+        <table className="w-full text-left">
+            <thead>
+            <th></th>
+            <th>ID</th>
+            <th>Custom name</th>
+            </thead>
             <List list={keys}><TemplateKey /></List>
         </table>
     )
@@ -81,6 +87,9 @@ function TemplateKey() {
     return (
         <tbody>
         <tr>
+            <td>
+                <Checkbox status={true} />
+            </td>
             <td>
                 <p>{item}</p>
             </td>
@@ -118,6 +127,6 @@ function TemplateInput() {
     };
 
     return (
-        <Input className="main" type="text" placeholder="Name" onChange={({ target: { value } }) => handle(value)} />
+        <Input className="w-full menu" type="text" placeholder="Name" onChange={({ target: { value } }) => handle(value)} />
     )
 }

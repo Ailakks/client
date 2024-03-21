@@ -42,7 +42,7 @@ export default function ListView() {
                         <div className="flex space-x-4 items-center">
                             <NewButton />
                             <UploadZone clickable>
-                                <button className="main flex items-center space-x-4">
+                                <button className="main">
                                     <i className="fa-regular fa-arrow-up-from-bracket" />
                                     <p>Upload</p>
                                 </button>

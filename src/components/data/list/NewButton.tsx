@@ -40,7 +40,7 @@ export default function NewButton() {
     return (
         <Popover placement="bottom">
             <PopoverTrigger>
-                <button className="main flex items-center space-x-4">
+                <button className="main">
                     <i className="fa-regular fa-plus" />
                     <p>New</p>
                 </button>

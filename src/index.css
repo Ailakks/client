@@ -30,7 +30,7 @@ html {
     }
 
     button {
-        @apply text-white cursor-pointer;
+        @apply text-white cursor-pointer flex items-center space-x-3;
     }
 
     .navlink {

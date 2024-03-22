@@ -15,7 +15,7 @@ export default function ListView() {
     const [selected, setSelected] = useState([]);
     const [checked, setChecked] = useState(false);
 
-    const { data: { getFolder: { files } } } = useContext(QueryContext);
+    const { data: { getFolder: { files, folders } } } = useContext(QueryContext);
 
     const toggleAll = () => {
         if (selected.length > 0) {
@@ -77,6 +77,7 @@ export default function ListView() {
                             </tr>
                             </thead>
                             <tbody>
+                            <List list={folders}><Item /></List>
                             <List list={files}><Item /></List>
                             </tbody>
                         </table>
@@ -121,7 +122,7 @@ function Item() {
 
     const { item } = useContext(ListContext);
     const { files } = useContext(ScopesContext);
-    const { name, date, source: { meta: { size } } } = item;
+    const { name, date, source } = item;
 
     const { selected, setSelected } = useContext(SelectedContext);
 
@@ -153,7 +154,7 @@ function Item() {
             </td>
             <td className="cursor-pointer" onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
             <td>{date}</td>
-            <td>{size}</td>
+            <td>{source?.meta.size ?? `-`}</td>
             <td className="w-0">
                 <Options />
             </td>

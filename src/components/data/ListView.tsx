@@ -10,6 +10,7 @@ import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scop
 import UploadZone from "../native/upload/UploadZone";
 
 export const SelectedContext = createContext();
+export const ItemMenuContext = createContext();
 
 export default function ListView() {
     const [selected, setSelected] = useState([]);
@@ -107,7 +108,7 @@ function Tool() {
         },
     };
 
-    const {files} = useContext(ScopesContext);
+    const { files } = useContext(ScopesContext);
 
     const item = selected.length > 1 ? selected : selected[0];
 
@@ -158,24 +159,30 @@ function Item() {
 function Folder() {
     const { item: { name, date } } = useContext(ListContext);
 
+    const { folders } = useContext(ScopesContext);
+
     return (
         <Fragment>
             <td>
                 <i className="fa-solid fa-folder"/>
             </td>
             <td className="cursor-pointer"
-                onClick={() => folders[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
+                onClick={() => folders[Category.VIEW][Scope.VIEW].action(item)}>{name}</td>
             <td>{date}</td>
             <td>—</td>
             <td className="w-0">
-                <Options/>
+                <ItemMenuContext.Provider value={folders}>
+                    <Options/>
+                </ItemMenuContext.Provider>
             </td>
         </Fragment>
     )
 }
 
 function File() {
-    const {item: {name, date, source: {meta: { size } } } } = useContext(ListContext);
+    const { item: { name, date, source: { meta: { size } } } } = useContext(ListContext);
+
+    const { files } = useContext(ScopesContext);
 
     return (
         <Fragment>
@@ -187,15 +194,11 @@ function File() {
             <td>{date}</td>
             <td>{size}</td>
             <td className="w-0">
-                <Options/>
+                <ItemMenuContext.Provider value={files}>
+                    <Options/>
+                </ItemMenuContext.Provider>
             </td>
         </Fragment>
-    )
-}
-
-function Check({checked, add}) {
-    return (
-        <Checkbox status={checked} change={add}/>
     )
 }
 

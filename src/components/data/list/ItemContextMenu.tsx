@@ -4,6 +4,7 @@ import {ScopesContext} from "../../context/Scopes";
 import ContextMenu from "../../context/ContextMenu";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
+import {ItemMenuContext} from "../ListView";
 
 export const ItemContext = createContext();
 
@@ -11,7 +12,8 @@ export default function ItemContextMenu({ children }) {
     const [open, setOpen] = useState(false);
 
     const { item } = useContext(ListContext);
-    const { files } = useContext(ScopesContext);
+
+    const scopes = useContext(ItemMenuContext);
 
     return (
         <Popover isOpen={open} onOpenChange={status => setOpen(status)} onClick={() => setOpen(false)} placement="bottom">
@@ -19,9 +21,9 @@ export default function ItemContextMenu({ children }) {
                 {children}
             </PopoverTrigger>
             <PopoverContent>
-                <ScopesContext.Provider value={files}>
+                <ScopesContext.Provider value={scopes}>
                     <ItemContext.Provider value={{ item }}>
-                        <ContextMenu list={Object.values(files)}><Item /></ContextMenu>
+                        <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
                     </ItemContext.Provider>
                 </ScopesContext.Provider>
             </PopoverContent>

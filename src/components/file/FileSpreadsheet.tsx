@@ -183,7 +183,7 @@ function DownloadExcelButton() {
     }
 
     return (
-        <button className="main" onClick={handle}>
+        <button className="main icon" onClick={handle}>
             <i className="fa-regular fa-arrow-down-to-bracket"/>
             <p>Download as Excel</p>
         </button>

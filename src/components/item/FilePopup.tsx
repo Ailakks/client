@@ -1,15 +1,14 @@
-import {createContext, useContext, useState} from "react";
+import {useContext} from "react";
 import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
 import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import Popup from "../ui/popup/Popup";
 import FilePreview from "../file/FilePreview";
 import Tabs from "../native/Tabs";
-import List, {ListContext} from "../list/List";
-import Tab from "../native/Tab";
-import TabContent from "../native/TabContent";
+import List from "../list/List";
 import Integration from "./Integration";
 import FileSpreadsheet from "../file/FileSpreadsheet";
+import TabDefault from "../native/TabDefault";
 
 export default function FilePopup() {
     const { close } = useContext(PopupContext);
@@ -46,7 +45,10 @@ export default function FilePopup() {
                     </div>
                 </div>
                 <div className="flex grow justify-center">
-                    <Tabs def={integrations[0]}>
+                    <Tabs>
+                        <TabDefault>
+                            <FilePreview />
+                        </TabDefault>
                         <List list={integrations}><Integration /></List>
                     </Tabs>
                 </div>

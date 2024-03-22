@@ -1,9 +1,11 @@
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
 import ContextMenu from "../../context/ContextMenu";
-import {useContext} from "react";
+import {createContext, useContext} from "react";
 import {QueryContext} from "../../query/Query";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
+import CreateFolderPopup from "../../ui/popup/content/CreateFolderPopup";
+import {PopupContext} from "../../../wrapper/ui/PopupProvider";
 
 const Category = {
     UPLOAD: "upload",
@@ -15,14 +17,24 @@ const Scope = {
     FOLDER: "folder"
 }
 
+export const FolderContext = createContext();
+
 export default function NewButton() {
+    const { setCurrent } = useContext(PopupContext);
+
+    const request = useContext(QueryContext);
+
     const list = {
         [Category.CREATE]: {
             [Scope.FOLDER]: {
                 icon: 'fa-regular fa-folder',
                 name: 'Create folder',
                 action: (data) => {
-
+                    setCurrent(
+                        <FolderContext.Provider value={request}>
+                            <CreateFolderPopup />
+                        </FolderContext.Provider>
+                    )
                 }
             }
         },
@@ -40,7 +52,7 @@ export default function NewButton() {
     return (
         <Popover placement="bottom">
             <PopoverTrigger>
-                <button className="main">
+                <button className="main icon">
                     <i className="fa-regular fa-plus" />
                     <p>New</p>
                 </button>

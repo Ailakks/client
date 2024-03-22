@@ -15,7 +15,7 @@ export default function Tab({ children }) {
 
     return (
         <TabContext.Provider value={{ content, setContent }}>
-            <button className={clsx("tab", content == current && "bg-gray-300")} onClick={update}>
+            <button className={clsx("tab", content === current && "bg-gray-300")} onClick={update}>
                 {children}
             </button>
         </TabContext.Provider>

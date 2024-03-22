@@ -30,7 +30,11 @@ html {
     }
 
     button {
-        @apply text-white cursor-pointer flex items-center space-x-3;
+        @apply text-white cursor-pointer;
+    }
+
+    button.icon {
+        @apply flex items-center space-x-3;
     }
 
     .navlink {

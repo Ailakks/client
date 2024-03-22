@@ -3,6 +3,7 @@ import {PopupContext} from "../../wrapper/ui/PopupProvider";
 import FilePopup from "../item/FilePopup";
 import {DownloadContext} from "../../wrapper/tool/Download";
 import {AxiosContext} from "../../wrapper/Axios";
+import {useNavigate} from "react-router-dom";
 
 export const ScopesContext = createContext();
 export const ScopesDataContext = createContext();
@@ -35,6 +36,8 @@ export default function Scopes({ scopes, children }) {
 
     const { client } = useContext(AxiosContext);
     const { download } = useContext(DownloadContext);
+
+    const navigate = useNavigate();
 
     const files = {
         [Category.VIEW]: {
@@ -97,11 +100,15 @@ export default function Scopes({ scopes, children }) {
     }
 
     const folders = {
-        [Scope.OPEN]: {
-            icon: 'fa-regular fa-eye',
-            name: 'Open',
-            action: (scopes, item) => {
+        [Category.VIEW]: {
+            [Scope.OPEN]: {
+                icon: 'fa-regular fa-eye',
+                name: 'Open',
+                action: (scopes, item) => {
+                    const { id } = item;
 
+                    navigate(`folder/${id}`)
+                }
             }
         }
     }

@@ -43,11 +43,6 @@ export default function Folder({ id }) {
                 }
                 date
                 name
-                parent {
-                    id
-                    name
-                    __typename
-                }
                 removed
                 __typename
             }

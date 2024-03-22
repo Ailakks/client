@@ -3,7 +3,7 @@ import Query, {QueryContext} from "../query/Query";
 import {useContext} from "react";
 import Folder from "../data/Folder";
 
-export default function Home() {
+export default function HomePage() {
     const request = useQuery(gql`
         query {
             getMainVault {

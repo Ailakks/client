@@ -7,12 +7,15 @@ import Form from "../../../query/Form";
 import Input from "../../../query/Input";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
+import {FolderContext} from "../../../data/list/NewButton";
 
 export default function CreateFolderPopup() {
+    const { data: { getFolder: { id: parent } }, refetch } = useContext(FolderContext);
+
     const { close } = useContext(PopupContext);
 
     const [update, { loading }] = useMutation(gql`
-                mutation CreateFolder($name: String!) {
+                mutation CreateFolder($parent: String!, $name: String!) {
                     createFolder(payload: {
                         parent: $parent
                         name: $name
@@ -24,6 +27,7 @@ export default function CreateFolderPopup() {
                 }`,
         {
             onCompleted: () => {
+                refetch();
                 close();
             }
         }
@@ -39,7 +43,7 @@ export default function CreateFolderPopup() {
                             <i className="fa-regular fa-xmark"/>
                         </button>
                     </div>
-                    <Form className="h-full space-y-5 flex flex-col justify-between" submit={(variables) => update({ variables })}>
+                    <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, parent } })}>
                         <Input name="name" type="text" className="menu w-full" placeholder="Name" required />
                         <LoadStatus loading={loading} loader={<LoadSpinner/>}>
                             <button type="submit" className="main w-full">Save</button>

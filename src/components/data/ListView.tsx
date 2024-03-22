@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, Fragment, useContext, useEffect, useState} from "react";
 import {clsx} from "clsx";
 import List, {ListContext} from "../list/List";
 import {QueryContext} from "../query/Query";
@@ -15,7 +15,7 @@ export default function ListView() {
     const [selected, setSelected] = useState([]);
     const [checked, setChecked] = useState(false);
 
-    const { data: { getFolder: { files, folders } } } = useContext(QueryContext);
+    const {data: {getFolder: {files, folders}}} = useContext(QueryContext);
 
     const toggleAll = () => {
         if (selected.length > 0) {
@@ -32,7 +32,7 @@ export default function ListView() {
     }, [selected]);
 
     return (
-        <SelectedContext.Provider value={{ selected, setSelected }}>
+        <SelectedContext.Provider value={{selected, setSelected}}>
             <div className="flex flex-col h-full">
                 <div className="flex space-x-6 p-6 items-center justify-between">
                     <div>
@@ -40,10 +40,10 @@ export default function ListView() {
                     </div>
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">
-                            <NewButton />
+                            <NewButton/>
                             <UploadZone clickable>
                                 <button className="main icon">
-                                    <i className="fa-regular fa-arrow-up-from-bracket" />
+                                    <i className="fa-regular fa-arrow-up-from-bracket"/>
                                     <p>Upload</p>
                                 </button>
                             </UploadZone>
@@ -53,10 +53,10 @@ export default function ListView() {
                             <div className="flex space-x-4 items-center">
                                 <p>{selected.length === 1 ? `${selected.length} item selected` : `${selected.length} items selected`}</p>
                                 <button className="main flex items-center space-x-4">
-                                    <i className="fa-regular fa-sparkles" />
+                                    <i className="fa-regular fa-sparkles"/>
                                     <p>Convert to Spreadsheet</p>
                                 </button>
-                                <Tool />
+                                <Tool/>
                             </div>
                         }
                     </div>
@@ -67,18 +67,19 @@ export default function ListView() {
                             <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
                             <tr className="text-left">
                                 <th>
-                                    <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`} />
+                                    <Checkbox status={checked} change={toggleAll}
+                                              icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
                                 </th>
-                                <th />
+                                <th/>
                                 <th>Name</th>
                                 <th>Date</th>
                                 <th>Size</th>
-                                <th />
+                                <th/>
                             </tr>
                             </thead>
                             <tbody>
-                            <List list={folders}><Item /></List>
-                            <List list={files}><Item /></List>
+                            <List list={folders}><Item/></List>
+                            <List list={files}><Item/></List>
                             </tbody>
                         </table>
                     </UploadZone>
@@ -89,7 +90,7 @@ export default function ListView() {
 }
 
 function Tool() {
-    const { selected } = useContext(SelectedContext);
+    const {selected} = useContext(SelectedContext);
 
     const massive = {
         [Category.VIEW]: {
@@ -106,13 +107,13 @@ function Tool() {
         },
     };
 
-    const { files } = useContext(ScopesContext);
+    const {files} = useContext(ScopesContext);
 
     const item = selected.length > 1 ? selected : selected[0];
 
     return (
-        <ScopesDataContext.Provider value={{ scopes: files, item }}>
-            <ItemTool scopes={selected.length > 1 ? massive : files} />
+        <ScopesDataContext.Provider value={{scopes: files, item}}>
+            <ItemTool scopes={selected.length > 1 ? massive : files}/>
         </ScopesDataContext.Provider>
     )
 }
@@ -121,8 +122,6 @@ function Item() {
     const [checked, setChecked] = useState(false);
 
     const { item } = useContext(ListContext);
-    const { files } = useContext(ScopesContext);
-    const { name, date, source } = item;
 
     const { selected, setSelected } = useContext(SelectedContext);
 
@@ -144,27 +143,59 @@ function Item() {
         setSelected((previous) => previous.filter((target) => target != item));
     }
 
+    const {__typename} = item;
+
     return (
         <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')} onClick={select}>
             <td>
-                <Check checked={checked} add={add} />
+                <Checkbox status={checked} change={add}/>
             </td>
-            <td>
-                <i className="fa-solid fa-file" />
-            </td>
-            <td className="cursor-pointer" onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
-            <td>{date}</td>
-            <td>{source?.meta.size ?? `-`}</td>
-            <td className="w-0">
-                <Options />
-            </td>
+            {__typename === "Folder" ? <Folder/> : <File/>}
         </tr>
     )
 }
 
-function Check({ checked, add }) {
+function Folder() {
+    const { item: { name, date } } = useContext(ListContext);
+
     return (
-        <Checkbox status={checked} change={add} />
+        <Fragment>
+            <td>
+                <i className="fa-solid fa-folder"/>
+            </td>
+            <td className="cursor-pointer"
+                onClick={() => folders[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
+            <td>{date}</td>
+            <td>—</td>
+            <td className="w-0">
+                <Options/>
+            </td>
+        </Fragment>
+    )
+}
+
+function File() {
+    const {item: {name, date, source: {meta: { size } } } } = useContext(ListContext);
+
+    return (
+        <Fragment>
+            <td>
+                <i className="fa-solid fa-file"/>
+            </td>
+            <td className="cursor-pointer"
+                onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
+            <td>{date}</td>
+            <td>{size}</td>
+            <td className="w-0">
+                <Options/>
+            </td>
+        </Fragment>
+    )
+}
+
+function Check({checked, add}) {
+    return (
+        <Checkbox status={checked} change={add}/>
     )
 }
 
@@ -172,7 +203,7 @@ function Options() {
     return (
         <ItemContext>
             <button className="menu">
-                <i className="fa-regular fa-ellipsis-vertical" />
+                <i className="fa-regular fa-ellipsis-vertical"/>
             </button>
         </ItemContext>
     )

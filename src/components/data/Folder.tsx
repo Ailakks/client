@@ -2,6 +2,7 @@ import {gql, useQuery} from "@apollo/client";
 import Query from "../query/Query";
 import ListView from "./ListView";
 import Scopes, {Scope} from "../context/Scopes";
+import NotFoundFallback from "../page/fallback/NotFoundFallback";
 
 export default function Folder({ id }) {
     const request = useQuery(gql`
@@ -55,7 +56,7 @@ export default function Folder({ id }) {
     );
 
     return (
-        <Query request={request}>
+        <Query request={request} fallback={<NotFoundFallback />}>
             <Body />
         </Query>
     )

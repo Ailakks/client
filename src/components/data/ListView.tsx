@@ -157,7 +157,8 @@ function Item() {
 }
 
 function Folder() {
-    const { item: { name, date } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
+    const { name, date } = item;
 
     const { folders } = useContext(ScopesContext);
 
@@ -167,7 +168,7 @@ function Folder() {
                 <i className="fa-solid fa-folder"/>
             </td>
             <td className="cursor-pointer"
-                onClick={() => folders[Category.VIEW][Scope.VIEW].action(item)}>{name}</td>
+                onClick={() => folders[Category.VIEW][Scope.VIEW].action(null, item)}>{name}</td>
             <td>{date}</td>
             <td>—</td>
             <td className="w-0">
@@ -180,7 +181,8 @@ function Folder() {
 }
 
 function File() {
-    const { item: { name, date, source: { meta: { size } } } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
+    const { name, date, source: { meta: { size } } } = item;
 
     const { files } = useContext(ScopesContext);
 

@@ -19,7 +19,6 @@ export const Category = {
 
 export const Scope = {
     VIEW: "view",
-    OPEN: "open",
     SHARE: "share",
     LINK: "link",
     DETAILS: "details",
@@ -101,7 +100,7 @@ export default function Scopes({ scopes, children }) {
 
     const folders = {
         [Category.VIEW]: {
-            [Scope.OPEN]: {
+            [Scope.VIEW]: {
                 icon: 'fa-regular fa-eye',
                 name: 'Open',
                 action: (scopes, item) => {

@@ -106,7 +106,7 @@ export default function Scopes({ scopes, children }) {
                 action: (scopes, item) => {
                     const { id } = item;
 
-                    navigate(`folder/${id}`)
+                    navigate(`/folder/${id}`)
                 }
             }
         }

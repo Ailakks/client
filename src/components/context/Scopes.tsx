@@ -157,8 +157,8 @@ export default function Scopes({ scopes, children }) {
             [Scope.TRASH]: {
                 icon: 'fa-regular fa-trash',
                 name: 'Move to trash',
-                action: (scopes, item, list) => {
-                    const { id } = item;
+                action: (scopes, item) => {
+                    const list = item.map(({ id }) => id);
 
                     trash({ variables: { list } });
                 }

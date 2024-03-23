@@ -107,16 +107,15 @@ function Content() {
 }
 
 function Tool() {
-    const { item } = useContext(ListContext);
     const { selected } = useContext(SelectedContext);
 
     const { files, folders, massive } = useContext(ScopesContext);
 
-    const scopes = selected.length > 1 ? (selected[0].__typename === "Folder" ? folders : files) : massive;
+    const scopes = selected.length > 1 ? massive : (selected[0].__typename === "Folder" ? folders : files);
 
     return (
-        <ScopesDataContext.Provider value={{ scopes, item, list }}>
-            <ItemTool scopes={scopes}/>
+        <ScopesDataContext.Provider value={{ scopes, selected }}>
+            <ItemTool scopes={scopes} />
         </ScopesDataContext.Provider>
     )
 }

@@ -22,10 +22,10 @@ function Category() {
 
 function Item() {
     const { item: { icon, action } } = useContext(ListContext);
-    const { scopes, item } = useContext(ScopesDataContext);
+    const { scopes, item, list } = useContext(ScopesDataContext);
 
     return (
-        <button className="menu" onClick={() => action(scopes, item)}>
+        <button className="menu" onClick={() => action(scopes, item, list)}>
             <i className={icon} />
         </button>
     )

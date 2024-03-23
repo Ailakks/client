@@ -17,7 +17,7 @@ export default function ListView() {
     const [selected, setSelected] = useState([]);
 
     return (
-        <SelectedContext.Provider value={{selected, setSelected}}>
+        <SelectedContext.Provider value={{ selected, setSelected }}>
             <div className="flex flex-col h-full space-y-5">
                 <div className="flex space-x-6 items-center justify-between">
                     <div>
@@ -107,33 +107,16 @@ function Content() {
 }
 
 function Tool() {
+    const { item } = useContext(ListContext);
     const { selected } = useContext(SelectedContext);
 
-    const massive = {
-        [Category.VIEW]: {
-            [Scope.DOWNLOAD]: {
-                icon: 'fa-regular fa-arrow-down-to-bracket',
-                name: 'Download'
-            }
-        },
-        [Category.DELETE]: {
-            [Scope.TRASH]: {
-                icon: 'fa-regular fa-trash',
-                name: 'Move to trash',
+    const { files, folders, massive } = useContext(ScopesContext);
 
-            },
-        },
-    };
-
-    const { files, folders } = useContext(ScopesContext);
-
-    const scopes = selected[0].__typename === "Folder" ? folders : files;
-
-    const item = selected.length > 1 ? selected : selected[0];
+    const scopes = selected.length > 1 ? (selected[0].__typename === "Folder" ? folders : files) : massive;
 
     return (
-        <ScopesDataContext.Provider value={{ scopes, item }}>
-            <ItemTool scopes={selected.length > 1 ? massive : scopes}/>
+        <ScopesDataContext.Provider value={{ scopes, item, list }}>
+            <ItemTool scopes={scopes}/>
         </ScopesDataContext.Provider>
     )
 }

@@ -5,6 +5,8 @@ import ContextMenu from "../../context/ContextMenu";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
 import {ItemMenuContext} from "../ListView";
+import {QueryContext} from "../../query/Query";
+import {FolderContext} from "./NewButton";
 
 export const ItemContext = createContext();
 
@@ -13,6 +15,7 @@ export default function ItemContextMenu({ children }) {
 
     const { item } = useContext(ListContext);
 
+    const request = useContext(QueryContext);
     const scopes = useContext(ItemMenuContext);
 
     return (
@@ -23,7 +26,9 @@ export default function ItemContextMenu({ children }) {
             <PopoverContent>
                 <ScopesContext.Provider value={scopes}>
                     <ItemContext.Provider value={{ item }}>
-                        <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
+                        <FolderContext.Provider value={request}>
+                            <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
+                        </FolderContext.Provider>
                     </ItemContext.Provider>
                 </ScopesContext.Provider>
             </PopoverContent>

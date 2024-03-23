@@ -64,7 +64,7 @@ export default function Folder({ id }) {
 
 function Body() {
     return (
-        <Scopes scopes={[Scope.VIEW, Scope.OPEN]}>
+        <Scopes scopes={[]}>
             <ListView />
         </Scopes>
     )

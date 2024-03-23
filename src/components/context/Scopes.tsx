@@ -5,6 +5,8 @@ import {DownloadContext} from "../../wrapper/tool/Download";
 import {AxiosContext} from "../../wrapper/Axios";
 import {useNavigate} from "react-router-dom";
 import {gql, useMutation} from "@apollo/client";
+import {FolderContext} from "../data/list/NewButton";
+import {QueryContext} from "../query/Query";
 
 export const ScopesContext = createContext();
 export const ScopesDataContext = createContext();
@@ -37,6 +39,8 @@ export default function Scopes({ scopes, children }) {
     const { client } = useContext(AxiosContext);
     const { download } = useContext(DownloadContext);
 
+    const { refetch } = useContext(QueryContext);
+
     const navigate = useNavigate();
 
     const [trash] = useMutation(gql`
@@ -51,7 +55,6 @@ export default function Scopes({ scopes, children }) {
         {
             onCompleted: () => {
                 refetch();
-                close();
             }
         }
     );
@@ -129,11 +132,42 @@ export default function Scopes({ scopes, children }) {
                     navigate(`/folder/${id}`);
                 }
             }
-        }
+        },
+        [Category.DELETE]: {
+            [Scope.TRASH]: {
+                icon: 'fa-regular fa-trash',
+                name: 'Move to trash',
+                action: (scopes, item) => {
+                    const { id } = item;
+
+                    trash({ variables: { list: [id] } });
+                }
+            },
+        },
     }
 
+    const massive = {
+        [Category.VIEW]: {
+            [Scope.DOWNLOAD]: {
+                icon: 'fa-regular fa-arrow-down-to-bracket',
+                name: 'Download'
+            }
+        },
+        [Category.DELETE]: {
+            [Scope.TRASH]: {
+                icon: 'fa-regular fa-trash',
+                name: 'Move to trash',
+                action: (scopes, item, list) => {
+                    const { id } = item;
+
+                    trash({ variables: { list } });
+                }
+            },
+        },
+    };
+
     return (
-        <ScopesContext.Provider value={{ scopes, files, folders }}>
+        <ScopesContext.Provider value={{ scopes, files, folders, massive }}>
             {children}
         </ScopesContext.Provider>
     )

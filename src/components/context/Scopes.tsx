@@ -4,6 +4,7 @@ import FilePopup from "../item/FilePopup";
 import {DownloadContext} from "../../wrapper/tool/Download";
 import {AxiosContext} from "../../wrapper/Axios";
 import {useNavigate} from "react-router-dom";
+import {gql, useMutation} from "@apollo/client";
 
 export const ScopesContext = createContext();
 export const ScopesDataContext = createContext();
@@ -37,6 +38,23 @@ export default function Scopes({ scopes, children }) {
     const { download } = useContext(DownloadContext);
 
     const navigate = useNavigate();
+
+    const [trash] = useMutation(gql`
+                mutation Trash($list: [String!]!) {
+                    trash(payload: {
+                        list: $list
+                    }) {
+                        done
+                        __typename
+                    }
+                }`,
+        {
+            onCompleted: () => {
+                refetch();
+                close();
+            }
+        }
+    );
 
     const files = {
         [Category.VIEW]: {
@@ -92,7 +110,9 @@ export default function Scopes({ scopes, children }) {
                 icon: 'fa-regular fa-trash',
                 name: 'Move to trash',
                 action: (scopes, item) => {
+                    const { id } = item;
 
+                    trash({ variables: { list: [id] } });
                 }
             },
         },
@@ -106,7 +126,7 @@ export default function Scopes({ scopes, children }) {
                 action: (scopes, item) => {
                     const { id } = item;
 
-                    navigate(`/folder/${id}`)
+                    navigate(`/folder/${id}`);
                 }
             }
         }

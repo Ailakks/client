@@ -119,7 +119,8 @@ function Tool() {
         [Category.DELETE]: {
             [Scope.TRASH]: {
                 icon: 'fa-regular fa-trash',
-                name: 'Move to trash'
+                name: 'Move to trash',
+
             },
         },
     };
@@ -140,9 +141,9 @@ function Tool() {
 function Item() {
     const [checked, setChecked] = useState(false);
 
-    const {item} = useContext(ListContext);
+    const { item } = useContext(ListContext);
 
-    const {selected, setSelected} = useContext(SelectedContext);
+    const { selected, setSelected } = useContext(SelectedContext);
 
     useEffect(() => {
         setChecked(selected.includes(item));

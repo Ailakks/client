@@ -107,7 +107,7 @@ function Content() {
 }
 
 function Tool() {
-    const {selected} = useContext(SelectedContext);
+    const { selected } = useContext(SelectedContext);
 
     const massive = {
         [Category.VIEW]: {
@@ -124,13 +124,15 @@ function Tool() {
         },
     };
 
-    const {files} = useContext(ScopesContext);
+    const { files, folders } = useContext(ScopesContext);
+
+    const scopes = selected[0].__typename === "Folder" ? folders : files;
 
     const item = selected.length > 1 ? selected : selected[0];
 
     return (
-        <ScopesDataContext.Provider value={{scopes: files, item}}>
-            <ItemTool scopes={selected.length > 1 ? massive : files}/>
+        <ScopesDataContext.Provider value={{ scopes, item }}>
+            <ItemTool scopes={selected.length > 1 ? massive : scopes}/>
         </ScopesDataContext.Provider>
     )
 }

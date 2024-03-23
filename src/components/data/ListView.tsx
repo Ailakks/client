@@ -14,23 +14,6 @@ export const ItemMenuContext = createContext();
 
 export default function ListView() {
     const [selected, setSelected] = useState([]);
-    const [checked, setChecked] = useState(false);
-
-    const {data: {getFolder: {files, folders}}} = useContext(QueryContext);
-
-    const toggleAll = () => {
-        if (selected.length > 0) {
-            setSelected([]);
-
-            return false;
-        }
-
-        setSelected(files);
-    }
-
-    useEffect(() => {
-        setChecked(selected.length === files.length);
-    }, [selected]);
 
     return (
         <SelectedContext.Provider value={{selected, setSelected}}>
@@ -64,29 +47,61 @@ export default function ListView() {
                 </div>
                 <div className="grow overflow-y-auto">
                     <UploadZone action={() => alert(1)}>
-                        <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
-                            <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
-                            <tr className="text-left">
-                                <th>
-                                    <Checkbox status={checked} change={toggleAll}
-                                              icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
-                                </th>
-                                <th/>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Size</th>
-                                <th/>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <List list={folders}><Item/></List>
-                            <List list={files}><Item/></List>
-                            </tbody>
-                        </table>
+                        <Content />
                     </UploadZone>
                 </div>
             </div>
         </SelectedContext.Provider>
+    )
+}
+
+function Content() {
+    const { data: { getFolder: { files, folders} } } = useContext(QueryContext);
+
+    const { selected, setSelected } = useContext(SelectedContext);
+
+    const [checked, setChecked] = useState(false);
+
+    useEffect(() => {
+        setChecked(selected.length === files.length);
+    }, [selected]);
+
+    const toggleAll = () => {
+        if (selected.length > 0) {
+            setSelected([]);
+
+            return false;
+        }
+
+        setSelected(files);
+    };
+
+    if (files.length < 1 && folders.length < 1) {
+        return (
+            <NoContentFallback />
+        )
+    }
+
+    return (
+        <table className="w-full text-white [&>*>*>*:first-child]:pl-5 [&>*>*>*:last-child]:pr-5">
+            <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
+            <tr className="text-left">
+                <th>
+                    <Checkbox status={checked} change={toggleAll}
+                              icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
+                </th>
+                <th/>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Size</th>
+                <th/>
+            </tr>
+            </thead>
+            <tbody>
+            <List list={folders}><Item/></List>
+            <List list={files}><Item/></List>
+            </tbody>
+        </table>
     )
 }
 
@@ -108,7 +123,7 @@ function Tool() {
         },
     };
 
-    const { files } = useContext(ScopesContext);
+    const {files} = useContext(ScopesContext);
 
     const item = selected.length > 1 ? selected : selected[0];
 
@@ -122,9 +137,9 @@ function Tool() {
 function Item() {
     const [checked, setChecked] = useState(false);
 
-    const { item } = useContext(ListContext);
+    const {item} = useContext(ListContext);
 
-    const { selected, setSelected } = useContext(SelectedContext);
+    const {selected, setSelected} = useContext(SelectedContext);
 
     useEffect(() => {
         setChecked(selected.includes(item));

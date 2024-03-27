@@ -12,19 +12,25 @@ export default function QueueWrapper({ children }) {
 
     const { setCurrent } = useContext(ModalContext);
 
-    const upload = async (folder, files) => {
+    const upload = async (folder, files, complete) => {
         for (const file of files) {
             await uploadClient.post('file', { folder, file }, { onUploadProgress: (event) => {
-                    const index = queue.findIndex(({ file: { name } }) => name === file.name);
+                const index = queue.findIndex(({ file: { name } }) => name === file.name);
 
-                    if (index > -1) {
-                        queue[index] = { file, event };
+                if (index > -1) {
+                    queue[index] = { file, event };
 
-                        return;
-                    }
+                    return;
+                }
 
-                    setQueue([ ...queue, { file, event } ]);
-                }});
+                const { progress } = event;
+
+                if (progress === 1) {
+                    complete();
+                }
+
+                setQueue([ ...queue, { file, event } ]);
+            }});
         }
     };
 

@@ -4,11 +4,16 @@ import FileDropZone from "./FileDropZone";
 import {QueryContext} from "../../query/Query";
 
 export default function UploadZone({ clickable, children }) {
-    const { data: { getFolder: { id } } } = useContext(QueryContext);
+    const { data: { getFolder: { id } }, refetch } = useContext(QueryContext);
+
     const { upload } = useContext(QueueContext);
 
+    const reload = () => {
+        refetch()
+    }
+
     const handle = (files) => {
-        upload(id, files);
+        upload(id, files, reload);
     }
 
     return (

@@ -112,9 +112,10 @@ function Tool() {
     const { files, folders, massive } = useContext(ScopesContext);
 
     const scopes = selected.length > 1 ? massive : (selected[0].__typename === "Folder" ? folders : files);
+    const item = selected[0];
 
     return (
-        <ScopesDataContext.Provider value={{ scopes, selected }}>
+        <ScopesDataContext.Provider value={{ scopes, selected, item }}>
             <ItemTool scopes={scopes} />
         </ScopesDataContext.Provider>
     )

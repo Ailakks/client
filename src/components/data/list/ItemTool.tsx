@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import List, {ListContext} from "../../list/List";
 import {ScopesDataContext} from "../../context/Scopes";
+import {SelectedContext} from "../ListView";
 
 export default function ItemTool({ scopes }) {
     return (
@@ -22,12 +23,22 @@ function Category() {
 
 function Item() {
     const { item: { icon, action } } = useContext(ListContext);
-    const { scopes, selected } = useContext(ScopesDataContext);
+    const { scopes, item } = useContext(ScopesDataContext);
 
-    const list = selected.length > 1 ? selected : selected[0];
+    const selection = useContext(SelectedContext);
+
+    const handle = () => {
+        if (selection) {
+            const { setSelected } = selection;
+
+            setSelected([]);
+        }
+
+        action(scopes, item);
+    }
 
     return (
-        <button className="menu" onClick={() => action(scopes, list)}>
+        <button className="menu" onClick={handle}>
             <i className={icon} />
         </button>
     )

@@ -4,15 +4,9 @@ import { clsx } from 'clsx';
 const pages = [
     {
         id: 'home',
-        path: '',
+        path: '/',
         name: 'Home',
         icon: 'fa-regular fa-house'
-    },
-    {
-        id: 'recent',
-        path: '/recent',
-        name: 'Recent',
-        icon: 'fa-regular fa-clock'
     },
     {
         id: 'trash',
@@ -28,7 +22,7 @@ export default function AppSide() {
             {
                 pages.map(({ icon, path, name }, key) => {
                     return (
-                        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-blue-900')} to={path}>
+                        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-blue-900')} to={path} end>
                             <i className={clsx(icon, 'w-5')} />
                             <p>{name}</p>
                         </NavLink>

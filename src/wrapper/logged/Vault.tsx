@@ -1,6 +1,6 @@
+import {createContext, useContext} from "react";
 import {gql, useQuery} from "@apollo/client";
-import Query, {QueryContext} from "../query/Query";
-import {useContext} from "react";
+import Query, {QueryContext} from "../../components/query/Query";
 
 export const VaultContext = createContext(null);
 

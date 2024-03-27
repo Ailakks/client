@@ -6,6 +6,7 @@ import AppLayout from "./components/layout/app/App";
 import Key from "./components/page/auth/Key";
 import Logout from "./components/page/auth/Logout";
 import FolderPage from "./components/page/FolderPage";
+import Trash from "./components/page/Trash";
 
 export default function App() {
     const location = useLocation();
@@ -14,7 +15,7 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<AppLayout><HomePage /></AppLayout>} />
 
-            <Route path="/trash" element={<AppLayout><HomePage /></AppLayout>} />
+            <Route path="/trash" element={<AppLayout><Trash /></AppLayout>} />
 
             <Route path="/folder/:id" element={<AppLayout><FolderPage /></AppLayout>} />
 

@@ -10,6 +10,7 @@ import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scop
 import UploadZone from "../native/upload/UploadZone";
 import NoContentFallback from "../page/fallback/NoContentFallback";
 import Moment from "../parse/Moment";
+import Size from "../parse/Size";
 
 export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();
@@ -201,7 +202,9 @@ function File() {
             <td>
                 <Moment>{date}</Moment>
             </td>
-            <td>{size}</td>
+            <td>
+                <Size>{size}</Size>
+            </td>
             <td className="w-0">
                 <ItemMenuContext.Provider value={files}>
                     <Options/>

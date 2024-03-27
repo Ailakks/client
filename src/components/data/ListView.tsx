@@ -9,7 +9,7 @@ import NewButton from "./list/NewButton";
 import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scopes";
 import UploadZone from "../native/upload/UploadZone";
 import NoContentFallback from "../page/fallback/NoContentFallback";
-import moment from 'moment';
+import { formatRelative } from "date-fns";
 
 export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();
@@ -172,7 +172,7 @@ function Folder() {
             </td>
             <td className="cursor-pointer"
                 onClick={() => folders[Category.VIEW][Scope.VIEW].action(null, item)}>{name}</td>
-            <td>{moment(date).calendar()}</td>
+            <td>{formatRelative(new Date(date), new Date())}</td>
             <td>—</td>
             <td className="w-0">
                 <ItemMenuContext.Provider value={folders}>
@@ -184,7 +184,7 @@ function Folder() {
 }
 
 function File() {
-    const { item } = useContext(ListContext);
+    const {item} = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;
 
     const { files } = useContext(ScopesContext);
@@ -196,7 +196,7 @@ function File() {
             </td>
             <td className="cursor-pointer"
                 onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
-            <td>{moment(date).calendar()}</td>
+            <td>{formatRelative(new Date(date), new Date())}</td>
             <td>{size}</td>
             <td className="w-0">
                 <ItemMenuContext.Provider value={files}>

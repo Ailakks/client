@@ -10,6 +10,7 @@ import {Category, Scope, ScopesContext, ScopesDataContext} from "../context/Scop
 import UploadZone from "../native/upload/UploadZone";
 import NoContentFallback from "../page/fallback/NoContentFallback";
 import { formatRelative } from "date-fns";
+import { es } from 'date-fns/locale'
 
 export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();
@@ -172,7 +173,7 @@ function Folder() {
             </td>
             <td className="cursor-pointer"
                 onClick={() => folders[Category.VIEW][Scope.VIEW].action(null, item)}>{name}</td>
-            <td>{formatRelative(new Date(date), new Date())}</td>
+            <td>{formatRelative(new Date(date), new Date(), {locale: es})}</td>
             <td>—</td>
             <td className="w-0">
                 <ItemMenuContext.Provider value={folders}>
@@ -196,7 +197,7 @@ function File() {
             </td>
             <td className="cursor-pointer"
                 onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
-            <td>{formatRelative(new Date(date), new Date())}</td>
+            <td>{formatRelative(new Date(date), new Date(), { locale: es })}</td>
             <td>{size}</td>
             <td className="w-0">
                 <ItemMenuContext.Provider value={files}>

@@ -1,9 +1,10 @@
 import {gql, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../query/Query";
 import {useContext} from "react";
-import Folder from "../data/Folder";
 
-export default function HomePage() {
+export const VaultContext = createContext(null);
+
+export default function VaultWrapper({ children }) {
     const request = useQuery(gql`
         query {
             getMainVault {
@@ -20,15 +21,19 @@ export default function HomePage() {
 
     return (
         <Query request={request}>
-            <Body />
+            <Body>
+                {children}
+            </Body>
         </Query>
     );
 }
 
-function Body() {
-    const { data: { getMainVault: { root: { id } } } } = useContext(QueryContext);
+function Body({ children }) {
+    const { data, refetch } = useContext(QueryContext);
 
     return (
-        <Folder id={id} />
-    )
+        <VaultContext.Provider value={{ data, refetch }}>
+            {children}
+        </VaultContext.Provider>
+    );
 }

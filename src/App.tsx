@@ -14,6 +14,8 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<AppLayout><HomePage /></AppLayout>} />
 
+            <Route path="/trash" element={<AppLayout><HomePage /></AppLayout>} />
+
             <Route path="/folder/:id" element={<AppLayout><FolderPage /></AppLayout>} />
 
             <Route path="/key" element={<AuthLayout><Key /></AuthLayout>} />

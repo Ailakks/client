@@ -1,34 +1,19 @@
-import {gql, useQuery} from "@apollo/client";
-import Query, {QueryContext} from "../query/Query";
 import {useContext} from "react";
 import Folder from "../data/Folder";
+import VaultWrapper, {VaultContext} from "../../wrapper/logged/Vault";
 
 export default function HomePage() {
-    const request = useQuery(gql`
-        query {
-            getMainVault {
-                id
-                name
-                root {
-                    id
-                    __typename
-                }
-                __typename
-            }
-        }`
-    );
-
     return (
-        <Query request={request}>
+        <VaultWrapper>
             <Body />
-        </Query>
+        </VaultWrapper>
     );
 }
 
 function Body() {
-    const { data: { getMainVault: { root: { id } } } } = useContext(QueryContext);
+    const { data: { getMainVault: { root: { id } } } } = useContext(VaultContext);
 
     return (
-        <Folder id={id} />
+        <Folder id={id} query={{ filter: { removed: false } }} />
     )
 }

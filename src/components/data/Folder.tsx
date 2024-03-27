@@ -4,11 +4,12 @@ import ListView from "./ListView";
 import Scopes from "../context/Scopes";
 import NotFoundFallback from "../page/fallback/NotFoundFallback";
 
-export default function Folder({ id }) {
+export default function Folder({ id, query }) {
     const request = useQuery(gql`
-        query GetFolder($id: String!) {
+        query GetFolder($id: String!, $query: QueryDto!) {
             getFolder(payload: {
                 id: $id,
+                query: $query
             }) {
                 id
                 files {
@@ -50,7 +51,8 @@ export default function Folder({ id }) {
         }`,
         {
             variables: {
-                id: id
+                id: id,
+                query: query
             }
         }
     );

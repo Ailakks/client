@@ -2,9 +2,17 @@
   "en": {
     "file": {
       "spreadsheet": {
-        "download": "Export as Spreadsheet",
+        "fallback": "Select a template to see the summary",
         "template": {
-          "new": "New"
+          "preview": {
+            "title": "File spreadsheet",
+            "download": {
+              "label": "Download as Spreadsheet"
+            }
+          },
+          "new": {
+            "label": "New"
+          }
         }
       },
       "view": {

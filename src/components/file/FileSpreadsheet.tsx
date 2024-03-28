@@ -44,6 +44,8 @@ export default function FileSpreadsheet() {
 }
 
 function Body() {
+    const { translate } = useContext(LanguageContext);
+
     const { data: { listTemplates } } = useContext(QueryContext);
 
     const { setCurrent } = useContext(PopupContext);
@@ -57,10 +59,10 @@ function Body() {
             <List list={listTemplates}><TemplateTab /></List>
             <button className="tab flex space-x-2 items-center px-6 py-1" onClick={add}>
                 <i className="fa-regular fa-plus" />
-                <p>New</p>
+                <p>{translate("file.spreadsheet.template.new.label")}</p>
             </button>
             <TabDefault>
-                <p>Select a template to see the summary</p>
+                <p>{translate("file.spreadsheet.fallback")}</p>
             </TabDefault>
         </Tabs>
     )
@@ -127,6 +129,8 @@ function FileSheet() {
 
 
 function FileExport() {
+    const { translate } = useContext(LanguageContext);
+
     const { item: { id: template } } = useContext(TemplateContext);
     const { data: { generateSheet: { id: sheet } } } = useContext(QueryContext);
 
@@ -161,7 +165,7 @@ function FileExport() {
     return (
         <div className="w-full space-y-5">
             <div className="flex justify-between items-center">
-                <p>File spreadsheet</p>
+                <p>{translate("file.spreadsheet.template.preview.title")}</p>
                 <DownloadExcelButton/>
             </div>
             <Query request={request}>
@@ -172,11 +176,13 @@ function FileExport() {
 }
 
 function DownloadExcelButton() {
-    const {client} = useContext(AxiosContext);
-    const {download} = useContext(DownloadContext);
+    const { translate } = useContext(LanguageContext);
 
-    const {item: {id: template}} = useContext(TemplateContext);
-    const {data: {generateSheet: {id: sheet}}} = useContext(QueryContext);
+    const { client } = useContext(AxiosContext);
+    const { download } = useContext(DownloadContext);
+
+    const { item: { id: template } } = useContext(TemplateContext);
+    const { data: { generateSheet: { id: sheet } } } = useContext(QueryContext);
 
     const handle = async () => {
         const { data } = await client.post(`export`, { sheet, template }, { responseType: 'arraybuffer' });
@@ -188,7 +194,7 @@ function DownloadExcelButton() {
     return (
         <button className="main icon" onClick={handle}>
             <i className="fa-regular fa-arrow-down-to-bracket"/>
-            <p>Download as Excel</p>
+            <p>{translate("file.spreadsheet.template.preview.download.label")}</p>
         </button>
     )
 }

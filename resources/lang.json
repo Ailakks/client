@@ -220,7 +220,7 @@
       }
     },
     "auth": {
-      "title": "Login",
+      "title": "Iniciar sesión",
       "quick": {
         "google": "Continue with Google"
       },
@@ -237,7 +237,7 @@
           "label": "Contraseña"
         },
         "continue": {
-          "label": "Login",
+          "label": "Iniciar sesión",
           "loading": "Desencriptando..."
         }
       },

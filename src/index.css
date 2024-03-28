@@ -49,20 +49,20 @@ html {
         @apply bg-gray-700;
     }
 
-    button.main, input[type = "submit"].main {
+    button,a.main, input[type = "submit"].main {
         @apply bg-blue-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
     }
 
-    button.secondary {
+    button,a.secondary {
         @apply bg-gray-500 h-10 px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
     }
 
-    button.menu {
+    button,a.menu {
         @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
     }
 
-    button.round {
-        @apply hover:bg-gray-300 h-10 aspect-square rounded-full;
+    button,a.round {
+        @apply hover:bg-gray-300 rounded-full;
     }
 
     .tab {

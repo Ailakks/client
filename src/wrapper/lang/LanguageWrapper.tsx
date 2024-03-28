@@ -29,7 +29,8 @@ export default function LanguageWrapper({ children }) {
                 id: 'en_CA',
                 icon: 'fa-regular fa-globe',
                 component: {
-                    date: "enCA"
+                    date: "enCA",
+                    intl: "en-US"
                 },
                 action: change,
             },
@@ -37,7 +38,8 @@ export default function LanguageWrapper({ children }) {
                 id: 'es_ES',
                 icon: 'fa-regular fa-globe',
                 component: {
-                    date: "es"
+                    date: "es",
+                    intl: "es-ES"
                 },
                 action: change,
             }

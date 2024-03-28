@@ -124,6 +124,11 @@
         "terms": "Terms and conditions",
         "help": "Need help?"
       }
+    },
+    "measure": {
+      "time": {
+        "month": "month"
+      }
     }
   },
   "es_ES": {
@@ -250,6 +255,11 @@
       "footer": {
         "terms": "Términos y condiciones",
         "help": "¿Necesitas ayuda?"
+      }
+    },
+    "measure": {
+      "time": {
+        "month": "mes"
       }
     }
   }

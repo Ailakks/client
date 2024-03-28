@@ -53,8 +53,8 @@ function Language() {
     }
 
     const Locale = {
-        en_us: "EN_US",
-        es_es: "ES_ES"
+        enCA: "EN_CA",
+        es: "ES"
     }
 
     const change = ({ id }) => {
@@ -65,13 +65,13 @@ function Language() {
 
     const locales = {
         [Category.LANGUAGE]: {
-            [Locale.en_us]: {
-                id: 'en_us',
+            [Locale.enCA]: {
+                id: 'enCA',
                 icon: 'fa-regular fa-globe',
                 action: change,
             },
-            [Locale.es_es]: {
-                id: 'es_es',
+            [Locale.es]: {
+                id: 'es',
                 icon: 'fa-regular fa-globe',
                 action: change,
             }

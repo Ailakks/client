@@ -1,7 +1,7 @@
 import { formatRelative } from "date-fns";
 import {useContext} from "react";
 import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
-import locale from "date-fns/locale";
+import * as locale from "date-fns/locale";
 
 export default function Moment({ children }) {
     const { language } = useContext(LanguageContext);
@@ -11,6 +11,6 @@ export default function Moment({ children }) {
     }
 
     return (
-        <span>{formatRelative(new Date(children), new Date(), { locale: null }) }</span>
+        <span>{formatRelative(new Date(children), new Date(), { locale: locale[language] }) }</span>
     )
 }

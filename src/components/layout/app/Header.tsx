@@ -38,10 +38,12 @@ function Logged() {
         [Category.ACCOUNT]: {
             [Path.PRICING]: {
                 id: 'pricing',
+                icon: 'fa-regular fa-sparkles',
                 href: '/pricing'
             },
             [Path.LOGOUT]: {
                 id: 'logout',
+                icon: 'fa-regular fa-arrow-right-from-bracket',
                 href: '/logout'
             }
         }

@@ -49,20 +49,24 @@ html {
         @apply bg-gray-700;
     }
 
-    button,a.main, input[type = "submit"].main {
+    button.main,a.main, input[type = "submit"].main {
         @apply bg-blue-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
     }
 
-    button,a.secondary {
+    button.main,a.secondary {
         @apply bg-gray-500 h-10 px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
     }
 
-    button,a.menu {
+    button.main,a.menu {
         @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
     }
 
-    button,a.round {
+    button.main,a.round {
         @apply hover:bg-gray-300 rounded-full;
+    }
+
+    button.main,a.context_item {
+        @apply flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300;
     }
 
     .tab {
@@ -71,9 +75,5 @@ html {
 
     hr {
         @apply border-gray-300;
-    }
-
-    button,a.context_item {
-        @apply flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300;
     }
 }

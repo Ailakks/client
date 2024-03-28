@@ -89,8 +89,9 @@
           "label": "Search"
         },
         "account": {
-          "logout": {
-            "label": "Logout"
+          "context": {
+            "pricing": "Change plan",
+            "logout": "Logout"
           }
         }
       }
@@ -213,8 +214,9 @@
           "label": "Buscar"
         },
         "account": {
-          "logout": {
-            "label": "Cerrar sesión"
+          "context": {
+            "pricing": "Cambiar plan",
+            "logout": "Cerrar sesión"
           }
         }
       }

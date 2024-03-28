@@ -13,13 +13,13 @@ import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
 import ModalProvider from "./wrapper/ui/ModalProvider";
 import QueueWrapper from "./wrapper/api/Queue";
-import LanguageProvider from "./wrapper/lang/LanguageProvider";
+import LanguageWrapper from "./wrapper/lang/LanguageWrapper";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
         <CookiesWrapper>
-            <LanguageProvider>
+            <LanguageWrapper>
                 <DownloadWrapper>
                     <AxiosWrapper>
                         <ApolloWrapper>
@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         </ApolloWrapper>
                     </AxiosWrapper>
                 </DownloadWrapper>
-            </LanguageProvider>
+            </LanguageWrapper>
         </CookiesWrapper>
     </BrowserRouter>
   </React.StrictMode>,

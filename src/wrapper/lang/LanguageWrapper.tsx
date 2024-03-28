@@ -1,15 +1,22 @@
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
+import {CookiesContext} from "../tool/Cookies";
+
 import lang from "../../../resources/lang.json";
 
 export const LanguageContext = createContext(null);
 
-export default function LanguageProvider({ children }) {
+export default function LanguageWrapper({ children }) {
+    const { getCookie } = useContext(CookiesContext);
+
+    const fallback = "es";
+    const locale = getCookie("lang") ?? fallback;
+
     const getValue = (object, path) => {
         return path.split('.').reduce((value, key) => (value && value[key] !== undefined ? value[key] : undefined), object);
     }
 
     const translate = (path: string) => {
-        return getValue(lang, `es.${path}`);
+        return getValue(lang, `${locale}.${path}`);
     }
 
     return (

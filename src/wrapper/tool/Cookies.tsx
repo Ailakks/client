@@ -12,6 +12,10 @@ export default function CookiesWrapper({ children }) {
         cookie.remove(name, { path: "/" });
     };
 
+    const getCookie = (name) => {
+        return cookie.load(name);
+    };
+
     const setToken = (value) => {
         setCookie('token', value);
     };
@@ -20,12 +24,12 @@ export default function CookiesWrapper({ children }) {
         removeCookie('token');
     };
 
-    const getToken = () => cookie.load('token');
+    const getToken = () => getCookie("token");
 
     const hasToken = getToken() !== undefined;
 
     return (
-        <CookiesContext.Provider value={{ setCookie, removeCookie, setToken, removeToken, getToken, hasToken }}>
+        <CookiesContext.Provider value={{ setCookie, removeCookie, getCookie, setToken, removeToken, getToken, hasToken }}>
             {children}
         </CookiesContext.Provider>
     );

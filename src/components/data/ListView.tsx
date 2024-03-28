@@ -90,8 +90,7 @@ function Content() {
             <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
             <tr className="text-left">
                 <th>
-                    <Checkbox status={checked} change={toggleAll}
-                              icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
+                    <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
                 </th>
                 <th/>
                 <th>Name</th>
@@ -187,7 +186,7 @@ function Folder() {
 }
 
 function File() {
-    const {item} = useContext(ListContext);
+    const { item } = useContext(ListContext);
     const { name, date, source: { meta: { size } } } = item;
 
     const { files } = useContext(ScopesContext);
@@ -197,8 +196,7 @@ function File() {
             <td>
                 <i className="fa-solid fa-file"/>
             </td>
-            <td className="cursor-pointer"
-                onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
+            <td className="cursor-pointer" onClick={() => files[Category.VIEW][Scope.VIEW].action(files, item)}>{name}</td>
             <td>
                 <Moment>{date}</Moment>
             </td>

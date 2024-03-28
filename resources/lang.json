@@ -1,0 +1,11 @@
+{
+  "es": {
+    "auth": {
+      "form": {
+        "email": {
+          "label": "Correo electrónico"
+        }
+      }
+    }
+  }
+}

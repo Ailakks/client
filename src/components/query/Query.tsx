@@ -16,7 +16,11 @@ export default function Query({ request, fallback, children }) {
 
     if (error) {
         if (fallback) {
-            return fallback;
+            return (
+                <QueryContext.Provider value={{ loading, error, data, refetch }}>
+                    {fallback}
+                </QueryContext.Provider>
+            );
         }
     }
 

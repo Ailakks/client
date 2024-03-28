@@ -14,11 +14,11 @@ export default function AppHeader() {
 
         return (
             <div className="flex grow justify-between items-center">
-                <input className="main" placeholder={translate("layout.head.search.label")} />
+                <input className="main" placeholder={translate("layout.header.search.label")} />
                 <div className="flex items-center space-x-4">
                     <Language />
                     <p>{name}</p>
-                    <a className="secondary" href="/logout">{translate("layout.head.account.logout.label")}</a>
+                    <a className="secondary" href="/logout">{translate("layout.header.account.logout.label")}</a>
                 </div>
             </div>
         )
@@ -60,7 +60,7 @@ function Language() {
     }
 
     return (
-        <ContextMenu list={locales} content={<ContextMenuItem />}>
+        <ContextMenu list={locales} content={<ContextMenuItem path="layout.header.language.context" />}>
             <button className="menu">
                 <i className="fa-regular fa-globe" />
             </button>

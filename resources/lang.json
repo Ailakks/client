@@ -72,7 +72,13 @@
           "trash": "Trash"
         }
       },
-      "head": {
+      "header": {
+        "language": {
+          "context": {
+            "en_us": "English",
+            "es_es": "Spanish"
+          }
+        },
         "search": {
           "label": "Search"
         },
@@ -184,7 +190,13 @@
           "trash": "Papelera"
         }
       },
-      "head": {
+      "header": {
+        "language": {
+          "context": {
+            "en_us": "Inglés",
+            "es_es": "Español"
+          }
+        },
         "search": {
           "label": "Buscar"
         },

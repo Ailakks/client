@@ -56,7 +56,7 @@ export default function NewButton() {
     };
 
     return (
-        <ContextMenu list={list} content={<ContextMenuItem />}>
+        <ContextMenu list={list} content={<ContextMenuItem path="folder.tool.context" />}>
             <button className="main icon">
                 <i className="fa-regular fa-plus"/>
                 <p>{translate(`folder.tool.new.label`)}</p>

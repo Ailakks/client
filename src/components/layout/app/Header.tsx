@@ -2,9 +2,9 @@ import {Fragment, useContext} from "react";
 import {AccountContext} from "../../../wrapper/Account";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenu from "../../context/ContextMenu";
-import ContextMenuItem from "../../context/ContextMenuItem";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
+import {CookiesContext} from "../../../wrapper/tool/Cookies";
 
 export default function AppHeader() {
     const { translate } = useContext(LanguageContext);
@@ -46,7 +46,7 @@ function Guest() {
 }
 
 function Language() {
-    const { translate } = useContext(LanguageContext);
+    const { setCookie } = useContext(CookiesContext);
 
     const Category = {
         LANGUAGE: "language",
@@ -54,16 +54,24 @@ function Language() {
 
     const Locale = {
         en_us: "EN_US",
+        es_es: "ES_ES"
     }
 
-    const change = () => {
+    const change = ({ id }) => {
+        setCookie("locale", id);
 
+        window.location.reload();
     };
 
     const locales = {
         [Category.LANGUAGE]: {
             [Locale.en_us]: {
                 id: 'en_us',
+                icon: 'fa-regular fa-globe',
+                action: change,
+            },
+            [Locale.es_es]: {
+                id: 'es_es',
                 icon: 'fa-regular fa-globe',
                 action: change,
             }

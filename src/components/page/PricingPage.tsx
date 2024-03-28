@@ -3,6 +3,7 @@ import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
 import List, {ListContext} from "../list/List";
 import {gql, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../query/Query";
+import Amount from "../parse/Amount";
 
 export default function PricingPage() {
     const { translate } = useContext(LanguageContext);
@@ -115,11 +116,11 @@ function PriceList() {
 }
 
 function Price() {
+    const { translate } = useContext(LanguageContext);
+
     const { item: { amount, currency, recurring: { interval } } } = useContext(ListContext);
 
-    const price = new Intl.NumberFormat('es-ES', { style: 'currency', currency: currency }).format(amount / 100);
-
     return (
-        <p>{price}/{interval}</p>
+        <p><Amount currency={currency}>{amount}</Amount>/{translate(`measure.time.${interval}`)}</p>
     );
 }

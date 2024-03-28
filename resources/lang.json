@@ -1,5 +1,5 @@
 {
-  "en": {
+  "en_us": {
     "file": {
       "spreadsheet": {
         "fallback": "Select a template to see the summary",
@@ -117,7 +117,7 @@
       }
     }
   },
-  "es": {
+  "es_es": {
     "file": {
       "spreadsheet": {
         "fallback": "Selecciona una plantilla para ver el resumen",

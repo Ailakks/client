@@ -45,10 +45,16 @@ function Language() {
         en_us: "EN_US",
     }
 
+    const change = () => {
+
+    };
+
     const locales = {
         [Category.LANGUAGE]: {
             [Locale.en_us]: {
                 id: 'en_us',
+                icon: 'fa-regular fa-globe',
+                action: change,
             }
         }
     }
@@ -56,7 +62,7 @@ function Language() {
     return (
         <ContextMenu list={locales} content={<ContextMenuItem />}>
             <button className="menu">
-                <i className="" />
+                <i className="fa-regular fa-globe" />
             </button>
         </ContextMenu>
     )

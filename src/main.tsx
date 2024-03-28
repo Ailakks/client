@@ -13,30 +13,33 @@ import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
 import ModalProvider from "./wrapper/ui/ModalProvider";
 import QueueWrapper from "./wrapper/api/Queue";
+import LanguageProvider from "./wrapper/lang/LanguageProvider";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
         <CookiesWrapper>
-            <DownloadWrapper>
-                <AxiosWrapper>
-                    <ApolloWrapper>
-                        <AccountWrapper>
-                            <LoggedWrapper>
-                                <PopupProvider>
-                                    <ModalProvider>
-                                        <QueueWrapper>
-                                            <RenderProvider>
-                                                <App />
-                                            </RenderProvider>
-                                        </QueueWrapper>
-                                    </ModalProvider>
-                                </PopupProvider>
-                            </LoggedWrapper>
-                        </AccountWrapper>
-                    </ApolloWrapper>
-                </AxiosWrapper>
-            </DownloadWrapper>
+            <LanguageProvider>
+                <DownloadWrapper>
+                    <AxiosWrapper>
+                        <ApolloWrapper>
+                            <AccountWrapper>
+                                <LoggedWrapper>
+                                    <PopupProvider>
+                                        <ModalProvider>
+                                            <QueueWrapper>
+                                                <RenderProvider>
+                                                    <App />
+                                                </RenderProvider>
+                                            </QueueWrapper>
+                                        </ModalProvider>
+                                    </PopupProvider>
+                                </LoggedWrapper>
+                            </AccountWrapper>
+                        </ApolloWrapper>
+                    </AxiosWrapper>
+                </DownloadWrapper>
+            </LanguageProvider>
         </CookiesWrapper>
     </BrowserRouter>
   </React.StrictMode>,

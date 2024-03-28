@@ -4,8 +4,12 @@ import lang from "../../../resources/lang.json";
 export const LanguageContext = createContext(null);
 
 export default function LanguageProvider({ children }) {
+    const getValue = (object, path) => {
+        return path.split('.').reduce((value, key) => (value && value[key] !== undefined ? value[key] : undefined), object);
+    }
+
     const translate = (path: string) => {
-        return lang[`es.${path}`];
+        return getValue(lang, `es.${path}`);
     }
 
     return (

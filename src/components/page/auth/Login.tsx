@@ -8,8 +8,11 @@ import {useNavigate} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/Account";
 import {CookiesContext} from "../../../wrapper/tool/Cookies";
+import {LanguageContext} from "../../../wrapper/lang/LanguageProvider";
 
 export default function Login() {
+    const { translate } = useContext(LanguageContext);
+
     const navigate = useNavigate();
 
     const { setToken } = useContext(CookiesContext);
@@ -53,7 +56,7 @@ export default function Login() {
                     </button>
                     <hr />
                     <Form className="space-y-2" submit={(variables) => update({ variables })}>
-                        <Input name="email" type="email" className="main w-full" placeholder="Email" required />
+                        <Input name="email" type="email" className="main w-full" placeholder={translate("auth.form.email.label")} required />
                         <PasswordInput />
                         <LoadStatus loading={loading} loader={
                             <div className="flex items-center justify-center space-x-4">

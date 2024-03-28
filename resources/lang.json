@@ -1,11 +1,27 @@
 {
   "en": {
-    "folder": {
-      "file": {
-        "context": {
-          "open": "Open"
+    "file": {
+      "spreadsheet": {
+        "download": "Export as Spreadsheet",
+        "template": {
+          "new": "New"
         }
       },
+      "view": {
+        "tab": {
+          "preview": {
+            "label": "Preview"
+          },
+          "spreadsheet": {
+            "label": "Spreadsheet"
+          }
+        }
+      },
+      "context": {
+        "open": "Open"
+      }
+    },
+    "folder": {
       "table": {
         "head": {
           "name": "Name",

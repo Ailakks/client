@@ -12,10 +12,13 @@ import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
 import TabDefault from "../native/TabDefault";
 import {AxiosContext} from "../../wrapper/Axios";
 import {DownloadContext} from "../../wrapper/tool/Download";
+import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
 
 export const TemplateContext = createContext();
 
 export default function FileSpreadsheet() {
+    const { translate } = useContext(LanguageContext);
+
     const request = useQuery(gql`
         query {
             listTemplates {
@@ -32,7 +35,7 @@ export default function FileSpreadsheet() {
     );
 
     return (
-        <IntegrationMeta name="Spreadsheet">
+        <IntegrationMeta name={translate("file.view.tab.spreadsheet.label")}>
             <Query request={request}>
                 <Body/>
             </Query>

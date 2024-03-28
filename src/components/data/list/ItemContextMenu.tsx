@@ -10,21 +10,23 @@ import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 
 export const ItemContext = createContext();
 
-export default function ItemContextMenu() {
+export default function ItemContextMenu({ children }) {
     const { item } = useContext(ListContext);
 
     const request = useContext(QueryContext);
     const scopes = useContext(ItemMenuContext);
 
     return (
-        <ContextMenu list={Object.values(scopes)}>
+        <ContextMenu list={Object.values(scopes)} content={
             <ScopesContext.Provider value={scopes}>
-                <ItemContext.Provider value={{ item }}>
+                <ItemContext.Provider value={{item}}>
                     <FolderContext.Provider value={request}>
-                        <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
+                        <Item/>
                     </FolderContext.Provider>
                 </ItemContext.Provider>
             </ScopesContext.Provider>
+        }>
+            {children}
         </ContextMenu>
     )
 }

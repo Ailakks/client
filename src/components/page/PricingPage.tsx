@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
 import List, {ListContext} from "../list/List";
-import {gql, useQuery} from "@apollo/client";
+import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../query/Query";
 import Amount from "../parse/Amount";
 
@@ -121,6 +121,40 @@ function Price() {
     const { item: { amount, currency, recurring: { interval } } } = useContext(ListContext);
 
     return (
-        <p><Amount currency={currency}>{amount}</Amount>/{translate(`measure.time.${interval}`)}</p>
+        <div>
+            <p><Amount currency={currency}>{amount}</Amount>/{translate(`measure.time.${interval}`)}</p>
+            <Checkout />
+        </div>
+    );
+}
+
+function Checkout() {
+    const { item: { id } } = useContext(ListContext);
+
+    const [update] = useLazyQuery(gql`
+        query SetChannel($id: String!) {
+            checkoutSubscription(payload: {
+                id: $id
+            }) {
+                id
+                url
+                __typename
+            }
+        }`, {
+        variables: {
+            id: id,
+        },
+        onCompleted: (data) => {
+            const { checkoutSubscription: { url } } = data;
+
+            window.location.href = url;
+        },
+        onError: () => {
+
+        }
+    });
+
+    return (
+        <button className="main w-full" onClick={() => update({ variables: { id } })}>Checkout</button>
     );
 }

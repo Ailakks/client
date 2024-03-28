@@ -9,7 +9,7 @@ export default function PricingPage() {
 
     const plans = [
         {
-            stripe: 1,
+            stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
                     label: translate("pricing.plan.feature.convert.label")
@@ -17,7 +17,7 @@ export default function PricingPage() {
             ]
         },
         {
-            stripe: 1,
+            stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
                     label: translate("pricing.plan.feature.convert.label")
@@ -25,15 +25,7 @@ export default function PricingPage() {
             ]
         },
         {
-            stripe: 1,
-            features: [
-                {
-                    label: translate("pricing.plan.feature.convert.label")
-                }
-            ]
-        },
-        {
-            stripe: 1,
+            stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
                     label: translate("pricing.plan.feature.convert.label")
@@ -69,8 +61,9 @@ function Plan() {
     const { item: { features } } = useContext(ListContext);
 
     return (
-        <div className="bg-gray-300 p-5 rounded-xl">
+        <div className="bg-gray-300 p-5 rounded-xl space-y-4">
             <List list={features} children={<Feature />} />
+            <hr className="border-gray-500" />
             <PriceQuery />
         </div>
     );
@@ -81,24 +74,22 @@ function PriceQuery() {
 
     const request = useQuery(gql`
                 query ListPricesFromProduct($product: String!) {
-                    query {
-                        listPricesFromProduct(payload: { product: $product }) {
-                            list {
-                                id
-                                currency
-                                recurring {
-                                    interval
-                                    count
-                                    trial {
-                                        days
-                                    }
-                                    __typename
+                    listPricesFromProduct(payload: { product: $product }) {
+                        list {
+                            id
+                            currency
+                            recurring {
+                                interval
+                                count
+                                trial {
+                                    days
                                 }
-                                amount
                                 __typename
                             }
+                            amount
                             __typename
                         }
+                        __typename
                     }
                 }`,
         {
@@ -124,9 +115,11 @@ function PriceList() {
 }
 
 function Price() {
-    const { item: { amount, recurring: { interval } } } = useContext(List);
+    const { item: { amount, currency, recurring: { interval } } } = useContext(ListContext);
+
+    const price = new Intl.NumberFormat('es-ES', { style: 'currency', currency: currency }).format(amount / 100);
 
     return (
-        <p>{amount}</p>
+        <p>{price}/{interval}</p>
     );
 }

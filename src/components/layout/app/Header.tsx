@@ -58,7 +58,7 @@ function Language() {
     }
 
     const change = ({ id }) => {
-        setCookie("locale", id);
+        setCookie("language", id);
 
         window.location.reload();
     };
@@ -88,7 +88,7 @@ function Language() {
 }
 
 function Item() {
-    const { locale, translate } = useContext(LanguageContext);
+    const { language, translate } = useContext(LanguageContext);
 
     const { item } = useContext(ListContext);
     const { id, icon, action } = item;
@@ -99,7 +99,7 @@ function Item() {
                 <i className={clsx('w-6', icon)}/>
                 <p>{translate(`layout.header.language.context.${id}`)}</p>
             </div>
-            {locale === id && <i className="fa-regular fa-check"/>}
+            {language === id && <i className="fa-regular fa-check"/>}
         </div>
     )
 }

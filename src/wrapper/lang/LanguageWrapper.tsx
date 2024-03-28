@@ -8,7 +8,7 @@ export const LanguageContext = createContext(null);
 export default function LanguageWrapper({ children }) {
     const { getCookie } = useContext(CookiesContext);
 
-    const fallback = "en";
+    const fallback = "es";
     const locale = getCookie("locale") ?? fallback;
 
     const getValue = (object, path) => {

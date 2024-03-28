@@ -26,7 +26,13 @@
         }
       },
       "context": {
-        "open": "Open"
+        "open": "Open",
+        "trash": "Trash",
+        "view": "View",
+        "download": "Download",
+        "link": "Create link",
+        "clone": "Clone",
+        "rename": "Rename"
       }
     },
     "folder": {
@@ -106,17 +112,98 @@
     }
   },
   "es": {
+    "file": {
+      "spreadsheet": {
+        "fallback": "Selecciona una plantilla para ver el resumen",
+        "template": {
+          "preview": {
+            "title": "Hoja del archivo",
+            "download": {
+              "label": "Descargar como hoja"
+            }
+          },
+          "new": {
+            "label": "Nuevo"
+          }
+        }
+      },
+      "view": {
+        "tab": {
+          "preview": {
+            "label": "Previsualización"
+          },
+          "spreadsheet": {
+            "label": "Hoja"
+          }
+        }
+      },
+      "context": {
+        "open": "Abrir",
+        "trash": "Mover a la papelera",
+        "view": "Ver",
+        "download": "Descargar",
+        "link": "Crear enlace",
+        "clone": "Clonar",
+        "rename": "Renombar"
+      }
+    },
+    "folder": {
+      "tool": {
+        "context": {
+          "upload": "Subir archivo",
+          "folder": "Crear carpeta"
+        },
+        "status": {
+          "selected": {
+            "singular": "{0} entrada seleccionada",
+            "plural": "{0} entradas seleccionada"
+          }
+        },
+        "export": {
+          "label": "Exportar como hoja"
+        },
+        "new": {
+          "label": "Nueva"
+        },
+        "upload": {
+          "label": "Subir"
+        }
+      },
+      "table": {
+        "head": {
+          "name": "Nombre",
+          "date": "Fecha",
+          "size": "Tamaño"
+        }
+      }
+    },
+    "layout": {
+      "navbar": {
+        "page": {
+          "home": "Inicio",
+          "trash": "Papelera"
+        }
+      },
+      "head": {
+        "search": {
+          "label": "Buscar"
+        },
+        "account": {
+          "logout": {
+            "label": "Cerrar sesión"
+          }
+        }
+      }
+    },
     "auth": {
       "title": "Login",
       "quick": {
         "google": "Continue with Google"
       },
       "tip": {
-        "register": {
-          "forgot": "Forgot your password?",
-          "label": "¿No tienes cuenta aún?",
-          "link": "Regístrate"
-        }
+        "forgot": "¿Has olvidado tu contraseña?",
+        "label": "¿No tienes cuenta aún?",
+        "link": "Regístrate"
       },
       "form": {
         "email": {
@@ -127,12 +214,12 @@
         },
         "continue": {
           "label": "Login",
-          "loading": "Decrypting..."
+          "loading": "Desencriptando..."
         }
       },
       "footer": {
-        "terms": "Terms and conditions",
-        "help": "Need help?"
+        "terms": "Términos y condiciones",
+        "help": "¿Necesitas ayuda?"
       }
     }
   }

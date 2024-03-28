@@ -3,6 +3,8 @@ import {AccountContext} from "../../../wrapper/Account";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenu from "../../context/ContextMenu";
 import Language from "../components/button/Language";
+import {clsx} from "clsx";
+import {ListContext} from "../../list/List";
 
 export default function AppHeader() {
     const { translate } = useContext(LanguageContext);
@@ -23,8 +25,30 @@ export default function AppHeader() {
 function Logged() {
     const { data: { currentUser: { name } } } = useContext(AccountContext);
 
+    const Category = {
+        ACCOUNT: "account",
+    }
+
+    const Path = {
+        PRICING: "PRICING",
+        LOGOUT: "logout"
+    }
+
+    const paths = {
+        [Category.ACCOUNT]: {
+            [Path.PRICING]: {
+                id: 'pricing',
+                href: '/pricing'
+            },
+            [Path.LOGOUT]: {
+                id: 'logout',
+                href: '/logout'
+            }
+        }
+    }
+
     return (
-        <ContextMenu list={[]} content={<Item/>}>
+        <ContextMenu list={paths} content={<Item/>}>
             <button className="secondary round">{name}</button>
         </ContextMenu>
     )
@@ -33,8 +57,13 @@ function Logged() {
 function Item() {
     const { translate } = useContext(LanguageContext);
 
+    const { item: { id, icon, href } } = useContext(ListContext);
+
     return (
-        <a></a>
+        <a className="context_item" href={href}>
+            <i className={clsx('w-6', icon)}/>
+            <p>{translate(`layout.header.account.context.${id}`)}</p>
+        </a>
     )
 }
 

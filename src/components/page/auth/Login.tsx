@@ -49,7 +49,7 @@ export default function Login() {
         <div className="h-full flex flex-col">
             <div className="h-full flex justify-center items-center">
                 <div className="w-80 space-y-5">
-                    <h1>Login</h1>
+                    <h1>{translate("auth.title")}</h1>
                     <button className="main w-full space-x-2">
                         <i className="fa-brands fa-google" />
                         <span>Continue with Google</span>
@@ -64,20 +64,20 @@ export default function Login() {
                                 <p>Decrypting...</p>
                             </div>
                         }>
-                            <button type="submit" className="main w-full">Login</button>
+                            <button type="submit" className="main w-full">{translate("auth.form.continue")}</button>
                         </LoadStatus>
                     </Form>
-                    <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>
+                    <a className="flex justify-center text-blue-700" href="">{translate("auth.tip.forgot")}</a>
                     <hr />
                     <div className="text-center space-x-2">
-                        <span className="text-white">No registered yet?</span>
-                        <a className="text-blue-500" href="">Get started</a>
+                        <span className="text-white">{translate("auth.tip.label")}</span>
+                        <a className="text-blue-500" href="">{translate("auth.tip.link")}</a>
                     </div>
                 </div>
             </div>
             <div className="flex justify-center space-x-16">
-                <a href="">Terms and conditions</a>
-                <a href="">Need help?</a>
+                <a href="">{translate("auth.footer.terms")}</a>
+                <a href="">{translate("auth.footer.help")}</a>
             </div>
         </div>
     )

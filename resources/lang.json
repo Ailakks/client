@@ -1,10 +1,49 @@
 {
+  "en": {
+    "auth": {
+      "title": "Login",
+      "tip": {
+        "forgot": "Forgot your password?",
+        "label": "No registered yet?",
+        "link": "Get started"
+      },
+      "form": {
+        "email": {
+          "label": "Email"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "continue": "Login"
+      },
+      "footer": {
+        "terms": "Terms and conditions",
+        "help": "Need help?"
+      }
+    }
+  },
   "es": {
     "auth": {
+      "title": "Login",
+      "tip": {
+        "register": {
+          "forgot": "Forgot your password?",
+          "label": "¿No tienes cuenta aún?",
+          "link": "Regístrate"
+        }
+      },
       "form": {
         "email": {
           "label": "Correo electrónico"
-        }
+        },
+        "password": {
+          "label": "Contraseña"
+        },
+        "continue": "Login"
+      },
+      "footer": {
+        "terms": "Terms and conditions",
+        "help": "Need help?"
       }
     }
   }

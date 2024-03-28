@@ -1,5 +1,4 @@
-import {createContext, useContext, useState} from "react";
-import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
+import {createContext, useContext} from "react";
 import {ScopesContext} from "../../context/Scopes";
 import ContextMenu from "../../context/ContextMenu";
 import {ListContext} from "../../list/List";
@@ -11,29 +10,22 @@ import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 
 export const ItemContext = createContext();
 
-export default function ItemContextMenu({ children }) {
-    const [open, setOpen] = useState(false);
-
+export default function ItemContextMenu() {
     const { item } = useContext(ListContext);
 
     const request = useContext(QueryContext);
     const scopes = useContext(ItemMenuContext);
 
     return (
-        <Popover isOpen={open} onOpenChange={status => setOpen(status)} onClick={() => setOpen(false)} placement="bottom">
-            <PopoverTrigger>
-                {children}
-            </PopoverTrigger>
-            <PopoverContent>
-                <ScopesContext.Provider value={scopes}>
-                    <ItemContext.Provider value={{ item }}>
-                        <FolderContext.Provider value={request}>
-                            <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
-                        </FolderContext.Provider>
-                    </ItemContext.Provider>
-                </ScopesContext.Provider>
-            </PopoverContent>
-        </Popover>
+        <ContextMenu list={Object.values(scopes)}>
+            <ScopesContext.Provider value={scopes}>
+                <ItemContext.Provider value={{ item }}>
+                    <FolderContext.Provider value={request}>
+                        <ContextMenu list={Object.values(scopes)}><Item /></ContextMenu>
+                    </FolderContext.Provider>
+                </ItemContext.Provider>
+            </ScopesContext.Provider>
+        </ContextMenu>
     )
 }
 

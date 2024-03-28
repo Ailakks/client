@@ -6,6 +6,16 @@
           "home": "Home",
           "trash": "Trash"
         }
+      },
+      "head": {
+        "search": {
+          "label": "Search"
+        },
+        "account": {
+          "logout": {
+            "label": "Logout"
+          }
+        }
       }
     },
     "auth": {

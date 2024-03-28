@@ -62,8 +62,9 @@ export default function Scopes({ scopes, children }) {
     const files = {
         [Category.VIEW]: {
             [Scope.VIEW]: {
-                icon: 'fa-regular fa-eye',
+                id: 'view',
                 name: 'View',
+                icon: 'fa-regular fa-eye',
                 action: (scopes, item) => {
                     setCurrent(
                         <ScopesDataContext.Provider value={{ scopes, item }}>
@@ -73,8 +74,9 @@ export default function Scopes({ scopes, children }) {
                 }
             },
             [Scope.DOWNLOAD]: {
-                icon: 'fa-regular fa-arrow-down-to-bracket',
+                id: 'download',
                 name: 'Download',
+                icon: 'fa-regular fa-arrow-down-to-bracket',
                 action: async (scopes, item) => {
                     const { id, source: { meta: { name, mime } } } = item;
 
@@ -85,8 +87,9 @@ export default function Scopes({ scopes, children }) {
                 }
             },
             [Scope.LINK]: {
-                icon: 'fa-regular fa-link',
+                id: 'link',
                 name: 'Link',
+                icon: 'fa-regular fa-link',
                 action: (scopes, item) => {
 
                 }
@@ -94,15 +97,17 @@ export default function Scopes({ scopes, children }) {
         },
         [Category.MANAGE]: {
             [Scope.CLONE]: {
-                icon: 'fa-regular fa-copy',
+                id: 'clone',
                 name: 'Clone',
+                icon: 'fa-regular fa-copy',
                 action: (scopes, item) => {
 
                 }
             },
             [Scope.RENAME]: {
-                icon: 'fa-regular fa-pen',
+                id: 'rename',
                 name: 'Rename',
+                icon: 'fa-regular fa-pen',
                 action: (scopes, item) => {
 
                 }
@@ -110,8 +115,9 @@ export default function Scopes({ scopes, children }) {
         },
         [Category.DELETE]: {
             [Scope.TRASH]: {
-                icon: 'fa-regular fa-trash',
+                id: 'trash',
                 name: 'Move to trash',
+                icon: 'fa-regular fa-trash',
                 action: (scopes, item) => {
                     const { id } = item;
 
@@ -124,8 +130,9 @@ export default function Scopes({ scopes, children }) {
     const folders = {
         [Category.VIEW]: {
             [Scope.VIEW]: {
-                icon: 'fa-regular fa-eye',
+                id: 'open',
                 name: 'Open',
+                icon: 'fa-regular fa-eye',
                 action: (scopes, item) => {
                     const { id } = item;
 
@@ -135,8 +142,9 @@ export default function Scopes({ scopes, children }) {
         },
         [Category.DELETE]: {
             [Scope.TRASH]: {
-                icon: 'fa-regular fa-trash',
+                id: 'trash',
                 name: 'Move to trash',
+                icon: 'fa-regular fa-trash',
                 action: (scopes, item) => {
                     const { id } = item;
 
@@ -149,14 +157,16 @@ export default function Scopes({ scopes, children }) {
     const massive = {
         [Category.VIEW]: {
             [Scope.DOWNLOAD]: {
+                id: 'download',
+                name: 'Download',
                 icon: 'fa-regular fa-arrow-down-to-bracket',
-                name: 'Download'
             }
         },
         [Category.DELETE]: {
             [Scope.TRASH]: {
-                icon: 'fa-regular fa-trash',
+                id: 'trash',
                 name: 'Move to trash',
+                icon: 'fa-regular fa-trash',
                 action: (scopes, item) => {
                     const list = item.map(({ id }) => id);
 

@@ -7,6 +7,7 @@ import {clsx} from "clsx";
 import {ItemMenuContext} from "../ListView";
 import {QueryContext} from "../../query/Query";
 import {FolderContext} from "./NewButton";
+import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 
 export const ItemContext = createContext();
 
@@ -37,15 +38,17 @@ export default function ItemContextMenu({ children }) {
 }
 
 function Item() {
+    const { translate } = useContext(LanguageContext);
+
     const scopes = useContext(ScopesContext);
 
     const { item } = useContext(ItemContext);
-    const { item: { icon, name, action } } = useContext(ListContext);
+    const { item: { id, icon, action } } = useContext(ListContext);
 
     return (
         <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={() => action(scopes, item)}>
             <i className={clsx('w-6', icon)} />
-            <p>{name}</p>
+            <p>{translate(id)}</p>
         </div>
     )
 }

@@ -11,6 +11,7 @@ import UploadZone from "../native/upload/UploadZone";
 import NoContentFallback from "../page/fallback/NoContentFallback";
 import Moment from "../parse/Moment";
 import Size from "../parse/Size";
+import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
 
 export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();
@@ -59,6 +60,8 @@ export default function ListView() {
 }
 
 function Content() {
+    const { translate } = useContext(LanguageContext);
+
     const { data: { getFolder: { files, folders} } } = useContext(QueryContext);
 
     const { selected, setSelected } = useContext(SelectedContext);
@@ -93,9 +96,9 @@ function Content() {
                     <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
                 </th>
                 <th/>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Size</th>
+                <th>{translate("folder.table.head.name")}</th>
+                <th>{translate("folder.table.head.date")}</th>
+                <th>{translate("folder.table.head.size")}</th>
                 <th/>
             </tr>
             </thead>

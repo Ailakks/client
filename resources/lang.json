@@ -1,5 +1,19 @@
 {
   "en": {
+    "folder": {
+      "file": {
+        "context": {
+          "open": "Open"
+        }
+      },
+      "table": {
+        "head": {
+          "name": "Name",
+          "date": "Date",
+          "size": "Size"
+        }
+      }
+    },
     "layout": {
       "navbar": {
         "page": {

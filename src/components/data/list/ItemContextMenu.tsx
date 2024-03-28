@@ -21,7 +21,7 @@ export default function ItemContextMenu({ children }) {
             <ScopesContext.Provider value={scopes}>
                 <ItemContext.Provider value={{item}}>
                     <FolderContext.Provider value={request}>
-                        <Item/>
+                        <Item />
                     </FolderContext.Provider>
                 </ItemContext.Provider>
             </ScopesContext.Provider>

@@ -7,6 +7,7 @@ import {clsx} from "clsx";
 import CreateFolderPopup from "../../ui/popup/content/CreateFolderPopup";
 import {PopupContext} from "../../../wrapper/ui/PopupProvider";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import ContextMenuItem from "../../context/ContextMenuItem";
 
 const Category = {
     UPLOAD: "upload",
@@ -55,30 +56,11 @@ export default function NewButton() {
     };
 
     return (
-        <Popover placement="bottom">
-            <PopoverTrigger>
-                <button className="main icon">
-                    <i className="fa-regular fa-plus" />
-                    <p>{translate(`folder.tool.new.label`)}</p>
-                </button>
-            </PopoverTrigger>
-            <PopoverContent>
-                <ContextMenu list={list}><Item /></ContextMenu>
-            </PopoverContent>
-        </Popover>
-    )
-}
-
-function Item() {
-    const { translate } = useContext(LanguageContext);
-
-    const { data } = useContext(QueryContext);
-    const { item: { id, icon, action } } = useContext(ListContext);
-
-    return (
-        <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={() => action(data)}>
-            <i className={clsx('w-6', icon)} />
-            <p>{translate(`folder.tool.context.${id}`)}</p>
-        </div>
+        <ContextMenu list={list} content={<ContextMenuItem />}>
+            <button className="main icon">
+                <i className="fa-regular fa-plus"/>
+                <p>{translate(`folder.tool.new.label`)}</p>
+            </button>
+        </ContextMenu>
     )
 }

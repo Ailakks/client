@@ -1,7 +1,18 @@
 {
   "en": {
+    "layout": {
+      "navbar": {
+        "page": {
+          "home": "Home",
+          "trash": "Trash"
+        }
+      }
+    },
     "auth": {
       "title": "Login",
+      "quick": {
+        "google": "Continue with Google"
+      },
       "tip": {
         "forgot": "Forgot your password?",
         "label": "No registered yet?",
@@ -14,7 +25,10 @@
         "password": {
           "label": "Password"
         },
-        "continue": "Login"
+        "continue": {
+          "label": "Login",
+          "loading": "Decrypting..."
+        }
       },
       "footer": {
         "terms": "Terms and conditions",
@@ -25,6 +39,9 @@
   "es": {
     "auth": {
       "title": "Login",
+      "quick": {
+        "google": "Continue with Google"
+      },
       "tip": {
         "register": {
           "forgot": "Forgot your password?",
@@ -39,7 +56,10 @@
         "password": {
           "label": "Contraseña"
         },
-        "continue": "Login"
+        "continue": {
+          "label": "Login",
+          "loading": "Decrypting..."
+        }
       },
       "footer": {
         "terms": "Terms and conditions",

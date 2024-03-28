@@ -1,5 +1,7 @@
 import {NavLink} from "react-router-dom";
 import { clsx } from 'clsx';
+import {useContext} from "react";
+import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 
 const pages = [
     {
@@ -17,14 +19,16 @@ const pages = [
 ]
 
 export default function AppSide() {
+    const { translate } = useContext(LanguageContext);
+
     return (
         <div className="flex flex-col justify-between">
             {
-                pages.map(({ icon, path, name }, key) => {
+                pages.map(({ id, icon, path }, key) => {
                     return (
                         <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-blue-900')} to={path} end>
                             <i className={clsx(icon, 'w-5')} />
-                            <p>{name}</p>
+                            <p>{translate(`layout.navbar.page.${id}`)}</p>
                         </NavLink>
                     )
                 })

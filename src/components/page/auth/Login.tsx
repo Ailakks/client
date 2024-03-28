@@ -52,7 +52,7 @@ export default function Login() {
                     <h1>{translate("auth.title")}</h1>
                     <button className="main w-full space-x-2">
                         <i className="fa-brands fa-google" />
-                        <span>Continue with Google</span>
+                        <span>{translate("auth.quick.google")}</span>
                     </button>
                     <hr />
                     <Form className="space-y-2" submit={(variables) => update({ variables })}>
@@ -61,10 +61,10 @@ export default function Login() {
                         <LoadStatus loading={loading} loader={
                             <div className="flex items-center justify-center space-x-4">
                                 <LoadSpinner />
-                                <p>Decrypting...</p>
+                                <p>{translate("auth.form.continue.loading")}</p>
                             </div>
                         }>
-                            <button type="submit" className="main w-full">{translate("auth.form.continue")}</button>
+                            <button type="submit" className="main w-full">{translate("auth.form.continue.label")}</button>
                         </LoadStatus>
                     </Form>
                     <a className="flex justify-center text-blue-700" href="">{translate("auth.tip.forgot")}</a>

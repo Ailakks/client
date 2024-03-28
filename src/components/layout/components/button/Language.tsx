@@ -5,12 +5,13 @@ import {ListContext} from "../../../list/List";
 import {clsx} from "clsx";
 
 export default function Language() {
-    const { locales } = useContext(LanguageContext);
+    const { translate, locales } = useContext(LanguageContext);
 
     return (
         <ContextMenu list={locales} content={<Item />}>
-            <button className="menu">
-                <i className="fa-regular fa-globe" />
+            <button className="secondary round inline">
+                <i className="fa-regular fa-globe"/>
+                <p>{translate("layout.header.language.label")}</p>
             </button>
         </ContextMenu>
     )

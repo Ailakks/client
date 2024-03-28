@@ -23,6 +23,8 @@ export default function AppHeader() {
 }
 
 function Logged() {
+    const { translate } = useContext(LanguageContext);
+
     const { data: { currentUser: { name } } } = useContext(AccountContext);
 
     const Category = {
@@ -51,7 +53,10 @@ function Logged() {
 
     return (
         <ContextMenu list={paths} content={<Item/>}>
-            <button className="secondary round">{name}</button>
+            <button className="secondary round inline">
+                <i className="fa-regular fa-user" />
+                <p>{translate("layout.header.account.label")}</p>
+            </button>
         </ContextMenu>
     )
 }

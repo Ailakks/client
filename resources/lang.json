@@ -80,6 +80,7 @@
       },
       "header": {
         "language": {
+          "label": "Language",
           "context": {
             "en_CA": "English",
             "es_ES": "Spanish"
@@ -89,6 +90,7 @@
           "label": "Search"
         },
         "account": {
+          "label": "My account",
           "context": {
             "pricing": "Change plan",
             "logout": "Logout"
@@ -205,6 +207,7 @@
       },
       "header": {
         "language": {
+          "label": "Lenguaje",
           "context": {
             "en_CA": "Inglés",
             "es_ES": "Español"
@@ -214,6 +217,7 @@
           "label": "Buscar"
         },
         "account": {
+          "label": "Mi cuenta",
           "context": {
             "pricing": "Cambiar plan",
             "logout": "Cerrar sesión"

@@ -125,6 +125,16 @@
         "help": "Need help?"
       }
     },
+    "pricing": {
+      "title": "Pricing",
+      "plan": {
+        "feature": {
+          "convert": {
+            "label": "Convert files to Sheet"
+          }
+        }
+      }
+    },
     "measure": {
       "time": {
         "month": "month"
@@ -255,6 +265,16 @@
       "footer": {
         "terms": "Términos y condiciones",
         "help": "¿Necesitas ayuda?"
+      }
+    },
+    "pricing": {
+      "title": "Precios",
+      "plan": {
+        "feature": {
+          "convert": {
+            "label": "Convertir archivos en hoja"
+          }
+        }
       }
     },
     "measure": {

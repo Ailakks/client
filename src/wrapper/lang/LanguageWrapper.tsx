@@ -53,8 +53,10 @@ export default function LanguageWrapper({ children }) {
         return path.split('.').reduce((value, key) => (value && value[key] !== undefined ? value[key] : undefined), object);
     }
 
-    const translate = (path: string) => {
-        return getValue(lang, `${language}.${path}`) ?? path;
+    const translate = (path: string, args: string[]) => {
+        const translation = getValue(lang, `${language}.${path}`) ?? path
+
+        return translation.replace(/\{(\d+)}/g, (match, index) => args[index] ?? match);
     }
 
     return (

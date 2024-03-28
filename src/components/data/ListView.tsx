@@ -41,7 +41,7 @@ export default function ListView() {
                         {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
-                                <p>{selected.length === 1 ? translate("folder.tool.status.selected.singular", selected.length) : translate("folder.tool.status.selected.plural", selected.length)}</p>
+                                <p>{selected.length === 1 ? translate("folder.tool.status.selected.singular", `${selected.length}`) : translate("folder.tool.status.selected.plural", `${selected.length}`)}</p>
                                 <button className="main flex items-center space-x-4">
                                     <i className="fa-regular fa-sparkles"/>
                                     <p>{translate("folder.tool.export.label")}</p>

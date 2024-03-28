@@ -1,5 +1,5 @@
 {
-  "en_us": {
+  "enCA": {
     "file": {
       "spreadsheet": {
         "fallback": "Select a template to see the summary",
@@ -36,6 +36,9 @@
       }
     },
     "folder": {
+      "path": {
+        "title": "Drive"
+      },
       "tool": {
         "context": {
           "upload": "Upload file",
@@ -66,6 +69,9 @@
       }
     },
     "layout": {
+      "head": {
+        "name": "Gestor de facturas"
+      },
       "navbar": {
         "page": {
           "home": "Home",
@@ -117,7 +123,7 @@
       }
     }
   },
-  "es_es": {
+  "es": {
     "file": {
       "spreadsheet": {
         "fallback": "Selecciona una plantilla para ver el resumen",
@@ -154,6 +160,9 @@
       }
     },
     "folder": {
+      "path": {
+        "title": "Drive"
+      },
       "tool": {
         "context": {
           "upload": "Subir archivo",
@@ -184,6 +193,9 @@
       }
     },
     "layout": {
+      "head": {
+        "name": "Gestor de facturas"
+      },
       "navbar": {
         "page": {
           "home": "Inicio",

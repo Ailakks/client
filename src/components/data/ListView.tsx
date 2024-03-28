@@ -26,7 +26,7 @@ export default function ListView() {
             <div className="flex flex-col h-full space-y-5">
                 <div className="flex space-x-6 items-center justify-between">
                     <div>
-                        <p>Drive</p>
+                        <p>{translate("folder.path.title")}</p>
                     </div>
                     <div className="flex space-x-6">
                         <div className="flex space-x-4 items-center">

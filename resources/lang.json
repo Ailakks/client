@@ -30,6 +30,23 @@
       }
     },
     "folder": {
+      "tool": {
+        "status": {
+          "selected": {
+            "singular": "{0} item selected",
+            "plural": "{0} items selected"
+          }
+        },
+        "export": {
+          "label": "Export to Spreadsheet"
+        },
+        "new": {
+          "label": "New"
+        },
+        "upload": {
+          "label": "Upload"
+        }
+      },
       "table": {
         "head": {
           "name": "Name",

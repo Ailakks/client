@@ -17,6 +17,8 @@ export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();
 
 export default function ListView() {
+    const { translate } = useContext(LanguageContext);
+
     const [selected, setSelected] = useState([]);
 
     return (
@@ -32,17 +34,17 @@ export default function ListView() {
                             <UploadZone clickable>
                                 <button className="main icon">
                                     <i className="fa-regular fa-arrow-up-from-bracket"/>
-                                    <p>Upload</p>
+                                    <p>{translate("folder.tool.upload.label")}</p>
                                 </button>
                             </UploadZone>
                         </div>
                         {
                             selected.length > 0 &&
                             <div className="flex space-x-4 items-center">
-                                <p>{selected.length === 1 ? `${selected.length} item selected` : `${selected.length} items selected`}</p>
+                                <p>{selected.length === 1 ? translate("folder.tool.status.selected.singular", selected.length) : translate("folder.tool.status.selected.plural", selected.length)}</p>
                                 <button className="main flex items-center space-x-4">
                                     <i className="fa-regular fa-sparkles"/>
-                                    <p>Convert to Spreadsheet</p>
+                                    <p>{translate("folder.tool.export.label")}</p>
                                 </button>
                                 <Tool/>
                             </div>

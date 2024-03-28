@@ -31,6 +31,10 @@
     },
     "folder": {
       "tool": {
+        "context": {
+          "upload": "Upload file",
+          "folder": "Create folder"
+        },
         "status": {
           "selected": {
             "singular": "{0} item selected",

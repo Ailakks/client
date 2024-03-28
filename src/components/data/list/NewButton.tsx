@@ -6,6 +6,7 @@ import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
 import CreateFolderPopup from "../../ui/popup/content/CreateFolderPopup";
 import {PopupContext} from "../../../wrapper/ui/PopupProvider";
+import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 
 const Category = {
     UPLOAD: "upload",
@@ -20,6 +21,8 @@ const Scope = {
 export const FolderContext = createContext();
 
 export default function NewButton() {
+    const { translate } = useContext(LanguageContext);
+
     const { setCurrent } = useContext(PopupContext);
 
     const request = useContext(QueryContext);
@@ -27,8 +30,9 @@ export default function NewButton() {
     const list = {
         [Category.CREATE]: {
             [Scope.FOLDER]: {
-                icon: 'fa-regular fa-folder',
+                id: 'folder',
                 name: 'Create folder',
+                icon: 'fa-regular fa-folder',
                 action: (data) => {
                     setCurrent(
                         <FolderContext.Provider value={request}>
@@ -40,8 +44,9 @@ export default function NewButton() {
         },
         [Category.UPLOAD]: {
             [Scope.FILE]: {
-                icon: 'fa-regular fa-arrow-up-from-bracket',
+                id: 'upload',
                 name: 'Upload file',
+                icon: 'fa-regular fa-arrow-up-from-bracket',
                 action: (data) => {
 
                 }
@@ -54,7 +59,7 @@ export default function NewButton() {
             <PopoverTrigger>
                 <button className="main icon">
                     <i className="fa-regular fa-plus" />
-                    <p>New</p>
+                    <p>{translate(`folder.tool.new.label`)}</p>
                 </button>
             </PopoverTrigger>
             <PopoverContent>
@@ -65,13 +70,15 @@ export default function NewButton() {
 }
 
 function Item() {
+    const { translate } = useContext(LanguageContext);
+
     const { data } = useContext(QueryContext);
-    const { item: { icon, name, action } } = useContext(ListContext);
+    const { item: { id, icon, action } } = useContext(ListContext);
 
     return (
         <div className="flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={() => action(data)}>
             <i className={clsx('w-6', icon)} />
-            <p>{name}</p>
+            <p>{translate(`folder.tool.context.${id}`)}</p>
         </div>
     )
 }

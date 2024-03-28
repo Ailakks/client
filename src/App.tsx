@@ -7,6 +7,7 @@ import Key from "./components/page/auth/Key";
 import Logout from "./components/page/auth/Logout";
 import FolderPage from "./components/page/FolderPage";
 import Trash from "./components/page/Trash";
+import NotFoundFallback from "./components/page/fallback/NotFoundFallback";
 
 export default function App() {
     const location = useLocation();
@@ -23,6 +24,8 @@ export default function App() {
             <Route path="/logout" element={<AuthLayout><Logout /></AuthLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+
+            <Route path="/*" element={<AuthLayout><NotFoundFallback /></AuthLayout>} />
         </Routes>
     )
 }

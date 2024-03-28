@@ -21,6 +21,10 @@ html {
         @apply text-white text-2xl;
     }
 
+    h2 {
+        @apply text-white text-2xl;
+    }
+
     p {
         @apply text-white;
     }

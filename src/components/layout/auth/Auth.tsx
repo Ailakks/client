@@ -1,10 +1,10 @@
-import HeaderLayout from "../../view/HeaderLayout";
-import AuthHeader from "./Header";
+import AuthHead from "./Head";
+import FullLayout from "../../view/FullLayout";
 
 export default function AuthLayout({ children }) {
     return (
-        <HeaderLayout header={<AuthHeader />}>
+        <FullLayout head={<AuthHead />}>
             {children}
-        </HeaderLayout>
+        </FullLayout>
     )
 }

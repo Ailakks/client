@@ -1,7 +1,12 @@
+import UploadZone from "../../native/upload/UploadZone";
+
 export default function NoContentFallback() {
     return (
-        <div className="h-full flex justify-center items-center bg-blue-500 bg-opacity-50 rounded-xl">
-            <p>Upload a file or create a folder!</p>
-        </div>
+        <UploadZone>
+            <div className="h-full flex flex-col justify-center items-center">
+                <h2>Nothing could be found here!</h2>
+                <p>Upload some files to get started</p>
+            </div>
+        </UploadZone>
     )
 }

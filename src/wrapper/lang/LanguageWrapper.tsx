@@ -5,17 +5,17 @@ import lang from "../../../resources/lang.json";
 
 export const LanguageContext = createContext(null);
 
+export const Category = {
+    LANGUAGE: "language",
+}
+
+export const Locale = {
+    en_CA: "EN_CA",
+    es_ES: "ES_ES"
+}
+
 export default function LanguageWrapper({ children }) {
     const { setCookie } = useContext(CookiesContext);
-
-    const Category = {
-        LANGUAGE: "language",
-    }
-
-    const Locale = {
-        en_CA: "EN_CA",
-        es_ES: "ES_ES"
-    }
 
     const change = ({ id }) => {
         setCookie("language", id);
@@ -28,7 +28,7 @@ export default function LanguageWrapper({ children }) {
             [Locale.en_CA]: {
                 id: 'en_CA',
                 icon: 'fa-regular fa-globe',
-                library: {
+                component: {
                     date: "enCA"
                 },
                 action: change,
@@ -36,7 +36,7 @@ export default function LanguageWrapper({ children }) {
             [Locale.es_ES]: {
                 id: 'es_ES',
                 icon: 'fa-regular fa-globe',
-                library: {
+                component: {
                     date: "es"
                 },
                 action: change,

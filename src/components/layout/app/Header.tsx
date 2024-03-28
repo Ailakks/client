@@ -46,37 +46,7 @@ function Guest() {
 }
 
 function Language() {
-    const { setCookie } = useContext(CookiesContext);
-
-    const Category = {
-        LANGUAGE: "language",
-    }
-
-    const Locale = {
-        enCA: "EN_CA",
-        es: "ES"
-    }
-
-    const change = ({ id }) => {
-        setCookie("language", id);
-
-        window.location.reload();
-    };
-
-    const locales = {
-        [Category.LANGUAGE]: {
-            [Locale.enCA]: {
-                id: 'enCA',
-                icon: 'fa-regular fa-globe',
-                action: change,
-            },
-            [Locale.es]: {
-                id: 'es',
-                icon: 'fa-regular fa-globe',
-                action: change,
-            }
-        }
-    }
+    const { locales } = useContext(LanguageContext);
 
     return (
         <ContextMenu list={locales} content={<Item />}>

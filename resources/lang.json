@@ -1,5 +1,5 @@
 {
-  "enCA": {
+  "en_CA": {
     "file": {
       "spreadsheet": {
         "fallback": "Select a template to see the summary",
@@ -70,7 +70,7 @@
     },
     "layout": {
       "head": {
-        "name": "Gestor de facturas"
+        "name": "Bill Manager"
       },
       "navbar": {
         "page": {
@@ -81,8 +81,8 @@
       "header": {
         "language": {
           "context": {
-            "en_us": "English",
-            "es_es": "Spanish"
+            "en_CA": "English",
+            "es_ES": "Spanish"
           }
         },
         "search": {
@@ -123,7 +123,7 @@
       }
     }
   },
-  "es": {
+  "es_ES": {
     "file": {
       "spreadsheet": {
         "fallback": "Selecciona una plantilla para ver el resumen",
@@ -205,8 +205,8 @@
       "header": {
         "language": {
           "context": {
-            "en_us": "Inglés",
-            "es_es": "Español"
+            "en_CA": "Inglés",
+            "es_ES": "Español"
           }
         },
         "search": {

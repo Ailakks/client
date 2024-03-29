@@ -129,6 +129,8 @@ function Price() {
 }
 
 function Checkout() {
+    const { translate } = useContext(LanguageContext);
+
     const { item: { id } } = useContext(ListContext);
 
     const [update] = useLazyQuery(gql`
@@ -155,6 +157,6 @@ function Checkout() {
     });
 
     return (
-        <button className="main w-full" onClick={() => update({ variables: { id } })}>Checkout</button>
+        <button className="main w-full" onClick={() => update({ variables: { id } })}>{translate("pricing.checkout.label")}</button>
     );
 }

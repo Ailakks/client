@@ -9,10 +9,13 @@ import List, {ListContext} from "../../../list/List";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
 import Checkbox from "../../../input/Checkbox";
+import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 
 export const TemplateContext = createContext();
 
 export default function CreateTemplatePopup() {
+    const { translate } = useContext(LanguageContext);
+
     const { close } = useContext(PopupContext);
 
     const [keys, setKeys] = useState([]);
@@ -45,18 +48,18 @@ export default function CreateTemplatePopup() {
                 <PopupWindows>
                     <div className="h-full flex flex-col justify-between space-y-5">
                         <div className="flex justify-between items-center">
-                            <h1>Create a template</h1>
+                            <h1>{translate("popup.template.create.title")}</h1>
                             <button className="round" onClick={close}>
                                 <i className="fa-regular fa-xmark"/>
                             </button>
                         </div>
                         <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, keys } })}>
                             <div className="space-y-5">
-                                <Input name="name" type="text" className="menu w-full" placeholder="Name" required />
+                                <Input name="name" type="text" className="menu w-full" placeholder={translate("popup.template.create.input.name.label")} required />
                                 <TemplateKeyList/>
                             </div>
                             <LoadStatus loading={loading} loader={<LoadSpinner/>}>
-                                <button type="submit" className="main w-full">Save</button>
+                                <button type="submit" className="main w-full">{translate("popup.template.create.save.label")}</button>
                             </LoadStatus>
                         </Form>
                     </div>
@@ -69,12 +72,14 @@ export default function CreateTemplatePopup() {
 const keys = ["code", "quantity", "tax_amount", "tax_rate", "price_unit", "price_total"]
 
 function TemplateKeyList() {
+    const { translate } = useContext(LanguageContext);
+
     return (
         <table className="w-full text-left">
-            <thead>
+            <thead className="text-gray-100">
             <th></th>
-            <th>ID</th>
-            <th>Custom name</th>
+            <th>{translate("popup.template.create.table.header.id")}</th>
+            <th>{translate("popup.template.create.table.header.name")}</th>
             </thead>
             <List list={keys}><TemplateKey /></List>
         </table>
@@ -82,6 +87,8 @@ function TemplateKeyList() {
 }
 
 function TemplateKey() {
+    const { translate } = useContext(LanguageContext);
+
     const { item } = useContext(ListContext);
 
     return (
@@ -91,7 +98,7 @@ function TemplateKey() {
                 <Checkbox status={true} />
             </td>
             <td>
-                <p>{item}</p>
+                <p>{translate(`popup.template.create.table.field.${item}`)}</p>
             </td>
             <td>
                 <TemplateInput/>
@@ -102,9 +109,11 @@ function TemplateKey() {
 }
 
 function TemplateInput() {
-    const {item} = useContext(ListContext);
+    const { translate } = useContext(LanguageContext);
 
-    const {setKeys} = useContext(TemplateContext);
+    const { item } = useContext(ListContext);
+
+    const { setKeys } = useContext(TemplateContext);
 
     const handle = (value) => {
         setKeys((previous) => {
@@ -127,6 +136,6 @@ function TemplateInput() {
     };
 
     return (
-        <Input className="w-full menu" type="text" placeholder="Name" onChange={({ target: { value } }) => handle(value)} />
+        <Input className="w-full menu" type="text" placeholder={translate(`popup.template.create.input.field.name.label`)} onChange={({ target: { value } }) => handle(value)} />
     )
 }

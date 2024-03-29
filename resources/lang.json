@@ -1,6 +1,38 @@
 {
   "en_CA": {
     "popup": {
+      "template": {
+        "create": {
+          "title": "Create a template",
+          "table": {
+            "field": {
+              "code": "Code",
+              "quantity": "Quantity",
+              "tax_amount": "Tax",
+              "tax_rate": "Tax (%)",
+              "price_unit": "Price (unit)",
+              "price_total": "Price (total)"
+            },
+            "header": {
+              "id": "ID",
+              "name": "Name"
+            }
+          },
+          "save": {
+            "label": "Save"
+          },
+          "input": {
+            "field": {
+              "name": {
+                "label": "Name"
+              }
+            },
+            "name": {
+              "label": "Name"
+            }
+          }
+        }
+      },
       "folder": {
         "create": {
           "title": "Create folder",
@@ -160,6 +192,40 @@
     }
   },
   "es_ES": {
+    "popup": {
+      "template": {
+        "create": {
+          "title": "Crear una plantilla",
+          "table": {
+            "field": {
+              "code": "Código",
+              "quantity": "Cantidad",
+              "tax_amount": "Impuestos",
+              "tax_rate": "Impuestos (%)",
+              "price_unit": "Precio (unidad)",
+              "price_total": "Price (total)"
+            },
+            "header": {
+              "id": "ID",
+              "name": "Nombre"
+            }
+          },
+          "save": {
+            "label": "Guardar"
+          },
+          "input": {
+            "field": {
+              "name": {
+                "label": "Nombre"
+              }
+            },
+            "name": {
+              "label": "Nombre"
+            }
+          }
+        }
+      }
+    },
     "file": {
       "spreadsheet": {
         "fallback": "Selecciona una plantilla para ver el resumen",
@@ -171,7 +237,7 @@
             }
           },
           "new": {
-            "label": "Nuevo"
+            "label": "Nueva"
           }
         }
       },

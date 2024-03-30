@@ -28,3 +28,6 @@ dist-ssr
 
 # Bun
 bun.lockb
+
+# Npm
+pnpm-lock.yaml

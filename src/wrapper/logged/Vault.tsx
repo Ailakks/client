@@ -1,6 +1,7 @@
 import {createContext, useContext} from "react";
 import {gql, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../../components/query/Query";
+import AccountRestricted from "../../components/restricted/Account";
 
 export const VaultContext = createContext(null);
 
@@ -20,11 +21,13 @@ export default function VaultWrapper({ children }) {
     );
 
     return (
-        <Query request={request}>
-            <Body>
-                {children}
-            </Body>
-        </Query>
+        <AccountRestricted>
+            <Query request={request}>
+                <Body>
+                    {children}
+                </Body>
+            </Query>
+        </AccountRestricted>
     );
 }
 

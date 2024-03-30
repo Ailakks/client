@@ -2,6 +2,7 @@ import {createContext, useContext} from 'react';
 import {CookiesContext} from "../tool/Cookies";
 
 import lang from "../../../resources/lang.json";
+import Language from "../../components/layout/components/button/Language";
 
 export const LanguageContext = createContext(null);
 
@@ -48,8 +49,8 @@ export default function LanguageWrapper({ children }) {
 
     const { getCookie } = useContext(CookiesContext);
 
-    const fallback = Locale.enCA;
-    const language = getCookie("language") ?? locales[fallback].id;
+    const fallback = Locale.en_CA;
+    const language = getCookie("language") ?? locales[Category.LANGUAGE][fallback].id;
 
     const getValue = (object, path) => {
         return path.split('.').reduce((value, key) => (value && value[key] !== undefined ? value[key] : undefined), object);

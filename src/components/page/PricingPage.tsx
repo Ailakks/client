@@ -12,6 +12,7 @@ export default function PricingPage() {
 
     const plans = [
         {
+            name: translate("pricing.plan.list.basic.name"),
             stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
@@ -20,6 +21,7 @@ export default function PricingPage() {
             ]
         },
         {
+            name: translate("pricing.plan.list.basic.name"),
             stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
@@ -28,6 +30,7 @@ export default function PricingPage() {
             ]
         },
         {
+            name: translate("pricing.plan.list.basic.name"),
             stripe: "prod_P8IVqXtdWLgn28",
             features: [
                 {
@@ -38,11 +41,11 @@ export default function PricingPage() {
     ]
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-4">
             <div className="bg-blue-500 px-10 py-20 text-center rounded-xl">
                 <h1>{translate("pricing.title")}</h1>
             </div>
-            <div className="flex space-x-2">
+            <div className="grid grid-flow-col space-x-4">
                 <List list={plans} children={<Plan />} />
             </div>
         </div>
@@ -61,13 +64,14 @@ function Feature() {
 }
 
 function Plan() {
-    const { item: { features } } = useContext(ListContext);
+    const { item: { name, features } } = useContext(ListContext);
 
     return (
         <div className="bg-gray-300 p-5 rounded-xl space-y-4">
-            <List list={features} children={<Feature />} />
-            <hr className="border-gray-500" />
-            <PriceQuery />
+            <h2>{name}</h2>
+            <List list={features} children={<Feature/>}/>
+            <hr className="border-gray-500"/>
+            <PriceQuery/>
         </div>
     );
 }
@@ -123,7 +127,7 @@ function Price() {
     const { item: { amount, currency, recurring: { interval } } } = useContext(ListContext);
 
     return (
-        <div>
+        <div className="space-y-4">
             <p><Amount currency={currency}>{amount}</Amount>/{translate(`measure.time.${interval}`)}</p>
             <Checkout />
         </div>

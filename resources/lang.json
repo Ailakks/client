@@ -205,6 +205,7 @@
     "pricing": {
       "title": "Pricing",
       "checkout": {
+        "loading": "Preparing...",
         "label": "Checkout"
       },
       "plan": {
@@ -408,6 +409,7 @@
     "pricing": {
       "title": "Precios",
       "checkout": {
+        "loading": "Preparando...",
         "label": "Comprar"
       },
       "plan": {

@@ -60,9 +60,9 @@ export default function Login() {
                                placeholder={translate("auth.login.form.email.label")} required/>
                         <PasswordInput/>
                         <LoadStatus loading={loading} loader={
-                            <div className="flex items-center justify-center space-x-4">
+                            <div className="inline justify-center">
                                 <LoadSpinner/>
-                                <p>{translate("auth.form.continue.loading")}</p>
+                                <p>{translate("auth.login.form.submit.loading")}</p>
                             </div>
                         }>
                             <button type="submit"

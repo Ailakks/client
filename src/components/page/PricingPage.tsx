@@ -4,6 +4,8 @@ import List, {ListContext} from "../list/List";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../query/Query";
 import Amount from "../parse/Amount";
+import LoadSpinner from "../load/spinner/LoadSpinner";
+import LoadStatus from "../load/LoadStatus";
 
 export default function PricingPage() {
     const { translate } = useContext(LanguageContext);
@@ -133,7 +135,7 @@ function Checkout() {
 
     const { item: { id } } = useContext(ListContext);
 
-    const [update] = useLazyQuery(gql`
+    const [update, { loading }] = useLazyQuery(gql`
         query SetChannel($id: String!) {
             checkoutSubscription(payload: {
                 id: $id
@@ -157,6 +159,12 @@ function Checkout() {
     });
 
     return (
-        <button className="main w-full" onClick={() => update({ variables: { id } })}>{translate("pricing.checkout.label")}</button>
-    );
+        <LoadStatus loading={loading} loader={
+            <div className="inline justify-center">
+                <LoadSpinner/>
+                <p>{translate("pricing.checkout.loading")}</p>
+            </div>
+        }>
+            <button className="main w-full" onClick={() => update({variables: {id}})}>{translate("pricing.checkout.label")}</button>
+        </LoadStatus>);
 }

@@ -61,9 +61,9 @@ export default function Signup() {
                         <Input name="email" type="email" className="main w-full" placeholder={translate("auth.signup.form.email.label")} required />
                         <PasswordInput />
                         <LoadStatus loading={loading} loader={
-                            <div className="flex items-center justify-center space-x-4">
+                            <div className="inline justify-center">
                                 <LoadSpinner />
-                                <p>{translate("auth.form.continue.loading")}</p>
+                                <p>{translate("auth.signup.form.submit.loading")}</p>
                             </div>
                         }>
                             <button type="submit" className="main w-full">{translate("auth.signup.form.submit.label")}</button>

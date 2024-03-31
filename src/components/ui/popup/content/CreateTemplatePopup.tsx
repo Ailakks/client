@@ -76,7 +76,7 @@ function TemplateKeyList() {
 
     return (
         <table className="w-full text-left">
-            <thead className="text-gray-100">
+            <thead className="text-gray-100 [&>th]:p-2">
             <th></th>
             <th>{translate("popup.template.create.table.header.id")}</th>
             <th>{translate("popup.template.create.table.header.name")}</th>
@@ -93,7 +93,7 @@ function TemplateKey() {
 
     return (
         <tbody>
-        <tr>
+        <tr className="[&>td]:px-2">
             <td>
                 <Checkbox status={true} />
             </td>

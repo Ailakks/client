@@ -41,6 +41,10 @@ html {
         @apply text-white;
     }
 
+    th {
+        @apply text-white;
+    }
+
     hr {
         @apply border-gray-300;
     }

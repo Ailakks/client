@@ -5,6 +5,6 @@ export default function AppHead() {
     const { translate } = useContext(LanguageContext);
 
     return (
-        <a className="text-white" href="/">{translate("layout.head.name")}</a>
+        <a className="h-full flex items-center w-52 text-white" href="/">{translate("layout.head.name")}</a>
     )
 }

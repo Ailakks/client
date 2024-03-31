@@ -73,8 +73,12 @@ html {
         @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
     }
 
-    button.round,a.round {
+    button.rounded,a.rounded {
         @apply hover:bg-gray-300 rounded-full;
+    }
+
+    button.round,a.round {
+        @apply w-10 aspect-square hover:bg-gray-300 rounded-full;
     }
 
     button.context_item,a.context_item {

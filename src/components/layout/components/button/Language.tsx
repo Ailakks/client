@@ -9,7 +9,7 @@ export default function Language() {
 
     return (
         <ContextMenu list={locales} content={<Item />}>
-            <button className="secondary round inline">
+            <button className="secondary rounded inline">
                 <i className="fa-regular fa-globe"/>
                 <p>{translate("layout.header.language.label")}</p>
             </button>

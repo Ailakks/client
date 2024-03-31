@@ -53,7 +53,7 @@ function Logged() {
 
     return (
         <ContextMenu list={paths} content={<Item/>}>
-            <button className="secondary round inline">
+            <button className="secondary rounded inline">
                 <i className="fa-regular fa-user" />
                 <p>{translate("layout.header.account.label")}</p>
             </button>
@@ -79,8 +79,8 @@ function Guest() {
 
     return (
         <Fragment>
-            <a className="secondary round" href="/login">{translate("layout.header.account.login.label")}</a>
-            <a className="secondary round" href="/login">{translate("layout.header.account.signup.label")}</a>
+            <a className="secondary rounded" href="/login">{translate("layout.header.account.login.label")}</a>
+            <a className="secondary rounded" href="/login">{translate("layout.header.account.signup.label")}</a>
         </Fragment>
     )
 }

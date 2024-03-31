@@ -325,30 +325,54 @@
       }
     },
     "auth": {
-      "title": "Iniciar sesión",
-      "quick": {
-        "google": "Continue with Google"
-      },
-      "tip": {
-        "forgot": "¿Has olvidado tu contraseña?",
-        "label": "¿No tienes cuenta aún?",
-        "link": "Regístrate"
-      },
-      "form": {
-        "email": {
-          "label": "Correo electrónico"
-        },
-        "password": {
-          "label": "Contraseña"
-        },
-        "continue": {
-          "label": "Iniciar sesión",
-          "loading": "Desencriptando..."
-        }
+      "password": {
+        "label": "Contraseña"
       },
       "footer": {
         "terms": "Términos y condiciones",
         "help": "¿Necesitas ayuda?"
+      },
+      "signup": {
+        "title": "Crear cuenta",
+        "quick": {
+          "google": "Continuar con Google"
+        },
+        "tip": {
+          "label": "¿Ya tienes cuenta?",
+          "link": "Inicia sesión"
+        },
+        "form": {
+          "name": {
+            "label": "Nombre"
+          },
+          "email": {
+            "label": "Correo electrónico"
+          },
+          "submit": {
+            "label": "Crear cuenta",
+            "loading": "Desencriptando..."
+          }
+        }
+      },
+      "login": {
+        "title": "Iniciar sesión",
+        "quick": {
+          "google": "Continuar con Google"
+        },
+        "tip": {
+          "forgot": "¿Has olvidado tu contraseña?",
+          "label": "¿No tienes cuenta aún?",
+          "link": "Regístrate"
+        },
+        "form": {
+          "email": {
+            "label": "Correo electrónico"
+          },
+          "submit": {
+            "label": "Iniciar sesión",
+            "loading": "Desencriptando..."
+          }
+        }
       }
     },
     "pricing": {

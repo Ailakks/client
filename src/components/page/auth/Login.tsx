@@ -49,29 +49,30 @@ export default function Login() {
         <div className="h-full flex flex-col">
             <div className="h-full flex justify-center items-center">
                 <div className="w-80 space-y-5">
-                    <h1>{translate("auth.title")}</h1>
+                    <h1>{translate("auth.login.title")}</h1>
                     <button className="main w-full space-x-2">
-                        <i className="fa-brands fa-google" />
-                        <span>{translate("auth.quick.google")}</span>
+                        <i className="fa-brands fa-google"/>
+                        <span>{translate("auth.login.quick.google")}</span>
                     </button>
-                    <hr />
-                    <Form className="space-y-2" submit={(variables) => update({ variables })}>
-                        <Input name="email" type="email" className="main w-full" placeholder={translate("auth.form.email.label")} required />
-                        <PasswordInput />
+                    <hr/>
+                    <Form className="space-y-2" submit={(variables) => update({variables})}>
+                        <Input name="email" type="email" className="main w-full"
+                               placeholder={translate("auth.login.form.email.label")} required/>
+                        <PasswordInput/>
                         <LoadStatus loading={loading} loader={
                             <div className="flex items-center justify-center space-x-4">
-                                <LoadSpinner />
+                                <LoadSpinner/>
                                 <p>{translate("auth.form.continue.loading")}</p>
                             </div>
                         }>
-                            <button type="submit" className="main w-full">{translate("auth.form.continue.label")}</button>
+                            <button type="submit"
+                                    className="main w-full">{translate("auth.login.form.submit.label")}</button>
                         </LoadStatus>
                     </Form>
-                    <a className="flex justify-center text-blue-700" href="">{translate("auth.tip.forgot")}</a>
-                    <hr />
+                    <hr/>
                     <div className="text-center space-x-2">
-                        <span className="text-white">{translate("auth.tip.label")}</span>
-                        <a className="text-blue-500" href="">{translate("auth.tip.link")}</a>
+                        <span className="text-white">{translate("auth.login.tip.label")}</span>
+                        <a className="text-blue-500" href="/signup">{translate("auth.login.tip.link")}</a>
                     </div>
                 </div>
             </div>

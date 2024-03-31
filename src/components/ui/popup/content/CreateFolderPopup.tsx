@@ -49,7 +49,7 @@ export default function CreateFolderPopup() {
                     <Form className="h-full space-y-5 flex flex-col justify-between" submit={({ name }) => update({ variables: { name, parent } })}>
                         <Input name="name" type="text" className="menu w-full" placeholder={translate("popup.folder.create.input.name.label")} required />
                         <LoadStatus loading={loading} loader={<LoadSpinner/>}>
-                            <button type="submit" className="main w-full">{translate("popup.folder.create.save.label")}</button>
+                            <button type="submit" className="main w-full">{translate("popup.folder.create.submit.label")}</button>
                         </LoadStatus>
                     </Form>
                 </div>

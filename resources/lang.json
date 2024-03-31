@@ -13,6 +13,19 @@
       }
     },
     "popup": {
+      "folder": {
+        "create": {
+          "title": "Create folder",
+          "input": {
+            "name": {
+              "label": "Name"
+            }
+          },
+          "submit": {
+            "label": "Create"
+          }
+        }
+      },
       "template": {
         "create": {
           "title": "Create a template",
@@ -39,19 +52,6 @@
                 "label": "Name"
               }
             },
-            "name": {
-              "label": "Name"
-            }
-          }
-        }
-      },
-      "folder": {
-        "create": {
-          "title": "Create folder",
-          "save": {
-            "label": "Save"
-          },
-          "input": {
             "name": {
               "label": "Name"
             }
@@ -259,6 +259,19 @@
       }
     },
     "popup": {
+      "folder": {
+        "create": {
+          "title": "Crear carpeta",
+          "input": {
+            "name": {
+              "label": "Nombre"
+            }
+          },
+          "submit": {
+            "label": "Crear"
+          }
+        }
+      },
       "template": {
         "create": {
           "title": "Crear una plantilla",

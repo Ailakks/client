@@ -11,10 +11,10 @@ export default function FullLayout({ head, side, header, children }) {
                     {header}
                 </div>
             </div>
-            <div className="flex overflow-y-hidden">
-                <aside className="w-64 p-5">
+            <div className="grow flex overflow-y-hidden">
+                {side && <aside className="w-64 p-5">
                     {side}
-                </aside>
+                </aside>}
                 <main className="grow">
                     {children}
                 </main>

@@ -5,7 +5,9 @@ import AppHeader from "../app/Header";
 export default function AuthLayout({ children }) {
     return (
         <FullLayout head={<AuthHead />} header={<AppHeader />}>
-            {children}
+            <div className="h-full p-5">
+                {children}
+            </div>
         </FullLayout>
     )
 }

@@ -12,9 +12,9 @@ export default function AppHeader() {
     const { data } = useContext(AccountContext);
 
     return (
-        <div className="flex grow justify-between items-center">
-            <input className="main" placeholder={translate("layout.header.search.label")} />
-            <div className="flex items-center space-x-4">
+        <div className="flex items-center">
+            {data && <input className="main" placeholder={translate("layout.header.search.label")}/>}
+            <div className="flex w-full justify-end space-x-4">
                 <Language />
                 {data ? <Logged /> : <Guest />}
             </div>

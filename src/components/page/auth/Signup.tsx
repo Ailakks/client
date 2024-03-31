@@ -26,8 +26,8 @@ export default function Signup() {
     }, [data]);
 
     const [update, { loading }] = useLazyQuery(gql`
-        query Login($name: String, $email: String!, $password: String!) {
-            login(payload: {
+        query Signup($name: String!, $email: String!, $password: String!) {
+            signup(payload: {
                 name: $name,
                 email: $email,
                 password: $password
@@ -36,7 +36,7 @@ export default function Signup() {
                 __typename
             }
         }`, {
-        onCompleted: ({ login: { token } }) => {
+        onCompleted: ({ signup: { token } }) => {
             setToken(token);
             navigate('/');
 

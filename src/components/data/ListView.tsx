@@ -51,7 +51,7 @@ export default function ListView() {
                         }
                     </div>
                 </div>
-                <div className="grow overflow-y-auto p-5">
+                <div className="grow overflow-y-auto px-5">
                     <UploadZone action={() => alert(1)}>
                         <Content />
                     </UploadZone>

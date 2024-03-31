@@ -141,6 +141,12 @@
           "context": {
             "pricing": "Change plan",
             "logout": "Logout"
+          },
+          "login": {
+            "label": "Login"
+          },
+          "signup": {
+            "label": "Signup"
           }
         }
       }
@@ -356,6 +362,12 @@
           "context": {
             "pricing": "Cambiar plan",
             "logout": "Cerrar sesión"
+          },
+          "login": {
+            "label": "Iniciar sesión"
+          },
+          "signup": {
+            "label": "Crear cuenta"
           }
         }
       }

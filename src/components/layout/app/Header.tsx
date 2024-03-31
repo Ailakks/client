@@ -79,7 +79,8 @@ function Guest() {
 
     return (
         <Fragment>
-            <a className="secondary" href="/login">{translate("layout.header.account.login.label")}</a>
+            <a className="secondary round" href="/login">{translate("layout.header.account.login.label")}</a>
+            <a className="secondary round" href="/login">{translate("layout.header.account.signup.label")}</a>
         </Fragment>
     )
 }

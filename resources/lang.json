@@ -1,5 +1,17 @@
 {
   "en_CA": {
+    "fallback": {
+      "204": {
+        "title": "No files yet!",
+        "body": "Upload some files to get started"
+      },
+      "404": {
+        "title": "Nothing could be found here!",
+        "back": {
+          "label": "Go back home"
+        }
+      }
+    },
     "popup": {
       "template": {
         "create": {
@@ -234,6 +246,18 @@
     }
   },
   "es_ES": {
+    "fallback": {
+      "204": {
+        "title": "No hay nada aún",
+        "body": "Sube algunos archivos para comenzar."
+      },
+      "404": {
+        "title": "No hemos encontrado nada",
+        "back": {
+          "label": "Volver al inicio"
+        }
+      }
+    },
     "popup": {
       "template": {
         "create": {

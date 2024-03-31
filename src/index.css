@@ -30,7 +30,7 @@ html {
     }
 
     a {
-        @apply text-white;
+        @apply text-blue-500;
     }
 
     button {

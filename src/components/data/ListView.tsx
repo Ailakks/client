@@ -24,7 +24,7 @@ export default function ListView() {
     return (
         <SelectedContext.Provider value={{ selected, setSelected }}>
             <div className="flex flex-col h-full space-y-5">
-                <div className="flex space-x-6 items-center justify-between">
+                <div className="flex space-x-6 items-center justify-between p-5">
                     <div>
                         <p>{translate("folder.path.title")}</p>
                     </div>

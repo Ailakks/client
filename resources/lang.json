@@ -146,30 +146,60 @@
       }
     },
     "auth": {
-      "title": "Login",
-      "quick": {
-        "google": "Continue with Google"
-      },
-      "tip": {
-        "forgot": "Forgot your password?",
-        "label": "No registered yet?",
-        "link": "Get started"
-      },
-      "form": {
-        "email": {
-          "label": "Email"
-        },
-        "password": {
-          "label": "Password"
-        },
-        "continue": {
-          "label": "Login",
-          "loading": "Decrypting..."
-        }
+      "password": {
+        "label": "Password"
       },
       "footer": {
         "terms": "Terms and conditions",
         "help": "Need help?"
+      },
+      "signup": {
+        "title": "Create account",
+        "quick": {
+          "google": "Continue with Google"
+        },
+        "tip": {
+          "label": "You already have an account?",
+          "link": "Login"
+        },
+        "form": {
+          "name": {
+            "label": "Name"
+          },
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Password"
+          },
+          "submit": {
+            "label": "Login",
+            "loading": "Decrypting..."
+          }
+        }
+      },
+      "login": {
+        "title": "Login",
+        "quick": {
+          "google": "Continue with Google"
+        },
+        "tip": {
+          "forgot": "Forgot your password?",
+          "label": "No registered yet?",
+          "link": "Get started"
+        },
+        "form": {
+          "email": {
+            "label": "Email"
+          },
+          "password": {
+            "label": "Password"
+          },
+          "submit": {
+            "label": "Login",
+            "loading": "Decrypting..."
+          }
+        }
       }
     },
     "pricing": {

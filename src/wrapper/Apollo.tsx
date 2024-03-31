@@ -10,7 +10,8 @@ export default function ApolloWrapper({ children }) {
         uri: import.meta.env.VITE_API_GRAPH_BASE_URL,
         cache: new InMemoryCache({ dataIdFromObject: false }),
         headers: {
-            'Authorization': `Bearer ${getToken()}`
+            'Authorization': `Bearer ${getToken()}`,
+            'Apollo-Require-Preflight': 'true'
         }
     });
 

@@ -9,6 +9,7 @@ import FolderPage from "./components/page/FolderPage";
 import Trash from "./components/page/Trash";
 import NotFoundFallback from "./components/page/fallback/NotFoundFallback";
 import PricingPage from "./components/page/PricingPage";
+import Signup from "./components/page/auth/Signup";
 
 export default function App() {
     const location = useLocation();
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/trash" element={<AppLayout><Trash /></AppLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+            <Route path="/signup" element={<AuthLayout><Signup /></AuthLayout>} />
             <Route path="/key" element={<AuthLayout><Key /></AuthLayout>} />
             <Route path="/logout" element={<AuthLayout><Logout /></AuthLayout>} />
 

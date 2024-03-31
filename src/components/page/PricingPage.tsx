@@ -41,7 +41,7 @@ export default function PricingPage() {
     ]
 
     return (
-        <div className="space-y-4">
+        <div className="p-5 space-y-4">
             <div className="bg-blue-500 px-10 py-20 text-center rounded-xl">
                 <h1>{translate("pricing.title")}</h1>
             </div>

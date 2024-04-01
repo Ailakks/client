@@ -17,9 +17,10 @@ function Fallback() {
 
     return (
         <div className="h-full flex flex-col justify-center items-center space-y-5">
-            <p>{translate("error.fallback.title")}</p>
-            <button className="main flex">
-                <p>{translate("error.fallback.retry.label")}</p>
+            <p>{translate("fallback.error.title")}</p>
+            <button onClick={resetBoundary} className="main inline rounded">
+                <i className="fa-regular fa-arrows-rotate" />
+                <p>{translate("fallback.error.retry.label")}</p>
             </button>
         </div>
     );

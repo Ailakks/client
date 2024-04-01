@@ -1,6 +1,12 @@
 {
   "en_CA": {
     "fallback": {
+      "error": {
+        "title": "Something went wrong",
+        "retry": {
+          "label": "Retry"
+        }
+      },
       "204": {
         "title": "No files yet!",
         "body": "Upload some files to get started"
@@ -247,6 +253,12 @@
   },
   "es_ES": {
     "fallback": {
+      "error": {
+        "title": "Algo no ha ido bien",
+        "retry": {
+          "label": "Intentar de nuevo"
+        }
+      },
       "204": {
         "title": "No hay nada aún",
         "body": "Sube algunos archivos para comenzar."

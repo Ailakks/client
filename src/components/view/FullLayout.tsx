@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorBoundaryWrapper from "../native/ErrorBoundaryWrapper";
 
 export default function FullLayout({ head, side, header, children }) {
     return (
@@ -16,7 +17,9 @@ export default function FullLayout({ head, side, header, children }) {
                     {side}
                 </aside>}
                 <main className="grow">
-                    {children}
+                    <ErrorBoundaryWrapper>
+                        {children}
+                    </ErrorBoundaryWrapper>
                 </main>
             </div>
         </div>

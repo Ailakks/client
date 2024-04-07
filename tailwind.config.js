@@ -6,25 +6,26 @@ module.exports = {
     theme: {
         colors: {
             black: {
-                DEFAULT: '#000000'
+                DEFAULT: '#464646'
             },
             transparent: {
                 DEFAULT: 'rgba(0,0,0,0)',
             },
             blue: {
-                500: '#1472ff',
-                700: '#0160F0',
-                900: '#182444'
+                300: '#c0efbc',
+                500: '#74E66A',
+                700: '#5EE65C',
+                900: '#50E55F'
             },
             white: {
-                DEFAULT: '#ffffff'
+                DEFAULT: '#343434'
             },
             gray: {
                 100: '#c2c0c9',
-                300: '#3a3a3b',
-                500: '#2c2c30',
-                700: '#18181b',
-                900: '#111111'
+                300: '#d0e5d0',
+                500: '#e5e4e4',
+                700: '#f3f3f3',
+                900: '#ececec'
             }
         },
         borderWidth: {

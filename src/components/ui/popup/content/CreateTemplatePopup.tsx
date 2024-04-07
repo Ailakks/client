@@ -7,7 +7,7 @@ import Form from "../../../query/Form";
 import Input from "../../../query/Input";
 import List, {ListContext} from "../../../list/List";
 import PopupWindows from "../style/PopupWindows";
-import {PopupContext} from "../../../../wrapper/ui/PopupProvider";
+import {PopupContext} from "../../../../wrapper/ui/Popup";
 import Checkbox from "../../../input/Checkbox";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 

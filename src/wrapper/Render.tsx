@@ -1,5 +1,5 @@
-import PopupRender from "./render/PopupRender";
-import QueueRender from "./render/ModalRender";
+import PopupRender from "./render/Popup";
+import QueueRender from "./render/Modal";
 
 export default function RenderProvider({ children }) {
     return (

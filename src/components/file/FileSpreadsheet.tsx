@@ -7,7 +7,7 @@ import Tab from "../native/Tab";
 import TabContent from "../native/TabContent";
 import IntegrationMeta from "../item/IntegrationMeta";
 import {ScopesDataContext} from "../context/Scopes";
-import {PopupContext} from "../../wrapper/ui/PopupProvider";
+import {PopupContext} from "../../wrapper/ui/Popup";
 import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
 import TabDefault from "../native/TabDefault";
 import {AxiosContext} from "../../wrapper/Axios";

@@ -1,5 +1,5 @@
 import {createContext, useContext} from "react";
-import {PopupContext} from "../../wrapper/ui/PopupProvider";
+import {PopupContext} from "../../wrapper/ui/Popup";
 import FilePopup from "../item/FilePopup";
 import {DownloadContext} from "../../wrapper/tool/Download";
 import {AxiosContext} from "../../wrapper/Axios";

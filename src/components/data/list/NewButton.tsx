@@ -5,7 +5,7 @@ import {QueryContext} from "../../query/Query";
 import {ListContext} from "../../list/List";
 import {clsx} from "clsx";
 import CreateFolderPopup from "../../ui/popup/content/CreateFolderPopup";
-import {PopupContext} from "../../../wrapper/ui/PopupProvider";
+import {PopupContext} from "../../../wrapper/ui/Popup";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenuItem from "../../context/ContextMenuItem";
 

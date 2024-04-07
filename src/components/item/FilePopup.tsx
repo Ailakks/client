@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {Category, Scope, ScopesDataContext} from "../context/Scopes";
 import ItemTool from "../data/list/ItemTool";
-import {PopupContext} from "../../wrapper/ui/PopupProvider";
+import {PopupContext} from "../../wrapper/ui/Popup";
 import Popup from "../ui/popup/Popup";
 import FilePreview from "../file/FilePreview";
 import Tabs from "../native/Tabs";

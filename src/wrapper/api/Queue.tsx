@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useState} from 'react';
 import {AxiosContext} from "../Axios";
-import {ModalContext} from "../ui/ModalProvider";
+import {ModalContext} from "../ui/Modal";
 import QueueList from "../../components/data/queue/QueueList";
 
 export const QueueContext = createContext(null);

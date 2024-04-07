@@ -2,7 +2,7 @@ import {createContext, useState} from 'react';
 
 export const PopupContext = createContext(null);
 
-export default function PopupProvider({ children }) {
+export default function PopupWrapper({ children }) {
     const [current, setCurrent] = useState(null);
 
     const close = () => {

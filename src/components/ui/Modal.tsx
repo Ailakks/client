@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {ModalContext} from "../../wrapper/ui/ModalProvider";
+import {ModalContext} from "../../wrapper/ui/Modal";
 
 export default function Modal({ title, children }) {
     const { setCurrent } = useContext(ModalContext);

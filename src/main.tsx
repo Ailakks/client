@@ -6,12 +6,12 @@ import {BrowserRouter} from "react-router-dom";
 import ApolloWrapper from "./wrapper/Apollo";
 import AccountWrapper from "./wrapper/Account";
 import LoggedWrapper from "./wrapper/Logged";
-import PopupProvider from "./wrapper/ui/PopupProvider";
+import PopupWrapper from "./wrapper/ui/Popup";
 import CookiesWrapper from "./wrapper/tool/Cookies";
 import AxiosWrapper from "./wrapper/Axios";
 import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
-import ModalProvider from "./wrapper/ui/ModalProvider";
+import ModalWrapper from "./wrapper/ui/Modal";
 import QueueWrapper from "./wrapper/api/Queue";
 import LanguageWrapper from "./wrapper/lang/LanguageWrapper";
 import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
@@ -27,15 +27,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                               <ApolloWrapper>
                                   <AccountWrapper>
                                       <LoggedWrapper>
-                                          <PopupProvider>
-                                              <ModalProvider>
+                                          <PopupWrapper>
+                                              <ModalWrapper>
                                                   <QueueWrapper>
                                                       <RenderProvider>
                                                           <App />
                                                       </RenderProvider>
                                                   </QueueWrapper>
-                                              </ModalProvider>
-                                          </PopupProvider>
+                                              </ModalWrapper>
+                                          </PopupWrapper>
                                       </LoggedWrapper>
                                   </AccountWrapper>
                               </ApolloWrapper>

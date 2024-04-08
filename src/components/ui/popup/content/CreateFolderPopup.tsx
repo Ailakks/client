@@ -9,9 +9,11 @@ import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/Popup";
 import {FolderContext} from "../../../data/list/NewButton";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {ToastContext, ToastType} from "../../../../wrapper/ui/Toast";
 
 export default function CreateFolderPopup() {
     const { translate } = useContext(LanguageContext);
+    const { add } = useContext(ToastContext);
 
     const { data: { getFolder: { id: parent } }, refetch } = useContext(FolderContext);
 
@@ -32,6 +34,8 @@ export default function CreateFolderPopup() {
             onCompleted: () => {
                 refetch();
                 close();
+
+                add(ToastType.CREATED, translate("toast.folder.create.success"));
             }
         }
     );

@@ -32,14 +32,14 @@ export default function ToastWrapper({ children }) {
         setList(list.filter(({ id: current }) => current !== id));
     }
 
-    const add = (title: string, type: ToastType) => {
+    const add = (type: ToastType, title: string) => {
         const toast = { date: Date.now(), type, title };
 
         setList([...list, toast]);
 
         setTimeout(() => {
             remove(toast);
-        }, 3000);
+        }, 6000);
     }
 
     return (

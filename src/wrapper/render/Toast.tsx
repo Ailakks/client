@@ -1,6 +1,6 @@
 import {Fragment, useContext} from 'react';
 import {ToastContext} from "../ui/Toast";
-import List from "../../components/list/List";
+import List, {ListContext} from "../../components/list/List";
 
 export default function ToastRender({ children }) {
     const { list } = useContext(ToastContext);
@@ -16,11 +16,16 @@ export default function ToastRender({ children }) {
 }
 
 function Toast() {
-    const { item: { title } } = useContext(ToastContext);
+    const { item: { id, title } } = useContext(ListContext);
+
+    const { remove } = useContext(ToastContext);
 
     return (
-        <div className="inline bg-blue-700 rounded-sm">
+        <div className="inline bg-blue-700 rounded-sm p-5">
             <p>{title}</p>
+            <button className="menu" onClick={() => remove(id)}>
+                <i className="fa-regular fa-xmark"/>
+            </button>
         </div>
     );
 }

@@ -1,17 +1,17 @@
 import {createContext, useState} from 'react';
 
-export const PopupContext = createContext(null);
+export const ToastContext = createContext(null);
 
-export default function PopupWrapper({ children }) {
-    const [current, setCurrent] = useState(null);
+export default function ToastWrapper({ children }) {
+    const [list, setList] = useState([]);
 
-    const close = () => {
-        setCurrent(null);
+    const clear = () => {
+        setList([]);
     }
 
     return (
-        <PopupContext.Provider value={{ current, setCurrent, close }}>
+        <ToastContext.Provider value={{ clear, list, setList }}>
             {children}
-        </PopupContext.Provider>
+        </ToastContext.Provider>
     );
 }

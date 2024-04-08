@@ -39,7 +39,7 @@ export default function ToastWrapper({ children }) {
 
         setTimeout(() => {
             remove(toast);
-        }, 6000);
+        }, 60000);
     }
 
     return (

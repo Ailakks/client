@@ -1,5 +1,12 @@
 {
   "en_CA": {
+    "toast": {
+      "folder": {
+        "create": {
+          "success": "The folder was created"
+        }
+      }
+    },
     "fallback": {
       "error": {
         "title": "Something went wrong",
@@ -252,6 +259,13 @@
     }
   },
   "es_ES": {
+    "toast": {
+      "folder": {
+        "create": {
+          "success": "La carpeta ha sido creada"
+        }
+      }
+    },
     "fallback": {
       "error": {
         "title": "Algo no ha ido bien",

@@ -33,7 +33,7 @@ export default function ToastWrapper({ children }) {
     }
 
     const add = (title: string, type: ToastType) => {
-        const toast = { date: Date.now(), title, type };
+        const toast = { date: Date.now(), type, title };
 
         setList([...list, toast]);
 

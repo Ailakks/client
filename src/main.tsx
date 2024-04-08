@@ -15,6 +15,7 @@ import ModalWrapper from "./wrapper/ui/Modal";
 import QueueWrapper from "./wrapper/api/Queue";
 import LanguageWrapper from "./wrapper/lang/LanguageWrapper";
 import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
+import ToastWrapper from "./wrapper/ui/Toast";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -28,13 +29,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                                   <AccountWrapper>
                                       <LoggedWrapper>
                                           <PopupWrapper>
-                                              <ModalWrapper>
-                                                  <QueueWrapper>
-                                                      <RenderProvider>
-                                                          <App />
-                                                      </RenderProvider>
-                                                  </QueueWrapper>
-                                              </ModalWrapper>
+                                              <ToastWrapper>
+                                                  <ModalWrapper>
+                                                      <QueueWrapper>
+                                                          <RenderProvider>
+                                                              <App />
+                                                          </RenderProvider>
+                                                      </QueueWrapper>
+                                                  </ModalWrapper>
+                                              </ToastWrapper>
                                           </PopupWrapper>
                                       </LoggedWrapper>
                                   </AccountWrapper>

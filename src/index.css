@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+@layer components {
+    html {
+        @apply bg-gray-900 overflow-x-hidden;
+    }
+
+    html, body, #root {
+        @apply h-full
+    }
+
+    h1 {
+        @apply text-white text-2xl;
+    }
+
+    h2 {
+        @apply text-white text-2xl;
+    }
+
+    p {
+        @apply text-white;
+    }
+
+    a {
+        @apply text-blue-500;
+    }
+
+    button {
+        @apply text-white cursor-pointer;
+    }
+
+    i {
+        @apply text-white;
+    }
+
+    th {
+        @apply text-white;
+    }
+
+    hr {
+        @apply border-gray-300;
+    }
+
+    button.icon {
+        @apply flex items-center space-x-3;
+    }
+
+    .navlink {
+        @apply rounded-lg px-5 py-2;
+    }
+
+    input {
+        @apply bg-gray-500 h-12 px-5 py-2 rounded-lg text-white outline-none focus:ring-2 ring-blue-500 transition-shadow duration-150 ease-out;
+    }
+
+    input.menu {
+        @apply bg-gray-700;
+    }
+
+    button.main,a.main, input[type = "submit"].main {
+        @apply bg-blue-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
+    }
+
+    button.secondary,a.secondary {
+        @apply bg-gray-500 h-10 px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
+    }
+
+    button.menu,a.menu {
+        @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
+    }
+
+    button.rounded,a.rounded {
+        @apply hover:bg-gray-300 rounded-full;
+    }
+
+    button.round,a.round {
+        @apply w-10 aspect-square hover:bg-gray-300 rounded-full;
+    }
+
+    button.context_item,a.context_item {
+        @apply flex items-center space-x-2 text-white px-4 py-2 cursor-pointer hover:bg-gray-300;
+    }
+
+    button.inline,a.inline, div.inline {
+        @apply flex items-center space-x-2;
+    }
+
+    .tab {
+        @apply px-6 py-1 rounded-full hover:bg-gray-500;
+    }
+}

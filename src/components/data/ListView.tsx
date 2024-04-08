@@ -64,7 +64,7 @@ export default function ListView() {
 function Content() {
     const { translate } = useContext(LanguageContext);
 
-    const { data: { getFolder: { files, folders} } } = useContext(QueryContext);
+    const { data: { getFolder: { files, folders } } } = useContext(QueryContext);
 
     const { selected, setSelected } = useContext(SelectedContext);
 
@@ -81,7 +81,7 @@ function Content() {
             return false;
         }
 
-        setSelected(files);
+        setSelected([...files, ...folders]);
     };
 
     if (files.length < 1 && folders.length < 1) {

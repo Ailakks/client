@@ -11,10 +11,9 @@ module.exports = {
             transparent: {
                 DEFAULT: 'rgba(0,0,0,0)',
             },
-            blue: {
-                500: '#1472ff',
-                700: '#0160F0',
-                900: '#182444'
+            orange: {
+                500: '#ff6600',
+                700: '#ff6600'
             },
             white: {
                 DEFAULT: '#ffffff'

@@ -25,7 +25,7 @@ function Item() {
         <tr className="flex justify-between items-center space-x-6">
             <td className="max-w-52 text-nowrap overflow-hidden text-ellipsis text-white">{name}</td>
             <td className="flex items-center space-x-4">
-                <progress className="w-20 h-1 rounded-full overflow-hidden [&::-webkit-progress-value]:bg-blue-500 [&::-webkit-progress-value]:rounded-full" value={progress} max={1} />
+                <progress className="w-20 h-1 rounded-full overflow-hidden [&::-webkit-progress-value]:bg-orange-500 [&::-webkit-progress-value]:rounded-full" value={progress} max={1} />
                 <p className="text-nowrap"><Size>{total}</Size></p>
             </td>
         </tr>

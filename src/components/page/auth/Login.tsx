@@ -72,7 +72,7 @@ export default function Login() {
                     <hr/>
                     <div className="text-center space-x-2">
                         <span className="text-white">{translate("auth.login.tip.label")}</span>
-                        <a className="text-blue-500" href="/signup">{translate("auth.login.tip.link")}</a>
+                        <a className="text-orange-500" href="/signup">{translate("auth.login.tip.link")}</a>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,7 @@ export default function Signup() {
                     <hr />
                     <div className="text-center space-x-2">
                         <span className="text-white">{translate("auth.signup.tip.label")}</span>
-                        <a className="text-blue-500" href="/login">{translate("auth.signup.tip.link")}</a>
+                        <a className="text-orange-500" href="/login">{translate("auth.signup.tip.link")}</a>
                     </div>
                 </div>
             </div>

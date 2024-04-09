@@ -30,7 +30,7 @@ html {
     }
 
     a {
-        @apply text-blue-500;
+        @apply text-orange-500;
     }
 
     button {
@@ -58,7 +58,7 @@ html {
     }
 
     input {
-        @apply bg-gray-500 h-12 px-5 py-2 rounded-lg text-white outline-none focus:ring-2 ring-blue-500 transition-shadow duration-150 ease-out;
+        @apply bg-gray-500 h-12 px-5 py-2 rounded-lg text-white outline-none focus:ring-2 ring-orange-500 transition-shadow duration-150 ease-out;
     }
 
     input.menu {
@@ -66,7 +66,7 @@ html {
     }
 
     button.main,a.main, input[type = "submit"].main {
-        @apply bg-blue-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-blue-700 transition-colors duration-150 ease-out;
+        @apply bg-orange-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-orange-700 transition-colors duration-150 ease-out;
     }
 
     button.secondary,a.secondary {

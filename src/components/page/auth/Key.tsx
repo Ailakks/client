@@ -38,7 +38,7 @@ export default function Key() {
                     <p>Your password is required to decrypt files.</p>
                     <hr />
                     <AuthForm />
-                    <a className="flex justify-center text-blue-700" href="">Forgot your password?</a>
+                    <a className="flex justify-center text-orange-700" href="">Forgot your password?</a>
                 </div>
             </div>
             <div className="flex justify-center space-x-16">

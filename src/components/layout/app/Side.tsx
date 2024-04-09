@@ -26,7 +26,7 @@ export default function AppSide() {
             {
                 pages.map(({ id, icon, path }, key) => {
                     return (
-                        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-blue-900')} to={path} end>
+                        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-orange-900')} to={path} end>
                             <i className={clsx(icon, 'w-5')} />
                             <p>{translate(`layout.navbar.page.${id}`)}</p>
                         </NavLink>

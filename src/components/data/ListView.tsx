@@ -155,7 +155,7 @@ function Item() {
     const {__typename} = item;
 
     return (
-        <tr className={clsx(checked && '!bg-blue-900', 'h-14 hover:bg-gray-700')} onClick={select}>
+        <tr className={clsx(checked && '!bg-orange-900', 'h-14 hover:bg-gray-700')} onClick={select}>
             <td>
                 <Checkbox status={checked} change={add}/>
             </td>

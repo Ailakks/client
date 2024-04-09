@@ -50,10 +50,7 @@ export default function Login() {
             <div className="h-full flex justify-center items-center">
                 <div className="w-80 space-y-5">
                     <h1>{translate("auth.login.title")}</h1>
-                    <button className="main w-full space-x-2">
-                        <i className="fa-brands fa-google"/>
-                        <span>{translate("auth.login.quick.google")}</span>
-                    </button>
+                    <GoogleButton />
                     <hr/>
                     <Form className="space-y-2" submit={(variables) => update({variables})}>
                         <Input name="email" type="email" className="main w-full"
@@ -81,5 +78,31 @@ export default function Login() {
                 <a href="">{translate("auth.footer.help")}</a>
             </div>
         </div>
+    )
+}
+
+
+function GoogleButton() {
+    const { translate } = useContext(LanguageContext);
+
+    const [update, { loading }] = useLazyQuery(gql`
+        query Generate {
+            generate {
+                url
+                __typename
+            }
+        }`, {
+        onCompleted: ({ generate: { url } }) => {
+            window.location.href = url;
+        },
+        onError: () => {
+        }
+    });
+
+    return (
+        <button className="main w-full space-x-2" onClick={update}>
+            <i className="fa-brands fa-google"/>
+            <span>{translate("auth.login.quick.google")}</span>
+        </button>
     )
 }

@@ -1,5 +1,4 @@
 import {createContext, Fragment, isValidElement} from "react";
-import {GridViewContext} from "../page/dash/view/GridRender";
 
 export const ListContext = createContext(null);
 

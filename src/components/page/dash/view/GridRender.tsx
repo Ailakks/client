@@ -1,7 +1,8 @@
-import {createContext, Fragment, isValidElement, useContext, useRef, useState} from "react";
+import {createContext, isValidElement, useContext, useRef, useState} from "react";
 import jsonpath from "jsonpath";
 import {LayoutContext} from "./GridView";
-
+import List from "../../../list/List";
+import {ImperativePanelHandle, Panel} from "react-resizable-panels";
 
 export const PathContext = createContext(null);
 export const GridViewContext = createContext(null);
@@ -13,29 +14,11 @@ export default function GridRender() {
     const next = jsonpath.value(layout, path);
 
     return (
-        <List list={next} component={<Element />} />
+        <List list={next} component={<Item />} />
     )
 }
 
-function List({ list, component }) {
-    let key = -1;
-
-    return list.map((item, index) => {
-        if (isValidElement(item)) {
-            key++;
-        }
-
-        return (
-            <Fragment key={index}>
-                <GridViewContext.Provider value={{ data, key, index }}>
-                    {component}
-                </GridViewContext.Provider>
-            </Fragment>
-        );
-    });
-}
-
-function Element() {
+function Item() {
     const { layout } = useContext(LayoutContext);
     const { path } = useContext(PathContext) ?? { path: "$" };
     const { index } = useContext(GridViewContext);
@@ -51,11 +34,11 @@ function Element() {
 
     if (isValid) {
         return (
-            <GridResizePanel innerRef={panelRef} onCollapse={() => setCollapsed(true)} onExpand={() => setCollapsed(false)}>
+            <Panel innerRef={panelRef} onCollapse={() => setCollapsed(true)} onExpand={() => setCollapsed(false)}>
                 <Widget panelRef={panelRef} collapsed={collapsed}>
                     {next}
                 </Widget>
-            </GridResizePanel>
+            </Panel>
         );
     }
 

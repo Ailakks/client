@@ -21,6 +21,6 @@ export default function Dashboard() {
     const widgets = [<ChatWidget />];
 
     return (
-        <GridView layout={layout} widgets={widgets} />
+        <GridView defaultLayout={layout} widgets={widgets} />
     )
 }

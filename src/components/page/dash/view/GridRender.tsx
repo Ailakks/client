@@ -7,7 +7,6 @@ import Widget from "../item/Widget";
 import GridResizePanel from "../resize/ResizePanel";
 
 export const PathContext = createContext(null);
-export const GridViewContext = createContext(null);
 
 export default function GridRender() {
     const { layout } = useContext(LayoutContext);

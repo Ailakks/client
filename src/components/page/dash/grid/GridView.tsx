@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import GridProvider from "../GridProvider";
 import {Panel, PanelGroup} from "react-resizable-panels";
 import GridRender from "./GridRender";
@@ -10,6 +10,10 @@ export const WidgetsContext = createContext(null);
 
 export default function GridView({ defaultLayout, widgets }) {
     const [layout, setLayout] = useState(defaultLayout);
+
+    useEffect(() => {
+        console.log(layout);
+    }, [layout]);
 
     return (
         <WidgetsContext.Provider value={{ widgets }}>

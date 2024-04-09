@@ -28,6 +28,7 @@ export default function Widget({ panelRef, collapsed, children }) {
     const add = (id) => {
         const component = getComponent(id);
         const current = jsonpath.value(layout, path);
+        console.log(path)
 
         const updatedLayout = [ ...layout ];
 
@@ -72,7 +73,7 @@ export default function Widget({ panelRef, collapsed, children }) {
             const root = updatedLayout[0];
             const first = root.row ?? root.column;
 
-            if (first.length < 1) {
+            if (first.length < 2) {
                 return;
             }
         }

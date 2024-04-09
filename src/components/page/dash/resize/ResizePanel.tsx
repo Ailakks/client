@@ -1,6 +1,7 @@
 import {Fragment, useContext} from "react";
-import {Panel, PanelResizeHandle} from "react-resizable-panels";
+import {Panel} from "react-resizable-panels";
 import {ListContext} from "../../../list/List";
+import ResizeHandle from "./ResizeHandle";
 
 export default function GridResizePanel({ innerRef, children }) {
     const { list, index } = useContext(ListContext);
@@ -10,7 +11,7 @@ export default function GridResizePanel({ innerRef, children }) {
             <Panel id={index} order={index} ref={innerRef} minSize={15} collapsible collapsedSize={8}>
                 {children}
             </Panel>
-            {list.length !== index + 1 && <PanelResizeHandle className="basis-2 bg-orange-500" />}
+            {list.length !== index + 1 && <ResizeHandle />}
         </Fragment>
     )
 }

@@ -1,8 +1,9 @@
 import {createContext, useState} from "react";
 import GridProvider from "../GridProvider";
-import {Panel, PanelGroup, PanelResizeHandle} from "react-resizable-panels";
+import {Panel, PanelGroup} from "react-resizable-panels";
 import GridRender from "./GridRender";
 import WidgetList from "../view/WidgetList";
+import ResizeHandle from "../resize/ResizeHandle";
 
 export const LayoutContext = createContext(null);
 export const WidgetsContext = createContext(null);
@@ -18,7 +19,7 @@ export default function GridView({ defaultLayout, widgets }) {
                         <Panel>
                             <GridRender />
                         </Panel>
-                        <PanelResizeHandle />
+                        <ResizeHandle />
                         <Panel defaultSize={5} minSize={5} maxSize={5} collapsible>
                             <WidgetList />
                         </Panel>

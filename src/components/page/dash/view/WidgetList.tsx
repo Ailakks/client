@@ -7,7 +7,7 @@ export default function WidgetList() {
     const { widgetList } = useContext(GridProviderContext);
 
     return (
-        <div className="space-y-2">
+        <div className="h-full bg-gray-500 space-y-2">
             <List list={widgetList}><Item /></List>
         </div>
     )

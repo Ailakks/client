@@ -1,5 +1,5 @@
 import {Route, Routes, useLocation} from "react-router-dom";
-import HomePage from "./components/page/HomePage";
+import Dashboard from "./components/page/Dashboard";
 import AuthLayout from "./components/layout/auth/Auth";
 import Login from "./components/page/auth/Login";
 import AppLayout from "./components/layout/app/App";
@@ -16,7 +16,7 @@ export default function App() {
 
     return (
         <Routes location={location}>
-            <Route path="/" element={<AppLayout><HomePage /></AppLayout>} />
+            <Route path="/" element={<AppLayout><Dashboard /></AppLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
             <Route path="/signup" element={<AuthLayout><Signup /></AuthLayout>} />

@@ -25,8 +25,6 @@ export default function Widget({ panelRef, collapsed, children }) {
         );
     }
 
-    const { name } = metadata;
-
     const add = (id) => {
         const component = getComponent(id);
         const current = jsonpath.value(layout, path);
@@ -102,7 +100,7 @@ export default function Widget({ panelRef, collapsed, children }) {
 
     return (
         <WidgetsContext.Provider value={{ metadata, setMetadata, replace }}>
-            <WidgetContext.Provider value={{ collapsed, add, replace, remove, collapse }}>
+            <WidgetContext.Provider value={{ metadata, collapsed, add, replace, remove, collapse }}>
                 <Window>
                     {children}
                 </Window>

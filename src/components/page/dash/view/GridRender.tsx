@@ -35,7 +35,7 @@ function Item() {
 
     if (isValid) {
         return (
-            <Panel innerRef={panelRef} onCollapse={() => setCollapsed(true)} onExpand={() => setCollapsed(false)}>
+            <Panel ref={panelRef} onCollapse={() => setCollapsed(true)} onExpand={() => setCollapsed(false)}>
                 <Widget panelRef={panelRef} collapsed={collapsed}>
                     {next}
                 </Widget>

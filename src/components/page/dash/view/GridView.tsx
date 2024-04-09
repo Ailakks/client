@@ -14,7 +14,6 @@ export default function GridView({ defaultLayout, widgets }) {
                 <GridProvider list={widgets}>
                     <PanelGroup direction="horizontal">
                         <Panel>
-                            <p>test</p>
                         </Panel>
                         <PanelResizeHandle />
                         <Panel defaultSize={5} minSize={5} maxSize={5} collapsible>

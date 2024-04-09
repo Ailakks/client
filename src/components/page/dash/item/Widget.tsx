@@ -1,5 +1,3 @@
-import style from './style.module.css';
-
 import {createContext, useContext, useState} from "react";
 import jsonpath from "jsonpath";
 

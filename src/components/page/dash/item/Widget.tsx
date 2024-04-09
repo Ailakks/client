@@ -1,9 +1,12 @@
-import {useContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import jsonpath from "jsonpath";
 import {LayoutContext, WidgetsContext} from "../view/GridView";
 import {PathContext} from "../view/GridRender";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
+import Window from "./Window";
+
+export const WidgetContext = createContext();
 
 export default function Widget({ panelRef, collapsed, children }) {
     const { layout, setLayout } = useContext(LayoutContext);
@@ -99,7 +102,11 @@ export default function Widget({ panelRef, collapsed, children }) {
 
     return (
         <WidgetsContext.Provider value={{ metadata, setMetadata, replace }}>
-            {!collapsed && children}
+            <WidgetContext.Provider value={{ collapsed, add, replace, remove, collapse }}>
+                <Window>
+                    {children}
+                </Window>
+            </WidgetContext.Provider>
         </WidgetsContext.Provider>
     )
 }

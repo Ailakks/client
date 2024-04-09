@@ -17,14 +17,9 @@ export default function App() {
     return (
         <Routes location={location}>
             <Route path="/" element={<AppLayout><HomePage /></AppLayout>} />
-            <Route path="/pricing" element={<AppLayout><PricingPage /></AppLayout>} />
-
-            <Route path="/folder/:id" element={<AppLayout><FolderPage /></AppLayout>} />
-            <Route path="/trash" element={<AppLayout><Trash /></AppLayout>} />
 
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
             <Route path="/signup" element={<AuthLayout><Signup /></AuthLayout>} />
-            <Route path="/key" element={<AuthLayout><Key /></AuthLayout>} />
             <Route path="/logout" element={<AuthLayout><Logout /></AuthLayout>} />
 
             <Route path="/*" element={<AuthLayout><NotFoundFallback /></AuthLayout>} />

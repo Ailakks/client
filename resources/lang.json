@@ -142,7 +142,7 @@
     },
     "layout": {
       "head": {
-        "name": "Bill Manager"
+        "name": "Grapho Studio"
       },
       "navbar": {
         "page": {
@@ -401,7 +401,7 @@
     },
     "layout": {
       "head": {
-        "name": "Gestor de facturas"
+        "name": "Grapho Studio"
       },
       "navbar": {
         "page": {

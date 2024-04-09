@@ -10,7 +10,7 @@ export default function Window({ children }) {
     const { name } = metadata;
 
     return (
-        <div className="h-full bg-gray-700">
+        <div className="h-full bg-gray-700 min-w-60 overflow-x-auto">
             <div className="flex justify-between items-center h-10 bg-gray-300 p-5">
                 <p>{name}</p>
                 <div className="space-x-5">

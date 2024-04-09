@@ -22,7 +22,6 @@ html {
     }
 
     h2 {
-        @apply text-white text-2xl;
     }
 
     p {

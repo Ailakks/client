@@ -15,21 +15,10 @@ export default function ContextMenu({ list, content, children }) {
             <PopoverContent>
                 <ContextMenuContext.Provider value={{ content }}>
                     <div className="bg-gray-500 rounded-xl min-w-52 divide-y-1 divide-gray-300 divide- overflow-hidden">
-                        <List list={Object.values(list)}><Category /></List>
+                        <List list={list}>{content}</List>
                     </div>
                 </ContextMenuContext.Provider>
             </PopoverContent>
         </Popover>
-    )
-}
-
-function Category() {
-    const { content } = useContext(ContextMenuContext);
-    const { item } = useContext(ListContext);
-
-    return (
-        <div>
-            <List list={Object.values(item)}>{content}</List>
-        </div>
     )
 }

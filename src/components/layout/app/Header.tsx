@@ -52,7 +52,7 @@ function Logged() {
     }
 
     return (
-        <ContextMenu list={paths} content={<Item/>}>
+        <ContextMenu list={paths} content={<Item />}>
             <button className="secondary rounded inline">
                 <i className="fa-regular fa-user" />
                 <p>{translate("layout.header.account.label")}</p>

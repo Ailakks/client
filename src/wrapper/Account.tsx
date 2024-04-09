@@ -10,6 +10,8 @@ export default function AccountWrapper({ children }) {
             currentUser {
                 id
                 name
+                surname
+                username
                 email {
                     value
                     verified
@@ -21,7 +23,7 @@ export default function AccountWrapper({ children }) {
                     id
                     name
                     displayName
-                    scopes
+                    permissions
                     __typename
                 }
                 __typename

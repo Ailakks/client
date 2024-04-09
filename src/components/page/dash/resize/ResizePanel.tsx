@@ -10,7 +10,7 @@ export default function GridResizePanel({ innerRef, children }) {
             <Panel id={index} order={index} ref={innerRef} minSize={15} collapsible collapsedSize={8}>
                 {children}
             </Panel>
-            {list.length !== index + 1 && <PanelResizeHandle />}
+            {list.length !== index + 1 && <PanelResizeHandle className="bg-orange-500 w-2" />}
         </Fragment>
     )
 }

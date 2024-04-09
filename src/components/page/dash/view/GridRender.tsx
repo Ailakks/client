@@ -4,6 +4,7 @@ import jsonpath from "jsonpath";
 import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
 import Widget from "../item/Widget";
+import GridResizePanel from "../resize/ResizePanel";
 
 export const PathContext = createContext(null);
 export const GridViewContext = createContext(null);

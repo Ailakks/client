@@ -36,11 +36,9 @@ function Item() {
     if (isValid) {
         return (
             <GridResizePanel>
-                <Panel ref={panelRef} onCollapse={() => setCollapsed(true)} onExpand={() => setCollapsed(false)}>
-                    <Widget panelRef={panelRef} collapsed={collapsed}>
-                        {next}
-                    </Widget>
-                </Panel>
+                <Widget panelRef={panelRef} collapsed={collapsed}>
+                    {next}
+                </Widget>
             </GridResizePanel>
         );
     }

@@ -95,4 +95,8 @@ html {
     .tab {
         @apply px-6 py-1 rounded-full hover:bg-gray-500;
     }
+
+    .resize-handle[data-resize-handle-active] {
+        @apply bg-orange-500;
+    }
 }

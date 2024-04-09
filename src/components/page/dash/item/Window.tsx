@@ -32,21 +32,26 @@ export default function Window({ children }) {
 }
 
 function AddButton() {
-    const { add } = useContext(WidgetContext);
-
     const { widgetList } = useContext(GridProviderContext);
 
     return (
-        <ContextMenu list={widgetList} content={<Item />}>
-            <i className="fa-regular fa-plus" />
-        </ContextMenu>
+        <button>
+            <ContextMenu list={widgetList} content={<Item />}>
+                <i className="fa-regular fa-plus" />
+            </ContextMenu>
+        </button>
     )
 }
 
 function Item() {
-    const { item: { icon, name } } = useContext(ListContext);
+    const { item: { id, icon, name } } = useContext(ListContext);
+
+    const { add } = useContext(WidgetContext);
 
     return (
-        <p>{name}</p>
+        <button className="w-full inline py-2 px-5 hover:bg-gray-300" onClick={() => add(id)}>
+            <i className={icon} />
+            <p>{name}</p>
+        </button>
     )
 }

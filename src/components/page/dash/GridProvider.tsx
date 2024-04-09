@@ -1,5 +1,5 @@
 import {createContext, useState} from "react";
-import {WidgetsContext} from "./view/GridView";
+import {WidgetsContext} from "./grid/GridView";
 
 export const GridProviderContext = createContext(null);
 

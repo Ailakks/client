@@ -1,5 +1,5 @@
 import ChatWidget from "./widgets/ChatWidget";
-import GridView from "./view/GridView";
+import GridView from "./grid/GridView";
 
 export default function Dashboard() {
     const layout = [

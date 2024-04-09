@@ -35,7 +35,7 @@ export default function FileSpreadsheet() {
     );
 
     return (
-        <IntegrationMeta name={translate("file.view.tab.spreadsheet.label")}>
+        <IntegrationMeta name={translate("file.grid.tab.spreadsheet.label")}>
             <Query request={request}>
                 <Body/>
             </Query>

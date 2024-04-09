@@ -1,5 +1,5 @@
 import {useContext, useEffect} from "react";
-import {WidgetsContext} from "../view/GridView";
+import {WidgetsContext} from "../grid/GridView";
 
 export default function ChatWidget() {
     const { metadata, setMetadata } = useContext(WidgetsContext);

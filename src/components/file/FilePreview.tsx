@@ -14,7 +14,7 @@ export default function FilePreview() {
     const request = useClient({ url: `file/${id}`, responseType: 'arraybuffer' });
 
     return (
-        <IntegrationMeta name={translate("file.view.tab.preview.label")}>
+        <IntegrationMeta name={translate("file.grid.tab.preview.label")}>
             <Request request={request}>
                 <Body />
             </Request>

@@ -1,7 +1,7 @@
 import {createContext, useContext, useState} from "react";
 import jsonpath from "jsonpath";
-import {LayoutContext, WidgetsContext} from "../view/GridView";
-import {PathContext} from "../view/GridRender";
+import {LayoutContext, WidgetsContext} from "../grid/GridView";
+import {PathContext} from "../grid/GridRender";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import Window from "./Window";

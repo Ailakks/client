@@ -12,7 +12,7 @@ export default function GridView({ defaultLayout, widgets }) {
     const [layout, setLayout] = useState(defaultLayout);
 
     useEffect(() => {
-        console.log(layout);
+
     }, [layout]);
 
     return (

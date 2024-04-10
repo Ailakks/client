@@ -65,22 +65,20 @@ export default function Widget({ panelRef, collapsed, children }) {
             const index = last.match(/\[(\d+)]/)[1];
             const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
-            const updated = jsonpath.value(layout, parent);
-            updated.splice(index, 1);
-
-            jsonpath.apply(updatedLayout, parent, () => updated);
-
             const root = updatedLayout[0];
             const first = root.row ?? root.column;
 
-            if (first.length < 2) {
+            if (first.length < 1) {
                 return;
             }
+
+            const updated = jsonpath.value(layout, parent);
+            updated.splice(index, 1);
+
+            setLayout(updatedLayout);
         }
 
-        jsonpath.apply(updatedLayout, path, () => current);
-
-        setLayout(updatedLayout);
+        //setLayout(updatedLayout);
     };
 
     const collapse = () => {

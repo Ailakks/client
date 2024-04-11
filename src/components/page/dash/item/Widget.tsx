@@ -61,18 +61,19 @@ export default function Widget({ panelRef, collapsed, children }) {
         current.splice(index, 1);
 
         if (current.length < 1) {
-            const array = path.split('.');
-
-            array.pop();
-
-            const last = array.pop();
-            const index = last.match(/\[(\d+)]/)[1];
-            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
-
-            const root = updatedLayout[0];
-            const first = root.row ?? root.column;
+            const parent = up(path);
 
             const updated = jsonpath.value(layout, parent);
+
+            //
+            const path2 = up(path);
+
+            const value = jsonpath.value(updatedLayout, path2);
+            if (value.length <= 1) {
+                jsonpath.apply(updatedLayout, path2, () => updated);
+            }
+            //
+
             updated.splice(index, 1);
 
             jsonpath.apply(updatedLayout, parent, () => updated);
@@ -80,6 +81,16 @@ export default function Widget({ panelRef, collapsed, children }) {
 
         setLayout(updatedLayout);
     };
+
+    const up = (path) => {
+        const array = path.split('.');
+
+        array.pop();
+
+        const last = array.pop();
+        //const index = last.match(/\[(\d+)]/)[1];
+        return [...array, last.replace(/\[\d+]/g, '')].join('.');
+    }
 
     const sanitize = (array) => {
         return array.reduce((result, item) => {

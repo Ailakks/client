@@ -63,16 +63,27 @@ export default function Widget({ panelRef, collapsed, children }) {
 
         // Removes emtpy arrays
 
-        const parent = jsonpath.value(updatedLayout, up(path));
-        const flush = parent.filter(({ row, column }) => (row ?? column).length > 0);
-        const simplify = flush.map(({ row, column }) => {
-            if (row ?? column) {
-                const current = row ?? column;
+        const upPath = up(path);
 
-                if (current.length <= 1) {
-                    return current[0];
-                }
+        if (!upPath) {
+            setLayout(current);
+
+            return;
+        }
+
+        const parent = jsonpath.value(updatedLayout, upPath);
+
+        const flush = parent.filter(({ row, column }) => (row ?? column).length > 0);
+        const simplify = flush.map((item) => {
+            const { row, column } = item;
+
+            const current = row ?? column;
+
+            if (current && current.length <= 1) {
+                return current[0];
             }
+
+            return item;
         });
 
         jsonpath.apply(updatedLayout, up(path), () => simplify);
@@ -92,6 +103,10 @@ export default function Widget({ panelRef, collapsed, children }) {
 
     const up = (path) => {
         const array = path.split('.');
+
+        if (array.length <= 2) {
+            return false;
+        }
 
         array.pop();
 

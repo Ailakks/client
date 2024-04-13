@@ -87,11 +87,18 @@ export default function Widget({ panelRef, collapsed, children }) {
     }
 
     const getSize = (json) => {
-        return Array.isArray(json) ?
-            json.reduce((count, item) => count + getSize(item), 0) :
-            typeof json === 'object' && json !== null ?
-                Object.values(json).reduce((count, value) => count + getSize(value), Object.keys(json).length) :
-                1;
+        if (Array.isArray(json)) {
+            return json.reduce((count, item) => count + getSize(item), 0);
+        } else if (typeof json === 'object' && json !== null) {
+            let count = 0;
+            Object.keys(json).forEach(key => {
+                count++;
+                count += getSize(json[key]);
+            });
+            return count;
+        } else {
+            return 1;
+        }
     }
 
     const collapse = () => {

@@ -5,6 +5,7 @@ import {PathContext} from "../grid/GridRender";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import Window from "./Window";
+import {isArray} from "@apollo/client/utilities";
 
 export const WidgetContext = createContext();
 
@@ -86,19 +87,24 @@ export default function Widget({ panelRef, collapsed, children }) {
         setLayout(updatedLayout);
     }
 
-    const getSize = (json) => {
-        if (Array.isArray(json)) {
-            return json.reduce((count, item) => count + getSize(item), 0);
-        } else if (typeof json === 'object' && json !== null) {
-            let count = 0;
-            Object.keys(json).forEach(key => {
-                count++;
-                count += getSize(json[key]);
-            });
-            return count;
-        } else {
-            return 1;
+    const getSize = (item) => {
+        let total = 0;
+
+        const { row, column } = item;
+
+        const current = row ?? column;
+
+        if (!current) {
+            return;
         }
+
+        if (isArray(current)) {
+            total += current.length;
+        }
+
+        current.forEach((item) => getSize(item));
+
+        return total;
     }
 
     const collapse = () => {

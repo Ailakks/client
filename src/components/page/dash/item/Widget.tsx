@@ -49,25 +49,16 @@ export default function Widget({ panelRef, collapsed, children }) {
         let updatedLayout = [ ...layout ];
 
         const current = jsonpath.value(updatedLayout, path);
+        current.splice(index, 1);
+
+        const parent = jsonpath.value(updatedLayout, up(path));
+        const flush = current.filter(({ row, column }) => (row ?? column).length > 0);
+        jsonpath.apply(updatedLayout, path, () => flush);
 
         const root = updatedLayout[0].row ?? updatedLayout[0].column;
 
-        console.log(updatedLayout)
-
         if (root.length <= 1) {
             return;
-        }
-
-        current.splice(index, 1);
-
-        const child = jsonpath.value(updatedLayout, path);
-        const parent = jsonpath.value(updatedLayout, up(path));
-        const flush = child.filter(({ row, column }) => (row ?? column).length > 0);
-
-        jsonpath.apply(updatedLayout, path, () => flush);
-
-        if (parent.length <= 1) {
-            jsonpath.apply(updatedLayout, up(path), () => child);
         }
 
         setLayout(updatedLayout);

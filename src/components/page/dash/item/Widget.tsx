@@ -46,82 +46,52 @@ export default function Widget({ panelRef, collapsed, children }) {
     };
 
     const remove = () => {
-        let updatedLayout = [ ...layout ];
+        const updatedLayout = [ ...layout ];
+        const current = jsonpath.value(layout, path);
 
-        const root = updatedLayout[0].row ?? updatedLayout[0].column;
-
-        // Checks if there's only one item
-
-        if (root.length <= 1) {
+        if (!current) {
             return;
         }
 
-        // Remove items
-
-        const current = jsonpath.value(updatedLayout, path);
         current.splice(index, 1);
 
-        // Removes emtpy arrays
+        const size = getSize(updatedLayout);
 
-        const upPath = up(path);
+        console.log(size)
 
-        if (!upPath) {
-            setLayout(current);
+        if (current.length < 1) {
+            const array = path.split('.');
 
-            return;
-        }
+            array.pop();
 
-        const parent = jsonpath.value(updatedLayout, upPath);
+            const last = array.pop();
+            const index = last.match(/\[(\d+)]/)[1];
+            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
-        const flush = parent.filter(({ row, column }) => (row ?? column).length > 0);
-        const simplify = flush.map((item) => {
-            const { row, column } = item;
+            const updated = jsonpath.value(layout, parent);
+            updated.splice(index, 1);
 
-            const current = row ?? column;
+            jsonpath.apply(updatedLayout, parent, () => updated);
 
-            if (current && current.length <= 1) {
-                return current[0];
+            const root = updatedLayout[0];
+            const first = root.row ?? root.column;
+
+            if (first.length < 1) {
+                return;
             }
-
-            return item;
-        });
-
-        jsonpath.apply(updatedLayout, up(path), () => simplify);
-
-        // Simplifies JSON
-
-        // Checks if there's only one item
-
-        if (root.length <= 1) {
-            return;
         }
 
-        // Apply
+        jsonpath.apply(updatedLayout, path, () => current);
 
         setLayout(updatedLayout);
-    };
-
-    const up = (path) => {
-        const array = path.split('.');
-
-        if (array.length <= 2) {
-            return false;
-        }
-
-        array.pop();
-
-        const last = array.pop();
-        //const index = last.match(/\[(\d+)]/)[1];
-        return [...array, last.replace(/\[\d+]/g, '')].join('.');
     }
 
-    const sanitize = (array) => {
-        return array.reduce((result, item) => {
-            if (Array.isArray(item) && item.length === 1) {
-                return result.concat(Array.isArray(item[0]) ? item[0] : item);
-            }
-            return result.concat(item);
-        }, []);
+    const getSize = (json) => {
+        return Array.isArray(json) ?
+            json.reduce((count, item) => count + getSize(item), 0) :
+            typeof json === 'object' && json !== null ?
+                Object.values(json).reduce((count, value) => count + getSize(value), Object.keys(json).length) :
+                1;
     }
 
     const collapse = () => {

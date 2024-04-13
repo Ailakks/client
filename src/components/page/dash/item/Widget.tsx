@@ -46,42 +46,41 @@ export default function Widget({ panelRef, collapsed, children }) {
     };
 
     const remove = () => {
-        let updatedLayout = [ ...layout ];
+        const updatedLayout = [ ...layout ];
+        const current = jsonpath.value(layout, path);
 
-        const current = jsonpath.value(updatedLayout, path);
-        current.splice(index, 1);
-
-        const parent = jsonpath.value(updatedLayout, up(path));
-        const flush = current.filter(({ row, column }) => (row ?? column).length > 0);
-        jsonpath.apply(updatedLayout, path, () => flush);
-
-        const root = updatedLayout[0].row ?? updatedLayout[0].column;
-
-        if (root.length <= 1) {
+        if (!current) {
             return;
         }
 
+        current.splice(index, 1);
+
+        if (current.length < 1) {
+            const array = path.split('.');
+
+            array.pop();
+
+            const last = array.pop();
+            const index = last.match(/\[(\d+)]/)[1];
+            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+
+            const updated = jsonpath.value(layout, parent);
+            updated.splice(index, 1);
+
+            jsonpath.apply(updatedLayout, parent, () => updated);
+
+            const root = updatedLayout[0];
+            const first = root.row ?? root.column;
+
+            if (first.length < 1) {
+                return;
+            }
+        }
+
+        jsonpath.apply(updatedLayout, path, () => current);
+
         setLayout(updatedLayout);
     };
-
-    const up = (path) => {
-        const array = path.split('.');
-
-        array.pop();
-
-        const last = array.pop();
-        //const index = last.match(/\[(\d+)]/)[1];
-        return [...array, last.replace(/\[\d+]/g, '')].join('.');
-    }
-
-    const sanitize = (array) => {
-        return array.reduce((result, item) => {
-            if (Array.isArray(item) && item.length === 1) {
-                return result.concat(Array.isArray(item[0]) ? item[0] : item);
-            }
-            return result.concat(item);
-        }, []);
-    }
 
     const collapse = () => {
         if (!panelRef.current) {

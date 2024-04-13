@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, isValidElement, useContext, useState} from "react";
 import jsonpath from "jsonpath";
 import {LayoutContext, WidgetsContext} from "../grid/GridView";
 import {PathContext} from "../grid/GridRender";
@@ -50,15 +50,16 @@ export default function Widget({ panelRef, collapsed, children }) {
         const updatedLayout = [ ...layout ];
         const current = jsonpath.value(layout, path);
 
-        if (!current) {
+        const size = getSize(updatedLayout);
+        console.log("size:" + size)
+
+        if (size < 1) {
             return;
         }
 
+        console.log(10)
+
         current.splice(index, 1);
-
-        const size = getSize(updatedLayout);
-
-        console.log(size)
 
         if (current.length < 1) {
             const array = path.split('.');
@@ -90,19 +91,22 @@ export default function Widget({ panelRef, collapsed, children }) {
     const getSize = (item) => {
         let total = 0;
 
-        const { row, column } = item;
+        item.forEach((child) => {
+            const { row, column } = child;
+            const current = row ?? column;
 
-        const current = row ?? column;
+            if (!current) {
+                return;
+            }
 
-        if (!current) {
-            return;
-        }
+            if (Array.isArray(current)) {
+                const filter = current.filter((item) => isValidElement(item));
 
-        if (isArray(current)) {
-            total += current.length;
-        }
+                total += filter.length;
+            }
 
-        current.forEach((item) => getSize(item));
+            getSize(current);
+        })
 
         return total;
     }

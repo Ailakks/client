@@ -48,21 +48,38 @@ export default function Widget({ panelRef, collapsed, children }) {
     const remove = () => {
         let updatedLayout = [ ...layout ];
 
+        const root = updatedLayout[0].row ?? updatedLayout[0].column;
+
+        // Checks if there's only one item
+
+        if (root.length <= 1) {
+            return;
+        }
+
         // Remove items
 
         const current = jsonpath.value(updatedLayout, path);
         current.splice(index, 1);
 
-        // Simplifies JSON
+        // Removes emtpy arrays
 
         const parent = jsonpath.value(updatedLayout, up(path));
         const flush = parent.filter(({ row, column }) => (row ?? column).length > 0);
+        const simplify = flush.map(({ row, column }) => {
+            if (row ?? column) {
+                const current = row ?? column;
 
-        jsonpath.apply(updatedLayout, up(path), () => flush);
+                if (current.length <= 1) {
+                    return current[0];
+                }
+            }
+        });
+
+        jsonpath.apply(updatedLayout, up(path), () => simplify);
+
+        // Simplifies JSON
 
         // Checks if there's only one item
-
-        const root = updatedLayout[0].row ?? updatedLayout[0].column;
 
         if (root.length <= 1) {
             return;

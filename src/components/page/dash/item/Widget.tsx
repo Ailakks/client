@@ -51,13 +51,10 @@ export default function Widget({ panelRef, collapsed, children }) {
         const current = jsonpath.value(layout, path);
 
         const size = getSize(updatedLayout);
-        console.log("size:" + size)
 
-        if (size < 1) {
+        if (size <= 1) {
             return;
         }
-
-        console.log(10)
 
         current.splice(index, 1);
 
@@ -99,13 +96,11 @@ export default function Widget({ panelRef, collapsed, children }) {
                 return;
             }
 
-            if (Array.isArray(current)) {
-                const filter = current.filter((item) => isValidElement(item));
+            const filter = current.filter((item) => isValidElement(item));
 
-                total += filter.length;
-            }
+            total += filter.length;
 
-            getSize(current);
+            total += getSize(current);
         })
 
         return total;

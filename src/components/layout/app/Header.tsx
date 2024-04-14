@@ -12,8 +12,10 @@ export default function AppHeader() {
     const { data } = useContext(AccountContext);
 
     return (
-        <div className="flex items-center">
-            {data && <input className="main" placeholder={translate("layout.header.search.label")}/>}
+        <div className="flex items-center h-full bg-gray-700 p-5">
+            <h2 className="text-nowrap">
+                <a className="text-white" href="/">{translate("layout.header.name")}</a>
+            </h2>
             <div className="flex w-full justify-end space-x-4">
                 <Language />
                 {data ? <Logged /> : <Guest />}

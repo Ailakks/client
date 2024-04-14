@@ -9,7 +9,7 @@ export const LanguageContext = createContext(null);
 export default function LanguageWrapper({ children }) {
     const { setCookie } = useContext(CookiesContext);
 
-    const change = ({ id }) => {
+    const set = ({ id }) => {
         setCookie("language", id);
 
         window.location.reload();
@@ -49,7 +49,7 @@ export default function LanguageWrapper({ children }) {
     }
 
     return (
-        <LanguageContext.Provider value={{ locales, language, translate }}>
+        <LanguageContext.Provider value={{ locales, language, translate, set }}>
             {children}
         </LanguageContext.Provider>
     );

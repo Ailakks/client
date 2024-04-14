@@ -64,7 +64,7 @@ export default function Droppable({ action, children }) {
     }
 
     return (
-        <div className="relative" ref={wrapper} onDragOver={dragStart}>
+        <div className="relative h-full" ref={wrapper} onDragOver={dragStart}>
             <div className="absolute bg-orange-500 opacity-50" style={border.styles} draggable onDragOver={(event) => event.preventDefault()} onDragLeave={dragEnd} onDrop={drop} />
             {children}
         </div>

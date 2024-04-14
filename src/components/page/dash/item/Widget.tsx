@@ -6,6 +6,7 @@ import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import Window from "./Window";
 import {isArray} from "@apollo/client/utilities";
+import WidgetDroppable from "./WidgetDroppable";
 
 export const WidgetContext = createContext();
 
@@ -125,9 +126,11 @@ export default function Widget({ panelRef, collapsed, children }) {
     return (
         <WidgetsContext.Provider value={{ metadata, setMetadata, replace }}>
             <WidgetContext.Provider value={{ metadata, collapsed, add, replace, remove, collapse }}>
-                <Window>
-                    {children}
-                </Window>
+                <WidgetDroppable>
+                    <Window>
+                        {children}
+                    </Window>
+                </WidgetDroppable>
             </WidgetContext.Provider>
         </WidgetsContext.Provider>
     )

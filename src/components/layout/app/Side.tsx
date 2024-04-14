@@ -2,37 +2,40 @@ import {NavLink} from "react-router-dom";
 import { clsx } from 'clsx';
 import {useContext} from "react";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import List, {ListContext} from "../../list/List";
 
 const pages = [
     {
-        id: 'home',
+        id: 'dashboard',
         path: '/',
-        name: 'Home',
+        name: 'Dashboard',
         icon: 'fa-regular fa-house'
     },
     {
-        id: 'trash',
-        path: '/trash',
-        name: 'Trash',
-        icon: 'fa-regular fa-trash'
+        id: 'account',
+        path: '/account',
+        name: 'Account',
+        icon: 'fa-regular fa-user'
     }
 ]
 
 export default function AppSide() {
-    const { translate } = useContext(LanguageContext);
-
     return (
         <div className="flex flex-col h-full bg-gray-700">
-            {
-                pages.map(({ id, icon, path }, key) => {
-                    return (
-                        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-orange-900')} to={path} end>
-                            <i className={clsx(icon, 'w-5')} />
-                            <p>{translate(`layout.navbar.page.${id}`)}</p>
-                        </NavLink>
-                    )
-                })
-            }
+            <List list={pages}><Item /></List>
         </div>
+    )
+}
+
+function Item() {
+    const { translate } = useContext(LanguageContext);
+
+    const { key, item: { id, path, icon } } = useContext(ListContext);
+
+    return (
+        <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-orange-900')} to={path} end>
+            <i className={clsx(icon, 'w-5')} />
+            <p>{translate(`layout.navbar.page.${id}`)}</p>
+        </NavLink>
     )
 }

@@ -14,11 +14,41 @@ const pages = [
                 path: '/',
                 name: 'Dashboard',
                 icon: 'fa-regular fa-house'
+            }
+        ]
+    },
+    {
+        id: 'widgets',
+        name: 'Widgets',
+        list: [
+            {
+                id: 'marketplace',
+                path: '/marketplace',
+                name: 'Marketplace',
+                icon: 'fa-regular fa-house'
             },
             {
-                id: 'account',
-                path: '/account',
-                name: 'Account',
+                id: 'widgets',
+                path: '/widgets',
+                name: 'Widgets',
+                icon: 'fa-regular fa-user'
+            }
+        ]
+    },
+    {
+        id: 'settings',
+        name: 'Settings',
+        list: [
+            {
+                id: 'profiles',
+                path: '/profiles',
+                name: 'Profiles',
+                icon: 'fa-regular fa-house'
+            },
+            {
+                id: 'settings',
+                path: '/settings',
+                name: 'Settings',
                 icon: 'fa-regular fa-user'
             }
         ]

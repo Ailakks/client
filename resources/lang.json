@@ -30,6 +30,7 @@
         }
       },
       "header": {
+        "name": "Grapho Studio",
         "language": {
           "label": "Lenguaje",
           "context": {
@@ -43,6 +44,7 @@
           },
           "label": "Mi cuenta",
           "context": {
+            "settings": "Configuración",
             "pricing": "Cambiar plan",
             "logout": "Cerrar sesión"
           },

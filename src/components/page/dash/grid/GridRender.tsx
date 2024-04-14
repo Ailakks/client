@@ -48,7 +48,7 @@ function Item() {
 
     if (isValid) {
         return (
-            <GridResizePanel>
+            <GridResizePanel innerRef={panelRef}>
                 <Widget panelRef={panelRef} collapsed={collapsed}>
                     {getComponent(next)}
                 </Widget>

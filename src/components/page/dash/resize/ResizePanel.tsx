@@ -8,7 +8,7 @@ export default function GridResizePanel({ innerRef, children }) {
 
     return (
         <Fragment>
-            <Panel id={index} order={index} ref={innerRef} minSize={5}>
+            <Panel id={index} order={index} ref={innerRef} minSize={15} collapsedSize={8} collapsible>
                 {children}
             </Panel>
             {list.length !== index + 1 && <ResizeHandle />}

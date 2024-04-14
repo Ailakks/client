@@ -103,10 +103,6 @@ export default function Widget({ panelRef, collapsed, children }) {
     }
 
     const collapse = () => {
-        if (!panelRef.current) {
-            return;
-        }
-
         if (panelRef.current.isCollapsed()) {
             panelRef.current.expand();
         } else {

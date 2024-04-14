@@ -25,13 +25,13 @@ const pages = [
                 id: 'marketplace',
                 path: '/marketplace',
                 name: 'Marketplace',
-                icon: 'fa-regular fa-house'
+                icon: 'fa-regular fa-store'
             },
             {
                 id: 'widgets',
                 path: '/widgets',
                 name: 'Widgets',
-                icon: 'fa-regular fa-user'
+                icon: 'fa-regular fa-window-restore'
             }
         ]
     },
@@ -43,13 +43,13 @@ const pages = [
                 id: 'profiles',
                 path: '/profiles',
                 name: 'Profiles',
-                icon: 'fa-regular fa-house'
+                icon: 'fa-regular fa-user'
             },
             {
                 id: 'settings',
                 path: '/settings',
                 name: 'Settings',
-                icon: 'fa-regular fa-user'
+                icon: 'fa-regular fa-gear'
             }
         ]
     }

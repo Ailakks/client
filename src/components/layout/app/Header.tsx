@@ -31,9 +31,9 @@ function Logged() {
 
     const list = [
         {
-            id: 'settings',
+            id: 'pricing',
             icon: 'fa-regular fa-user',
-            href: '/plan'
+            href: '/pricing'
         },
         {
             id: 'logout',

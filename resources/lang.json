@@ -23,10 +23,16 @@
       },
       "navbar": {
         "section": {
-          "home": "Inicio"
+          "home": "Inicio",
+          "widgets": "Widgets",
+          "settings": "Ajustes"
         },
         "page": {
-          "dashboard": "Panel de control"
+          "dashboard": "Panel de control",
+          "marketplace": "Marketplace",
+          "widgets": "Mis widgets",
+          "profiles": "Perfiles",
+          "settings": "Configuración"
         }
       },
       "header": {

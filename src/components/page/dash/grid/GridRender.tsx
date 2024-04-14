@@ -8,6 +8,7 @@ import GridResizePanel from "../resize/ResizePanel";
 import {GridProviderContext} from "../GridProvider";
 
 export const PathContext = createContext(null);
+export const GridPanelConext = createContext(null);
 
 export default function GridRender() {
     const { layout } = useContext(LayoutContext);
@@ -38,7 +39,7 @@ function Item() {
     const next = jsonpath.value(layout, child);
     const isValid = typeof next == "string";
 
-    const panelRef = useRef<ImperativePanelHandle>(null);
+    const ref = useRef<ImperativePanelHandle>(null);
 
     const [collapsed, setCollapsed] = useState(false);
 
@@ -48,11 +49,13 @@ function Item() {
 
     if (isValid) {
         return (
-            <GridResizePanel innerRef={panelRef}>
-                <Widget panelRef={panelRef} collapsed={collapsed}>
-                    {getComponent(next)}
-                </Widget>
-            </GridResizePanel>
+            <GridPanelConext.Provider value={{ ref }}>
+                <GridResizePanel>
+                    <Widget collapsed={collapsed}>
+                        {getComponent(next)}
+                    </Widget>
+                </GridResizePanel>
+            </GridPanelConext.Provider>
         );
     }
 
@@ -73,13 +76,15 @@ function Item() {
         }
 
         return (
-            <PathContext.Provider value={{ path: newPath }}>
-                <GridResizePanel>
-                    <PanelGroup direction={isRow ? "vertical" : "horizontal"}>
-                        <GridRender />
-                    </PanelGroup>
-                </GridResizePanel>
-            </PathContext.Provider>
+            <GridPanelConext.Provider value={{ ref }}>
+                <PathContext.Provider value={{ path: newPath }}>
+                    <GridResizePanel>
+                        <PanelGroup direction={isRow ? "vertical" : "horizontal"}>
+                            <GridRender />
+                        </PanelGroup>
+                    </GridResizePanel>
+                </PathContext.Provider>
+            </GridPanelConext.Provider>
         );
     }
 

@@ -1,17 +1,19 @@
 import {createContext, isValidElement, useContext, useState} from "react";
 import jsonpath from "jsonpath";
 import {LayoutContext} from "../grid/GridView";
-import {PathContext} from "../grid/GridRender";
+import {GridPanelConext, PathContext} from "../grid/GridRender";
 import {ListContext} from "../../../list/List";
 import Window from "./Window";
 import WidgetDroppable from "./WidgetDroppable";
 
 export const WidgetDataContext = createContext();
 
-export default function Widget({ panelRef, collapsed, children }) {
+export default function Widget({ collapsed, children }) {
     const { layout, setLayout } = useContext(LayoutContext);
     const { path } = useContext(PathContext);
     const { index } = useContext(ListContext);
+
+    const { ref } = useContext(GridPanelConext);
 
     const [metadata, setMetadata] = useState(null);
 
@@ -103,10 +105,14 @@ export default function Widget({ panelRef, collapsed, children }) {
     }
 
     const collapse = () => {
-        if (panelRef.current.isCollapsed()) {
-            panelRef.current.expand();
-        } else {
-            panelRef.current.collapse();
+        try {
+            if (ref.current.isCollapsed()) {
+                ref.current.expand();
+            } else {
+                ref.current.collapse();
+            }
+        } catch (error) {
+
         }
     };
 

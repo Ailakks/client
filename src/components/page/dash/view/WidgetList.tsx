@@ -24,6 +24,26 @@ export default function WidgetList() {
 
 function Item() {
     const { item } = useContext(ListContext);
+    const { layout } = useContext(LayoutContext);
+
+    const serialize = (data) => {
+        const list = [];
+
+        function traverse(object) {
+            if (Array.isArray(object)) {
+                object.forEach(item => traverse(item));
+            } else if (typeof object === 'object') {
+                if (object.row) traverse(object.row);
+                if (object.column) traverse(object.column);
+            } else if (typeof object === 'string') {
+                list.push(object);
+            }
+        }
+
+        traverse(data);
+
+        return list;
+    }
 
     const { name, icon } = item;
 

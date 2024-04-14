@@ -37,6 +37,10 @@
       },
       "header": {
         "name": "Grapho Studio",
+        "roles": {
+          "admin": "Administrador",
+          "default": "Usuario"
+        },
         "language": {
           "label": "Lenguaje",
           "context": {

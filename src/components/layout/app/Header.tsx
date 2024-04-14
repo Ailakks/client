@@ -27,7 +27,7 @@ export default function AppHeader() {
 function Logged() {
     const { translate } = useContext(LanguageContext);
 
-    const { data: { currentUser: { name } } } = useContext(AccountContext);
+    const { data: { currentUser: { name, roles } } } = useContext(AccountContext);
 
     const list = [
         {
@@ -52,7 +52,7 @@ function Logged() {
             </ContextMenu>
             <div>
                 <p>{translate("layout.header.account.banner.hello", [name])}</p>
-                <p>Admin</p>
+                <p>{roles.length > 0 ? translate(`layout.header.roles.${roles[0].name}`) : translate(`layout.header.roles.default`)}</p>
             </div>
         </Fragment>
     )

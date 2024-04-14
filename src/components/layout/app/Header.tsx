@@ -29,32 +29,21 @@ function Logged() {
 
     const { data: { currentUser: { name } } } = useContext(AccountContext);
 
-    const Category = {
-        ACCOUNT: "account",
-    }
-
-    const Path = {
-        PRICING: "PRICING",
-        LOGOUT: "logout"
-    }
-
-    const paths = {
-        [Category.ACCOUNT]: {
-            [Path.PRICING]: {
-                id: 'pricing',
-                icon: 'fa-regular fa-sparkles',
-                href: '/pricing'
-            },
-            [Path.LOGOUT]: {
-                id: 'logout',
-                icon: 'fa-regular fa-arrow-right-from-bracket',
-                href: '/logout'
-            }
+    const list = [
+        {
+            id: 'pricing',
+            icon: 'fa-regular fa-sparkles',
+            href: '/pricing'
+        },
+        {
+            id: 'logout',
+            icon: 'fa-regular fa-arrow-right-from-bracket',
+            href: '/logout'
         }
-    }
+    ];
 
     return (
-        <ContextMenu list={paths} content={<Item />}>
+        <ContextMenu list={list} content={<Item />}>
             <button className="secondary rounded inline">
                 <i className="fa-regular fa-user" />
                 <p>{translate("layout.header.account.label")}</p>
@@ -77,7 +66,7 @@ function Item() {
 }
 
 function Guest() {
-    const {translate} = useContext(LanguageContext);
+    const { translate } = useContext(LanguageContext);
 
     return (
         <Fragment>

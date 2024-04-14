@@ -22,7 +22,7 @@ export default function AppSide() {
     const { translate } = useContext(LanguageContext);
 
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col h-full bg-gray-700">
             {
                 pages.map(({ id, icon, path }, key) => {
                     return (

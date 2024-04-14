@@ -1,4 +1,7 @@
 {
+  "en_CA": {
+
+  },
   "es_ES": {
     "fallback": {
       "error": {
@@ -19,6 +22,9 @@
         "name": "Grapho Studio"
       },
       "navbar": {
+        "section": {
+          "home": "Inicio"
+        },
         "page": {
           "dashboard": "Panel de control"
         }

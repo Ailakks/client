@@ -6,31 +6,52 @@ import List, {ListContext} from "../../list/List";
 
 const pages = [
     {
-        id: 'dashboard',
-        path: '/',
-        name: 'Dashboard',
-        icon: 'fa-regular fa-house'
-    },
-    {
-        id: 'account',
-        path: '/account',
-        name: 'Account',
-        icon: 'fa-regular fa-user'
+        id: 'home',
+        name: 'Home',
+        list: [
+            {
+                id: 'dashboard',
+                path: '/',
+                name: 'Dashboard',
+                icon: 'fa-regular fa-house'
+            },
+            {
+                id: 'account',
+                path: '/account',
+                name: 'Account',
+                icon: 'fa-regular fa-user'
+            }
+        ]
     }
 ]
 
 export default function AppSide() {
     return (
         <div className="flex flex-col h-full bg-gray-700">
-            <List list={pages}><Item /></List>
+            <List list={pages}><Section /></List>
+        </div>
+    )
+}
+
+function Section() {
+    const { translate } = useContext(LanguageContext);
+
+    const { item: { id, list } } = useContext(ListContext);
+
+    return (
+        <div>
+            <div className="p-5">
+                <h2>{translate(`layout.navbar.section.${id}`)}</h2>
+            </div>
+            <List list={list}><Item/></List>
         </div>
     )
 }
 
 function Item() {
-    const { translate } = useContext(LanguageContext);
+    const {translate} = useContext(LanguageContext);
 
-    const { key, item: { id, path, icon } } = useContext(ListContext);
+    const {key, item: {id, path, icon } } = useContext(ListContext);
 
     return (
         <NavLink key={key} className={({ isActive }) => clsx('navlink', 'flex space-x-2 items-center', isActive && 'bg-orange-900')} to={path} end>

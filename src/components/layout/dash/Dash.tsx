@@ -12,7 +12,7 @@ export default function DashLayout({ children }) {
             <ResizeHandle />
             <Panel>
                 <PanelGroup direction="horizontal">
-                    <Panel defaultSize={12} minSize={12} maxSize={12} collapsible>
+                    <Panel defaultSize={15} minSize={15} maxSize={15} collapsible>
                         <AppSide />
                     </Panel>
                     <ResizeHandle />

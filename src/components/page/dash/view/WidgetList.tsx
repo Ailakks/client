@@ -2,6 +2,7 @@ import {useContext} from "react";
 import {GridProviderContext} from "../GridProvider";
 import List, {ListContext} from "../../../list/List";
 import Draggable from "../../../drop/Draggable";
+import {LayoutContext} from "../grid/GridView";
 
 
 export default function WidgetList() {

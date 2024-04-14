@@ -6,13 +6,13 @@ export default function Dashboard() {
         {
             column: [
                 {
-                    row: [<ChatWidget />, <ChatWidget />]
+                    row: ['chat', 'chat']
                 },
                 {
-                    column: [<ChatWidget />]
+                    column: ['chat']
                 },
                 {
-                    row: [<ChatWidget />]
+                    row: ['chat']
                 }
             ]
         }

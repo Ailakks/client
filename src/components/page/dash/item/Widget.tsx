@@ -1,20 +1,16 @@
 import {createContext, isValidElement, useContext, useState} from "react";
 import jsonpath from "jsonpath";
-import {LayoutContext, WidgetsContext} from "../grid/GridView";
+import {LayoutContext} from "../grid/GridView";
 import {PathContext} from "../grid/GridRender";
-import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import Window from "./Window";
-import {isArray} from "@apollo/client/utilities";
 import WidgetDroppable from "./WidgetDroppable";
 
 export const WidgetDataContext = createContext();
 
 export default function Widget({ panelRef, collapsed, children }) {
     const { layout, setLayout } = useContext(LayoutContext);
-    const { widgets } = useContext(WidgetsContext);
     const { path } = useContext(PathContext);
-    const { widgetList } = useContext(GridProviderContext);
     const { index } = useContext(ListContext);
 
     const [metadata, setMetadata] = useState(null);
@@ -28,12 +24,11 @@ export default function Widget({ panelRef, collapsed, children }) {
     }
 
     const add = (id) => {
-        const component = getComponent(id);
         const current = jsonpath.value(layout, path);
 
         const updatedLayout = [ ...layout ];
 
-        jsonpath.apply(updatedLayout, path, () => [...current, component]);
+        jsonpath.apply(updatedLayout, path, () => [...current, id]);
 
         setLayout(updatedLayout);
     };
@@ -117,10 +112,6 @@ export default function Widget({ panelRef, collapsed, children }) {
         } else {
             panelRef.current.collapse();
         }
-    };
-
-    const getComponent = (id) => {
-        return widgets[widgetList.map(({ id }) => id).indexOf(id)];
     };
 
     return (

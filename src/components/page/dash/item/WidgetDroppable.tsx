@@ -22,7 +22,7 @@ export default function WidgetDroppable({ children }) {
         const current = jsonpath.value(layout, path);
 
         const thisType = path.split(".").pop().replace(/\[\d+]/g, "");
-
+ 
         if (thisType === type) {
             jsonpath.apply(newLayout, path, () => [...current, component]);
 
@@ -31,7 +31,7 @@ export default function WidgetDroppable({ children }) {
             return;
         }
 
-        jsonpath.apply(newLayout, path, () => [...current, { [type]: [component] }]);
+        jsonpath.apply(newLayout, path, () => [{ [type]: [...current, component] }]);
 
         setLayout(newLayout);
     }

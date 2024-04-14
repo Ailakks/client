@@ -1,281 +1,11 @@
 {
-  "en_CA": {
-    "toast": {
-      "folder": {
-        "create": {
-          "success": "The folder was created"
-        }
-      }
-    },
-    "fallback": {
-      "error": {
-        "title": "Something went wrong",
-        "retry": {
-          "label": "Retry"
-        }
-      },
-      "204": {
-        "title": "No files yet!",
-        "body": "Upload some files to get started"
-      },
-      "404": {
-        "title": "Nothing could be found here!",
-        "back": {
-          "label": "Go back home"
-        }
-      }
-    },
-    "popup": {
-      "folder": {
-        "create": {
-          "title": "Create folder",
-          "input": {
-            "name": {
-              "label": "Name"
-            }
-          },
-          "submit": {
-            "label": "Create"
-          }
-        }
-      },
-      "template": {
-        "create": {
-          "title": "Create a template",
-          "table": {
-            "field": {
-              "code": "Code",
-              "quantity": "Quantity",
-              "tax_amount": "Tax",
-              "tax_rate": "Tax (%)",
-              "price_unit": "Price (unit)",
-              "price_total": "Price (total)"
-            },
-            "header": {
-              "id": "ID",
-              "name": "Name"
-            }
-          },
-          "save": {
-            "label": "Save"
-          },
-          "input": {
-            "field": {
-              "name": {
-                "label": "Name"
-              }
-            },
-            "name": {
-              "label": "Name"
-            }
-          }
-        }
-      }
-    },
-    "file": {
-      "spreadsheet": {
-        "fallback": "Select a template to see the summary",
-        "template": {
-          "preview": {
-            "title": "File spreadsheet",
-            "download": {
-              "label": "Download as Spreadsheet"
-            }
-          },
-          "new": {
-            "label": "New"
-          }
-        }
-      },
-      "view": {
-        "tab": {
-          "preview": {
-            "label": "Preview"
-          },
-          "spreadsheet": {
-            "label": "Spreadsheet"
-          }
-        }
-      },
-      "context": {
-        "open": "Open",
-        "trash": "Trash",
-        "view": "View",
-        "download": "Download",
-        "link": "Create link",
-        "clone": "Clone",
-        "rename": "Rename"
-      }
-    },
-    "folder": {
-      "path": {
-        "title": "Drive"
-      },
-      "tool": {
-        "context": {
-          "upload": "Upload file",
-          "folder": "Create folder"
-        },
-        "status": {
-          "selected": {
-            "singular": "{0} item selected",
-            "plural": "{0} items selected"
-          }
-        },
-        "export": {
-          "label": "Export to Spreadsheet"
-        },
-        "new": {
-          "label": "New"
-        },
-        "upload": {
-          "label": "Upload"
-        }
-      },
-      "table": {
-        "head": {
-          "name": "Name",
-          "date": "Date",
-          "size": "Size"
-        }
-      }
-    },
-    "layout": {
-      "head": {
-        "name": "Grapho Studio"
-      },
-      "navbar": {
-        "page": {
-          "home": "Home",
-          "trash": "Trash"
-        }
-      },
-      "header": {
-        "language": {
-          "label": "Language",
-          "context": {
-            "en_CA": "English",
-            "es_ES": "Spanish"
-          }
-        },
-        "search": {
-          "label": "Search"
-        },
-        "account": {
-          "label": "My account",
-          "context": {
-            "pricing": "Change plan",
-            "logout": "Logout"
-          },
-          "login": {
-            "label": "Login"
-          },
-          "signup": {
-            "label": "Signup"
-          }
-        }
-      }
-    },
-    "auth": {
-      "password": {
-        "label": "Password"
-      },
-      "footer": {
-        "terms": "Terms and conditions",
-        "help": "Need help?"
-      },
-      "signup": {
-        "title": "Create account",
-        "quick": {
-          "google": "Continue with Google"
-        },
-        "tip": {
-          "label": "You already have an account?",
-          "link": "Login"
-        },
-        "form": {
-          "name": {
-            "label": "Name"
-          },
-          "email": {
-            "label": "Email"
-          },
-          "password": {
-            "label": "Password"
-          },
-          "submit": {
-            "label": "Signup",
-            "loading": "Decrypting..."
-          }
-        }
-      },
-      "login": {
-        "title": "Login",
-        "quick": {
-          "google": "Continue with Google"
-        },
-        "tip": {
-          "forgot": "Forgot your password?",
-          "label": "No registered yet?",
-          "link": "Get started"
-        },
-        "form": {
-          "email": {
-            "label": "Email"
-          },
-          "password": {
-            "label": "Password"
-          },
-          "submit": {
-            "label": "Login",
-            "loading": "Decrypting..."
-          }
-        }
-      }
-    },
-    "pricing": {
-      "title": "Pricing",
-      "checkout": {
-        "loading": "Preparing...",
-        "label": "Checkout"
-      },
-      "plan": {
-        "list": {
-          "basic": {
-            "name": "Basic"
-          }
-        },
-        "feature": {
-          "convert": {
-            "label": "Convert files to Sheet"
-          }
-        }
-      }
-    },
-    "measure": {
-      "time": {
-        "month": "month"
-      }
-    }
-  },
   "es_ES": {
-    "toast": {
-      "folder": {
-        "create": {
-          "success": "La carpeta ha sido creada"
-        }
-      }
-    },
     "fallback": {
       "error": {
         "title": "Algo no ha ido bien",
         "retry": {
           "label": "Intentar de nuevo"
         }
-      },
-      "204": {
-        "title": "No hay nada aún",
-        "body": "Sube algunos archivos para comenzar."
       },
       "404": {
         "title": "No hemos encontrado nada",
@@ -284,129 +14,13 @@
         }
       }
     },
-    "popup": {
-      "folder": {
-        "create": {
-          "title": "Crear carpeta",
-          "input": {
-            "name": {
-              "label": "Nombre"
-            }
-          },
-          "submit": {
-            "label": "Crear"
-          }
-        }
-      },
-      "template": {
-        "create": {
-          "title": "Crear una plantilla",
-          "table": {
-            "field": {
-              "code": "Código",
-              "quantity": "Cantidad",
-              "tax_amount": "Impuestos",
-              "tax_rate": "Impuestos (%)",
-              "price_unit": "Precio (unidad)",
-              "price_total": "Price (total)"
-            },
-            "header": {
-              "id": "ID",
-              "name": "Nombre"
-            }
-          },
-          "save": {
-            "label": "Guardar"
-          },
-          "input": {
-            "field": {
-              "name": {
-                "label": "Nombre"
-              }
-            },
-            "name": {
-              "label": "Nombre"
-            }
-          }
-        }
-      }
-    },
-    "file": {
-      "spreadsheet": {
-        "fallback": "Selecciona una plantilla para ver el resumen",
-        "template": {
-          "preview": {
-            "title": "Hoja del archivo",
-            "download": {
-              "label": "Descargar como hoja"
-            }
-          },
-          "new": {
-            "label": "Nueva"
-          }
-        }
-      },
-      "view": {
-        "tab": {
-          "preview": {
-            "label": "Previsualización"
-          },
-          "spreadsheet": {
-            "label": "Hoja"
-          }
-        }
-      },
-      "context": {
-        "open": "Abrir",
-        "trash": "Mover a la papelera",
-        "view": "Ver",
-        "download": "Descargar",
-        "link": "Crear enlace",
-        "clone": "Clonar",
-        "rename": "Renombar"
-      }
-    },
-    "folder": {
-      "path": {
-        "title": "Drive"
-      },
-      "tool": {
-        "context": {
-          "upload": "Subir archivo",
-          "folder": "Crear carpeta"
-        },
-        "status": {
-          "selected": {
-            "singular": "{0} entrada seleccionada",
-            "plural": "{0} entradas seleccionada"
-          }
-        },
-        "export": {
-          "label": "Exportar como hoja"
-        },
-        "new": {
-          "label": "Nueva"
-        },
-        "upload": {
-          "label": "Subir"
-        }
-      },
-      "table": {
-        "head": {
-          "name": "Nombre",
-          "date": "Fecha",
-          "size": "Tamaño"
-        }
-      }
-    },
     "layout": {
       "head": {
         "name": "Grapho Studio"
       },
       "navbar": {
         "page": {
-          "home": "Inicio",
-          "trash": "Papelera"
+          "dashboard": "Panel de control"
         }
       },
       "header": {
@@ -417,10 +31,10 @@
             "es_ES": "Español"
           }
         },
-        "search": {
-          "label": "Buscar"
-        },
         "account": {
+          "banner": {
+            "hello": "Hola, {0}"
+          },
           "label": "Mi cuenta",
           "context": {
             "pricing": "Cambiar plan",
@@ -494,14 +108,12 @@
       },
       "plan": {
         "list": {
-          "basic": {
-            "name": "Básico"
+          "platinium": {
+            "name": "Platinium"
           }
         },
         "feature": {
-          "convert": {
-            "label": "Convertir archivos en hoja"
-          }
+
         }
       }
     },

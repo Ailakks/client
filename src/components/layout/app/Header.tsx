@@ -31,9 +31,9 @@ function Logged() {
 
     const list = [
         {
-            id: 'pricing',
-            icon: 'fa-regular fa-sparkles',
-            href: '/pricing'
+            id: 'account',
+            icon: 'fa-regular fa-user',
+            href: '/account'
         },
         {
             id: 'logout',
@@ -43,12 +43,18 @@ function Logged() {
     ];
 
     return (
-        <ContextMenu list={list} content={<Item />}>
-            <button className="secondary rounded inline">
-                <i className="fa-regular fa-user" />
-                <p>{translate("layout.header.account.label")}</p>
-            </button>
-        </ContextMenu>
+        <Fragment>
+            <ContextMenu list={list} content={<Item />}>
+                <button className="secondary rounded inline">
+                    <i className="fa-regular fa-user" />
+                    <p>{translate("layout.header.account.label")}</p>
+                </button>
+            </ContextMenu>
+            <div>
+                <p>{translate("layout.header.account.banner.hello", [name])}</p>
+                <p>Admin</p>
+            </div>
+        </Fragment>
     )
 }
 

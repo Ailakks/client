@@ -8,13 +8,9 @@ export default function GridProvider({ list, children }) {
 
     const setMetadata = (metadata) => {
         setWidgets(previous => [...previous, metadata]);
-    }
+    };
 
-    if (!list) {
-        return null;
-    }
-
-    if (widgets >= list) {
+    if (widgets.length > 0) {
         return (
             <GridProviderContext.Provider value={{ list, widgets }}>
                 {children}

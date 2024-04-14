@@ -17,33 +17,31 @@ import ModalProvider from "./wrapper/ui/Modal";
 import PopupProvider from "./wrapper/ui/Popup";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-      <BrowserRouter>
-          <CookiesWrapper>
-              <LanguageWrapper>
-                  <ErrorBoundaryWrapper>
-                      <DownloadWrapper>
-                          <AxiosWrapper>
-                              <ApolloWrapper>
-                                  <AccountWrapper>
-                                      <LoggedWrapper>
-                                          <PopupProvider>
-                                              <ModalProvider>
-                                                  <QueueWrapper>
-                                                      <RenderProvider>
-                                                          <App />
-                                                      </RenderProvider>
-                                                  </QueueWrapper>
-                                              </ModalProvider>
-                                          </PopupProvider>
-                                      </LoggedWrapper>
-                                  </AccountWrapper>
-                              </ApolloWrapper>
-                          </AxiosWrapper>
-                      </DownloadWrapper>
-                  </ErrorBoundaryWrapper>
-              </LanguageWrapper>
-          </CookiesWrapper>
-      </BrowserRouter>
-  </React.StrictMode>,
+    <BrowserRouter>
+        <CookiesWrapper>
+            <LanguageWrapper>
+                <ErrorBoundaryWrapper>
+                    <DownloadWrapper>
+                        <AxiosWrapper>
+                            <ApolloWrapper>
+                                <AccountWrapper>
+                                    <LoggedWrapper>
+                                        <PopupProvider>
+                                            <ModalProvider>
+                                                <QueueWrapper>
+                                                    <RenderProvider>
+                                                        <App />
+                                                    </RenderProvider>
+                                                </QueueWrapper>
+                                            </ModalProvider>
+                                        </PopupProvider>
+                                    </LoggedWrapper>
+                                </AccountWrapper>
+                            </ApolloWrapper>
+                        </AxiosWrapper>
+                    </DownloadWrapper>
+                </ErrorBoundaryWrapper>
+            </LanguageWrapper>
+        </CookiesWrapper>
+    </BrowserRouter>
 )

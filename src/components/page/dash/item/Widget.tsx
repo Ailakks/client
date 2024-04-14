@@ -115,7 +115,7 @@ export default function Widget({ panelRef, collapsed, children }) {
     };
 
     return (
-        <WidgetDataContext.Provider value={{ metadata, collapsed, add, replace, remove, collapse }}>
+        <WidgetDataContext.Provider value={{ metadata, setMetadata, collapsed, add, replace, remove, collapse }}>
             <WidgetDroppable>
                 <Window>
                     {children}

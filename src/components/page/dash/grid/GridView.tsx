@@ -24,7 +24,7 @@ export default function GridView({ defaultLayout, widgets }) {
                             <GridRender />
                         </Panel>
                         <ResizeHandle />
-                        <Panel defaultSize={5} minSize={5} maxSize={5} collapsible>
+                        <Panel defaultSize={3.5} minSize={3.5} maxSize={3.5} collapsible>
                             <WidgetList />
                         </Panel>
                     </PanelGroup>

@@ -64,6 +64,10 @@ html {
         @apply bg-gray-700;
     }
 
+    button {
+        @apply cursor-pointer;
+    }
+
     button.main,a.main, input[type = "submit"].main {
         @apply bg-orange-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-orange-700 transition-colors duration-150 ease-out;
     }
@@ -73,7 +77,7 @@ html {
     }
 
     button.menu,a.menu {
-        @apply hover:bg-gray-300 outline-none h-10 px-5 py-2 rounded-lg text-white transition-colors duration-150 ease-out;
+        @apply bg-gray-700 hover:bg-gray-900 w-full aspect-square outline-none p-2 rounded-lg text-white transition-colors duration-150 ease-out;
     }
 
     button.rounded,a.rounded {

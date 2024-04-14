@@ -1,8 +1,8 @@
 import {useContext, useEffect} from "react";
-import {WidgetsContext} from "../grid/GridView";
+import {WidgetDataContext} from "../item/Widget";
 
 export default function ChatWidget() {
-    const { metadata, setMetadata } = useContext(WidgetsContext);
+    const { metadata, setMetadata } = useContext(WidgetDataContext);
 
     useEffect(() => {
         setMetadata({ id: 'chat', name: 'Chat', icon: 'fa-regular fa-message-lines', scopes: [{ id: "message" }], platforms: ["youtube", "twitch", "tiktok", "x", "kick"] });

@@ -15,7 +15,9 @@ export default function GridRender() {
     const next = jsonpath.value(layout, path);
 
     return (
-        <List list={next}><Item /></List>
+        <List list={next}>
+            <Item />
+        </List>
     )
 }
 

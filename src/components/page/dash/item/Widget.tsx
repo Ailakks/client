@@ -8,7 +8,7 @@ import Window from "./Window";
 import {isArray} from "@apollo/client/utilities";
 import WidgetDroppable from "./WidgetDroppable";
 
-export const WidgetContext = createContext();
+export const WidgetDataContext = createContext();
 
 export default function Widget({ panelRef, collapsed, children }) {
     const { layout, setLayout } = useContext(LayoutContext);
@@ -21,9 +21,9 @@ export default function Widget({ panelRef, collapsed, children }) {
 
     if (!metadata) {
         return (
-            <WidgetsContext.Provider value={{ setMetadata }}>
+            <WidgetDataContext.Provider value={{ setMetadata }}>
                 {children}
-            </WidgetsContext.Provider>
+            </WidgetDataContext.Provider>
         );
     }
 
@@ -124,14 +124,12 @@ export default function Widget({ panelRef, collapsed, children }) {
     };
 
     return (
-        <WidgetsContext.Provider value={{ metadata, setMetadata, replace }}>
-            <WidgetContext.Provider value={{ metadata, collapsed, add, replace, remove, collapse }}>
-                <WidgetDroppable>
-                    <Window>
-                        {children}
-                    </Window>
-                </WidgetDroppable>
-            </WidgetContext.Provider>
-        </WidgetsContext.Provider>
+        <WidgetDataContext.Provider value={{ metadata, setMetadata, collapsed, add, replace, remove, collapse }}>
+            <WidgetDroppable>
+                <Window>
+                    {children}
+                </Window>
+            </WidgetDroppable>
+        </WidgetDataContext.Provider>
     )
 }

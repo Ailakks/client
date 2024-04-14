@@ -1,11 +1,11 @@
 import {useContext} from "react";
-import {WidgetContext} from "./Widget";
+import {WidgetDataContext} from "./Widget";
 import ContextMenu from "../../../context/ContextMenu";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 
 export default function Window({ children }) {
-    const { metadata, collapsed, replace, remove, collapse } = useContext(WidgetContext);
+    const { metadata, collapsed, replace, remove, collapse } = useContext(WidgetDataContext);
 
     const { name } = metadata;
 
@@ -46,7 +46,7 @@ function AddButton() {
 function Item() {
     const { item: { id, icon, name } } = useContext(ListContext);
 
-    const { add } = useContext(WidgetContext);
+    const { add } = useContext(WidgetDataContext);
 
     return (
         <button className="w-full inline py-2 px-5 hover:bg-gray-300" onClick={() => add(id)}>

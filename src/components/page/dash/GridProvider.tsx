@@ -1,5 +1,5 @@
 import {createContext, useState} from "react";
-import {WidgetsContext} from "./grid/GridView";
+import {WidgetDataContext} from "./item/Widget";
 
 export const GridProviderContext = createContext(null);
 
@@ -23,8 +23,8 @@ export default function GridProvider({ list, children }) {
     }
 
     return list.map((component, index) => (
-        <WidgetsContext.Provider key={index} value={{ setMetadata }}>
+        <WidgetDataContext.Provider key={index} value={{ setMetadata }}>
             {component}
-        </WidgetsContext.Provider>
+        </WidgetDataContext.Provider>
     ))
 }

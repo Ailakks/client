@@ -1,10 +1,9 @@
 import {createContext, useContext} from "react";
-import jsonpath from "jsonpath";
 import {LayoutContext, WidgetsContext} from "../grid/GridView";
 import {PathContext} from "../grid/GridRender";
 import {ListContext} from "../../../list/List";
 import Droppable from "../../../drop/Droppable";
-
+import jsonpath from "jsonpath";
 export const WidgetDroppableContext = createContext(null);
 
 export default function WidgetDroppable({ children }) {
@@ -16,9 +15,9 @@ export default function WidgetDroppable({ children }) {
     const add = (data) => {
         const newLayout = [...layout];
 
-        const { item: { key }, border: { apply } } = data;
-        const component = widgets[key];
+        const { border: { apply } } = data;
 
+        const component = widgets[index];
         const thisPath = `${path}[${index}]`;
         const current = jsonpath.value(layout, thisPath);
 

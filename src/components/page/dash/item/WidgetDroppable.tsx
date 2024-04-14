@@ -4,6 +4,7 @@ import {PathContext} from "../grid/GridRender";
 import {ListContext} from "../../../list/List";
 import Droppable from "../../../drop/Droppable";
 import jsonpath from "jsonpath";
+
 export const WidgetDroppableContext = createContext(null);
 
 export default function WidgetDroppable({ children }) {

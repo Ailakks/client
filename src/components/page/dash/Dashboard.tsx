@@ -1,5 +1,6 @@
 import ChatWidget from "./widgets/ChatWidget";
 import GridView from "./grid/GridView";
+import PreviewWidget from "./widgets/PreviewWidget";
 
 export default function Dashboard() {
     const layout = [
@@ -18,7 +19,7 @@ export default function Dashboard() {
         }
     ];
 
-    const widgets = [<ChatWidget />];
+    const widgets = [<ChatWidget />, <PreviewWidget />];
 
     return (
         <GridView defaultLayout={layout} widgets={widgets} />

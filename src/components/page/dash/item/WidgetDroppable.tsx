@@ -11,27 +11,26 @@ export default function WidgetDroppable({ children }) {
     const { layout, setLayout } = useContext(LayoutContext);
     const { widgets } = useContext(WidgetsContext);
     const { path } = useContext(PathContext);
-    const { index } = useContext(ListContext);
+    const { item } = useContext(ListContext);
 
     const add = (data) => {
         const newLayout = [...layout];
 
         const { border: { type } } = data;
 
-        const component = widgets[index];
         const current = jsonpath.value(layout, path);
 
-        const thisType = path.split(".").pop().replace(/\[\d+]/g, "");
- 
+        /*const thisType = path.split(".").pop().replace(/\[\d+]/g, "");
+
         if (thisType === type) {
-            jsonpath.apply(newLayout, path, () => [...current, component]);
+            jsonpath.apply(newLayout, path, () => [...current, item]);
 
             setLayout(newLayout);
 
             return;
-        }
+        }*/
 
-        jsonpath.apply(newLayout, path, () => [{ [type]: [...current, component] }]);
+        jsonpath.apply(newLayout, path, () => [{ [type]: [...current, item] }]);
 
         setLayout(newLayout);
     }

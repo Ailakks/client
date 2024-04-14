@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {GridProviderContext} from "../GridProvider";
 import List, {ListContext} from "../../../list/List";
 import Draggable from "../../../drop/Draggable";

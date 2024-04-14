@@ -5,6 +5,10 @@ export default function ChatWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
 
     useEffect(() => {
+        if (!setMetadata) {
+            return;
+        }
+
         setMetadata({ id: 'chat', name: 'Chat', icon: 'fa-regular fa-message-lines', scopes: [{ id: "message" }], platforms: ["youtube", "twitch", "tiktok", "x", "kick"] });
     }, []);
 

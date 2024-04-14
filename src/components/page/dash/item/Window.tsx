@@ -32,11 +32,11 @@ export default function Window({ children }) {
 }
 
 function AddButton() {
-    const { widgetList } = useContext(GridProviderContext);
+    const { widgets } = useContext(GridProviderContext);
 
     return (
         <button>
-            <ContextMenu list={widgetList} content={<Item />}>
+            <ContextMenu list={widgets} content={<Item />}>
                 <i className="fa-regular fa-plus" />
             </ContextMenu>
         </button>

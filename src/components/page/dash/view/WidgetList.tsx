@@ -23,26 +23,11 @@ export default function WidgetList() {
 
 function Item() {
     const { item } = useContext(ListContext);
-    const { layout } = useContext(LayoutContext);
-
-    const serialize = (data) => {
-        return data.reduce((acc, item) => {
-            if (Array.isArray(item.row)) {
-                acc = acc.concat(serialize(item.row));
-            } else if (Array.isArray(item.column)) {
-                acc = acc.concat(serialize(item.column));
-            } else if (typeof item === 'string') {
-                acc.push(item);
-            }
-            return acc;
-        }, []);
-    };
-
-    const serialized = serialize(layout);
+    const { list } = useContext(LayoutContext);
 
     const { id, name, icon } = item;
 
-    if (serialized.includes(id)) {
+    if (list.includes(id)) {
         return (
             <button className="menu disabled">
                 <i className={icon}/>

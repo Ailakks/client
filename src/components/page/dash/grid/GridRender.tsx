@@ -1,7 +1,7 @@
-import {createContext, isValidElement, useContext, useRef, useState} from "react";
-import {ImperativePanelHandle, Panel, PanelGroup} from "react-resizable-panels";
+import {createContext, useContext, useRef, useState} from "react";
+import {ImperativePanelHandle, PanelGroup} from "react-resizable-panels";
 import jsonpath from "jsonpath";
-import {LayoutContext, WidgetsContext} from "./GridView";
+import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
 import Widget from "../item/Widget";
 import GridResizePanel from "../resize/ResizePanel";
@@ -31,8 +31,7 @@ function Item() {
     const { path } = useContext(PathContext) ?? { path: "$" };
     const { index } = useContext(ListContext);
 
-    const { widgets } = useContext(WidgetsContext);
-    const { widgetList } = useContext(GridProviderContext);
+    const { list, widgets } = useContext(GridProviderContext);
 
     const child = `${path}[${index}]`;
 
@@ -44,7 +43,7 @@ function Item() {
     const [collapsed, setCollapsed] = useState(false);
 
     const getComponent = (id) => {
-        return widgets[widgetList.map(({ id }) => id).indexOf(id)];
+        return list[widgets.map(({ id }) => id).indexOf(id)];
     };
 
     if (isValid) {

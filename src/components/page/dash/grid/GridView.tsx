@@ -6,7 +6,6 @@ import WidgetList from "../view/WidgetList";
 import ResizeHandle from "../resize/ResizeHandle";
 
 export const LayoutContext = createContext(null);
-export const WidgetsContext = createContext(null);
 
 export default function GridView({ defaultLayout, widgets }) {
     const [layout, setLayout] = useState(defaultLayout);
@@ -16,20 +15,18 @@ export default function GridView({ defaultLayout, widgets }) {
     }, [layout]);
 
     return (
-        <WidgetsContext.Provider value={{ widgets }}>
-            <LayoutContext.Provider value={{ layout, setLayout }}>
-                <GridProvider list={widgets}>
-                    <PanelGroup direction="horizontal">
-                        <Panel>
-                            <GridRender />
-                        </Panel>
-                        <ResizeHandle />
-                        <Panel defaultSize={3.5} minSize={3.5} maxSize={3.5} collapsible>
-                            <WidgetList />
-                        </Panel>
-                    </PanelGroup>
-                </GridProvider>
-            </LayoutContext.Provider>
-        </WidgetsContext.Provider>
+        <LayoutContext.Provider value={{ layout, setLayout }}>
+            <GridProvider list={widgets}>
+                <PanelGroup direction="horizontal">
+                    <Panel>
+                        <GridRender />
+                    </Panel>
+                    <ResizeHandle />
+                    <Panel defaultSize={3.5} minSize={3.5} maxSize={3.5} collapsible>
+                        <WidgetList />
+                    </Panel>
+                </PanelGroup>
+            </GridProvider>
+        </LayoutContext.Provider>
     )
 }

@@ -5,12 +5,12 @@ import Draggable from "../../../drop/Draggable";
 import {LayoutContext} from "../grid/GridView";
 
 export default function WidgetList() {
-    const { widgetList } = useContext(GridProviderContext);
+    const { widgets } = useContext(GridProviderContext);
 
     return (
         <div className="flex flex-col justify-between h-full bg-gray-500 p-2">
             <div className="space-y-2">
-                <List list={widgetList}>
+                <List list={widgets}>
                     <Item/>
                 </List>
             </div>

@@ -33,7 +33,7 @@ export default function Widget({ panelRef, collapsed, children }) {
 
         const updatedLayout = [ ...layout ];
 
-        jsonpath.apply(updatedLayout, path, () => [component, ...current]);
+        jsonpath.apply(updatedLayout, path, () => [...current, component]);
 
         setLayout(updatedLayout);
     };

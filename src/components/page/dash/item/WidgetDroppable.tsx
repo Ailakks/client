@@ -16,15 +16,22 @@ export default function WidgetDroppable({ children }) {
     const add = (data) => {
         const newLayout = [...layout];
 
-        const { border: { apply } } = data;
+        const { border: { type } } = data;
 
         const component = widgets[index];
-        const thisPath = `${path}[${index}]`;
-        const current = jsonpath.value(layout, thisPath);
+        const current = jsonpath.value(layout, path);
 
-        const replace = apply(current, component);
+        const thisType = path.split(".").pop().replace(/\[\d+]/g, "");
 
-        jsonpath.apply(newLayout, thisPath, () => replace);
+        if (thisType === type) {
+            jsonpath.apply(newLayout, path, () => [...current, component]);
+
+            setLayout(newLayout);
+
+            return;
+        }
+
+        jsonpath.apply(newLayout, path, () => [...current, { [type]: [component] }]);
 
         setLayout(newLayout);
     }

@@ -59,15 +59,15 @@ function Item() {
         );
     }
 
-    function render(path, isRow) {
-        const newPath = [path, isRow ? "row" : "column"].join('.');
+    function render(data, isRow) {
+        const path = [data, isRow ? "row" : "column"].join('.');
 
-        const array = path.split('.');
+        const array = data.split('.');
         const isRoot = array.length === 1;
 
         if (isRoot) {
             return (
-                <PathContext.Provider value={{ path: newPath }}>
+                <PathContext.Provider value={{ path }}>
                     <PanelGroup direction={isRow ? "vertical" : "horizontal"}>
                         <GridRender />
                     </PanelGroup>
@@ -77,7 +77,7 @@ function Item() {
 
         return (
             <GridPanelConext.Provider value={{ ref }}>
-                <PathContext.Provider value={{ path: newPath }}>
+                <PathContext.Provider value={{ path }}>
                     <GridResizePanel>
                         <PanelGroup direction={isRow ? "vertical" : "horizontal"}>
                             <GridRender />

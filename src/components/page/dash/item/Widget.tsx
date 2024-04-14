@@ -92,7 +92,7 @@ export default function Widget({ panelRef, collapsed, children }) {
                 return;
             }
 
-            const filter = current.filter((item) => isValidElement(item));
+            const filter = current.filter((item) => typeof item == "string");
 
             total += filter.length;
 

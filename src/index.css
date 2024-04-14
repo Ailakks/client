@@ -68,6 +68,10 @@ html {
         @apply cursor-pointer;
     }
 
+    input.disabled,button.disabled {
+        @apply !bg-gray-300 cursor-no-drop;
+    }
+
     button.main,a.main, input[type = "submit"].main {
         @apply bg-orange-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-orange-700 transition-colors duration-150 ease-out;
     }

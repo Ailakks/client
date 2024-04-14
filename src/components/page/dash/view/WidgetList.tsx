@@ -27,30 +27,34 @@ function Item() {
     const { layout } = useContext(LayoutContext);
 
     const serialize = (data) => {
-        const list = [];
-
-        function traverse(object) {
-            if (Array.isArray(object)) {
-                object.forEach(item => traverse(item));
-            } else if (typeof object === 'object') {
-                if (object.row) traverse(object.row);
-                if (object.column) traverse(object.column);
-            } else if (typeof object === 'string') {
-                list.push(object);
+        return data.reduce((acc, item) => {
+            if (Array.isArray(item.row)) {
+                acc = acc.concat(serialize(item.row));
+            } else if (Array.isArray(item.column)) {
+                acc = acc.concat(serialize(item.column));
+            } else if (typeof item === 'string') {
+                acc.push(item);
             }
-        }
+            return acc;
+        }, []);
+    };
 
-        traverse(data);
+    const serialized = serialize(layout);
 
-        return list;
+    const { id, name, icon } = item;
+
+    if (serialized.includes(id)) {
+        return (
+            <button className="menu disabled">
+                <i className={icon}/>
+            </button>
+        )
     }
-
-    const { name, icon } = item;
 
     return (
         <Draggable data={item}>
             <button className="menu">
-                <i className={icon}/>
+            <i className={icon}/>
             </button>
         </Draggable>
     )

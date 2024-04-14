@@ -3,6 +3,7 @@ import {WidgetDataContext} from "./Widget";
 import ContextMenu from "../../../context/ContextMenu";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
+import {LayoutContext} from "../grid/GridView";
 
 export default function Window({ children }) {
     const { metadata, collapsed, replace, remove, collapse } = useContext(WidgetDataContext);
@@ -46,11 +47,21 @@ function AddButton() {
 function Item() {
     const { item: { id, icon, name } } = useContext(ListContext);
 
+    const { list } = useContext(LayoutContext);
     const { add } = useContext(WidgetDataContext);
 
+    if (list.includes(id)) {
+        return (
+            <button className="w-full inline py-2 px-5 disabled">
+                <i className={icon}/>
+                <p>{name}</p>
+            </button>
+        )
+    }
+
     return (
-        <button className="w-full inline py-2 px-5 hover:bg-gray-300" onClick={() => add(id)}>
-            <i className={icon} />
+        <button className="w-full inline py-2 px-5 bg-gray-500 hover:bg-gray-300" onClick={() => add(id)}>
+            <i className={icon}/>
             <p>{name}</p>
         </button>
     )

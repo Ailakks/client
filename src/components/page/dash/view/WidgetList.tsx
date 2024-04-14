@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {GridProviderContext} from "../GridProvider";
 import List, {ListContext} from "../../../list/List";
+import Draggable from "../../../drop/Draggable";
 
 
 export default function WidgetList() {
@@ -21,11 +22,15 @@ export default function WidgetList() {
 }
 
 function Item() {
-    const { item: { name, icon } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
+
+    const { name, icon } = item;
 
     return (
-        <button className="menu">
-            <i className={icon} />
-        </button>
+        <Draggable data={item}>
+            <button className="menu">
+                <i className={icon}/>
+            </button>
+        </Draggable>
     )
 }

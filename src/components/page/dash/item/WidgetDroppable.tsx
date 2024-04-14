@@ -3,6 +3,7 @@ import jsonpath from "jsonpath";
 import {LayoutContext, WidgetsContext} from "../grid/GridView";
 import {PathContext} from "../grid/GridRender";
 import {ListContext} from "../../../list/List";
+import Droppable from "../../../drop/Droppable";
 
 export const WidgetDroppableContext = createContext(null);
 

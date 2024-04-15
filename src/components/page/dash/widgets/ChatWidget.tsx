@@ -30,5 +30,23 @@ function Body() {
 }
 
 function Item() {
-    const { item } = useContext(ListContext);
+    const { item: { meta: { platform: { brand: { icon } } }, data: { author: { color, displayName, badges }, message } } } = useContext(ListContext);
+
+    return (
+        <div>
+            <span><i className={icon.id} />&nbsp;</span>
+            <span style={{ color: color ?? brand.color }}>{displayName}:&nbsp;</span>
+            <List list={message} component={<ChatMessagePart />} separator={<span>&nbsp;</span>} />
+        </div>
+    )
+}
+
+function ChatMessagePart() {
+    const { item: { name, source } } = useContext(ListContext);
+
+    if (!source) {
+        return;
+    }
+
+    return <img alt={name} src={source.url} />
 }

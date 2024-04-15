@@ -36,7 +36,9 @@ function Item() {
         <div>
             <span><i className={icon.id} />&nbsp;</span>
             <span style={{ color: color ?? brand.color }}>{displayName}:&nbsp;</span>
-            <List list={message} component={<ChatMessagePart />} separator={<span>&nbsp;</span>} />
+            <List list={message} separator={<span>&nbsp;</span>}>
+                <ChatMessagePart />
+            </List>
         </div>
     )
 }

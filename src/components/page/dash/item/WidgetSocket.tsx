@@ -1,13 +1,14 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {io} from "socket.io-client";
 import {WidgetDataContext} from "./Widget";
+import {ChannelContext} from "../../../../wrapper/api/Channel";
 
 export const WidgetSocketContext = createContext(null);
 
 export const MAX_EVENT_HISTORY = 60;
 
-export default function WidgetProvider({ children }) {
-    const { response: { channelList } } = useContext(ChannelContex);
+export default function WidgetSocket({ children }) {
+    const { data: { channelList } } = useContext(ChannelContext);
     const { metadata: { scopes } } = useContext(WidgetDataContext);
 
     const [list, setList] = useState([]);

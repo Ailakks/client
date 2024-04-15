@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {AccountContext} from "../../wrapper/Account";
+import {AccountContext} from "../../wrapper/api/Account";
 
 export default function AccountRestricted({ children }) {
     const navigate = useNavigate();

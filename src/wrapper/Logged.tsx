@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {AccountContext} from "./Account";
+import {AccountContext} from "./api/Account";
 import KeyWrapper from "./logged/Key";
 
 export default function LoggedWrapper({ children }) {

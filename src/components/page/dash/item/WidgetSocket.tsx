@@ -17,7 +17,7 @@ export default function WidgetProvider({ children }) {
 
         socket.on('connect', () =>  {
             channelList.forEach(({ platform, username }) => {
-                socket.emit('join', JSON.stringify({ platform, target: username, scopes }))
+                socket.emit('join', JSON.stringify({ platform, username, scopes }))
             });
         });
 

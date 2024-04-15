@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import {BrowserRouter} from "react-router-dom";
 import ApolloWrapper from "./wrapper/Apollo";
-import AccountWrapper from "./wrapper/Account";
+import AccountWrapper from "./wrapper/api/Account";
 import LoggedWrapper from "./wrapper/Logged";
 import CookiesWrapper from "./wrapper/tool/Cookies";
 import AxiosWrapper from "./wrapper/Axios";

@@ -1,5 +1,5 @@
 import {Fragment, useContext} from "react";
-import {AccountContext} from "../../../wrapper/Account";
+import {AccountContext} from "../../../wrapper/api/Account";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenu from "../../context/ContextMenu";
 import Language from "../components/button/Language";

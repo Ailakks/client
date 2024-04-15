@@ -6,7 +6,7 @@ import LoadStatus from "../../load/LoadStatus";
 import LoadSpinner from "../../load/spinner/LoadSpinner";
 import {useNavigate} from "react-router-dom";
 import {useContext, useEffect} from "react";
-import {AccountContext} from "../../../wrapper/Account";
+import {AccountContext} from "../../../wrapper/api/Account";
 import {CookiesContext} from "../../../wrapper/tool/Cookies";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import Query, {QueryContext} from "../../query/Query";

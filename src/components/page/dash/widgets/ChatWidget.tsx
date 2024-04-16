@@ -35,7 +35,7 @@ function MessageList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <div className="grow items-end bg-orange-500">
+        <div className="flex flex-col grow justify-end">
             <List list={filtered}>
                 <Message />
             </List>

@@ -1,12 +1,14 @@
 import {useContext} from "react";
+import {PlatformContext} from "../../../../wrapper/api/Platform";
+import DataFilter from "./DataFilter";
 
 export default function PlatformFilter({ children }) {
-    const { data: { platformList: list } } = useContext(PlatformContext);
+    const { data: { platformList } } = useContext(PlatformContext);
 
     const data = [
         {
             name: 'platform',
-            list: list
+            list: platformList
         }
     ];
 

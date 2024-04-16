@@ -5,10 +5,16 @@ import {clsx} from "clsx";
 export const FilterContext = createContext(null);
 
 export default function DataFilter({ data }) {
+    const [filter, setFilter] = useState([]);
+
     return (
-        <div className="space-y-2">
-            <List data={data} component={<Section />} />
-        </div>
+        <FilterContext.Provider value={{filter, setFilter}}>
+            <div className="space-y-2">
+                <List list={data}>
+                    <Section />
+                </List>
+            </div>
+        </FilterContext.Provider>
     )
 }
 
@@ -16,12 +22,14 @@ function Section() {
     const { item: { list } } = useContext(ListContext);
 
     return (
-        <List data={list} component={<Item />} />
+        <List list={list}>
+            <Item />
+        </List>
     )
 }
 
 function Item() {
-    const { item: { name } } = useContext(ListContext);
+    const { item: { displayName } } = useContext(ListContext);
     const { filter, setFilter } = useContext(FilterContext);
 
     const add = () => {
@@ -35,6 +43,6 @@ function Item() {
     const isEnabled = filter.find(({ id }) => id === item.id);
 
     return (
-         <div className={clsx(isEnabled && "bg-white", "bg-gray-300")} onClick={isEnabled ? add : remove}>{name}</div>
+         <div className={clsx(isEnabled && "bg-white", "bg-gray-300")} onClick={isEnabled ? add : remove}>{displayName}</div>
     )
 }

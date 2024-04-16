@@ -1,9 +1,9 @@
 import {useContext, useEffect} from "react";
 import {WidgetDataContext} from "../item/Widget";
-import {ChannelContext} from "../../../../wrapper/api/Channel";
 import List, {ListContext} from "../../../list/List";
 import {gql, useQuery} from "@apollo/client";
 import Query, {QueryContext} from "../../../query/Query";
+import PlatformFilter from "../item/PlatformFilter";
 
 export default function PreviewWidget() {
     const {metadata, setMetadata} = useContext(WidgetDataContext);
@@ -55,7 +55,7 @@ function Body() {
 
     return (
         <div className="space-y-2">
-            <List list={channelDataList}><Item/></List>
+            <PlatformFilter />
         </div>
     )
 }

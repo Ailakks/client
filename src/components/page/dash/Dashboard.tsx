@@ -3,25 +3,26 @@ import GridView from "./grid/GridView";
 import PreviewWidget from "./widgets/PreviewWidget";
 import ChannelWrapper from "../../../wrapper/api/Channel";
 import PlatformWrapper from "../../../wrapper/api/Platform";
+import ViewersWidget from "./widgets/ViewerWidget";
 
 export default function Dashboard() {
     const layout = [
         {
             column: [
                 {
-                    row: ['chat', 'preview']
+                    row: ['preview', 'viewers']
                 },
                 {
                     column: ['chat']
                 },
                 {
-                    row: ['chat']
+                    row: ['viewers']
                 }
             ]
         }
     ];
 
-    const widgets = [<ChatWidget />, <PreviewWidget />];
+    const widgets = [<ChatWidget />, <PreviewWidget />, <ViewersWidget />];
 
     return (
         <ChannelWrapper>

@@ -1,29 +1,35 @@
 import {useContext, useEffect, useState} from "react";
 import {WidgetDataContext} from "../item/Widget";
-import {DataFilterContext, FilterContext} from "../item/DataFilter";
+import {FilterContext} from "../item/DataFilter";
 import {PlatformContext} from "../../../../wrapper/api/Platform";
 import PlatformFilter from "../item/PlatformFilter";
-import {WidgetSocketContext} from "../item/WidgetSocket";
+import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
 
 export default function ViewersWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
-
-    const { filtered } = useContext(DataFilterContext);
 
     useEffect(() => {
         setMetadata({ id: 'viewers', name: 'Viewers', icon: 'fa-regular fa-wifi', scopes: [{ id: "statistic" }], platforms: ["twitch"] });
     }, []);
 
     if (metadata) {
-        const { list } = useContext(WidgetSocketContext);
-
         return (
-            <PlatformFilter data={list}>
-                <Body />
-            </PlatformFilter>
+            <WidgetSocket>
+                <ViewersList />
+            </WidgetSocket>
         )
     }
+}
+
+function ViewersList() {
+    const { list } = useContext(WidgetSocketContext);
+
+    return (
+        <PlatformFilter data={list}>
+            <Body />
+        </PlatformFilter>
+    )
 }
 
 function Body() {

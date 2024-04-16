@@ -20,14 +20,14 @@ export default function PlatformFilter({ data, children }) {
         }
     ];
 
-    const filter = (item) => {
+    const property = (item) => {
         const { platform: { id } } = item;
 
-        return filtered.map(({ id }) => id).includes(id);
+        return id;
     };
 
     return (
-        <DataFilter list={list} validator={filter} data={data}>
+        <DataFilter list={list} property={property} data={data}>
             {children}
         </DataFilter>
     )

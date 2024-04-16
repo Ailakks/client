@@ -5,13 +5,17 @@ import {clsx} from "clsx";
 export const DataFilterContext = createContext(null);
 export const FilterContext = createContext(null);
 
-export default function DataFilter({ list, validator, data, children }) {
+export default function DataFilter({ list, property, data, children }) {
     const [filter, setFilter] = useState([]);
     const [filtered, setFiltered] = useState([]);
 
     useEffect(() => {
-        setFiltered(data.filter(validator));
-    }, [data]);
+        setFiltered(data.filter((item) => {
+            const value = property(item);
+
+            return filter.map(({ id }) => id).includes(value);
+        }));
+    }, [filter]);
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>

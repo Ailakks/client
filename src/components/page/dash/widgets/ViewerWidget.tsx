@@ -77,6 +77,12 @@ function Item() {
     }, [data]);
 
     return (
-        <p>{count ?? `—`}</p>
+        <div className="flex justify-between items-center py-4">
+            <div className="flex space-x-2 items-center">
+                <i className={icon.id}/>
+                <p>{displayName}</p>
+            </div>
+            <p>{count ?? `—`}</p>
+        </div>
     )
 }

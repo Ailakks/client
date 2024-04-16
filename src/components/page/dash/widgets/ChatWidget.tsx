@@ -46,13 +46,13 @@ function Item() {
 function ChatMessagePart() {
     const { item } = useContext(ListContext);
 
-    if (item.text) {
+    if (item.source) {
         return (
-            <ChatMessageText />
+            <ChatMessageEmote />
         );
     }
 
-    return <ChatMessageEmote />
+    return <ChatMessageText />
 }
 
 function ChatMessageText() {
@@ -66,7 +66,7 @@ function ChatMessageEmote() {
 
     return (
         <span>
-            <img alt={name} src={url}/>
+            <img className="inline" alt={name} src={url} />
         </span>
     )
 }

@@ -44,11 +44,29 @@ function Item() {
 }
 
 function ChatMessagePart() {
-    const { item: { name, source } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
 
-    if (!source) {
-        return;
+    if (item.text) {
+        return (
+            <ChatMessageText />
+        );
     }
 
-    return <img alt={name} src={source.url} />
+    return <ChatMessageEmote />
+}
+
+function ChatMessageText() {
+    const { item: { text } } = useContext(ListContext);
+
+    return <span>{text}</span>
+}
+
+function ChatMessageEmote() {
+    const { item: { name, source: { url } } } = useContext(ListContext);
+
+    return (
+        <span>
+            <img alt={name} src={url}/>
+        </span>
+    )
 }

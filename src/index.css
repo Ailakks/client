@@ -29,6 +29,10 @@ html {
         @apply text-white;
     }
 
+    span {
+        @apply text-white;
+    }
+
     a {
         @apply text-orange-500;
     }

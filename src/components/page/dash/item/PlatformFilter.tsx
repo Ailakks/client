@@ -2,27 +2,27 @@ import {useContext, useEffect, useState} from "react";
 import {PlatformContext} from "../../../../wrapper/api/Platform";
 import DataFilter from "./DataFilter";
 import {WidgetDataContext} from "./Widget";
+import {WidgetSocketContext} from "./WidgetSocket";
 
 export default function PlatformFilter({ children }) {
-    const [list, setList] = useState([]);
+    const [filter, setFilter] = useState([]);
 
     const { data: { platformList } } = useContext(PlatformContext);
-
     const { metadata: { platforms } } = useContext(WidgetDataContext);
 
     useEffect(() => {
-        setList(platformList.filter(({ id }) => platforms.includes(id)));
+        setFilter(platformList.filter(({ id }) => platforms.includes(id)));
     }, [platformList]);
 
-    const data = [
+    const list = [
         {
             name: 'platform',
-            list: list
+            list: filter
         }
     ];
 
     return (
-        <DataFilter data={data}>
+        <DataFilter list={list} data={data}>
             {children}
         </DataFilter>
     )

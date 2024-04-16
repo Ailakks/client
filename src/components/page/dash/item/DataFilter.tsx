@@ -4,15 +4,18 @@ import {clsx} from "clsx";
 
 export const FilterContext = createContext(null);
 
-export default function DataFilter({ data }) {
+export default function DataFilter({ list, data, children }) {
     const [filter, setFilter] = useState([]);
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>
-            <div className="space-y-2">
-                <List list={data}>
-                    <Section />
-                </List>
+            <div>
+                <div className="space-y-2">
+                    <List list={list}>
+                        <Section />
+                    </List>
+                </div>
+                {children}
             </div>
         </FilterContext.Provider>
     )

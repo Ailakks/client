@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import {WidgetDataContext} from "../item/Widget";
-import {FilterContext} from "../item/DataFilter";
+import {DataFilterContext, FilterContext} from "../item/DataFilter";
 import {PlatformContext} from "../../../../wrapper/api/Platform";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
@@ -10,7 +10,7 @@ export default function ViewersWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
 
     useEffect(() => {
-        setMetadata({ id: 'viewers', name: 'Viewers', icon: 'fa-regular fa-wifi', scopes: [{ id: "statistic" }], platforms: ["twitch"] });
+        setMetadata({ id: 'viewers', name: 'Viewers', icon: 'fa-regular fa-wifi', scopes: [{ id: "statistic" }], platforms: ["twitch", "x"] });
     }, []);
 
     if (metadata) {
@@ -33,39 +33,34 @@ function ViewersList() {
 }
 
 function Body() {
-    const { data: { platformList } } = useContext(PlatformContext);
-    const { filter } = useContext(FilterContext);
-
-    const [data, setData] = useState(platformList);
-
-    useEffect(() => {
-        if (filter.length < 1) {
-            setData(platformList);
-
-            return;
-        }
-
-        setData(platformList.filter(({ id }) => filter.find(({ id: target }) => target === id)));
-    }, [filter]);
+    const { list } = useContext(FilterContext);
 
     return (
-        <div>
-            <List list={data}>
-                <Item />
-            </List>
-        </div>
+        <List list={list}>
+            <Platform />
+        </List>
+    )
+}
+
+function Platform() {
+    const { item: { list } } = useContext(ListContext);
+
+    return (
+        <List list={list}>
+            <Item />
+        </List>
     )
 }
 
 function Item() {
     const [data, setData] = useState();
 
-    const { list } = useContext(FilterContext);
+    const { filtered } = useContext(DataFilterContext);
     const { item: { id, displayName, brand: { icon } } } = useContext(ListContext);
 
     useEffect(() => {
-        setData(list.sort(({ data: { timestamp } }) => timestamp).find(({ meta: { platform: { id: target } } }) => target === id));
-    }, [list]);
+        setData(filtered.sort(({ data: { timestamp } }) => timestamp).find(({ meta: { platform: { id: target } } }) => target === id));
+    }, [filtered]);
 
     return (
         <p>{data ? data.data.data.viewers : `—`}</p>

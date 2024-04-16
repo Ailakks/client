@@ -11,11 +11,19 @@ export default function DataFilter({ list, property, data, children }) {
 
     useEffect(() => {
         setFiltered(data.filter((item) => {
+            if (filter.length < 1) {
+                return true;
+            }
+
             const value = property(item);
 
             return filter.map(({ id }) => id).includes(value);
         }));
     }, [filter]);
+
+    const clear = () => {
+        setFilter([]);
+    };
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>
@@ -24,9 +32,14 @@ export default function DataFilter({ list, property, data, children }) {
                     <List list={list}>
                         <Section />
                     </List>
+                    {filter.length > 0 && (
+                        <button onClick={clear}>
+                            <i className="fa-regular fa-xmark"/>
+                        </button>
+                    )}
                 </div>
-                <DataFilterContext.Provider value={{ filtered }}>
-                    {children}
+                <DataFilterContext.Provider value={{filtered}}>
+                {children}
                 </DataFilterContext.Provider>
             </div>
         </FilterContext.Provider>

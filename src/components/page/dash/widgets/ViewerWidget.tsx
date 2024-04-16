@@ -45,8 +45,10 @@ function Body() {
 function Platform() {
     const { item: { list } } = useContext(ListContext);
 
+    const { filter } = useContext(FilterContext);
+
     return (
-        <List list={list}>
+        <List list={filter.length > 0 ? filter : list}>
             <Item />
         </List>
     )

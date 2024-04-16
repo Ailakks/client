@@ -35,7 +35,7 @@ function MessageList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <div className="flex flex-col grow justify-end">
+        <div className="grow">
             <List list={filtered}>
                 <Message />
             </List>

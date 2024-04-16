@@ -28,7 +28,9 @@ export default function DataFilter({ list, property, data, children }) {
                     <Section />
                 </List>
                 <DataFilterContext.Provider value={{filtered}}>
-                    {children}
+                    <div className="overflow-y-auto">
+                        {children}
+                    </div>
                 </DataFilterContext.Provider>
             </div>
         </FilterContext.Provider>

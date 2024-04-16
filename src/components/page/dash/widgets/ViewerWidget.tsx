@@ -48,7 +48,7 @@ function Platform() {
     const { filter } = useContext(FilterContext);
 
     return (
-        <List list={filter.length > 0 ? filter : list}>
+        <List list={filter.length ? filter : list}>
             <Item />
         </List>
     )
@@ -64,7 +64,19 @@ function Item() {
         setData(filtered.sort(({ data: { timestamp } }) => timestamp).find(({ meta: { platform: { id: target } } }) => target === id));
     }, [filtered]);
 
+    const [count, setCount] = useState();
+
+    useEffect(() => {
+        if (!data) {
+            return;
+        }
+
+        const { data: { data: { viewers } } } = data;
+
+        setCount(viewers);
+    }, [data]);
+
     return (
-        <p>{data ? data.data.data.viewers : `—`}</p>
+        <p>{count ?? `—`}</p>
     )
 }

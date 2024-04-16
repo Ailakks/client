@@ -2,6 +2,7 @@ import {createContext, useContext, useState} from "react";
 import List, {ListContext} from "../../../list/List";
 import {clsx} from "clsx";
 
+export const DataFilterContext = createContext(null);
 export const FilterContext = createContext(null);
 
 export default function DataFilter({ list, data, children }) {
@@ -15,7 +16,9 @@ export default function DataFilter({ list, data, children }) {
                         <Section />
                     </List>
                 </div>
-                {children}
+                <DataFilterContext.Provider value={{ data }}>
+                    {children}
+                </DataFilterContext.Provider>
             </div>
         </FilterContext.Provider>
     )

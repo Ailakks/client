@@ -5,6 +5,7 @@ import {WidgetDataContext} from "./Widget";
 
 export default function PlatformFilter({ data, children }) {
     const [filter, setFilter] = useState([]);
+    const [filtered, setFiltered] = useState([]);
 
     const { data: { platformList } } = useContext(PlatformContext);
     const { metadata: { platforms } } = useContext(WidgetDataContext);
@@ -12,6 +13,10 @@ export default function PlatformFilter({ data, children }) {
     useEffect(() => {
         setFilter(platformList.filter(({ id }) => platforms.includes(id)));
     }, [platformList]);
+
+    useEffect(() => {
+        setFiltered(data.filter(({ platform: { id } }) => platforms.includes(id)));
+    }, [data]);
 
     const list = [
         {
@@ -21,7 +26,7 @@ export default function PlatformFilter({ data, children }) {
     ];
 
     return (
-        <DataFilter list={list} data={data}>
+        <DataFilter list={list} data={filtered}>
             {children}
         </DataFilter>
     )

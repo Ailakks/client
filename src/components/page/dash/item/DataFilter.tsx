@@ -1,12 +1,17 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import List, {ListContext} from "../../../list/List";
 import {clsx} from "clsx";
 
 export const DataFilterContext = createContext(null);
 export const FilterContext = createContext(null);
 
-export default function DataFilter({ list, data, children }) {
+export default function DataFilter({ list, validator, data, children }) {
     const [filter, setFilter] = useState([]);
+    const [filtered, setFiltered] = useState([]);
+
+    useEffect(() => {
+        setFiltered(data.filter(validator));
+    }, [data]);
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>
@@ -16,7 +21,7 @@ export default function DataFilter({ list, data, children }) {
                         <Section />
                     </List>
                 </div>
-                <DataFilterContext.Provider value={{ data }}>
+                <DataFilterContext.Provider value={{ filtered }}>
                     {children}
                 </DataFilterContext.Provider>
             </div>

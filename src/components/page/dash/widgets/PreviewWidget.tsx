@@ -64,10 +64,10 @@ function Body() {
 }
 
 function FrameList() {
-    const { data } = useContext(DataFilterContext);
+    const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={data}>
+        <List list={filtered}>
             <Frame />
         </List>
     )

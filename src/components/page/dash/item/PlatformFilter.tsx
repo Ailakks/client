@@ -4,29 +4,30 @@ import DataFilter from "./DataFilter";
 import {WidgetDataContext} from "./Widget";
 
 export default function PlatformFilter({ data, children }) {
-    const [filter, setFilter] = useState([]);
     const [filtered, setFiltered] = useState([]);
 
     const { data: { platformList } } = useContext(PlatformContext);
     const { metadata: { platforms } } = useContext(WidgetDataContext);
 
     useEffect(() => {
-        setFilter(platformList.filter(({ id }) => platforms.includes(id)));
+        setFiltered(platformList.filter(({ id }) => platforms.includes(id)));
     }, [platformList]);
-
-    useEffect(() => {
-        setFiltered(data.filter(({ platform: { id } }) => platforms.includes(id)));
-    }, [data]);
 
     const list = [
         {
             name: 'platform',
-            list: filter
+            list: filtered
         }
     ];
 
+    const filter = (item) => {
+        const { platform: { id } } = item;
+
+        return filtered.map(({ id }) => id).includes(id);
+    };
+
     return (
-        <DataFilter list={list} data={filtered}>
+        <DataFilter list={list} validator={filter} data={data}>
             {children}
         </DataFilter>
     )

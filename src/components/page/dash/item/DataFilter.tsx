@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import List, {ListContext} from "../../../list/List";
 import {clsx} from "clsx";
 
@@ -8,13 +8,12 @@ export default function DataFilter({ data }) {
     const [filter, setFilter] = useState([]);
 
     return (
-        <FilterContext.Provider value={{filter, setFilter}}>
+        <FilterContext.Provider value={{ filter, setFilter }}>
             <div className="space-y-2">
                 <List list={data}>
                     <Section />
                 </List>
             </div>
-            <p>{JSON.stringify(filter)}</p>
         </FilterContext.Provider>
     )
 }

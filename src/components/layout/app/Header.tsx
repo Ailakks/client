@@ -16,7 +16,7 @@ export default function AppHeader() {
             <h2 className="text-nowrap">
                 <a className="text-white" href="/">{translate("layout.header.name")}</a>
             </h2>
-            <div className="flex w-full justify-end space-x-4">
+            <div className="flex w-full justify-end items-center space-x-6">
                 <Language />
                 {data ? <Logged /> : <Guest />}
             </div>

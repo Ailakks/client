@@ -23,8 +23,10 @@ export default function PreviewWidget() {
         const request = useQuery(gql`
             query {
                 channelDataList {
-                    platform {
-                        id
+                    meta {
+                        platform {
+                            id
+                        }
                     }
                     data {
                         id

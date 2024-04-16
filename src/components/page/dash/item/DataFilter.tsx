@@ -19,7 +19,7 @@ export default function DataFilter({ list, property, data, children }) {
 
             return filter.map(({ id }) => id).includes(value);
         }));
-    }, [filter]);
+    }, [data, filter]);
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>

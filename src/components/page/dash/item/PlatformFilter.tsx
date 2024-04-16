@@ -21,7 +21,7 @@ export default function PlatformFilter({ data, children }) {
     ];
 
     const property = (item) => {
-        const { platform: { id } } = item;
+        const { meta: { platform: { id } } } = item;
 
         return id;
     };

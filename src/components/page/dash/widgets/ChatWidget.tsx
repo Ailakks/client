@@ -2,6 +2,8 @@ import {useContext, useEffect} from "react";
 import {WidgetDataContext} from "../item/Widget";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
+import PlatformFilter from "../item/PlatformFilter";
+import {DataFilterContext} from "../item/DataFilter";
 
 export default function ChatWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -23,13 +25,23 @@ function Body() {
     const { list } = useContext(WidgetSocketContext);
 
     return (
-        <List list={list}>
-            <Item />
+        <PlatformFilter data={list}>
+            <MessageList />
+        </PlatformFilter>
+    )
+}
+
+function MessageList() {
+    const { filtered } = useContext(DataFilterContext);
+
+    return (
+        <List list={filtered}>
+            <Message />
         </List>
     )
 }
 
-function Item() {
+function Message() {
     const { item: { meta: { platform: { brand: { icon } } }, data: { author: { color, displayName, badges }, message } } } = useContext(ListContext);
 
     return (

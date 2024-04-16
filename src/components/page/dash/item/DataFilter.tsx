@@ -14,6 +14,7 @@ export default function DataFilter({ data }) {
                     <Section />
                 </List>
             </div>
+            <p>{JSON.stringify(filter)}</p>
         </FilterContext.Provider>
     )
 }
@@ -29,20 +30,22 @@ function Section() {
 }
 
 function Item() {
-    const { item: { displayName } } = useContext(ListContext);
+    const { item } = useContext(ListContext);
     const { filter, setFilter } = useContext(FilterContext);
+
+    const { id, displayName } = item;
 
     const add = () => {
         setFilter((previous) => [...previous, item]);
     };
 
     const remove = () => {
-        setFilter((previous) => previous.filter(({ id }) => id !== item.id));
+        setFilter((previous) => previous.filter(({ id: target }) => target !== id));
     };
 
-    const isEnabled = filter.find(({ id }) => id === item.id);
+    const isEnabled = filter.find(({ id: target }) => target === id);
 
     return (
-         <div className={clsx(isEnabled && "bg-white", "bg-gray-300")} onClick={isEnabled ? add : remove}>{displayName}</div>
+         <div className={clsx(isEnabled && "bg-white", "bg-gray-300")} onClick={isEnabled ? remove : add}>{displayName}</div>
     )
 }

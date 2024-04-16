@@ -4,6 +4,7 @@ import ContextMenu from "../../../context/ContextMenu";
 import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import {LayoutContext} from "../grid/GridView";
+import ErrorBoundaryWrapper from "../../../native/ErrorBoundaryWrapper";
 
 export default function Window({ children }) {
     const { metadata, collapsed, replace, remove, collapse } = useContext(WidgetDataContext);
@@ -28,7 +29,9 @@ export default function Window({ children }) {
                 </div>
             </div>
             <div className="flex grow p-2 overflow-hidden">
-                {!collapsed && children}
+                <ErrorBoundaryWrapper>
+                    {!collapsed && children}
+                </ErrorBoundaryWrapper>
             </div>
         </div>
     )

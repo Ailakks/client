@@ -2,9 +2,8 @@ import {useContext, useEffect, useState} from "react";
 import {PlatformContext} from "../../../../wrapper/api/Platform";
 import DataFilter from "./DataFilter";
 import {WidgetDataContext} from "./Widget";
-import {WidgetSocketContext} from "./WidgetSocket";
 
-export default function PlatformFilter({ children }) {
+export default function PlatformFilter({ data, children }) {
     const [filter, setFilter] = useState([]);
 
     const { data: { platformList } } = useContext(PlatformContext);

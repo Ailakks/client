@@ -20,10 +20,10 @@ export default function ChatWidget() {
 }
 
 function Body() {
-    const { data } = useContext(WidgetSocketContext);
+    const { list } = useContext(WidgetSocketContext);
 
     return (
-        <List list={data}>
+        <List list={list}>
             <Item />
         </List>
     )

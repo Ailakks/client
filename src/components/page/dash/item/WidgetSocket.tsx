@@ -36,7 +36,7 @@ export default function WidgetSocket({ children }) {
     }, []);
 
     return (
-        <WidgetSocketContext.Provider value={{ data }}>
+        <WidgetSocketContext.Provider value={{ list }}>
             {children}
         </WidgetSocketContext.Provider>
     )

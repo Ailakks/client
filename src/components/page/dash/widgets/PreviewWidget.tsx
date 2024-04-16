@@ -51,21 +51,25 @@ export default function PreviewWidget() {
 }
 
 function Body() {
+    const { response: { channelDataList } } = useContext(QueryContext);
+
     return (
         <div className="space-y-2">
-            <PlatformFilter />
+            <PlatformFilter data={channelDataList}>
+                <Item />
+            </PlatformFilter>
         </div>
     )
 }
 
 function Item() {
-    const {item: {data: {stream: {source: {url}}}}} = useContext(ListContext);
+    const { item: { data: { stream: { source: { url } } } } } = useContext(ListContext);
 
     if (!url) {
         return;
     }
 
     return (
-        <iframe src={url}/>
+        <iframe src={url} />
     )
 }

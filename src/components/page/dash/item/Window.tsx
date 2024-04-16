@@ -27,7 +27,9 @@ export default function Window({ children }) {
                     </button>
                 </div>
             </div>
-            {!collapsed && children}
+            <div className="p-2">
+                {!collapsed && children}
+            </div>
         </div>
     )
 }

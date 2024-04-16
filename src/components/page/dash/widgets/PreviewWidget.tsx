@@ -67,9 +67,11 @@ function FrameList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={filtered}>
-            <Frame />
-        </List>
+        <div className="space-y-2">
+            <List list={filtered}>
+                <Frame />
+            </List>
+        </div>
     )
 }
 

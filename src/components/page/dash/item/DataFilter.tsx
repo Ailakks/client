@@ -21,25 +21,14 @@ export default function DataFilter({ list, property, data, children }) {
         }));
     }, [filter]);
 
-    const clear = () => {
-        setFilter([]);
-    };
-
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>
-            <div>
-                <div className="space-y-2">
-                    <List list={list}>
-                        <Section />
-                    </List>
-                    {filter.length > 0 && (
-                        <button onClick={clear}>
-                            <i className="fa-regular fa-xmark"/>
-                        </button>
-                    )}
-                </div>
+            <div className="space-y-2">
+                <List list={list}>
+                    <Section />
+                </List>
                 <DataFilterContext.Provider value={{filtered}}>
-                {children}
+                    {children}
                 </DataFilterContext.Provider>
             </div>
         </FilterContext.Provider>
@@ -48,11 +37,23 @@ export default function DataFilter({ list, property, data, children }) {
 
 function Section() {
     const { item: { list } } = useContext(ListContext);
+    const { filter, setFilter } = useContext(FilterContext);
+
+    const clear = () => {
+        setFilter([]);
+    };
 
     return (
-        <List list={list}>
-            <Item />
-        </List>
+        <div className="flex h-6 space-x-2">
+            {filter.length > 0 && (
+                <button className="h-full bg-gray-300 rounded-full aspect-square" onClick={clear}>
+                    <i className="fa-regular fa-xmark" />
+                </button>
+            )}
+            <List list={list}>
+                <Item />
+            </List>
+        </div>
     )
 }
 
@@ -73,6 +74,6 @@ function Item() {
     const isEnabled = filter.find(({ id: target }) => target === id);
 
     return (
-         <div className={clsx(isEnabled && "bg-white", "bg-gray-300")} onClick={isEnabled ? remove : add}>{displayName}</div>
+         <div className={clsx(isEnabled && "bg-white text-black", "bg-gray-300 text-white px-3 rounded-full cursor-pointer")} onClick={isEnabled ? remove : add}>{displayName}</div>
     )
 }

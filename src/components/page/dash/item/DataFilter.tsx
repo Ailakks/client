@@ -76,6 +76,6 @@ function Item() {
     const isEnabled = filter.find(({ id: target }) => target === id);
 
     return (
-         <div className={clsx(isEnabled && "bg-white text-black", "bg-gray-300 text-white px-3 rounded-full cursor-pointer")} onClick={isEnabled ? remove : add}>{displayName}</div>
+         <div className={clsx(isEnabled && "bg-white !text-black", "bg-gray-300 text-white px-3 rounded-full cursor-pointer")} onClick={isEnabled ? remove : add}>{displayName}</div>
     )
 }

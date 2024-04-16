@@ -49,9 +49,11 @@ function Platform() {
     const { filter } = useContext(FilterContext);
 
     return (
-        <List list={filter.length ? filter : list}>
-            <Item />
-        </List>
+        <div className="space-y-2">
+            <List list={filter.length ? filter : list}>
+                <Item />
+            </List>
+        </div>
     )
 }
 
@@ -78,7 +80,7 @@ function Item() {
     }, [data]);
 
     return (
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center bg-gray-300 p-4 rounded">
             <div className="flex space-x-2 items-center">
                 <i className={clsx(icon.id, "w-5")}/>
                 <p>{displayName}</p>

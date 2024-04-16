@@ -5,6 +5,7 @@ import {PlatformContext} from "../../../../wrapper/api/Platform";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
+import {clsx} from "clsx";
 
 export default function ViewersWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -79,7 +80,7 @@ function Item() {
     return (
         <div className="flex justify-between items-center py-4">
             <div className="flex space-x-2 items-center">
-                <i className={icon.id}/>
+                <i className={clsx(icon.id, "w-5")}/>
                 <p>{displayName}</p>
             </div>
             <p>{count ?? `—`}</p>

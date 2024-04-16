@@ -42,7 +42,7 @@ html {
     }
 
     i {
-        @apply text-white w-full aspect-square;
+        @apply text-white;
     }
 
     th {

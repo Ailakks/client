@@ -4,6 +4,7 @@ import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
 import PlatformFilter from "../item/PlatformFilter";
 import {DataFilterContext} from "../item/DataFilter";
+import {clsx} from "clsx";
 
 export default function ChatWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -48,7 +49,7 @@ function Message() {
 
     return (
         <div>
-            <span><i className={icon.id} />&nbsp;</span>
+            <i className={clsx(icon.id, "w-6")} />&nbsp;
             <span style={{ color: color ?? brand.color }}>{displayName}:&nbsp;</span>
             <List list={message} separator={<span>&nbsp;</span>}>
                 <ChatMessagePart />

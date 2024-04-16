@@ -85,6 +85,6 @@ function Frame() {
     }
 
     return (
-        <iframe src={url} />
+        <iframe className="rounded" src={url} />
     )
 }

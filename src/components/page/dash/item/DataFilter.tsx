@@ -23,7 +23,7 @@ export default function DataFilter({ list, property, data, children }) {
 
     return (
         <FilterContext.Provider value={{ filter, setFilter }}>
-            <div className="space-y-2">
+            <div className="flex flex-col grow space-y-2">
                 <List list={list}>
                     <Section />
                 </List>

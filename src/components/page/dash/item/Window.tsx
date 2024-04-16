@@ -11,7 +11,7 @@ export default function Window({ children }) {
     const { name } = metadata;
 
     return (
-        <div className="h-full bg-gray-700 min-w-60 overflow-x-auto">
+        <div className="flex flex-col h-full bg-gray-700 min-w-60 overflow-x-auto">
             <div className="flex justify-between items-center h-10 bg-gray-300 p-5">
                 <p>{name}</p>
                 <div className="space-x-5">
@@ -27,7 +27,7 @@ export default function Window({ children }) {
                     </button>
                 </div>
             </div>
-            <div className="p-2">
+            <div className="flex grow p-2">
                 {!collapsed && children}
             </div>
         </div>

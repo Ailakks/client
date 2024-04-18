@@ -71,13 +71,13 @@ function FrameList() {
     return (
         <div className="space-y-2">
             <List list={filtered}>
-                <Frame />
+                <Item />
             </List>
         </div>
     )
 }
 
-function Frame() {
+function Item() {
     const { item: { data: { stream: { source: { url } } } } } = useContext(ListContext);
 
     if (!url) {

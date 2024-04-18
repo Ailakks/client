@@ -36,14 +36,32 @@ const pages = [
         ]
     },
     {
+        id: 'tools',
+        name: 'Tools',
+        list: [
+            {
+                id: 'voices',
+                path: '/voices',
+                name: 'Custom voices',
+                icon: 'fa-regular fa-microphone'
+            }
+        ]
+    },
+    {
         id: 'settings',
         name: 'Settings',
         list: [
             {
-                id: 'profiles',
-                path: '/profiles',
-                name: 'Profiles',
+                id: 'channels',
+                path: '/channels',
+                name: 'Channels',
                 icon: 'fa-regular fa-user'
+            },
+            {
+                id: 'organizations',
+                path: '/organizations',
+                name: 'Organizations',
+                icon: 'fa-regular fa-bolt'
             },
             {
                 id: 'settings',

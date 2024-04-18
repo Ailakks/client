@@ -25,13 +25,17 @@
         "section": {
           "home": "Inicio",
           "widgets": "Widgets",
+          "tools": "Herramientas",
           "settings": "Ajustes"
         },
         "page": {
           "dashboard": "Panel de control",
           "marketplace": "Marketplace",
           "widgets": "Mis widgets",
-          "profiles": "Perfiles",
+          "voices": "Voces con IA",
+          "songs": "Canciones IA",
+          "channels": "Canales vinculados",
+          "organizations": "Organizaciones",
           "settings": "Configuración"
         }
       },

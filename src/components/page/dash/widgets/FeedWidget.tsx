@@ -4,6 +4,10 @@ import {FilterContext} from "../item/DataFilter";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
+import Tab from "../../../native/Tab";
+import TabContent from "../../../native/TabContent";
+import Tabs from "../../../native/Tabs";
+import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 
 export default function FeedWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -23,26 +27,69 @@ export default function FeedWidget() {
 }
 
 function FeedList() {
+    const { translate } = useContext(LanguageContext);
+
     const { list } = useContext(WidgetSocketContext);
 
     return (
-        <PlatformFilter data={list}>
-            <Body />
-        </PlatformFilter>
+        <Tabs>
+            <Tab>
+                <p>{translate("widget.feed.tab.messages.name")}</p>
+                <TabContent>
+                    <PlatformFilter data={list}>
+                        <TagsView/>
+                    </PlatformFilter>
+                </TabContent>
+            </Tab>
+            <Tab>
+                <p>{translate("widget.feed.tab.tags.name")}</p>
+                <TabContent>
+                    <PlatformFilter data={list}>
+                        <MessagesView />
+                    </PlatformFilter>
+                </TabContent>
+            </Tab>
+        </Tabs>
     )
 }
 
-function Body() {
+function MessagesView() {
     const { list } = useContext(FilterContext);
 
     return (
         <List list={list}>
-            <Item />
+            <Message />
         </List>
     )
 }
 
-function Item() {
+function TagsView() {
+    const { list } = useContext(FilterContext);
+
+    return (
+        <List list={list}>
+            <Tag />
+        </List>
+    )
+}
+
+function Message() {
+    const { item: { system } } = useContext(ListContext);
+
+    if (!system) {
+        return;
+    }
+
+    const { message: { message } } = system;
+
+    return (
+        <div>
+            <p>{message}</p>
+        </div>
+    )
+}
+
+function Tag() {
     const { item: { system } } = useContext(ListContext);
 
     if (!system) {

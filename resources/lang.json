@@ -3,6 +3,18 @@
 
   },
   "es_ES": {
+    "widget": {
+      "feed": {
+        "tab": {
+          "messages": {
+            "name": "Mensajes"
+          },
+          "tags": {
+            "name": "Etiquetas"
+          }
+        }
+      }
+    },
     "fallback": {
       "error": {
         "title": "Algo no ha ido bien",

@@ -1,6 +1,6 @@
 import {useContext, useEffect} from "react";
 import {WidgetDataContext} from "../item/Widget";
-import {FilterContext} from "../item/DataFilter";
+import {DataFilterContext, FilterContext} from "../item/DataFilter";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
@@ -8,6 +8,11 @@ import Tab from "../../../native/Tab";
 import TabContent from "../../../native/TabContent";
 import Tabs from "../../../native/Tabs";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+
+enum EventType {
+    SUBSCRIPTION = 'subscription',
+    GIFT = 'gift'
+}
 
 export default function FeedWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -37,7 +42,7 @@ function FeedList() {
                 <p>{translate("widget.feed.tab.messages.name")}</p>
                 <TabContent>
                     <PlatformFilter data={list}>
-                        <TagsView/>
+                        <MessagesView />
                     </PlatformFilter>
                 </TabContent>
             </Tab>
@@ -45,7 +50,7 @@ function FeedList() {
                 <p>{translate("widget.feed.tab.tags.name")}</p>
                 <TabContent>
                     <PlatformFilter data={list}>
-                        <MessagesView />
+                        <TagsView />
                     </PlatformFilter>
                 </TabContent>
             </Tab>
@@ -54,27 +59,27 @@ function FeedList() {
 }
 
 function MessagesView() {
-    const { list } = useContext(FilterContext);
+    const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={list}>
+        <List list={filtered}>
             <Message />
         </List>
     )
 }
 
 function TagsView() {
-    const { list } = useContext(FilterContext);
+    const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={list}>
+        <List list={filtered}>
             <Tag />
         </List>
     )
 }
 
 function Message() {
-    const { item: { system } } = useContext(ListContext);
+    const { item: { system } } = useContext(FilterContext);
 
     if (!system) {
         return;
@@ -90,7 +95,29 @@ function Message() {
 }
 
 function Tag() {
-    const { item: { system } } = useContext(ListContext);
+    const tags = {
+        [EventType.SUBSCRIPTION]: {
+            message: "",
+            tags: [
+                {
+                    name: "user",
+                    value: (({ data: { author: { displayName } } }) => displayName)
+                },
+                {
+                    name: "plan",
+                    value: (({ data: { subscription: { plan } } }) => plan)
+                },
+                {
+                    name: "history",
+                    value: (({ data: { subscription: { period: { history } } } }) => history)
+                },
+                {
+                    name: "streak",
+                    value: (({ data: { subscription: { period: { streak } } } }) => streak)
+                }
+            ]
+        }
+    };
 
     if (!system) {
         return;

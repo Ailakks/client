@@ -100,18 +100,22 @@ function TagView() {
             tags: [
                 {
                     id: "user",
+                    icon: "fa-regular fa-user",
                     value: (({ data: { author: { displayName } } }) => displayName)
                 },
                 {
                     id: "plan",
+                    icon: "fa-regular fa-star",
                     value: (({ data: { subscription: { plan } } }) => plan)
                 },
                 {
                     id: "history",
+                    icon: "fa-regular fa-clock",
                     value: (({ data: { subscription: { period: { history } } } }) => history)
                 },
                 {
                     id: "streak",
+                    icon: "fa-regular fa-bolt",
                     value: (({ data: { subscription: { period: { streak } } } }) => streak)
                 }
             ]

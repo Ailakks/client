@@ -42,7 +42,7 @@ function FeedList() {
                 <p>{translate("widget.feed.tab.messages.name")}</p>
                 <TabContent>
                     <PlatformFilter data={list}>
-                        <MessagesView />
+                        <MessagesViewList />
                     </PlatformFilter>
                 </TabContent>
             </Tab>
@@ -50,7 +50,7 @@ function FeedList() {
                 <p>{translate("widget.feed.tab.tags.name")}</p>
                 <TabContent>
                     <PlatformFilter data={list}>
-                        <TagsView />
+                        <TagViewList />
                     </PlatformFilter>
                 </TabContent>
             </Tab>
@@ -58,27 +58,27 @@ function FeedList() {
     )
 }
 
-function MessagesView() {
+function MessagesViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
         <List list={filtered}>
-            <Message />
+            <MessageView />
         </List>
     )
 }
 
-function TagsView() {
+function TagViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
         <List list={filtered}>
-            <Tag />
+            <TagView />
         </List>
     )
 }
 
-function Message() {
+function MessageView() {
     const { item: { system } } = useContext(FilterContext);
 
     if (!system) {
@@ -94,40 +94,53 @@ function Message() {
     )
 }
 
-function Tag() {
-    const tags = {
+function TagView() {
+    const list = {
         [EventType.SUBSCRIPTION]: {
-            message: "",
             tags: [
                 {
-                    name: "user",
+                    id: "user",
                     value: (({ data: { author: { displayName } } }) => displayName)
                 },
                 {
-                    name: "plan",
+                    id: "plan",
                     value: (({ data: { subscription: { plan } } }) => plan)
                 },
                 {
-                    name: "history",
+                    id: "history",
                     value: (({ data: { subscription: { period: { history } } } }) => history)
                 },
                 {
-                    name: "streak",
+                    id: "streak",
                     value: (({ data: { subscription: { period: { streak } } } }) => streak)
                 }
             ]
         }
     };
 
-    if (!system) {
-        return;
-    }
+    const { item: { meta: { name } } } = useContext(FilterContext);
 
-    const { message: { message } } = system;
+    const { tags } = list[name];
 
     return (
         <div>
-            <p>{message}</p>
+            <p>{translate(`widget.feed.tags.data.${name}.name`)}</p>
+            <List list={tags}>
+                <Tag />
+            </List>
+        </div>
+    )
+}
+
+function Tag() {
+    const { item: { icon, value } } = useContext(ListContext);
+
+    const { item: { data } } = useContext(FilterContext);
+
+    return (
+        <div>
+            <i className={icon} />
+            <p>{value(data)}</p>
         </div>
     )
 }

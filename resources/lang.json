@@ -5,6 +5,13 @@
   "es_ES": {
     "widget": {
       "feed": {
+        "tags": {
+          "event": {
+            "subscription": {
+              "title": "Nueva suscripción"
+            }
+          }
+        },
         "tab": {
           "messages": {
             "name": "Mensajes"

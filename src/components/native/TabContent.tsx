@@ -1,10 +1,12 @@
 import {useContext} from "react";
 import {TabContext} from "./Tab";
+import {TabsContext} from "./Tabs";
 
 export default function TabContent({ children }) {
-    const { index, current } = useContext(TabContext);
+    const { index } = useContext(TabsContext);
+    const { id } = useContext(TabContext);
 
-    if (index === current) {
+    if (id === index) {
         return children;
     }
 }

@@ -38,21 +38,15 @@ function Body() {
 
     return (
         <Tabs>
-            <Tab>
-                <p>{translate("widget.feed.tab.messages.name")}</p>
-                <TabContent>
-                    <PlatformFilter data={list}>
-                        <MessagesViewList/>
-                    </PlatformFilter>
-                </TabContent>
+            <Tab content={<p>{translate("widget.feed.tab.messages.name")}</p>}>
+                <PlatformFilter data={list}>
+                    <p>test</p>
+                </PlatformFilter>
             </Tab>
-            <Tab>
-                <p>{translate("widget.feed.tab.tags.name")}</p>
-                <TabContent>
-                    <PlatformFilter data={list}>
-                        <TagViewList />
-                    </PlatformFilter>
-                </TabContent>
+            <Tab content={<p>{translate("widget.feed.tab.tags.name")}</p>}>
+                <PlatformFilter data={list}>
+                    <p>test</p>
+                </PlatformFilter>
             </Tab>
         </Tabs>
     )

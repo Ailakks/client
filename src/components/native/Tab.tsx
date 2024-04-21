@@ -4,7 +4,7 @@ import {clsx} from "clsx";
 
 export const TabContext = createContext();
 
-export default function Tab({ children }) {
+export default function Tab({ content, children }) {
     const [current, setCurrent] = useState();
 
     const { index, setIndex } = useContext(TabsContext);
@@ -23,9 +23,12 @@ export default function Tab({ children }) {
 
     return (
         <TabContext.Provider value={{ index, current }}>
-            <button className={clsx("tab", index === current && "bg-gray-300")} onClick={set}>
+            <div>
+                <button className={clsx("tab", index === current && "bg-orange-500")} onClick={set}>
+                    {content}
+                </button>
                 {children}
-            </button>
+            </div>
         </TabContext.Provider>
     )
 }

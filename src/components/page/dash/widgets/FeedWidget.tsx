@@ -4,8 +4,11 @@ import {DataFilterContext, FilterContext} from "../item/DataFilter";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
+import Tab from "../../../native/Tab";
+import TabContent from "../../../native/TabContent";
+import Tabs from "../../../native/Tabs";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
-import TabList from "../../../native/TabList";
+import TabHeader from "../../../native/TabHeader";
 
 enum EventType {
     SUBSCRIPTION = 'subscription',
@@ -32,23 +35,38 @@ export default function FeedWidget() {
 function FeedList() {
     const { translate } = useContext(LanguageContext);
 
-    const { list } = useContext(WidgetSocketContext);
-
-    const tabs = [
-        {
-            name: 'messages',
-            child: (
-                <PlatformFilter data={list}>
-                    <MessagesViewList />
-                </PlatformFilter>
-            )
-        }
-    ]
-
     return (
-        <TabList list={tabs} />
+        <Tabs>
+            <Tab>
+                <TabHeader>
+                    <p>{translate("widget.feed.tab.messages.name")}</p>
+                </TabHeader>
+                <TabContent>
+                    <MessagesViewListSocket />
+                </TabContent>
+            </Tab>
+            <Tab>
+                <TabHeader>
+                    <p>{translate("widget.feed.tab.tags.name")}</p>
+                </TabHeader>
+                <TabContent>
+
+                </TabContent>
+            </Tab>
+        </Tabs>
     )
 }
+
+function MessagesViewListSocket() {
+    const { list } = useContext(WidgetSocketContext);
+
+    return (
+        <PlatformFilter data={list}>
+            <MessagesViewList />
+        </PlatformFilter>
+    )
+}
+
 
 function MessagesViewList() {
     const { filtered } = useContext(DataFilterContext);

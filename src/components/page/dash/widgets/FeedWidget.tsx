@@ -25,13 +25,13 @@ export default function FeedWidget() {
     if (metadata) {
         return (
             <WidgetSocket>
-                <FeedList />
+                <Body />
             </WidgetSocket>
         )
     }
 }
 
-function FeedList() {
+function Body() {
     const { translate } = useContext(LanguageContext);
 
     const { list } = useContext(WidgetSocketContext);
@@ -42,7 +42,7 @@ function FeedList() {
                 <p>{translate("widget.feed.tab.messages.name")}</p>
                 <TabContent>
                     <PlatformFilter data={list}>
-                        <MessagesViewList />
+                        <MessagesViewList/>
                     </PlatformFilter>
                 </TabContent>
             </Tab>

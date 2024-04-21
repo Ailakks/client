@@ -42,7 +42,9 @@ function FeedList() {
                     <p>{translate("widget.feed.tab.messages.name")}</p>
                 </TabHeader>
                 <TabContent>
-                    <MessagesViewListSocket />
+                    <View>
+                        <MessageViewList />
+                    </View>
                 </TabContent>
             </Tab>
             <Tab>
@@ -50,25 +52,26 @@ function FeedList() {
                     <p>{translate("widget.feed.tab.tags.name")}</p>
                 </TabHeader>
                 <TabContent>
-
+                    <View>
+                        <TagViewList />
+                    </View>
                 </TabContent>
             </Tab>
         </Tabs>
     )
 }
 
-function MessagesViewListSocket() {
+function View({ children }) {
     const { list } = useContext(WidgetSocketContext);
 
     return (
         <PlatformFilter data={list}>
-            <MessagesViewList />
+            {children}
         </PlatformFilter>
     )
 }
 
-
-function MessagesViewList() {
+function MessageViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (

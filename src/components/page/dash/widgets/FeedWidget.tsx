@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {createContext, useContext, useEffect} from "react";
 import {WidgetDataContext} from "../item/Widget";
 import {DataFilterContext, FilterContext} from "../item/DataFilter";
 import PlatformFilter from "../item/PlatformFilter";
@@ -107,6 +107,8 @@ function MessageView() {
     )
 }
 
+export const TagViewContext = createContext();
+
 function TagView() {
     const list = {
         [EventType.SUBSCRIPTION]: {
@@ -114,45 +116,49 @@ function TagView() {
                 {
                     id: "user",
                     icon: "fa-regular fa-user",
-                    value: (({ data: { author: { displayName } } }) => displayName)
+                    value: (( { author: { displayName } }) => displayName)
                 },
                 {
                     id: "plan",
                     icon: "fa-regular fa-star",
-                    value: (({ data: { subscription: { plan } } }) => plan)
+                    value: (({ subscription: { plan } }) => plan)
                 },
                 {
                     id: "history",
                     icon: "fa-regular fa-clock",
-                    value: (({ data: { subscription: { period: { history } } } }) => history)
+                    value: (({ subscription: { period: { history } } }) => history)
                 },
                 {
                     id: "streak",
                     icon: "fa-regular fa-bolt",
-                    value: (({ data: { subscription: { period: { streak } } } }) => streak)
+                    value: (({ subscription: { period: { streak } } }) => streak)
                 }
             ]
         }
     };
 
-    const { item: { meta: { name } } } = useContext(FilterContext);
+    const { translate } = useContext(LanguageContext);
+
+    const { item } = useContext(ListContext);
+
+    const { meta: { name } } = item;
 
     const { tags } = list[name];
 
     return (
-        <div>
+        <TagViewContext.Provider value={{ item }}>
             <p>{translate(`widget.feed.tags.data.${name}.name`)}</p>
             <List list={tags}>
                 <Tag />
             </List>
-        </div>
+        </TagViewContext.Provider>
     )
 }
 
 function Tag() {
     const { item: { icon, value } } = useContext(ListContext);
 
-    const { item: { data } } = useContext(FilterContext);
+    const { item: { data } } = useContext(TagViewContext);
 
     return (
         <div>

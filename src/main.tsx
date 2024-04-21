@@ -15,6 +15,7 @@ import LanguageWrapper from "./wrapper/lang/LanguageWrapper";
 import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
 import ModalProvider from "./wrapper/ui/Modal";
 import PopupProvider from "./wrapper/ui/Popup";
+import SocketWrapper from "./wrapper/Socket";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
@@ -24,19 +25,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <DownloadWrapper>
                         <AxiosWrapper>
                             <ApolloWrapper>
-                                <AccountWrapper>
-                                    <LoggedWrapper>
-                                        <PopupProvider>
-                                            <ModalProvider>
-                                                <QueueWrapper>
-                                                    <RenderProvider>
-                                                        <App />
-                                                    </RenderProvider>
-                                                </QueueWrapper>
-                                            </ModalProvider>
-                                        </PopupProvider>
-                                    </LoggedWrapper>
-                                </AccountWrapper>
+                                <SocketWrapper>
+                                    <AccountWrapper>
+                                        <LoggedWrapper>
+                                            <PopupProvider>
+                                                <ModalProvider>
+                                                    <QueueWrapper>
+                                                        <RenderProvider>
+                                                            <App />
+                                                        </RenderProvider>
+                                                    </QueueWrapper>
+                                                </ModalProvider>
+                                            </PopupProvider>
+                                        </LoggedWrapper>
+                                    </AccountWrapper>
+                                </SocketWrapper>
                             </ApolloWrapper>
                         </AxiosWrapper>
                     </DownloadWrapper>

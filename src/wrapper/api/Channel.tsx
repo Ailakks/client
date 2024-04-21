@@ -21,7 +21,8 @@ export default function ChannelWrapper({ children }) {
                 }
                 __typename
             }
-        }`);
+        }`
+    );
 
     return (
         <Query request={request}>

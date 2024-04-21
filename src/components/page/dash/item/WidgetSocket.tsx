@@ -2,19 +2,24 @@ import {createContext, useContext, useEffect, useState} from "react";
 import {io} from "socket.io-client";
 import {WidgetDataContext} from "./Widget";
 import {ChannelContext} from "../../../../wrapper/api/Channel";
+import {CookiesContext} from "../../../../wrapper/tool/Cookies";
+import {AxiosContext} from "../../../../wrapper/Axios";
 
 export const WidgetSocketContext = createContext(null);
 
 export const MAX_EVENT_HISTORY = 60;
 
 export default function WidgetSocket({ children }) {
+    const { client } = useContext(AxiosContext);
+    const { getToken } = useContext(CookiesContext);
+
     const { data: { channelList } } = useContext(ChannelContext);
     const { metadata: { scopes } } = useContext(WidgetDataContext);
 
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        const socket = io(import.meta.env.VITE_API_SOCKET_URL);
+        const socket = io(import.meta.env.VITE_API_SOCKET_URL, { extraHeaders: { Authorization: `Bearer ${getToken()}` } });
 
         socket.on('connect', () =>  {
             channelList.forEach(({ platform, username }) => {
@@ -32,6 +37,12 @@ export default function WidgetSocket({ children }) {
             }
 
             setList((previous) => [...previous.slice(-MAX_EVENT_HISTORY), data]);
+        });
+
+        client.get('history').then(({ data }) => {
+            const list = data.map(({ event }) => event);
+
+            setList((previous) => [...previous, ...list]);
         });
 
         return () => socket.off();

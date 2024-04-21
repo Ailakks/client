@@ -1,12 +1,10 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {TabContext} from "./Tab";
-import {TabsContext} from "./Tabs";
 
-export default function TabContent({ children }) {
-    const { index } = useContext(TabsContext);
-    const { id } = useContext(TabContext);
+export default function TabContent(props) {
+    const { setContent } = useContext(TabContext);
 
-    if (id === index) {
-        return children;
-    }
+    useEffect(() => {
+        setContent(props);
+    }, []);
 }

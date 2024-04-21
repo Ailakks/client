@@ -8,6 +8,7 @@ import Tab from "../../../native/Tab";
 import TabContent from "../../../native/TabContent";
 import Tabs from "../../../native/Tabs";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import TabHeader from "../../../native/TabHeader";
 
 enum EventType {
     SUBSCRIPTION = 'subscription',
@@ -25,28 +26,36 @@ export default function FeedWidget() {
     if (metadata) {
         return (
             <WidgetSocket>
-                <Body />
+                <FeedList />
             </WidgetSocket>
         )
     }
 }
 
-function Body() {
+function FeedList() {
     const { translate } = useContext(LanguageContext);
 
     const { list } = useContext(WidgetSocketContext);
 
     return (
         <Tabs>
-            <Tab id={0} tab={<p>{translate("widget.feed.tab.messages.name")}</p>}>
-                <PlatformFilter data={list}>
-                    <MessagesViewList />
-                </PlatformFilter>
+            <Tab>
+                <TabHeader>
+                    <p>{translate("widget.feed.tab.messages.name")}</p>
+                </TabHeader>
+                <TabContent>
+                    <p>{JSON.stringify(list)}</p>
+                </TabContent>
             </Tab>
-            <Tab id={1} tab={<p>{translate("widget.feed.tab.tags.name")}</p>}>
-                <PlatformFilter data={list}>
-                    <p>test</p>
-                </PlatformFilter>
+            <Tab>
+                <TabHeader>
+                    <p>{translate("widget.feed.tab.tags.name")}</p>
+                </TabHeader>
+                <TabContent>
+                    <PlatformFilter data={list}>
+                        <TagViewList />
+                    </PlatformFilter>
+                </TabContent>
             </Tab>
         </Tabs>
     )
@@ -73,7 +82,7 @@ function TagViewList() {
 }
 
 function MessageView() {
-    const { item: { system } } = useContext(ListContext);
+    const { item: { system } } = useContext(FilterContext);
 
     if (!system) {
         return;

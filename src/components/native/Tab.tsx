@@ -1,25 +1,25 @@
-import React, {createContext, useContext} from "react";
+import React, {createContext, useContext, useState} from "react";
 import {TabsContext} from "./Tabs";
 import {clsx} from "clsx";
-import TabContent from "./TabContent";
 
 export const TabContext = createContext();
 
-export default function Tab({ id, tab, children }) {
-    const { index, setIndex } = useContext(TabsContext);
+export default function Tab({ children }) {
+    const [content, setContent] = useState();
+    const [header, setHeader] = useState();
 
-    const set = () => {
-        setIndex(id);
-    }
+    const { current, setCurrent } = useContext(TabsContext);
+
+    const update = () => {
+        setCurrent(content);
+    };
 
     return (
-        <TabContext.Provider value={{id}}>
-            <button className={clsx("tab", id === index && "bg-orange-500")} onClick={set}>
-                {tab}
+        <TabContext.Provider value={{ header, setHeader, content, setContent }}>
+            <button className={clsx("tab", content === current && "bg-gray-300")} onClick={update}>
+                {header}
             </button>
-            <TabContent>
-                {children}
-            </TabContent>
+            {children}
         </TabContext.Provider>
     )
 }

@@ -39,7 +39,7 @@ export default function WidgetSocket({ children }) {
             setList((previous) => [...previous.slice(-MAX_EVENT_HISTORY), data]);
         });
 
-        client.get('history', { params: { scopes } }).then(({ data }) => {
+        client.get('history').then(({ data }) => {
             const list = data.map(({ event }) => event);
 
             setList((previous) => [...previous, ...list]);

@@ -75,9 +75,11 @@ function MessageViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={filtered}>
-            <MessageView />
-        </List>
+        <div className="space-y-5">
+            <List list={filtered}>
+                <MessageView />
+            </List>
+        </div>
     )
 }
 
@@ -85,9 +87,11 @@ function TagViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={filtered}>
-            <TagView />
-        </List>
+        <div className="space-y-5">
+            <List list={filtered}>
+                <TagView />
+            </List>
+        </div>
     )
 }
 
@@ -147,21 +151,25 @@ function TagView() {
 
     return (
         <TagViewContext.Provider value={{ item }}>
-            <p>{translate(`widget.feed.tags.data.${name}.name`)}</p>
-            <List list={tags}>
-                <Tag />
-            </List>
+            <div className="space-y-2">
+                <p>{translate(`widget.feed.tags.data.${name}.name`)}</p>
+                <div className="flex items-center space-x-4">
+                    <List list={tags}>
+                        <Tag/>
+                    </List>
+                </div>
+            </div>
         </TagViewContext.Provider>
     )
 }
 
 function Tag() {
-    const { item: { icon, value } } = useContext(ListContext);
+    const {item: {icon, value}} = useContext(ListContext);
 
-    const { item: { data } } = useContext(TagViewContext);
+    const {item: {data}} = useContext(TagViewContext);
 
     return (
-        <div>
+        <div className="flex items-center space-x-2">
             <i className={icon} />
             <p>{value(data)}</p>
         </div>

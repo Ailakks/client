@@ -3,7 +3,7 @@ import {createContext, Fragment, useContext, useState} from "react";
 
 export const TabsContext = createContext();
 
-export default function Tabs({ list }) {
+export default function TabList({ list }) {
     const [current, setCurrent] = useState(0);
 
     return (
@@ -25,11 +25,13 @@ function Item() {
     };
 
     return (
-        <Fragment>
-            <button onClick={set}>
-                {name}
-            </button>
+        <div>
+            <div className="flex">
+                <button onClick={set}>
+                    {name}
+                </button>
+            </div>
             {current === index && child}
-        </Fragment>
+        </div>
     )
 }

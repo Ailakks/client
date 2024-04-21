@@ -40,7 +40,7 @@ function Body() {
         <Tabs>
             <Tab id={0} tab={<p>{translate("widget.feed.tab.messages.name")}</p>}>
                 <PlatformFilter data={list}>
-                    <p>test</p>
+                    <MessagesViewList />
                 </PlatformFilter>
             </Tab>
             <Tab id={1} tab={<p>{translate("widget.feed.tab.tags.name")}</p>}>
@@ -73,7 +73,7 @@ function TagViewList() {
 }
 
 function MessageView() {
-    const { item: { system } } = useContext(FilterContext);
+    const { item: { system } } = useContext(ListContext);
 
     if (!system) {
         return;

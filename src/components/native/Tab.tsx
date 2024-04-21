@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useContext} from "react";
 import {TabsContext} from "./Tabs";
 import {clsx} from "clsx";
 import TabContent from "./TabContent";
@@ -13,15 +13,13 @@ export default function Tab({ id, tab, children }) {
     }
 
     return (
-        <TabContext.Provider value={{ id }}>
-            <div>
-                <button className={clsx("tab", id === index && "bg-orange-500")} onClick={set}>
-                    {tab}
-                </button>
-                <TabContent>
-                    {children}
-                </TabContent>
-            </div>
+        <TabContext.Provider value={{id}}>
+            <button className={clsx("tab", id === index && "bg-orange-500")} onClick={set}>
+                {tab}
+            </button>
+            <TabContent>
+                {children}
+            </TabContent>
         </TabContext.Provider>
     )
 }

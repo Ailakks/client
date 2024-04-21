@@ -17,9 +17,13 @@ export default function Tab({ children }) {
        setCurrent(index);
     }, [index]);
 
+    const set = () => {
+        setIndex(current);
+    }
+
     return (
         <TabContext.Provider value={{ index, current }}>
-            <button className={clsx("tab", content === current && "bg-gray-300")} onClick={update}>
+            <button className={clsx("tab", index === current && "bg-gray-300")} onClick={set}>
                 {children}
             </button>
         </TabContext.Provider>

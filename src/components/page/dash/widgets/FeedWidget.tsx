@@ -121,7 +121,7 @@ function TagView() {
                 {
                     id: "plan",
                     icon: "fa-regular fa-star",
-                    value: (({ subscription: { plan } }) => plan)
+                    value: (({ subscription: { plan } }) => !isNaN(plan) ? plan / 1000 : plan)
                 },
                 {
                     id: "history",

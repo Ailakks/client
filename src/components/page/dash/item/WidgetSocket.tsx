@@ -28,6 +28,8 @@ export default function WidgetSocket({ children }) {
         });
 
         socket.on('message', (data) =>  {
+            console.log(`New message: ${data}`);
+
             const { meta: { scope } } = data;
 
             if (!scopes.find(({ id }) => id === scope.id)) {

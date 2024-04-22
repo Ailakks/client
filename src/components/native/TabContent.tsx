@@ -4,13 +4,13 @@ import {TabsContext} from "./Tabs";
 
 export default function TabContent({ isDefault, children }) {
     const { setContent } = useContext(TabContext);
-    const { setFallback } = useContext(TabsContext);
+    const { setCurrent } = useContext(TabsContext);
 
     useEffect(() => {
         setContent(children);
 
         if (isDefault) {
-            setFallback(children);
+            setCurrent(children);
         }
     }, []);
 }

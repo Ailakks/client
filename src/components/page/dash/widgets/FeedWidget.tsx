@@ -38,19 +38,15 @@ function FeedList() {
     return (
         <Tabs>
             <Tab>
-                <TabHeader>
-                    <p>{translate("widget.feed.tab.messages.name")}</p>
-                </TabHeader>
-                <TabContent>
+                <p>{translate("widget.feed.tab.messages.name")}</p>
+                <TabContent isDefault={true}>
                     <View>
                         <MessageViewList />
                     </View>
                 </TabContent>
             </Tab>
             <Tab>
-                <TabHeader>
-                    <p>{translate("widget.feed.tab.tags.name")}</p>
-                </TabHeader>
+                <p>{translate("widget.feed.tab.tags.name")}</p>
                 <TabContent>
                     <View>
                         <TagViewList />

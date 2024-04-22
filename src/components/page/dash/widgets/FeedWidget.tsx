@@ -20,7 +20,7 @@ export default function FeedWidget() {
 
     useEffect(() => {
         setMetadata({ id: 'feed', name: 'Feed', icon: 'fa-regular fa-bell', scopes: [
-                { id: 'donation' }, { id: 'gift' }, { id: 'subscription' }], platforms: ["twitch"] });
+                { id: 'donation' }, { id: 'gift' }, { id: 'subscription' }], platforms: ["youtube", "twitch"] });
     }, []);
 
     if (metadata) {

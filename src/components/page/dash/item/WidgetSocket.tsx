@@ -36,7 +36,7 @@ export default function WidgetSocket({ children }) {
                 return;
             }
 
-            setList((previous) => [...previous, data]);
+            setList((previous) => [...previous.slice(-MAX_EVENT_HISTORY), data]);
         });
 
         client.get('history', { params: { scopes } }).then(({ data }) => {
@@ -47,10 +47,6 @@ export default function WidgetSocket({ children }) {
 
         return () => socket.off();
     }, []);
-
-    useEffect(() => {
-        setList((previous) => previous.slice(-MAX_EVENT_HISTORY))
-    }, [list]);
 
     return (
         <WidgetSocketContext.Provider value={{ list }}>

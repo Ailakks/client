@@ -73,7 +73,7 @@ function ChatMessagePart() {
 function ChatMessageText() {
     const { item: { text } } = useContext(ListContext);
 
-    return <span>{text}</span>
+    return <span className="break-words">{text}</span>
 }
 
 function ChatMessageEmote() {

@@ -96,7 +96,8 @@
       },
       "footer": {
         "terms": "Términos y condiciones",
-        "help": "¿Necesitas ayuda?"
+        "help": "¿Necesitas ayuda?",
+        "back": "Volver al inicio"
       },
       "signup": {
         "title": "Crear cuenta",

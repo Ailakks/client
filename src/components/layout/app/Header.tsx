@@ -1,28 +1,31 @@
-import {createContext, Fragment, useContext, useState} from "react";
+import {Fragment, useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/api/Account";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenu from "../../context/ContextMenu";
 import Language from "../components/button/Language";
 import {clsx} from "clsx";
 import {ListContext} from "../../list/List";
-
-export const HeaderContext = createContext();
+import {HeaderContext} from "../dash/Dash";
+import {useLocation} from "react-router-dom";
 
 export default function AppHeader() {
-    const [head, setHead] = useState(null);
-
+    const { header, setHeader } = useContext(HeaderContext);
     const { data } = useContext(AccountContext);
 
+    const location = useLocation();
+
+    useEffect(() => {
+        setHeader(null);
+    }, [location]);
+
     return (
-        <HeaderContext.Provider value={{ head, setHead }}>
-            <div className="flex items-center h-full bg-gray-700 p-5">
-                {head ?? <Head />}
-                <div className="flex w-full justify-end items-center space-x-6">
-                    <Language/>
-                    {data ? <Logged/> : <Guest/>}
-                </div>
+        <div className="flex items-center h-full bg-gray-700 p-5">
+            {header ?? <Head />}
+            <div className="flex w-full justify-end items-center space-x-6">
+                <Language/>
+                {data ? <Logged/> : <Guest/>}
             </div>
-        </HeaderContext.Provider>
+        </div>
     )
 }
 

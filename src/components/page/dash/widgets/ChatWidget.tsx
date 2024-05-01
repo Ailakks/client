@@ -36,11 +36,9 @@ function MessageList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <div className="grow">
-            <List list={filtered}>
-                <Message />
-            </List>
-        </div>
+        <List list={filtered}>
+            <Message />
+        </List>
     )
 }
 

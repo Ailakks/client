@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect} from "react";
 import {WidgetDataContext} from "../item/Widget";
-import {DataFilterContext, FilterContext} from "../item/DataFilter";
+import {DataFilterContext} from "../item/DataFilter";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";
@@ -8,7 +8,6 @@ import Tab from "../../../native/Tab";
 import TabContent from "../../../native/TabContent";
 import Tabs from "../../../native/Tabs";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
-import TabHeader from "../../../native/TabHeader";
 
 enum EventType {
     SUBSCRIPTION = 'subscription',

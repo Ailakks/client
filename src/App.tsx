@@ -14,11 +14,11 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<DashLayout><Dashboard /></DashLayout>} />
 
-            <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
-            <Route path="/signup" element={<AuthLayout><Signup /></AuthLayout>} />
-            <Route path="/logout" element={<AuthLayout><Logout /></AuthLayout>} />
+            <Route path="/login" element={<DashLayout><Login /></DashLayout>} />
+            <Route path="/signup" element={<DashLayout><Signup /></DashLayout>} />
+            <Route path="/logout" element={<DashLayout><Logout /></DashLayout>} />
 
-            <Route path="/*" element={<AuthLayout><NotFoundFallback /></AuthLayout>} />
+            <Route path="/*" element={<DashLayout><NotFoundFallback /></DashLayout>} />
         </Routes>
     )
 }

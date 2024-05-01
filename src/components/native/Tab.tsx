@@ -16,11 +16,11 @@ export default function Tab({ children }) {
 
     return (
         <TabContext.Provider value={{ header, setHeader, content, setContent }}>
-            <div className="w-full">
+            <div className="w-full space-y-0.5">
                 <button className="tab" onClick={update}>
                     {children}
                 </button>
-                {content === current &&  <hr className="h-1 w-full bg-orange-500" />}
+                {content === current &&  <hr className="h-[3px] w-full bg-orange-500" />}
             </div>
         </TabContext.Provider>
     )

@@ -29,13 +29,19 @@ export default function GridView({ defaultLayout, widgets }) {
     return (
         <LayoutContext.Provider value={{ list, layout, setLayout }}>
             <GridProvider list={widgets}>
-                <PanelGroup direction="horizontal">
-                    <Panel>
-                        <GridRender />
+                <PanelGroup direction="vertical">
+                    <Panel defaultSize={8} minSize={8} maxSize={8}>
                     </Panel>
-                    <ResizeHandle />
-                    <Panel defaultSize={4.5} minSize={4.5} maxSize={4.5} collapsible>
-                        <WidgetList />
+                    <Panel>
+                        <PanelGroup direction="horizontal">
+                            <Panel>
+                                <GridRender />
+                            </Panel>
+                            <ResizeHandle />
+                            <Panel defaultSize={4.5} minSize={4.5} maxSize={4.5} collapsible>
+                                <WidgetList />
+                            </Panel>
+                        </PanelGroup>
                     </Panel>
                 </PanelGroup>
             </GridProvider>

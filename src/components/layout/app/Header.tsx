@@ -1,4 +1,4 @@
-import {Fragment, useContext} from "react";
+import {createContext, Fragment, useContext, useState} from "react";
 import {AccountContext} from "../../../wrapper/api/Account";
 import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
 import ContextMenu from "../../context/ContextMenu";
@@ -6,28 +6,40 @@ import Language from "../components/button/Language";
 import {clsx} from "clsx";
 import {ListContext} from "../../list/List";
 
+export const HeaderContext = createContext();
+
 export default function AppHeader() {
-    const { translate } = useContext(LanguageContext);
+    const [head, setHead] = useState(null);
 
     const { data } = useContext(AccountContext);
 
     return (
-        <div className="flex items-center h-full bg-gray-700 p-5">
-            <h2 className="text-nowrap">
-                <a className="text-white" href="/">{translate("layout.header.name")}</a>
-            </h2>
-            <div className="flex w-full justify-end items-center space-x-6">
-                <Language />
-                {data ? <Logged /> : <Guest />}
+        <HeaderContext.Provider value={{ head, setHead }}>
+            <div className="flex items-center h-full bg-gray-700 p-5">
+                {head ?? <Head />}
+                <div className="flex w-full justify-end items-center space-x-6">
+                    <Language/>
+                    {data ? <Logged/> : <Guest/>}
+                </div>
             </div>
-        </div>
+        </HeaderContext.Provider>
+    )
+}
+
+function Head() {
+    const {translate} = useContext(LanguageContext);
+
+    return (
+        <h2 className="text-nowrap">
+            <a className="text-white" href="/">{translate("layout.header.name")}</a>
+        </h2>
     )
 }
 
 function Logged() {
-    const { translate } = useContext(LanguageContext);
+    const {translate} = useContext(LanguageContext);
 
-    const { data: { currentUser: { name, roles } } } = useContext(AccountContext);
+    const {data: {currentUser: {name, roles}}} = useContext(AccountContext);
 
     const list = [
         {

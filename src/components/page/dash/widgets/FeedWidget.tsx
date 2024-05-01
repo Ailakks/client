@@ -83,8 +83,8 @@ function TagViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <div className="divide-y-1 divide-gray-300">
-            <List list={filtered}>
+        <div className="flex flex-col grow divide-y-1 divide-gray-300">
+            <List list={filtered} fallback={<NoContentFallback />}>
                 <TagView />
             </List>
         </div>

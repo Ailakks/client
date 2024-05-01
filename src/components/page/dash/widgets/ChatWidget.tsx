@@ -5,6 +5,7 @@ import List, {ListContext} from "../../../list/List";
 import PlatformFilter from "../item/PlatformFilter";
 import {DataFilterContext} from "../item/DataFilter";
 import {clsx} from "clsx";
+import NoContentFallback from "../../fallback/NoContentFallback";
 
 export default function ChatWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
@@ -36,7 +37,7 @@ function MessageList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <List list={filtered}>
+        <List list={filtered} fallback={<NoContentFallback />}>
             <Message />
         </List>
     )

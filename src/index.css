@@ -112,4 +112,16 @@ html {
     .resize-handle[data-resize-handle-active] {
         @apply bg-orange-500;
     }
+
+    ::-webkit-scrollbar {
+        @apply w-2;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-300 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-orange-500 rounded-full;
+    }
 }

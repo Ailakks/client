@@ -16,7 +16,7 @@ export default function Tab({ children }) {
 
     return (
         <TabContext.Provider value={{ header, setHeader, content, setContent }}>
-            <div className="w-full space-y-0.5">
+            <div className="grow space-y-0.5">
                 <button className="tab" onClick={update}>
                     {children}
                 </button>

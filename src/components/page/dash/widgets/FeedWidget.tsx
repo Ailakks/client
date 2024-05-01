@@ -71,7 +71,7 @@ function MessageViewList() {
 
     return (
         <div className="divide-y-1 divide-gray-300">
-            <List list={filtered}>
+            <List list={filtered} fallback={}>
                 <MessageView/>
             </List>
         </div>

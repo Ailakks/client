@@ -5,6 +5,6 @@ export default function AuthHead() {
     const { translate } = useContext(LanguageContext);
 
     return (
-        <a href="/">{translate("layout.head.name")}</a>
+        <a className="text-white" href="/">{translate("layout.head.name")}</a>
     )
 }

@@ -24,12 +24,12 @@ export default function DataFilter({ list, property, data, children }) {
     return (
         <FilterContext.Provider value={{ list, filter, setFilter }}>
             <div className="flex flex-col grow space-y-2 overflow-hidden">
-                <div className="shrink-0 overflow-x-auto py-2">
+                <div className="shrink-0 overflow-x-scroll py-2">
                     <List list={list}>
-                        <Section />
+                        <Section/>
                     </List>
                 </div>
-                <DataFilterContext.Provider value={{ filtered }}>
+                <DataFilterContext.Provider value={{filtered}}>
                     <div className="flex flex-col grow overflow-y-auto">
                         {children}
                     </div>
@@ -40,7 +40,7 @@ export default function DataFilter({ list, property, data, children }) {
 }
 
 function Section() {
-    const { item: { list } } = useContext(ListContext);
+    const {item: {list}} = useContext(ListContext);
     const { filter, setFilter } = useContext(FilterContext);
 
     const clear = () => {

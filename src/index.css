@@ -106,7 +106,7 @@ html {
     }
 
     .tab {
-        @apply px-6 py-1 rounded-full hover:bg-gray-500;
+        @apply w-full py-2 border-b-[2px] border-transparent hover:bg-gray-300 rounded-sm;
     }
 
     .resize-handle[data-resize-handle-active] {

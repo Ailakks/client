@@ -8,13 +8,11 @@ export default function Tabs({ children }) {
 
     return (
         <TabsContext.Provider value={{ fallback, setFallback, current, setCurrent }}>
-            <div className="h-full w-full flex flex-col space-y-6 justify-start items-center overflow-hidden">
-                <div className="flex bg-gray-700 space-x-2 p-2 rounded-full">
+            <div className="h-full w-full flex flex-col space-y-6 justify-stretch">
+                <div className="flex p-2 rounded-full justify-between">
                     {children}
                 </div>
-                <div className="overflow-auto">
-                    {current ?? fallback}
-                </div>
+                {current ?? fallback}
             </div>
         </TabsContext.Provider>
     )

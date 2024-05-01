@@ -58,7 +58,7 @@ function Body() {
     const { data: { channelDataList } } = useContext(QueryContext);
 
     return (
-        <div className="flex space-y-2 overflow-y-hidden">
+        <div className="flex grow space-y-2 overflow-y-hidden">
             <PlatformFilter data={channelDataList}>
                 <FrameList />
             </PlatformFilter>
@@ -86,6 +86,6 @@ function Item() {
     }
 
     return (
-        <iframe className="rounded" src={url} />
+        <iframe className="w-60 aspect-video rounded" src={url} />
     )
 }

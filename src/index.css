@@ -109,6 +109,10 @@ html {
         @apply w-full py-2 border-b-[2px] border-transparent hover:bg-gray-300 rounded-sm;
     }
 
+    .fallback {
+        @apply h-full flex flex-col justify-center items-center space-y-4;
+    }
+
     .resize-handle[data-resize-handle-active] {
         @apply bg-orange-500;
     }

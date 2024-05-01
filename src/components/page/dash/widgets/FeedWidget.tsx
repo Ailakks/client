@@ -8,6 +8,7 @@ import Tab from "../../../native/Tab";
 import TabContent from "../../../native/TabContent";
 import Tabs from "../../../native/Tabs";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import NoContentFallback from "../../fallback/NoContentFallback";
 
 enum EventType {
     SUBSCRIPTION = 'subscription',
@@ -70,8 +71,8 @@ function MessageViewList() {
     const { filtered } = useContext(DataFilterContext);
 
     return (
-        <div className="divide-y-1 divide-gray-300">
-            <List list={filtered} fallback={}>
+        <div className="flex flex-col grow divide-y-1 divide-gray-300">
+            <List list={filtered} fallback={<NoContentFallback />}>
                 <MessageView/>
             </List>
         </div>

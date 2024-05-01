@@ -29,6 +29,9 @@
           "label": "Intentar de nuevo"
         }
       },
+      "204": {
+        "title": "Sin datos"
+      },
       "404": {
         "title": "No hemos encontrado nada",
         "back": {

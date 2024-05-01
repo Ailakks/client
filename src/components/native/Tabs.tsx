@@ -8,7 +8,7 @@ export default function Tabs({ children }) {
 
     return (
         <TabsContext.Provider value={{ fallback, setFallback, current, setCurrent }}>
-            <div className="flex flex-col grow space-y-6">
+            <div className="flex flex-col grow">
                 <div className="flex p-2 rounded-full justify-between">
                     {children}
                 </div>

@@ -15,6 +15,34 @@ enum EventType {
     GIFT = 'gift'
 }
 
+const list = {
+    [EventType.SUBSCRIPTION]: {
+        icon: "fa-regular fa-sparkles",
+        tags: [
+            {
+                id: "user",
+                icon: "fa-regular fa-user",
+                value: (( { author: { displayName } }) => displayName)
+            },
+            {
+                id: "plan",
+                icon: "fa-regular fa-star",
+                value: (({ subscription: { plan } }) => !isNaN(plan) ? plan / 1000 : plan)
+            },
+            {
+                id: "history",
+                icon: "fa-regular fa-clock",
+                value: (({ subscription: { period: { history } } }) => history)
+            },
+            {
+                id: "streak",
+                icon: "fa-regular fa-bolt",
+                value: (({ subscription: { period: { streak } } }) => streak)
+            }
+        ]
+    }
+};
+
 export default function FeedWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
 
@@ -92,7 +120,9 @@ function TagViewList() {
 }
 
 function MessageView() {
-    const { item: { system } } = useContext(ListContext);
+    const { item: { meta: { name }, system } } = useContext(ListContext);
+
+    const { icon } = list[name];
 
     if (!system) {
         return;
@@ -101,7 +131,8 @@ function MessageView() {
     const { message: { message } } = system;
 
     return (
-        <div className="py-2">
+        <div className="flex items-center space-x-2 py-2">
+            <i className={icon} />
             <p>{message}</p>
         </div>
     )
@@ -110,33 +141,6 @@ function MessageView() {
 export const TagViewContext = createContext();
 
 function TagView() {
-    const list = {
-        [EventType.SUBSCRIPTION]: {
-            tags: [
-                {
-                    id: "user",
-                    icon: "fa-regular fa-user",
-                    value: (( { author: { displayName } }) => displayName)
-                },
-                {
-                    id: "plan",
-                    icon: "fa-regular fa-star",
-                    value: (({ subscription: { plan } }) => !isNaN(plan) ? plan / 1000 : plan)
-                },
-                {
-                    id: "history",
-                    icon: "fa-regular fa-clock",
-                    value: (({ subscription: { period: { history } } }) => history)
-                },
-                {
-                    id: "streak",
-                    icon: "fa-regular fa-bolt",
-                    value: (({ subscription: { period: { streak } } }) => streak)
-                }
-            ]
-        }
-    };
-
     const { translate } = useContext(LanguageContext);
 
     const { item } = useContext(ListContext);

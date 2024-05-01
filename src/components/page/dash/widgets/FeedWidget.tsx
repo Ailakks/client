@@ -133,7 +133,7 @@ function MessageView() {
     return (
         <div className="flex items-center space-x-4 py-4">
             <i className={icon} />
-            <p>{message}</p>
+            <h3>{message}</h3>
         </div>
     )
 }
@@ -151,10 +151,10 @@ function TagView() {
 
     return (
         <TagViewContext.Provider value={{ item }}>
-            <div className="flex items-center space-x-4 py-2">
+            <div className="flex items-center space-x-4 py-4">
                 <i className={icon} />
                 <div>
-                    <p>{translate(`widget.feed.tags.event.${name}.title`)}</p>
+                    <h3>{translate(`widget.feed.tags.event.${name}.title`)}</h3>
                     <div className="flex items-center space-x-4">
                         <List list={tags}>
                             <Tag/>
@@ -167,9 +167,9 @@ function TagView() {
 }
 
 function Tag() {
-    const {item: {icon, value}} = useContext(ListContext);
+    const { item: { icon, value } } = useContext(ListContext);
 
-    const {item: {data}} = useContext(TagViewContext);
+    const { item: { data } } = useContext(TagViewContext);
 
     return (
         <div className="flex items-center space-x-2">

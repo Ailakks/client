@@ -1,3 +1,4 @@
+import jsonpath from "jsonpath";
 import {createContext, useContext, useRef} from "react";
 import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
@@ -12,10 +13,16 @@ export const GridPanelConext = createContext(null);
 export default function GridRender() {
     const { layout } = useContext(LayoutContext);
 
+    const path = "$";
+
+    const root = jsonpath.value(layout, path);
+
     return (
-        <List list={layout}>
-            <Child />
-        </List>
+        <PathContext.Provider value={{ path }}>
+            <List list={root}>
+                <Child />
+            </List>
+        </PathContext.Provider>
     )
 }
 

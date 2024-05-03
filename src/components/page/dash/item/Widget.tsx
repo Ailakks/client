@@ -53,7 +53,6 @@ export default function Widget({ collapsed, children }) {
 
     const remove = () => {
         const updatedLayout = [ ...layout ];
-        const current = jsonpath.value(layout, path);
 
         const size = getSize(updatedLayout);
 
@@ -61,32 +60,17 @@ export default function Widget({ collapsed, children }) {
             return;
         }
 
-        current.splice(index, 1);
+        const array = path.split('.');
 
-        if (current.length < 1) {
-            const array = path.split('.');
+        const last = array.pop();
+        const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+        const index = last.match(/\[(\d+)]/)[1];
 
-            array.pop();
-            array.pop();
+        const previous = jsonpath.value(layout, parent);
 
-            const last = array.pop();
-            const index = last.match(/\[(\d+)]/)[1];
-            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+        previous.splice(index, 1);
 
-            const updated = jsonpath.value(layout, parent);
-            updated.splice(index, 1);
-
-            jsonpath.apply(updatedLayout, parent, () => updated);
-
-            const root = updatedLayout[0];
-            const first = root.row ?? root.column;
-
-            if (first.length < 1) {
-                return;
-            }
-        }
-
-        jsonpath.apply(updatedLayout, path, () => current);
+        jsonpath.apply(updatedLayout, path, () => previous);
 
         setLayout(updatedLayout);
     }

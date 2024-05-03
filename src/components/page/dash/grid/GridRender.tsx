@@ -65,7 +65,8 @@ function Body() {
     const { list, widgets } = useContext(GridProviderContext);
     const { index, item: { content, child } } = useContext(ListContext);
 
-    const next = `${path}[${index}].${content ? `content` : `child`}`;
+    const item = `${path}[${index}]`;
+    const next = `${item}.${content ? `content` : `child`}`;
 
     if (child) {
         return (
@@ -82,10 +83,12 @@ function Body() {
     };
 
     return (
-        <Panel>
-            <Widget>
-                {getComponent(content)}
-            </Widget>
-        </Panel>
+        <PathContext.Provider value={{ path: item }}>
+            <Panel>
+                <Widget>
+                    {getComponent(content)}
+                </Widget>
+            </Panel>
+        </PathContext.Provider>
     );
 }

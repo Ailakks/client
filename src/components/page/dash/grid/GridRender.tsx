@@ -2,7 +2,6 @@ import jsonpath from "jsonpath";
 import {createContext, useContext, useRef} from "react";
 import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
-import GridResizePanel from "../resize/ResizePanel";
 import {ImperativePanelHandle, Panel, PanelGroup} from "react-resizable-panels";
 import {GridProviderContext} from "../GridProvider";
 import Widget from "../item/Widget";
@@ -30,20 +29,34 @@ export default function GridRender() {
 }
 
 function Child() {
-    const { item: { column, row } } = useContext(ListContext);
+    const { path } = useContext(PathContext);
+    const { index } = useContext(ListContext);
+    const { layout } = useContext(LayoutContext);
+
+    const { column, row } = jsonpath.value(layout, `${path}[${index}]`);
+
+    const next = `${path}[${index}].${column ? `column` : `row`}`;
 
     const ref = useRef<ImperativePanelHandle>(null);
 
+    const data = column ?? row;
+
+    if (!data) {
+        return;
+    }
+
     return (
-        <GridPanelConext.Provider value={{ ref }}>
-            <Panel>
-                <PanelGroup direction={column ? "vertical" : "horizontal"}>
-                    <List list={column ?? row} separator={<ResizeHandle />}>
-                        <Body />
-                    </List>
-                </PanelGroup>
-            </Panel>
-        </GridPanelConext.Provider>
+        <PathContext.Provider value={{ path: next }}>
+            <GridPanelConext.Provider value={{ ref }}>
+                <Panel>
+                    <PanelGroup direction={column ? "vertical" : "horizontal"}>
+                        <List list={data} separator={<ResizeHandle />}>
+                            <Body />
+                        </List>
+                    </PanelGroup>
+                </Panel>
+            </GridPanelConext.Provider>
+        </PathContext.Provider>
     )
 }
 

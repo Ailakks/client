@@ -19,9 +19,11 @@ export default function GridRender() {
 
     return (
         <PathContext.Provider value={{ path }}>
-            <List list={root}>
-                <Child />
-            </List>
+            <PanelGroup direction="horizontal">
+                <List list={root}>
+                    <Child />
+                </List>
+            </PanelGroup>
         </PathContext.Provider>
     )
 }
@@ -62,8 +64,10 @@ function Body() {
     };
 
     return (
-        <Widget>
-            {getComponent(content)}
-        </Widget>
+        <GridResizePanel>
+            <Widget>
+                {getComponent(content)}
+            </Widget>
+        </GridResizePanel>
     );
 }

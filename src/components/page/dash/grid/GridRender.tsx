@@ -61,15 +61,19 @@ function Child() {
 }
 
 function Body() {
+    const { path } = useContext(PathContext);
     const { list, widgets } = useContext(GridProviderContext);
+    const { index, item: { content, child } } = useContext(ListContext);
 
-    const { item: { content, child } } = useContext(ListContext);
+    const next = `${path}[${index}].${content ? `content` : `child`}`;
 
     if (child) {
         return (
-            <List list={child}>
-                <Child />
-            </List>
+            <PathContext.Provider value={{ path: next }}>
+                <List list={child}>
+                    <Child />
+                </List>
+            </PathContext.Provider>
         )
     }
 

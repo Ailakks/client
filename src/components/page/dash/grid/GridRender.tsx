@@ -49,7 +49,7 @@ function Child() {
         <PathContext.Provider value={{ path: next }}>
             <GridPanelConext.Provider value={{ ref }}>
                 <Panel>
-                    <PanelGroup direction={column ? "vertical" : "horizontal"}>
+                    <PanelGroup direction={row ? "vertical" : "horizontal"}>
                         <List list={data} separator={<ResizeHandle />}>
                             <Body />
                         </List>

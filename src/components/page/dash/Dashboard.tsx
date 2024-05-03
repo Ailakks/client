@@ -10,11 +10,11 @@ import LayoutSelector from "./view/LayoutSelector";
 export default function Dashboard() {
     const layout = [
         {
-            row: [
+            column: [
                 {
                     child: [
                         {
-                            column: [
+                            row: [
                                 {
                                     content: 'preview'
                                 },

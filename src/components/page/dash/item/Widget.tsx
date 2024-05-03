@@ -94,7 +94,7 @@ export default function Widget({ collapsed, children }) {
                 return;
             }
 
-            const filter = current.filter((item) => typeof item == "string");
+            const filter = current.filter((item) => item.content);
 
             total += filter.length;
 

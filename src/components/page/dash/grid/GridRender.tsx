@@ -38,8 +38,6 @@ function Item() {
 
     const next = jsonpath.value(layout, child);
 
-    console.log(next);
-
     const ref = useRef<ImperativePanelHandle>(null);
 
     const [collapsed, setCollapsed] = useState(false);
@@ -48,12 +46,12 @@ function Item() {
         return list[widgets.map(({ id }) => id).indexOf(id)];
     };
 
-    if (next.content) {
+    if (next.body) {
         return (
             <GridPanelConext.Provider value={{ ref }}>
                 <GridResizePanel>
                     <Widget collapsed={collapsed}>
-                        {getComponent(next.content)}
+                        {getComponent(next.body)}
                     </Widget>
                 </GridResizePanel>
             </GridPanelConext.Provider>
@@ -89,5 +87,5 @@ function Item() {
         );
     }
 
-    return render(child, next.child.row);
+    return render(`${child}.child`, next.child.row);
 }

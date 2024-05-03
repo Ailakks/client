@@ -26,10 +26,7 @@ export default function Widget({ collapsed, children }) {
     }
 
     const add = (id) => {
-        const current = jsonpath.value(layout, path);
-
         const array = path.split('.');
-
         const last = array.pop();
         const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
@@ -54,21 +51,41 @@ export default function Widget({ collapsed, children }) {
     const remove = () => {
         const updatedLayout = [ ...layout ];
 
+        const array = path.split('.');
+        const last = array.pop();
+        const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+        const previous = jsonpath.value(layout, parent);
+
         const size = getSize(updatedLayout);
 
         if (size <= 1) {
             return;
         }
 
-        const array = path.split('.');
-
-        const last = array.pop();
-        const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
-        const index = last.match(/\[(\d+)]/)[1];
-
-        const previous = jsonpath.value(layout, parent);
-
         previous.splice(index, 1);
+
+        if (previous.length < 1) {
+            const array = path.split('.');
+
+            array.pop();
+            array.pop();
+
+            const last = array.pop();
+            const index = last.match(/\[(\d+)]/)[1];
+            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+
+            const updated = jsonpath.value(layout, parent);
+            updated.splice(index, 1);
+
+            jsonpath.apply(updatedLayout, parent, () => updated);
+
+            const root = updatedLayout[0];
+            const first = root.row ?? root.column;
+
+            if (first.length < 1) {
+                return;
+            }
+        }
 
         jsonpath.apply(updatedLayout, path, () => previous);
 

@@ -30,7 +30,7 @@ export default function Widget({ collapsed, children }) {
 
         const updatedLayout = [ ...layout ];
 
-        jsonpath.apply(updatedLayout, path, () => [...current, id]);
+        jsonpath.apply(updatedLayout, path, () => [...current, { content: id }]);
 
         setLayout(updatedLayout);
     };

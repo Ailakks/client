@@ -60,6 +60,7 @@ export default function Widget({ collapsed, children }) {
             const array = path.split('.');
 
             array.pop();
+            array.pop();
 
             const last = array.pop();
             const index = last.match(/\[(\d+)]/)[1];

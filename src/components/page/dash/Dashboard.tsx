@@ -10,17 +10,31 @@ import LayoutSelector from "./view/LayoutSelector";
 export default function Dashboard() {
     const layout = [
         {
-            column: [
-                {
-                    row: ['preview', 'viewers']
-                },
-                {
-                    column: ['chat']
-                },
-                {
-                    row: ['feed']
-                }
-            ]
+            child: {
+                row: [
+                    {
+                        content: ['preview', 'viewers']
+                    }
+                ]
+            }
+        },
+        {
+            child: {
+                column: [
+                    {
+                        content: ['chat']
+                    }
+                ]
+            }
+        },
+        {
+            child: {
+                row: [
+                    {
+                        content: ['feed']
+                    }
+                ]
+            }
         }
     ];
 

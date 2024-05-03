@@ -37,7 +37,8 @@ function Item() {
     const child = `${path}[${index}]`;
 
     const next = jsonpath.value(layout, child);
-    const isValid = typeof next == "string";
+
+    console.log(next);
 
     const ref = useRef<ImperativePanelHandle>(null);
 
@@ -47,12 +48,12 @@ function Item() {
         return list[widgets.map(({ id }) => id).indexOf(id)];
     };
 
-    if (isValid) {
+    if (next.content) {
         return (
             <GridPanelConext.Provider value={{ ref }}>
                 <GridResizePanel>
                     <Widget collapsed={collapsed}>
-                        {getComponent(next)}
+                        {getComponent(next.content)}
                     </Widget>
                 </GridResizePanel>
             </GridPanelConext.Provider>
@@ -60,7 +61,7 @@ function Item() {
     }
 
     function render(data, isRow) {
-        const path = [data, isRow ? "row" : "column"].join('.');
+        const path = [data, "child", isRow ? "row" : "column"].join('.');
 
         const array = data.split('.');
         const isRoot = array.length === 1;
@@ -88,5 +89,5 @@ function Item() {
         );
     }
 
-    return render(child, next.row);
+    return render(child, next.child.row);
 }

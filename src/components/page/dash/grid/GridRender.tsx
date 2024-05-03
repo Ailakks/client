@@ -1,9 +1,10 @@
-import {createContext, useContext} from "react";
+import {createContext, useContext, useRef} from "react";
 import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
 import GridResizePanel from "../resize/ResizePanel";
-import {PanelGroup} from "react-resizable-panels";
+import {ImperativePanelHandle, PanelGroup} from "react-resizable-panels";
 import {GridProviderContext} from "../GridProvider";
+import Widget from "../item/Widget";
 
 export const PathContext = createContext(null);
 export const GridPanelConext = createContext(null);
@@ -21,14 +22,18 @@ export default function GridRender() {
 function Child() {
     const { item: { column, row } } = useContext(ListContext);
 
+    const ref = useRef<ImperativePanelHandle>(null);
+
     return (
-        <GridResizePanel>
-            <PanelGroup direction={column ? "vertical" : "horizontal"}>
-                <List list={column ?? row}>
-                    <Body />
-                </List>
-            </PanelGroup>
-        </GridResizePanel>
+        <GridPanelConext.Provider value={{ ref }}>
+            <GridResizePanel>
+                <PanelGroup direction={column ? "vertical" : "horizontal"}>
+                    <List list={column ?? row}>
+                        <Body />
+                    </List>
+                </PanelGroup>
+            </GridResizePanel>
+        </GridPanelConext.Provider>
     )
 }
 
@@ -49,5 +54,9 @@ function Body() {
         return list[widgets.map(({ id }) => id).indexOf(id)];
     };
 
-    return getComponent(content);
+    return (
+        <Widget>
+            {getComponent(content)}
+        </Widget>
+    );
 }

@@ -28,9 +28,13 @@ export default function Widget({ collapsed, children }) {
     const add = (id) => {
         const current = jsonpath.value(layout, path);
 
+        const array = path.split(".");
+
+        array.pop();
+
         const updatedLayout = [ ...layout ];
 
-        jsonpath.apply(updatedLayout, path, () => [...current, { content: id }]);
+        jsonpath.apply(updatedLayout, array.join("."), () => [current, { content: id }]);
 
         setLayout(updatedLayout);
     };

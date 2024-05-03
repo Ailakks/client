@@ -21,7 +21,7 @@ export default function GridRender() {
     return (
         <PathContext.Provider value={{ path }}>
             <PanelGroup direction="horizontal">
-                <List list={root} separator={<ResizeHandle />}>
+                <List list={root}>
                     <Child />
                 </List>
             </PanelGroup>

@@ -18,7 +18,7 @@ export default function List({ list, separator, fallback, children }) {
             <Fragment key={index}>
                 <ListContext.Provider value={{ list, key, index, item }}>
                     {children}
-                    {separator && key !== list.length - 1 && separator}
+                    {separator && index !== list.length - 1 && separator}
                 </ListContext.Provider>
             </Fragment>
         );

@@ -3,9 +3,10 @@ import {createContext, useContext, useRef} from "react";
 import {LayoutContext} from "./GridView";
 import List, {ListContext} from "../../../list/List";
 import GridResizePanel from "../resize/ResizePanel";
-import {ImperativePanelHandle, PanelGroup} from "react-resizable-panels";
+import {ImperativePanelHandle, Panel, PanelGroup} from "react-resizable-panels";
 import {GridProviderContext} from "../GridProvider";
 import Widget from "../item/Widget";
+import ResizeHandle from "../resize/ResizeHandle";
 
 export const PathContext = createContext(null);
 export const GridPanelConext = createContext(null);
@@ -20,7 +21,7 @@ export default function GridRender() {
     return (
         <PathContext.Provider value={{ path }}>
             <PanelGroup direction="horizontal">
-                <List list={root}>
+                <List list={root} separator={<ResizeHandle />}>
                     <Child />
                 </List>
             </PanelGroup>
@@ -35,13 +36,13 @@ function Child() {
 
     return (
         <GridPanelConext.Provider value={{ ref }}>
-            <GridResizePanel>
+            <Panel>
                 <PanelGroup direction={column ? "vertical" : "horizontal"}>
-                    <List list={column ?? row}>
+                    <List list={column ?? row} separator={<ResizeHandle />}>
                         <Body />
                     </List>
                 </PanelGroup>
-            </GridResizePanel>
+            </Panel>
         </GridPanelConext.Provider>
     )
 }
@@ -64,10 +65,10 @@ function Body() {
     };
 
     return (
-        <GridResizePanel>
+        <Panel>
             <Widget>
                 {getComponent(content)}
             </Widget>
-        </GridResizePanel>
+        </Panel>
     );
 }

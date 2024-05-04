@@ -4,6 +4,7 @@ import {Panel, PanelGroup} from "react-resizable-panels";
 import GridRender from "./GridRender";
 import WidgetList from "../view/WidgetList";
 import ResizeHandle from "../resize/ResizeHandle";
+import LayoutSelector from "../view/LayoutSelector";
 
 export const LayoutContext = createContext(null);
 
@@ -30,6 +31,7 @@ export default function GridView({ defaultLayout, widgets }) {
 
     return (
         <LayoutContext.Provider value={{ list, layout, setLayout }}>
+            <LayoutSelector />
             <GridProvider list={widgets}>
                 <PanelGroup direction="horizontal">
                     <Panel>

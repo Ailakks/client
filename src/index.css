@@ -33,6 +33,10 @@ html {
         @apply text-white;
     }
 
+    label.main {
+        @apply bg-gray-300 px-2 rounded-md;
+    }
+
     span {
         @apply text-white;
     }

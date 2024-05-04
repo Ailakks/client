@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import {WidgetDataContext} from "../item/Widget";
 import {DataFilterContext, FilterContext} from "../item/DataFilter";
-import {PlatformContext} from "../../../../wrapper/api/Platform";
 import PlatformFilter from "../item/PlatformFilter";
 import WidgetSocket, {WidgetSocketContext} from "../item/WidgetSocket";
 import List, {ListContext} from "../../../list/List";

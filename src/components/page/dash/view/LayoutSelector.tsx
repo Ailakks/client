@@ -15,8 +15,12 @@ function Body() {
     const { translate } = useContext(LanguageContext);
 
     return (
-        <h2 className="text-nowrap">
-            <a className="text-white" href="/">{translate("layout.header.name")}</a>
-        </h2>
+        <div className="flex items-center space-x-5">
+            <h2 className="space-x-2 items-center text-nowrap">
+                <a className="text-white" href="/">{translate("layout.header.name")}</a>
+                <label className="main">Beta</label>
+            </h2>
+            <button>Layout</button>
+        </div>
     )
 }

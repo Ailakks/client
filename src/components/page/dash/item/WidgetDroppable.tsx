@@ -19,19 +19,18 @@ export default function WidgetDroppable({ children }) {
 
         const array = path.split('.');
         const last = array.pop();
+        const index = last.match(/\[(\d+)]/)[1];
         const lastType = last.replace(/\[\d+]/g, '');
         const parent = [...array, lastType].join('.');
 
         const parentData = jsonpath.value(layout, parent);
 
-        if (type === lastType && order < 1) {
-            jsonpath.apply(newLayout, parent, () => [{ content: id }, ...parentData]);
-        } else if (type === lastType) {
-            jsonpath.apply(newLayout, parent, () => [...parentData, { content: id }]);
-        } else if (order < 1) {
-            jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: [{ content: id }, current] }] }));
+        parentData.splice(order < 1 ? index : index + 1, 0, { content: id })
+
+        if (type === lastType) {
+            jsonpath.apply(newLayout, parent, () => parentData);
         } else {
-            jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: [current, { content: id }] }] }));
+            jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: parentData }] }));
         }
 
         setLayout(newLayout);

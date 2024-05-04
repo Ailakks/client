@@ -95,9 +95,9 @@ export default function Widget({ collapsed, children }) {
     const getSize = (item) => {
         let total = 0;
 
-        item.forEach((child) => {
-            const { row, column } = child;
-            const current = row ?? column;
+        item.forEach((data) => {
+            const { row, column, child } = data;
+            const current = row ?? column ?? child;
 
             if (!current) {
                 return;

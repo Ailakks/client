@@ -58,6 +58,31 @@ export default function Widget({ collapsed, children }) {
         const previous = jsonpath.value(layout, parent);
         previous.splice(index, 1);
 
+        if (previous.length < 1) {
+            const array = path.split('.');
+
+            array.pop();
+            array.pop();
+
+            const last = array.pop();
+            const index = last.match(/\[(\d+)]/)[1];
+            const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
+
+            const updated = jsonpath.value(layout, parent);
+            updated.splice(index, 1);
+
+            jsonpath.apply(updatedLayout, parent, () => updated);
+
+            const root = updatedLayout[0];
+            const first = root.row ?? root.column;
+
+            if (first.length < 1) {
+                return;
+            }
+        }
+
+        jsonpath.apply(updatedLayout, parent, () => previous);
+
         setLayout(updatedLayout);
     }
 

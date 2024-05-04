@@ -8,8 +8,8 @@ import LayoutSelector from "../view/LayoutSelector";
 
 export const LayoutContext = createContext(null);
 
-export default function GridView({ defaultLayout, widgets }) {
-    const [layout, setLayout] = useState(defaultLayout);
+export default function GridView({ widgets }) {
+    const [layout, setLayout] = useState(null);
     const [list, setList] = useState([]);
 
     const serialize = (list) => list.reduce((acc, item) => {
@@ -24,6 +24,14 @@ export default function GridView({ defaultLayout, widgets }) {
         }
         return acc;
     }, []);
+
+    if (!layout) {
+        return (
+            <LayoutContext.Provider value={{ setLayout }}>
+                <LayoutSelector />
+            </LayoutContext.Provider>
+        )
+    }
 
     useEffect(() => {
         setList(serialize(layout));

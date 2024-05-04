@@ -20,7 +20,8 @@ export default function PlatformWrapper({ children }) {
                 }
                 __typename
             }
-        }`);
+        }`
+    );
 
     return (
         <Query request={request}>

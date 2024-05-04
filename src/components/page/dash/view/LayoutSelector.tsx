@@ -1,14 +1,40 @@
 import {useContext, useEffect} from "react";
 import {HeaderContext} from "../../../layout/dash/Dash";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {gql, useQuery} from "@apollo/client";
+import {LayoutContext} from "../grid/GridView";
 
 
 export default function LayoutSelector() {
     const { setHeader } = useContext(HeaderContext);
 
+    const { setLayout } = useContext(LayoutContext);
+
+    useQuery(gql`
+        query {
+            listLayoutTemplates {
+                id
+                name
+                serialize
+                __typename
+            }
+        }`,
+        {
+            onCompleted: ({ listLayoutTemplates }) => {
+                setLayout(listLayoutTemplates[0].serialize)
+            }
+        }
+    );
+
     useEffect(() => {
-        setHeader(<Body />);
+        setHeader(<Header />);
     }, []);
+}
+
+function Header() {
+    return (
+        <p>test</p>
+    )
 }
 
 function Body() {

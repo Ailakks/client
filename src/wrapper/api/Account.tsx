@@ -28,7 +28,8 @@ export default function AccountWrapper({ children }) {
                 }
                 __typename
             }
-        }`);
+        }`
+    );
 
     return (
         <Query request={request}>

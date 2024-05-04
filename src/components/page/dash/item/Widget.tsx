@@ -55,6 +55,12 @@ export default function Widget({ collapsed, children }) {
         const last = array.pop();
         const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
+        const size = getSize(updatedLayout);
+
+        if (size <= 1) {
+            return;
+        }
+
         const previous = jsonpath.value(layout, parent);
         previous.splice(index, 1);
 

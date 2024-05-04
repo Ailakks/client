@@ -11,24 +11,28 @@ export default function Droppable({ action, children }) {
         {
             id: 'left',
             type: 'column',
+            order: 1,
             distance: (event, target) => event.clientX - target.left,
             styles: { top: '0', bottom: '0', width: `${size}px` }
         },
         {
             id: 'right',
             type: 'column',
+            order: 2,
             distance: (event, target) => target.right - event.clientX,
             styles: { top: '0', bottom: '0', right: '0', width: `${size}px` }
         },
         {
             id: 'top',
             type: 'row',
+            order: 1,
             distance: (event, target) => event.clientY - target.top,
             styles: { top: '0', bottom: '0', right: '0', left: '0', height: `${size}px` }
         },
         {
             id: 'bottom',
             type: 'row',
+            order: 2,
             distance: (event, target) => target.bottom - event.clientY,
             styles: { bottom: '0', right: '0', left: '0', height: `${size}px` }
         }

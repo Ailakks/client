@@ -17,10 +17,10 @@ export default function WidgetDroppable({ children }) {
 
         const current = jsonpath.value(layout, path);
 
-        if (order === 2) {
-            jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: [current, { content: id }] }] }));
-        } else {
+        if (order < 1) {
             jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: [{ content: id }, current] }] }));
+        } else {
+            jsonpath.apply(newLayout, path, () => ({ child: [{ [type]: [current, { content: id }] }] }));
         }
 
         setLayout(newLayout);

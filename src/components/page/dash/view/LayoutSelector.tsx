@@ -1,6 +1,6 @@
 import {useContext, useEffect} from "react";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
-import {gql, useQuery} from "@apollo/client";
+import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
 import {HeaderContext} from "../../../layout/dash/Dash";
 
@@ -8,18 +8,45 @@ export default function LayoutSelector() {
     const { setLayout } = useContext(LayoutContext);
     const { setHeader } = useContext(HeaderContext);
 
-    const { data } = useQuery(gql`
-        query {
-            listLayoutTemplates {
-                id
-                name
-                serialize
-                __typename
-            }
-        }`,
+    const [getTemplates] = useLazyQuery(gql`
+                query {
+                    listLayoutTemplates {
+                        id
+                        name
+                        serialize
+                        __typename
+                    }
+                }`,
         {
             onCompleted: ({ listLayoutTemplates }) => {
+                if (listLayoutTemplates.length < 1) {
+                    return;
+                }
+
                 setLayout(JSON.parse(listLayoutTemplates[0].serialize));
+            }
+        }
+    );
+
+    useQuery(gql`
+                query {
+                    listLayouts {
+                        id
+                        name
+                        serialize
+                        selected
+                        __typename
+                    }
+                }`,
+        {
+            onCompleted: ({ listLayouts }) => {
+                if (listLayouts.length < 1) {
+                    getTemplates();
+
+                    return;
+                }
+
+                setLayout(JSON.parse(listLayouts[0].serialize));
             }
         }
     );

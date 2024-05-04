@@ -16,8 +16,10 @@ export default function GridView({ defaultLayout, widgets }) {
             acc = acc.concat(serialize(item.row));
         } else if (Array.isArray(item.column)) {
             acc = acc.concat(serialize(item.column));
-        } else if (typeof item === 'string') {
-            acc.push(item);
+        } else if (Array.isArray(item.child)) {
+            acc = acc.concat(serialize(item.child));
+        } else if (item.content) {
+            acc.push(item.content);
         }
         return acc;
     }, []);

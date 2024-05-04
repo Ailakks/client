@@ -25,6 +25,14 @@ export default function GridView({ widgets }) {
         return acc;
     }, []);
 
+    useEffect(() => {
+        if (!layout) {
+            return;
+        }
+
+        setList(serialize(layout));
+    }, [layout]);
+
     if (!layout) {
         return (
             <LayoutContext.Provider value={{ setLayout }}>
@@ -32,10 +40,6 @@ export default function GridView({ widgets }) {
             </LayoutContext.Provider>
         )
     }
-
-    useEffect(() => {
-        setList(serialize(layout));
-    }, [layout]);
 
     return (
         <LayoutContext.Provider value={{ list, layout, setLayout }}>

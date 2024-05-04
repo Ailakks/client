@@ -1,16 +1,12 @@
-import {useContext, useEffect} from "react";
-import {HeaderContext} from "../../../layout/dash/Dash";
+import {useContext} from "react";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 import {gql, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
 
-
 export default function LayoutSelector() {
-    const { setHeader } = useContext(HeaderContext);
-
     const { setLayout } = useContext(LayoutContext);
 
-    useQuery(gql`
+    const { data } = useQuery(gql`
         query {
             listLayoutTemplates {
                 id
@@ -21,14 +17,14 @@ export default function LayoutSelector() {
         }`,
         {
             onCompleted: ({ listLayoutTemplates }) => {
-                setLayout(listLayoutTemplates[0].serialize)
+                setLayout(listLayoutTemplates[0].serialize);
             }
         }
     );
 
-    useEffect(() => {
-        setHeader(<Header />);
-    }, []);
+    return (
+        <p>test</p>
+    )
 }
 
 function Header() {

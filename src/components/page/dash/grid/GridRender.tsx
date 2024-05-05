@@ -11,14 +11,14 @@ export const PathContext = createContext(null);
 export const GridPanelConext = createContext(null);
 
 export default function GridRender() {
-    const { layout } = useContext(LayoutContext);
+    const { layout: { serialize } } = useContext(LayoutContext);
 
+    const parse = JSON.parse(serialize);
     const path = "$";
-
-    const root = jsonpath.value(layout, path);
+    const root = jsonpath.value(parse, path);
 
     return (
-        <PathContext.Provider value={{ path }}>
+        <PathContext.Provider value={{ path, parse }}>
             <PanelGroup direction="horizontal">
                 <List list={root}>
                     <Child />
@@ -29,11 +29,10 @@ export default function GridRender() {
 }
 
 function Child() {
-    const { path } = useContext(PathContext);
+    const { path, parse } = useContext(PathContext);
     const { index } = useContext(ListContext);
-    const { layout } = useContext(LayoutContext);
 
-    const { column, row } = jsonpath.value(layout, `${path}[${index}]`);
+    const { column, row } = jsonpath.value(parse, `${path}[${index}]`);
 
     const next = `${path}[${index}].${column ? `column` : `row`}`;
 

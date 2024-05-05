@@ -3,6 +3,8 @@ import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
 import {HeaderContext} from "../../../layout/dash/Dash";
+import ContextMenu from "../../../context/ContextMenu";
+import {ListContext} from "../../../list/List";
 
 export default function LayoutSelector() {
     const { setLayout } = useContext(LayoutContext);
@@ -59,13 +61,36 @@ export default function LayoutSelector() {
 function Body() {
     const { translate } = useContext(LanguageContext);
 
+    const sections = [
+        {
+            id: 'templates'
+        },
+        {
+            id: 'layouts'
+        }
+    ]
+
     return (
         <div className="flex items-center space-x-5">
             <h2 className="space-x-2 items-center text-nowrap">
                 <a className="text-white" href="/">{translate("layout.header.name")}</a>
                 <label className="main">Beta</label>
             </h2>
-            <button>Layout</button>
+            <ContextMenu list={sections} content={<Item/>}>
+                <button>Layout</button>
+            </ContextMenu>
+        </div>
+    )
+}
+
+function Item() {
+    const { translate } = useContext(LanguageContext);
+    const { item: { id } } = useContext(ListContext);
+
+    return (
+        <div className="p-2">
+            <p>{translate(`layout.selector.dropdown.${id}`)}</p>
+
         </div>
     )
 }

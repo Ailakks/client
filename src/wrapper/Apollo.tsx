@@ -15,7 +15,6 @@ export default function ApolloWrapper({ children }) {
         }
     });
 
-
     return (
         <ApolloProvider client={ApiClient}>
             {children}

@@ -30,7 +30,7 @@ export default function GridView({ widgets }) {
             return;
         }
 
-        setList(serialize(JSON.parse(layout.serialize)));
+        setList(serialize(layout));
     }, [layout]);
 
     if (!layout) {

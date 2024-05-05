@@ -10,7 +10,7 @@ export const WidgetDataContext = createContext();
 
 export default function Widget({ collapsed, children }) {
     const { layout, setLayout } = useContext(LayoutContext);
-    const { path, parse } = useContext(PathContext);
+    const { path } = useContext(PathContext);
     const { index } = useContext(ListContext);
 
     const { ref } = useContext(GridPanelConext);

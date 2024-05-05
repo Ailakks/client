@@ -28,7 +28,7 @@ export default function LayoutSelector() {
                     return;
                 }
 
-                setLayout(listLayoutTemplates[0]);
+                setLayout(JSON.parse(listLayoutTemplates[0].serialize));
             }
         }
     );
@@ -51,7 +51,7 @@ export default function LayoutSelector() {
                     return;
                 }
 
-                setLayout(listLayouts[0]);
+                setLayout(JSON.parse(listLayouts[0].serialize));
             }
         }
     );

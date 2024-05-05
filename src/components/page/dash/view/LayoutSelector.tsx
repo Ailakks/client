@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
@@ -7,7 +7,7 @@ import ContextMenu from "../../../context/ContextMenu";
 import List, {ListContext} from "../../../list/List";
 import Query, {QueryContext} from "../../../query/Query";
 
-export const LayoutSelectorConext = createContext();
+export const LayoutSelectorContext = createContext();
 
 export default function LayoutSelector() {
     const { layout, setLayout } = useContext(LayoutContext);
@@ -58,15 +58,15 @@ export default function LayoutSelector() {
 
     useEffect(() => {
         setHeader(
-            <LayoutSelectorConext.Provider value={{ layout }}>
+            <LayoutSelectorContext.Provider value={{ layout }}>
                 <Body />
-            </LayoutSelectorConext.Provider>
+            </LayoutSelectorContext.Provider>
         );
-    }, []);
+    }, [layout]);
 }
 
 function Body() {
-    const { layout } = useContext(LayoutSelectorConext);
+    const { layout } = useContext(LayoutSelectorContext);
     const { translate } = useContext(LanguageContext);
 
     const sections = [
@@ -88,7 +88,7 @@ function Body() {
             </h2>
             {layout &&
                 <ContextMenu list={sections} content={<Section/>}>
-                <button>Layout</button>
+                <button>{layout.name}</button>
             </ContextMenu>}
         </div>
     )

@@ -35,7 +35,7 @@ export default function GridView({ widgets }) {
 
     if (!layout) {
         return (
-            <LayoutContext.Provider value={{ setLayout }}>
+            <LayoutContext.Provider value={{ layout, setLayout }}>
                 <LayoutSelector />
             </LayoutContext.Provider>
         )

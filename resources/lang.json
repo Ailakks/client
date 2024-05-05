@@ -65,9 +65,9 @@
         "selector": {
           "dropdown": {
             "layout": {
-              "title": "Layouts",
+              "title": "Estilos",
               "create": {
-                "label": "Nueva layout"
+                "label": "Nueva estilo"
               }
             },
             "template": {

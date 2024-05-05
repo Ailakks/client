@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {createContext, useContext, useEffect} from "react";
 import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
@@ -7,8 +7,10 @@ import ContextMenu from "../../../context/ContextMenu";
 import List, {ListContext} from "../../../list/List";
 import Query, {QueryContext} from "../../../query/Query";
 
+export const LayoutSelectorConext = createContext();
+
 export default function LayoutSelector() {
-    const { setLayout } = useContext(LayoutContext);
+    const { layout, setLayout } = useContext(LayoutContext);
     const { setHeader } = useContext(HeaderContext);
 
     const [getTemplates] = useLazyQuery(gql`
@@ -55,11 +57,16 @@ export default function LayoutSelector() {
     );
 
     useEffect(() => {
-        setHeader(<Body />);
+        setHeader(
+            <LayoutSelectorConext.Provider value={{ layout }}>
+                <Body />
+            </LayoutSelectorConext.Provider>
+        );
     }, []);
 }
 
 function Body() {
+    const { layout } = useContext(LayoutSelectorConext);
     const { translate } = useContext(LanguageContext);
 
     const sections = [
@@ -79,9 +86,10 @@ function Body() {
                 <a className="text-white" href="/">{translate("layout.header.name")}</a>
                 <label className="main">Beta</label>
             </h2>
-            <ContextMenu list={sections} content={<Section />}>
+            {layout &&
+                <ContextMenu list={sections} content={<Section/>}>
                 <button>Layout</button>
-            </ContextMenu>
+            </ContextMenu>}
         </div>
     )
 }
@@ -92,7 +100,7 @@ function Section() {
 
     return (
         <div>
-            <div className="p-2">
+            <div className="py-2 px-4">
                 <p>{translate(`layout.header.selector.dropdown.${id}.title`)}</p>
             </div>
             {child}
@@ -159,7 +167,7 @@ function LayoutList() {
             <List list={listLayouts}>
                 <Item />
             </List>
-            <button className="flex space-x-2 p-2 items-center">
+            <button className="flex space-x-2 py-2 px-4 items-center">
                 <i className="fa-light fa-plus w-5" />
                 <p>{translate(`layout.header.selector.dropdown.layout.create.label`)}</p>
             </button>
@@ -172,7 +180,7 @@ function Item() {
     const { item: { id, name } } = useContext(ListContext);
 
     return (
-        <button className="flex space-x-2 p-2 items-center">
+        <button className="flex space-x-2 py-2 px-4 items-center">
             <i className="fa-light fa-grid-2 w-5"/>
             <p>{name ?? translate(`layout.header.selector.dropdown.template.${id}.name`)}</p>
         </button>

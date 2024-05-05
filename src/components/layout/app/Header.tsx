@@ -20,7 +20,7 @@ export default function AppHeader() {
 
     return (
         <div className="flex items-center h-full bg-gray-700 p-5">
-            {header ?? <Head />}
+            {header ?? <AppHead />}
             <div className="flex w-full justify-end items-center space-x-6">
                 <Language/>
                 {data ? <Logged/> : <Guest/>}
@@ -29,12 +29,13 @@ export default function AppHeader() {
     )
 }
 
-function Head() {
+export function AppHead() {
     const {translate} = useContext(LanguageContext);
 
     return (
-        <h2 className="text-nowrap">
+        <h2 className="space-x-2 items-center text-nowrap">
             <a className="text-white" href="/">{translate("layout.header.name")}</a>
+            <label className="main">Beta</label>
         </h2>
     )
 }

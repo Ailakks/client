@@ -62,18 +62,26 @@
         }
       },
       "header": {
+        "section": {
+          "stream": {
+            "title": "Gestor de la emisión"
+          }
+        },
+        "layout": {
+          "title": "Diseño"
+        },
         "selector": {
           "dropdown": {
             "layout": {
-              "title": "Estilos",
+              "title": "Tus diseños",
               "create": {
-                "label": "Nueva estilo"
+                "label": "Nuevo diseño"
               }
             },
             "template": {
               "title": "Plantillas",
               "default": {
-                "name": "Principal"
+                "name": "Estándar"
               }
             }
           }

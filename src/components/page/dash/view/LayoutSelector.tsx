@@ -6,6 +6,7 @@ import {HeaderContext} from "../../../layout/dash/Dash";
 import ContextMenu from "../../../context/ContextMenu";
 import List, {ListContext} from "../../../list/List";
 import Query, {QueryContext} from "../../../query/Query";
+import {AppHead} from "../../../layout/app/Header";
 
 export const LayoutSelectorContext = createContext();
 
@@ -90,26 +91,26 @@ function Body() {
         }
     ];
 
+    if (!layout) {
+        return <AppHead />;
+    }
+
     return (
-        <div className="flex items-center space-x-8">
-            <h2 className="space-x-2 items-center text-nowrap">
-                <a className="text-white" href="/">{translate("layout.header.name")}</a>
-                <label className="main">Beta</label>
-            </h2>
-            {layout &&
-                <ContextMenu list={sections} content={<Section/>}>
+        <div className="inline text-nowrap">
+            <p>{translate("layout.header.section.stream.title")}</p>
+            <ContextMenu list={sections} content={<Section/>}>
                 <button className="secondary inline">
                     <p>{layout.name}</p>
-                    <i className="fa-regular fa-angle-down" />
+                    <i className="fa-regular fa-angle-down"/>
                 </button>
-            </ContextMenu>}
+            </ContextMenu>
         </div>
     )
 }
 
 function Section() {
-    const { translate } = useContext(LanguageContext);
-    const { item: { id, child } } = useContext(ListContext);
+    const {translate} = useContext(LanguageContext);
+    const {item: {id, child}} = useContext(ListContext);
 
     return (
         <div>

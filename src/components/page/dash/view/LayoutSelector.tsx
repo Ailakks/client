@@ -77,8 +77,18 @@ export default function LayoutSelector() {
 }
 
 function Body() {
+    const [unsavedChanges, setUnsavedChanges] = useState(0)
+
     const { layout } = useContext(LayoutSelectorContext);
     const { translate } = useContext(LanguageContext);
+
+    useEffect(() => {
+        if (!layout) {
+            return;
+        }
+
+        setUnsavedChanges(unsavedChanges + 1);
+    }, [layout]);
 
     const sections = [
         {
@@ -104,6 +114,10 @@ function Body() {
                     <i className="fa-regular fa-angle-down"/>
                 </button>
             </ContextMenu>
+            <button className="secondary inline">
+                <i className="fa-regular fa-plus" />
+                <p>{translate("layout.header.layout.create.label")}</p>
+            </button>
         </div>
     )
 }

@@ -68,7 +68,10 @@
           }
         },
         "layout": {
-          "title": "Diseño"
+          "title": "Diseño",
+          "create": {
+            "label": "Nuevo"
+          }
         },
         "selector": {
           "dropdown": {

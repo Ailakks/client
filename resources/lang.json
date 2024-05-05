@@ -5,6 +5,7 @@
   "es_ES": {
     "widget": {
       "feed": {
+        "title": "Eventos",
         "tags": {
           "event": {
             "subscription": {
@@ -20,6 +21,15 @@
             "name": "Etiquetas"
           }
         }
+      },
+      "chat": {
+        "title": "Chat"
+      },
+      "preview": {
+        "title": "Previsualización"
+      },
+      "views": {
+        "title": "Visualizaciones"
       }
     },
     "fallback": {
@@ -64,7 +74,7 @@
       "header": {
         "section": {
           "stream": {
-            "title": "Gestor de la emisión"
+            "title": "Panel de control"
           }
         },
         "layout": {

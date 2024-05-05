@@ -5,16 +5,19 @@ import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import {LayoutContext} from "../grid/GridView";
 import ErrorBoundaryWrapper from "../../../native/ErrorBoundaryWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
 
 export default function Window({ children }) {
+    const { translate } = useContext(LanguageContext);
+
     const { metadata, collapsed, replace, remove, collapse } = useContext(WidgetDataContext);
 
-    const { name } = metadata;
+    const { id, name } = metadata;
 
     return (
         <div className="flex flex-col h-full bg-gray-700 min-w-60">
             <div className="flex justify-between items-center h-10 bg-gray-300 p-5">
-                <p>{name}</p>
+                <p>{translate(`widget.${id}.title`)}</p>
                 <div className="space-x-5">
                     <button onClick={replace}>
                         <i className="fa-regular ellipsis" />

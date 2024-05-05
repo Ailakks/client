@@ -9,16 +9,16 @@ import LayoutSelector from "../view/LayoutSelector";
 export const LayoutContext = createContext(null);
 
 export default function GridView({ widgets }) {
-    const [layout, setLayout] = useState(null);
+    const [serialize, setSerialize] = useState(null);
     const [list, setList] = useState([]);
 
-    const serialize = (list) => list.reduce((acc, item) => {
+    const parse = (list) => list.reduce((acc, item) => {
         if (Array.isArray(item.row)) {
-            acc = acc.concat(serialize(item.row));
+            acc = acc.concat(parse(item.row));
         } else if (Array.isArray(item.column)) {
-            acc = acc.concat(serialize(item.column));
+            acc = acc.concat(parse(item.column));
         } else if (Array.isArray(item.child)) {
-            acc = acc.concat(serialize(item.child));
+            acc = acc.concat(parse(item.child));
         } else if (item.content) {
             acc.push(item.content);
         }
@@ -26,23 +26,23 @@ export default function GridView({ widgets }) {
     }, []);
 
     useEffect(() => {
-        if (!layout) {
+        if (!serialize) {
             return;
         }
 
-        setList(serialize(layout));
-    }, [layout]);
+        setList(parse(serialize));
+    }, [serialize]);
 
-    if (!layout) {
+    if (!serialize) {
         return (
-            <LayoutContext.Provider value={{ layout, setLayout }}>
+            <LayoutContext.Provider value={{ serialize, setLayout: setSerialize }}>
                 <LayoutSelector />
             </LayoutContext.Provider>
         )
     }
 
     return (
-        <LayoutContext.Provider value={{ list, layout, setLayout }}>
+        <LayoutContext.Provider value={{ list, serialize, setLayout: setSerialize }}>
             <LayoutSelector />
             <GridProvider list={widgets}>
                 <PanelGroup direction="horizontal">

@@ -11,7 +11,7 @@ import {AppHead} from "../../../layout/app/Header";
 export const LayoutSelectorContext = createContext();
 
 export default function LayoutSelector() {
-    const [unsavedChanges, setUnsavedChanges] = useState(0)
+    const [previous, setPrevious] = useState(null);
 
     const [layout, setLayout] = useState();
 
@@ -19,20 +19,16 @@ export default function LayoutSelector() {
     const { setHeader } = useContext(HeaderContext);
 
     useEffect(() => {
-        if (!serialize) {
-            return;
-        }
-
-        setUnsavedChanges(unsavedChanges + 1);
-    }, [serialize]);
-
-    useEffect(() => {
         if (!layout) {
             return;
         }
 
-        setSerialize(JSON.parse(layout.serialize));
+        setPrevious(JSON.parse(layout.serialize));
     }, [layout]);
+
+    useEffect(() => {
+        setSerialize(previous);
+    }, [previous]);
 
     const [getTemplates] = useLazyQuery(gql`
                 query {
@@ -79,15 +75,15 @@ export default function LayoutSelector() {
 
     useEffect(() => {
         setHeader(
-            <LayoutSelectorContext.Provider value={{ layout, serialize, unsavedChanges, setUnsavedChanges }}>
+            <LayoutSelectorContext.Provider value={{ layout, serialize, previous }}>
                 <Body />
             </LayoutSelectorContext.Provider>
         );
-    }, [layout]);
+    }, [layout, serialize]);
 }
 
 function Body() {
-    const { layout, unsavedChanges } = useContext(LayoutSelectorContext);
+    const { layout, serialize, previous } = useContext(LayoutSelectorContext);
     const { translate } = useContext(LanguageContext);
 
     const sections = [
@@ -106,19 +102,29 @@ function Body() {
     }
 
     return (
-        <div className="inline text-nowrap">
-            <p>{unsavedChanges}</p>
+        <div className="inline !space-x-6 text-nowrap">
             <p>{translate("layout.header.section.stream.title")}</p>
-            <ContextMenu list={sections} content={<Section/>}>
+            <div className="inline">
+                <ContextMenu list={sections} content={<Section/>}>
+                    <button className="secondary inline">
+                        <p>{layout.name}</p>
+                        <i className="fa-regular fa-angle-down"/>
+                    </button>
+                </ContextMenu>
                 <button className="secondary inline">
-                    <p>{layout.name}</p>
-                    <i className="fa-regular fa-angle-down"/>
+                    <i className="fa-regular fa-plus" />
+                    <p>{translate("layout.header.layout.create.label")}</p>
                 </button>
-            </ContextMenu>
-            <button className="secondary inline">
-                <i className="fa-regular fa-plus" />
-                <p>{translate("layout.header.layout.create.label")}</p>
-            </button>
+            </div>
+            {serialize !== previous > 1 &&
+                <div className="inline">
+                    <p>Has hecho cambios</p>
+                    <button className="secondary inline">
+                        <i className="fa-regular fa-bookmark" />
+                        <p>Guardar</p>
+                    </button>
+                </div>
+            }
         </div>
     )
 }

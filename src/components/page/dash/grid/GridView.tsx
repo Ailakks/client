@@ -10,6 +10,7 @@ export const LayoutContext = createContext(null);
 
 export default function GridView({ widgets }) {
     const [serialize, setSerialize] = useState(null);
+
     const [list, setList] = useState([]);
 
     const parse = (list) => list.reduce((acc, item) => {

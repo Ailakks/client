@@ -91,14 +91,17 @@ function Body() {
     ];
 
     return (
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center space-x-8">
             <h2 className="space-x-2 items-center text-nowrap">
                 <a className="text-white" href="/">{translate("layout.header.name")}</a>
                 <label className="main">Beta</label>
             </h2>
             {layout &&
                 <ContextMenu list={sections} content={<Section/>}>
-                <button>{layout.name}</button>
+                <button className="secondary inline">
+                    <p>{layout.name}</p>
+                    <i className="fa-regular fa-angle-down" />
+                </button>
             </ContextMenu>}
         </div>
     )
@@ -142,9 +145,11 @@ function TemplateList() {
     const { data: { listLayoutTemplates } } = useContext(QueryContext);
 
     return (
-        <List list={listLayoutTemplates}>
-            <Item />
-        </List>
+        <div className="divided">
+            <List list={listLayoutTemplates}>
+                <Item />
+            </List>
+        </div>
     )
 }
 
@@ -173,12 +178,12 @@ function LayoutList() {
     const { data: { listLayouts } } = useContext(QueryContext);
 
     return (
-        <div>
+        <div className="list">
             <List list={listLayouts}>
-                <Item />
+                <Item/>
             </List>
-            <button className="flex space-x-2 py-2 px-4 items-center">
-                <i className="fa-light fa-plus w-5" />
+            <button className="flex space-x-2 py-2 px-4 items-center hover:bg-gray-300">
+                <i className="fa-light fa-plus w-5"/>
                 <p>{translate(`layout.header.selector.dropdown.layout.create.label`)}</p>
             </button>
         </div>
@@ -186,11 +191,11 @@ function LayoutList() {
 }
 
 function Item() {
-    const { translate } = useContext(LanguageContext);
-    const { item: { id, name } } = useContext(ListContext);
+    const {translate} = useContext(LanguageContext);
+    const {item: {id, name}} = useContext(ListContext);
 
     return (
-        <button className="flex space-x-2 py-2 px-4 items-center">
+        <button className="flex space-x-2 py-2 px-4 items-center hover:bg-gray-300">
             <i className="fa-light fa-grid-2 w-5"/>
             <p>{name ?? translate(`layout.header.selector.dropdown.template.${id}.name`)}</p>
         </button>

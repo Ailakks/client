@@ -14,7 +14,7 @@ export default function ContextMenu({ list, content, children }) {
             </PopoverTrigger>
             <PopoverContent>
                 <ContextMenuContext.Provider value={{ content }}>
-                    <div className="bg-gray-500 rounded-xl min-w-52 list overflow-hidden">
+                    <div className="bg-gray-500 rounded-xl min-w-52 divided overflow-hidden">
                         <List list={list}>{content}</List>
                     </div>
                 </ContextMenuContext.Provider>

@@ -74,7 +74,11 @@ html {
     }
 
     div.list {
-        @apply divide-y-1 divide-gray-300;
+        @apply flex flex-col;
+    }
+
+    div.divided {
+        @apply flex flex-col divide-y-1 divide-gray-300;
     }
 
     input {
@@ -114,7 +118,7 @@ html {
     }
 
     button.inline,a.inline, div.inline {
-        @apply flex items-center space-x-2;
+        @apply flex items-center space-x-3;
     }
 
     .tab {

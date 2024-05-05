@@ -64,11 +64,11 @@ function Body() {
 
     const sections = [
         {
-            id: 'layouts',
+            id: 'layout',
             child: <LayoutSection />
         },
         {
-            id: 'templates',
+            id: 'template',
             child: <TemplateSection />
         }
     ];
@@ -93,7 +93,7 @@ function Section() {
     return (
         <div>
             <div className="p-2">
-                <p>{translate(`layout.selector.dropdown.${id}`)}</p>
+                <p>{translate(`layout.header.selector.dropdown.${id}.title`)}</p>
             </div>
             {child}
         </div>
@@ -155,13 +155,13 @@ function LayoutList() {
     const { data: { listLayouts } } = useContext(QueryContext);
 
     return (
-        <div className="list">
+        <div>
             <List list={listLayouts}>
                 <Item />
             </List>
             <button className="flex space-x-2 p-2 items-center">
                 <i className="fa-light fa-plus w-5" />
-                <p>{translate(`layout.selector.layout.create.label`)}</p>
+                <p>{translate(`layout.header.selector.dropdown.layout.create.label`)}</p>
             </button>
         </div>
     )
@@ -174,7 +174,7 @@ function Item() {
     return (
         <button className="flex space-x-2 p-2 items-center">
             <i className="fa-light fa-grid-2 w-5"/>
-            <p>{name ?? translate(`layout.selector.template.${id}`)}</p>
+            <p>{name ?? translate(`layout.header.selector.dropdown.template.${id}.name`)}</p>
         </button>
     )
 }

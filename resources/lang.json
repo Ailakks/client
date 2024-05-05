@@ -62,6 +62,22 @@
         }
       },
       "header": {
+        "selector": {
+          "dropdown": {
+            "layout": {
+              "title": "Layouts",
+              "create": {
+                "label": "Nueva layout"
+              }
+            },
+            "template": {
+              "title": "Plantillas",
+              "default": {
+                "name": "Principal"
+              }
+            }
+          }
+        },
         "name": "Grapho Studio",
         "roles": {
           "admin": "Administrador",

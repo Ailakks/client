@@ -4,7 +4,8 @@ import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
 import {HeaderContext} from "../../../layout/dash/Dash";
 import ContextMenu from "../../../context/ContextMenu";
-import {ListContext} from "../../../list/List";
+import List, {ListContext} from "../../../list/List";
+import Query, {QueryContext} from "../../../query/Query";
 
 export default function LayoutSelector() {
     const { setLayout } = useContext(LayoutContext);
@@ -66,9 +67,10 @@ function Body() {
             id: 'templates'
         },
         {
-            id: 'layouts'
+            id: 'layouts',
+            child: <LayoutSection />
         }
-    ]
+    ];
 
     return (
         <div className="flex items-center space-x-5">
@@ -85,12 +87,52 @@ function Body() {
 
 function Item() {
     const { translate } = useContext(LanguageContext);
-    const { item: { id } } = useContext(ListContext);
+    const { item: { id, child } } = useContext(ListContext);
 
     return (
         <div className="p-2">
             <p>{translate(`layout.selector.dropdown.${id}`)}</p>
-
+            {child}
         </div>
+    )
+}
+
+function LayoutSection() {
+    const request = useQuery(gql`
+        query {
+            listLayouts {
+                id
+                name
+                serialize
+                selected
+                __typename
+            }
+        }`
+    );
+
+    return (
+        <Query request={request}>
+            <LayoutList />
+        </Query>
+    )
+}
+
+function LayoutList() {
+    const { data: { listLayouts } } = useContext(QueryContext);
+
+    return (
+        <List list={listLayouts}>
+            <LayoutItem />
+        </List>
+    )
+}
+
+function LayoutItem() {
+    const { item: { name } } = useContext(ListContext);
+
+    return (
+        <button className="p-2">
+            <p>{name}</p>
+        </button>
     )
 }

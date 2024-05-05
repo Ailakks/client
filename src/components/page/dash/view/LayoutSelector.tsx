@@ -11,10 +11,20 @@ import {AppHead} from "../../../layout/app/Header";
 export const LayoutSelectorContext = createContext();
 
 export default function LayoutSelector() {
+    const [unsavedChanges, setUnsavedChanges] = useState(0)
+
     const [layout, setLayout] = useState();
 
-    const { setSerialize } = useContext(LayoutContext);
+    const { serialize, setSerialize } = useContext(LayoutContext);
     const { setHeader } = useContext(HeaderContext);
+
+    useEffect(() => {
+        if (!serialize) {
+            return;
+        }
+
+        setUnsavedChanges(unsavedChanges + 1);
+    }, [serialize]);
 
     useEffect(() => {
         if (!layout) {
@@ -69,7 +79,7 @@ export default function LayoutSelector() {
 
     useEffect(() => {
         setHeader(
-            <LayoutSelectorContext.Provider value={{ layout }}>
+            <LayoutSelectorContext.Provider value={{ layout, serialize, unsavedChanges, setUnsavedChanges }}>
                 <Body />
             </LayoutSelectorContext.Provider>
         );
@@ -77,18 +87,8 @@ export default function LayoutSelector() {
 }
 
 function Body() {
-    const [unsavedChanges, setUnsavedChanges] = useState(0)
-
-    const { layout } = useContext(LayoutSelectorContext);
+    const { layout, unsavedChanges } = useContext(LayoutSelectorContext);
     const { translate } = useContext(LanguageContext);
-
-    useEffect(() => {
-        if (!layout) {
-            return;
-        }
-
-        setUnsavedChanges(unsavedChanges + 1);
-    }, [layout]);
 
     const sections = [
         {
@@ -107,6 +107,7 @@ function Body() {
 
     return (
         <div className="inline text-nowrap">
+            <p>{unsavedChanges}</p>
             <p>{translate("layout.header.section.stream.title")}</p>
             <ContextMenu list={sections} content={<Section/>}>
                 <button className="secondary inline">

@@ -9,7 +9,7 @@ import WidgetDroppable from "./WidgetDroppable";
 export const WidgetDataContext = createContext();
 
 export default function Widget({ collapsed, children }) {
-    const { layout, setLayout } = useContext(LayoutContext);
+    const { serialize, setSerialize } = useContext(LayoutContext);
     const { path } = useContext(PathContext);
     const { index } = useContext(ListContext);
 
@@ -30,26 +30,26 @@ export default function Widget({ collapsed, children }) {
         const last = array.pop();
         const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
-        const previous = jsonpath.value(layout, parent);
+        const previous = jsonpath.value(serialize, parent);
 
-        const updatedLayout = [ ...layout ];
+        const updatedLayout = [ ...serialize ];
 
         jsonpath.apply(updatedLayout, parent, () => [...previous, { content: id }]);
 
-        setLayout(updatedLayout);
+        setSerialize(updatedLayout);
     };
 
     const replace = (id) => {
         const component = getComponent(id);
-        const updatedLayout = [ ...layout ];
+        const updatedLayout = [ ...serialize ];
 
         jsonpath.apply(updatedLayout, `${path}[${index}]`, () => component);
 
-        setLayout(updatedLayout);
+        setSerialize(updatedLayout);
     };
 
     const remove = () => {
-        const updatedLayout = [ ...layout ];
+        const updatedLayout = [ ...serialize ];
 
         const array = path.split('.');
         const last = array.pop();
@@ -61,7 +61,7 @@ export default function Widget({ collapsed, children }) {
             return;
         }
 
-        const previous = jsonpath.value(layout, parent);
+        const previous = jsonpath.value(serialize, parent);
         previous.splice(index, 1);
 
         if (previous.length < 1) {
@@ -74,7 +74,7 @@ export default function Widget({ collapsed, children }) {
             const index = last.match(/\[(\d+)]/)[1];
             const parent = [...array, last.replace(/\[\d+]/g, '')].join('.');
 
-            const updated = jsonpath.value(layout, parent);
+            const updated = jsonpath.value(serialize, parent);
             updated.splice(index, 1);
 
             jsonpath.apply(updatedLayout, parent, () => updated);
@@ -89,7 +89,7 @@ export default function Widget({ collapsed, children }) {
 
         jsonpath.apply(updatedLayout, parent, () => previous);
 
-        setLayout(updatedLayout);
+        setSerialize(updatedLayout);
     }
 
     const getSize = (item) => {

@@ -1,10 +1,7 @@
-import { nextui } from "@nextui-org/react";
-
 module.exports = {
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
-
     ],
     theme: {
         extend: {
@@ -44,5 +41,5 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [nextui()],
+    plugins: [],
 };

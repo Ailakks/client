@@ -7,7 +7,6 @@ import ContextMenu from "../../../context/ContextMenu";
 import List, {ListContext} from "../../../list/List";
 import Query, {QueryContext} from "../../../query/Query";
 import {AppHead} from "../../../layout/app/Header";
-import {Popover, PopoverContent} from "@nextui-org/react";
 
 export const LayoutSelectorContext = createContext();
 
@@ -116,22 +115,32 @@ function Body() {
         <div className="inline !space-x-6 text-nowrap">
             <p>{translate("layout.header.section.stream.title")}</p>
             <div className="inline">
-                <Popover isOpen={true}>
-                    <ContextMenu list={sections} content={<Section/>}>
-                        <button className="secondary inline">
-                            <p>{layout.name}</p>
-                            <i className="fa-regular fa-angle-down"/>
-                        </button>
-                    </ContextMenu>
-                    <PopoverContent>
-                        <p>a</p>
-                    </PopoverContent>
-                </Popover>
+                <ContextMenu list={sections} content={<Section/>}>
+                    <button className="secondary inline">
+                        <p>{layout.name}</p>
+                        <i className="fa-regular fa-angle-down"/>
+                    </button>
+                </ContextMenu>
                 <button className="secondary inline">
-                    <i className="fa-regular fa-plus"/>
+                    <i className="fa-regular fa-plus" />
                     <p>{translate("layout.header.layout.create.label")}</p>
                 </button>
             </div>
+            {unsavedChanges > 1 &&
+                <div className="space-y-2 justify-center">
+                    <p className="text-center">Hay cambios sin guardar</p>
+                    <div className="inline">
+                        <button className="secondary inline">
+                            <i className="fa-regular fa-bookmark"/>
+                            <p>Guardar</p>
+                        </button>
+                        <button className="secondary inline">
+                            <i className="fa-regular fa-xmark"/>
+                            <p>Cancelar</p>
+                        </button>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

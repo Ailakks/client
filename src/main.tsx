@@ -16,38 +16,35 @@ import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
 import ModalProvider from "./wrapper/ui/Modal";
 import PopupProvider from "./wrapper/ui/Popup";
 import SocketWrapper from "./wrapper/Socket";
-import {NextUIProvider} from "@nextui-org/react";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <NextUIProvider>
-        <BrowserRouter>
-            <CookiesWrapper>
-                <LanguageWrapper>
-                    <ErrorBoundaryWrapper>
-                        <DownloadWrapper>
-                            <AxiosWrapper>
-                                <ApolloWrapper>
-                                    <SocketWrapper>
-                                        <AccountWrapper>
-                                            <LoggedWrapper>
-                                                <PopupProvider>
-                                                    <ModalProvider>
-                                                        <QueueWrapper>
-                                                            <RenderProvider>
-                                                                <App />
-                                                            </RenderProvider>
-                                                        </QueueWrapper>
-                                                    </ModalProvider>
-                                                </PopupProvider>
-                                            </LoggedWrapper>
-                                        </AccountWrapper>
-                                    </SocketWrapper>
-                                </ApolloWrapper>
-                            </AxiosWrapper>
-                        </DownloadWrapper>
-                    </ErrorBoundaryWrapper>
-                </LanguageWrapper>
-            </CookiesWrapper>
-        </BrowserRouter>
-    </NextUIProvider>
+    <BrowserRouter>
+        <CookiesWrapper>
+            <LanguageWrapper>
+                <ErrorBoundaryWrapper>
+                    <DownloadWrapper>
+                        <AxiosWrapper>
+                            <ApolloWrapper>
+                                <SocketWrapper>
+                                    <AccountWrapper>
+                                        <LoggedWrapper>
+                                            <PopupProvider>
+                                                <ModalProvider>
+                                                    <QueueWrapper>
+                                                        <RenderProvider>
+                                                            <App />
+                                                        </RenderProvider>
+                                                    </QueueWrapper>
+                                                </ModalProvider>
+                                            </PopupProvider>
+                                        </LoggedWrapper>
+                                    </AccountWrapper>
+                                </SocketWrapper>
+                            </ApolloWrapper>
+                        </AxiosWrapper>
+                    </DownloadWrapper>
+                </ErrorBoundaryWrapper>
+            </LanguageWrapper>
+        </CookiesWrapper>
+    </BrowserRouter>
 )

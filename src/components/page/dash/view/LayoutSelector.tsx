@@ -10,8 +10,18 @@ import Query, {QueryContext} from "../../../query/Query";
 export const LayoutSelectorContext = createContext();
 
 export default function LayoutSelector() {
-    const { layout, setLayout } = useContext(LayoutContext);
+    const [layout, setLayout] = useState();
+
+    const { setSerialize } = useContext(LayoutContext);
     const { setHeader } = useContext(HeaderContext);
+
+    useEffect(() => {
+        if (!layout) {
+            return;
+        }
+
+        setSerialize(JSON.parse(layout.serialize));
+    }, [layout]);
 
     const [getTemplates] = useLazyQuery(gql`
                 query {
@@ -28,7 +38,7 @@ export default function LayoutSelector() {
                     return;
                 }
 
-                setLayout(JSON.parse(listLayoutTemplates[0].serialize));
+                setLayout(listLayoutTemplates[0]);
             }
         }
     );
@@ -51,7 +61,7 @@ export default function LayoutSelector() {
                     return;
                 }
 
-                setLayout(JSON.parse(listLayouts[0].serialize));
+                setLayout(listLayouts[0]);
             }
         }
     );

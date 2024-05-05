@@ -35,14 +35,14 @@ export default function GridView({ widgets }) {
 
     if (!serialize) {
         return (
-            <LayoutContext.Provider value={{ serialize, setLayout: setSerialize }}>
+            <LayoutContext.Provider value={{ serialize, setSerialize }}>
                 <LayoutSelector />
             </LayoutContext.Provider>
         )
     }
 
     return (
-        <LayoutContext.Provider value={{ list, serialize, setLayout: setSerialize }}>
+        <LayoutContext.Provider value={{ list, serialize, setSerialize }}>
             <LayoutSelector />
             <GridProvider list={widgets}>
                 <PanelGroup direction="horizontal">

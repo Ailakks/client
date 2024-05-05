@@ -64,7 +64,8 @@ function Body() {
 
     const sections = [
         {
-            id: 'templates'
+            id: 'templates',
+            child: <TemplateSection />
         },
         {
             id: 'layouts',
@@ -78,14 +79,14 @@ function Body() {
                 <a className="text-white" href="/">{translate("layout.header.name")}</a>
                 <label className="main">Beta</label>
             </h2>
-            <ContextMenu list={sections} content={<Item/>}>
+            <ContextMenu list={sections} content={<Section />}>
                 <button>Layout</button>
             </ContextMenu>
         </div>
     )
 }
 
-function Item() {
+function Section() {
     const { translate } = useContext(LanguageContext);
     const { item: { id, child } } = useContext(ListContext);
 
@@ -94,6 +95,36 @@ function Item() {
             <p>{translate(`layout.selector.dropdown.${id}`)}</p>
             {child}
         </div>
+    )
+}
+
+function TemplateSection() {
+    const request = useQuery(gql`
+        query {
+            listLayoutTemplates {
+                id
+                name
+                serialize
+                selected
+                __typename
+            }
+        }`
+    );
+
+    return (
+        <Query request={request}>
+            <TemplateList />
+        </Query>
+    )
+}
+
+function TemplateList() {
+    const { data: { listLayoutTemplates } } = useContext(QueryContext);
+
+    return (
+        <List list={listLayoutTemplates}>
+            <Item />
+        </List>
     )
 }
 
@@ -122,13 +153,13 @@ function LayoutList() {
 
     return (
         <List list={listLayouts}>
-            <LayoutItem />
+            <Item />
         </List>
     )
 }
 
-function LayoutItem() {
-    const { item: { name } } = useContext(ListContext);
+function Item() {
+    const { item: { id, name } } = useContext(ListContext);
 
     return (
         <button className="p-2">

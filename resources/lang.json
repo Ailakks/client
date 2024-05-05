@@ -71,6 +71,15 @@
           "title": "Diseño",
           "create": {
             "label": "Nuevo"
+          },
+          "unsaved": {
+            "title": "Hay cambios sin guardar",
+            "save": {
+              "label": "Guardar"
+            },
+            "cancel": {
+              "label": "Cancelar"
+            }
           }
         },
         "selector": {

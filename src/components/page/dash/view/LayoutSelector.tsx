@@ -127,16 +127,16 @@ function Body() {
                 </button>
             </div>
             {unsavedChanges > 1 &&
-                <div className="space-y-2 justify-center">
-                    <p className="text-center">Hay cambios sin guardar</p>
+                <div className="inline">
+                    <p>{translate("layout.header.layout.unsaved.title")}</p>
                     <div className="inline">
                         <button className="secondary inline">
                             <i className="fa-regular fa-bookmark"/>
-                            <p>Guardar</p>
+                            <p>{translate("layout.header.layout.unsaved.save.label")}</p>
                         </button>
                         <button className="secondary inline">
                             <i className="fa-regular fa-xmark"/>
-                            <p>Cancelar</p>
+                            <p>{translate("layout.header.layout.unsaved.cancel.label")}</p>
                         </button>
                     </div>
                 </div>

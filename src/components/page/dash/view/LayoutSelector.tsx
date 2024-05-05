@@ -152,18 +152,21 @@ function LayoutList() {
     const { data: { listLayouts } } = useContext(QueryContext);
 
     return (
-        <List list={listLayouts}>
-            <Item />
-        </List>
+        <div className="list">
+            <List list={listLayouts}>
+                <Item />
+            </List>
+        </div>
     )
 }
 
 function Item() {
+    const { translate } = useContext(LanguageContext);
     const { item: { id, name } } = useContext(ListContext);
 
     return (
         <button className="p-2">
-            <p>{name}</p>
+            <p>{name ?? translate(`layout.selector.template.${id}`)}</p>
         </button>
     )
 }

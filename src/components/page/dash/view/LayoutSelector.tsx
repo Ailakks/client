@@ -75,7 +75,7 @@ export default function LayoutSelector() {
 
     useEffect(() => {
         setHeader(
-            <LayoutSelectorContext.Provider value={{ layout, serialize, previous }}>
+            <LayoutSelectorContext.Provider value={{ layout, serialize }}>
                 <Body />
             </LayoutSelectorContext.Provider>
         );
@@ -83,8 +83,18 @@ export default function LayoutSelector() {
 }
 
 function Body() {
-    const { layout, serialize, previous } = useContext(LayoutSelectorContext);
+    const [unsavedChanges, setUnsavedChanges] = useState(0)
+
+    const { layout, serialize } = useContext(LayoutSelectorContext);
     const { translate } = useContext(LanguageContext);
+
+    useEffect(() => {
+        if (!serialize) {
+            return;
+        }
+
+        setUnsavedChanges(unsavedChanges + 1);
+    }, [serialize]);
 
     const sections = [
         {
@@ -116,13 +126,19 @@ function Body() {
                     <p>{translate("layout.header.layout.create.label")}</p>
                 </button>
             </div>
-            {serialize !== previous > 1 &&
-                <div className="inline">
-                    <p>Has hecho cambios</p>
-                    <button className="secondary inline">
-                        <i className="fa-regular fa-bookmark" />
-                        <p>Guardar</p>
-                    </button>
+            {unsavedChanges > 1 &&
+                <div className="space-y-2 justify-center">
+                    <p className="text-center">Hay cambios sin guardar</p>
+                    <div className="inline">
+                        <button className="secondary inline">
+                            <i className="fa-regular fa-bookmark"/>
+                            <p>Guardar</p>
+                        </button>
+                        <button className="secondary inline">
+                            <i className="fa-regular fa-xmark"/>
+                            <p>Cancelar</p>
+                        </button>
+                    </div>
                 </div>
             }
         </div>

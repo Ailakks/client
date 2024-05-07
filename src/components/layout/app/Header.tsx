@@ -1,6 +1,6 @@
 import {Fragment, useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/api/Account";
-import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../wrapper/lang/Language";
 import ContextMenu from "../../context/ContextMenu";
 import Language from "../components/button/Language";
 import {clsx} from "clsx";

@@ -11,7 +11,7 @@ import UploadZone from "../native/upload/UploadZone";
 import NoContentFallback from "../page/fallback/NoContentFallback";
 import Moment from "../parse/Moment";
 import Size from "../parse/Size";
-import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../wrapper/lang/Language";
 
 export const SelectedContext = createContext();
 export const ItemMenuContext = createContext();

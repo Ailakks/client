@@ -3,7 +3,7 @@ import {AxiosContext} from "../../wrapper/Axios";
 import Request, {RequestContext} from "../query/Request";
 import {ScopesDataContext} from "../context/Scopes";
 import IntegrationMeta from "../item/IntegrationMeta";
-import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../wrapper/lang/Language";
 
 export default function FilePreview() {
     const { translate } = useContext(LanguageContext);

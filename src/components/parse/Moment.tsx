@@ -1,6 +1,6 @@
 import { formatRelative } from "date-fns";
 import {useContext} from "react";
-import {Category, LanguageContext, Locale} from "../../wrapper/lang/LanguageWrapper";
+import {Category, LanguageContext, Locale} from "../../wrapper/lang/Language";
 import * as fnsLocales from "date-fns/locale";
 
 export default function Moment({ children }) {

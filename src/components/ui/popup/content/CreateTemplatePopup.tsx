@@ -9,7 +9,7 @@ import List, {ListContext} from "../../../list/List";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/Popup";
 import Checkbox from "../../../input/Checkbox";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 
 export const TemplateContext = createContext();
 

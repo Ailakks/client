@@ -7,7 +7,7 @@ import List, {ListContext} from "../../../list/List";
 import Tab from "../../../native/Tab";
 import TabContent from "../../../native/TabContent";
 import Tabs from "../../../native/Tabs";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 import NoContentFallback from "../../fallback/NoContentFallback";
 
 enum EventType {

@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {Category, LanguageContext, Locale} from "../../wrapper/lang/LanguageWrapper";
+import {Category, LanguageContext, Locale} from "../../wrapper/lang/Language";
 
 export default function Amount({ currency, children }) {
     const { locales, language } = useContext(LanguageContext);

@@ -1,5 +1,5 @@
 import {createContext, useContext, useEffect, useState} from "react";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 import {gql, useLazyQuery, useQuery} from "@apollo/client";
 import {LayoutContext} from "../grid/GridView";
 import {HeaderContext} from "../../../layout/dash/Dash";

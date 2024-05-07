@@ -6,7 +6,7 @@ import {clsx} from "clsx";
 import {ItemMenuContext} from "../ListView";
 import {QueryContext} from "../../query/Query";
 import {FolderContext} from "./NewButton";
-import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../wrapper/lang/Language";
 
 export const ItemContext = createContext();
 

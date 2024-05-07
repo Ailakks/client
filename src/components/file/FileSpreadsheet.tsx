@@ -12,7 +12,7 @@ import CreateTemplatePopup from "../ui/popup/content/CreateTemplatePopup";
 import TabDefault from "../native/TabDefault";
 import {AxiosContext} from "../../wrapper/Axios";
 import {DownloadContext} from "../../wrapper/tool/Download";
-import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../wrapper/lang/Language";
 
 export const TemplateContext = createContext();
 

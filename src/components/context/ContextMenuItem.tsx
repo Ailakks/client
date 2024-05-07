@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {ListContext} from "../list/List";
 import {clsx} from "clsx";
-import {LanguageContext} from "../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../wrapper/lang/Language";
 
 export default function ContextMenuItem({ path }) {
     const { translate } = useContext(LanguageContext);

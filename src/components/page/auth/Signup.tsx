@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {AccountContext} from "../../../wrapper/api/Account";
 import {CookiesContext} from "../../../wrapper/tool/Cookies";
-import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../wrapper/lang/Language";
 
 export default function Signup() {
     const { translate } = useContext(LanguageContext);

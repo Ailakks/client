@@ -8,7 +8,7 @@ import Input from "../../../query/Input";
 import PopupWindows from "../style/PopupWindows";
 import {PopupContext} from "../../../../wrapper/ui/Popup";
 import {FolderContext} from "../../../data/list/NewButton";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 import {ToastContext, ToastType} from "../../../../wrapper/ui/Toast";
 
 export default function CreateFolderPopup() {

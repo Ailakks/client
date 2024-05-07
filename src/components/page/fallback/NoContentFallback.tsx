@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LanguageContext } from "../../../wrapper/lang/LanguageWrapper";
+import { LanguageContext } from "../../../wrapper/lang/Language";
 
 export default function NoContentFallback() {
     const { translate } = useContext(LanguageContext);

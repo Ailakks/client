@@ -3,7 +3,7 @@ import {createContext, useContext} from "react";
 import {QueryContext} from "../../query/Query";
 import CreateFolderPopup from "../../ui/popup/content/CreateFolderPopup";
 import {PopupContext} from "../../../wrapper/ui/Popup";
-import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../wrapper/lang/Language";
 import ContextMenuItem from "../../context/ContextMenuItem";
 
 const Category = {

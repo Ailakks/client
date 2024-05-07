@@ -11,7 +11,7 @@ import AxiosWrapper from "./wrapper/Axios";
 import RenderProvider from "./wrapper/Render";
 import DownloadWrapper from "./wrapper/tool/Download";
 import QueueWrapper from "./wrapper/api/Queue";
-import LanguageWrapper from "./wrapper/lang/LanguageWrapper";
+import LanguageWrapper from "./wrapper/lang/Language";
 import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
 import ModalProvider from "./wrapper/ui/Modal";
 import PopupProvider from "./wrapper/ui/Popup";

@@ -5,7 +5,7 @@ import {GridProviderContext} from "../GridProvider";
 import {ListContext} from "../../../list/List";
 import {LayoutContext} from "../grid/GridView";
 import ErrorBoundaryWrapper from "../../../native/ErrorBoundaryWrapper";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 
 export default function Window({ children }) {
     const { translate } = useContext(LanguageContext);

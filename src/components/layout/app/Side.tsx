@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
 import { clsx } from 'clsx';
 import {useContext} from "react";
-import {LanguageContext} from "../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../wrapper/lang/Language";
 import List, {ListContext} from "../../list/List";
 
 const pages = [

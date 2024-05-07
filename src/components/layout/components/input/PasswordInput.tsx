@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {clsx} from "clsx";
 import Input from "../../../query/Input";
-import {LanguageContext} from "../../../../wrapper/lang/LanguageWrapper";
+import {LanguageContext} from "../../../../wrapper/lang/Language";
 
 export default function PasswordInput() {
     const { translate } = useContext(LanguageContext);

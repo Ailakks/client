@@ -1,6 +1,6 @@
 import {ErrorBoundary, useErrorBoundary} from 'react-error-boundary';
 import { useContext } from "react";
-import { LanguageContext } from "../../wrapper/lang/LanguageWrapper";
+import { LanguageContext } from "../../wrapper/lang/Language";
 
 export default function ErrorBoundaryWrapper({ children }) {
     return (

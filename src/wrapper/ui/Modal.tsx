@@ -2,7 +2,7 @@ import {createContext, useState} from 'react';
 
 export const ModalContext = createContext(null);
 
-export default function ModalProvider({ children }) {
+export default function ModalWrapper({ children }) {
     const [current, setCurrent] = useState(null);
 
     const close = () => {

@@ -13,8 +13,8 @@ import DownloadWrapper from "./wrapper/tool/Download";
 import QueueWrapper from "./wrapper/api/Queue";
 import LanguageWrapper from "./wrapper/lang/Language";
 import ErrorBoundaryWrapper from "./components/native/ErrorBoundaryWrapper";
-import ModalProvider from "./wrapper/ui/Modal";
-import PopupProvider from "./wrapper/ui/Popup";
+import ModalWrapper from "./wrapper/ui/Modal";
+import PopupWrapper from "./wrapper/ui/Popup";
 import SocketWrapper from "./wrapper/Socket";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -28,15 +28,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                                 <SocketWrapper>
                                     <AccountWrapper>
                                         <LoggedWrapper>
-                                            <PopupProvider>
-                                                <ModalProvider>
+                                            <PopupWrapper>
+                                                <ModalWrapper>
                                                     <QueueWrapper>
                                                         <RenderProvider>
                                                             <App />
                                                         </RenderProvider>
                                                     </QueueWrapper>
-                                                </ModalProvider>
-                                            </PopupProvider>
+                                                </ModalWrapper>
+                                            </PopupWrapper>
                                         </LoggedWrapper>
                                     </AccountWrapper>
                                 </SocketWrapper>

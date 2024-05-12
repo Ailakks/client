@@ -19,7 +19,7 @@ export default function WidgetSocket({ children }) {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        const socket = io(import.meta.env.VITE_API_SOCKET_URL, { reconnectionDelay: 3000, retries: 10,  extraHeaders: { Authorization: `Bearer ${getToken()}` } });
+        const socket = io(import.meta.env.VITE_API_SOCKET_URL, { reconnectionDelay: 3000, retries: 10, transports: ['websocket'], extraHeaders: { Authorization: `Bearer ${getToken()}` } });
 
         socket.on('connect', () =>  {
             channelList.forEach(({ platform, username }) => {

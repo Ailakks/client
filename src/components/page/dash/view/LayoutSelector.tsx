@@ -111,13 +111,15 @@ function Body() {
         return <AppHead />;
     }
 
+    const { id, name } = layout;
+
     return (
         <div className="inline !space-x-6 text-nowrap">
             <p>{translate("layout.header.section.stream.title")}</p>
             <div className="inline">
                 <ContextMenu list={sections} content={<Section/>}>
                     <button className="secondary inline">
-                        <p>{layout.name}</p>
+                        <p>{name ?? translate(`layout.header.selector.dropdown.template.${id}.name`)}</p>
                         <i className="fa-regular fa-angle-down"/>
                     </button>
                 </ContextMenu>

@@ -6,28 +6,26 @@ export const AccountContext = createContext(null);
 
 export default function AccountWrapper({ children }) {
     const request = useQuery(gql`
-        query CurrentUser {
-            currentUser {
+        query currentUser {
+            id
+            name
+            surname
+            username
+            email {
+                value
+                verified
+            }
+            picture {
+                source
+            }
+            roles {
                 id
                 name
-                surname
-                username
-                email {
-                    value
-                    verified
-                }
-                picture {
-                    source
-                }
-                roles {
-                    id
-                    name
-                    displayName
-                    permissions
-                    __typename
-                }
+                displayName
+                permissions
                 __typename
             }
+            __typename
         }`
     );
 

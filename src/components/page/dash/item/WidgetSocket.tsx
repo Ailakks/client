@@ -29,7 +29,6 @@ export default function WidgetSocket({ children }) {
 
         socket.on('message', (data) =>  {
             console.log(`New message: ${data}`);
-            console.log(data)
 
             const { meta: { scope } } = data;
 

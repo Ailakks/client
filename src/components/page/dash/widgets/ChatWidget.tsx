@@ -44,12 +44,12 @@ function MessageList() {
 }
 
 function Message() {
-    const { item: { meta: { platform: { brand: { icon } } }, data: { author: { color, displayName, badges }, message } } } = useContext(ListContext);
+    const { item: { meta: { platform: { brand } }, data: { author: { color, displayName, badges }, message } } } = useContext(ListContext);
 
     return (
         <div>
-            <i className={clsx(icon.id, "w-6")} />&nbsp;
-            <span style={{ color: color ?? brand.color }}>{displayName}:&nbsp;</span>
+            <i className={clsx(brand.icon.id, "w-6")} />&nbsp;
+            <span style={{ color: color ?? color }}>{displayName}:&nbsp;</span>
             <List list={message} separator={<span>&nbsp;</span>}>
                 <ChatMessagePart />
             </List>

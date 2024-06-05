@@ -80,7 +80,7 @@ function ChatMessageEmote() {
 
     return (
         <span>
-            <img className="inline" alt={name} src={url} />
+            <img className="inline h-5 aspect-square" alt={name} src={url} />
         </span>
     )
 }

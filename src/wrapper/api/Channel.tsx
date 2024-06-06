@@ -8,11 +8,10 @@ export default function ChannelWrapper({ children }) {
     const request = useQuery(gql`
         query {
             channelList {
-                platform
                 enabled
-                username
-                link {
-                    id
+                channel {
+                    platform
+                    handle
                     __typename
                 }
                 user {

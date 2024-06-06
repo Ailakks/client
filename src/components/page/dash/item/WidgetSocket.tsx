@@ -49,6 +49,12 @@ export default function WidgetSocket({ children }) {
             }
 
             const ably = new Ably.Realtime({ authCallback: login });
+
+            const channel = ably.channels.get(JSON.stringify({ platform, username, scopes }));
+
+            await channel.subscribe((message) => {
+                console.log(message);
+            });
         });
     }, []);
 

@@ -19,26 +19,38 @@ export default function WidgetSocket({ children }) {
 
     const [list, setList] = useState([]);
 
-    const { data } = useQuery(gql`
-        query GetRealtimeToken {
-            getRealtimeToken {
-                token
-                __typename
-            }
-        }`
+    const [request] = useLazyQuery(gql`
+                query GetRealtimeToken($platform: String!, $username: String!, $scopes: [ScopeData!]!) {
+                    getRealtimeToken(payload: {
+                        platform: $platform,
+                        username: $username,
+                        scopes: $scopes
+                    }) {
+                        token
+                        __typename
+                    }
+                }`,
     );
 
-    useEffect( () => {
-        //const roomId = JSON.stringify({ platform, username, scopes });
+    useEffect(() => {
+        channelList.forEach(async ({ platform, username }) => {
+            const { data } = await request({
+                variables: {
+                    platform: platform,
+                    username: username,
+                    scopes: scopes
+                }
+            });
 
-        const login = () => {
-            return data;
-        };
+            const login = () => {
+                const { getRealtimeToken: { token } } = data;
 
-        const ably = new Ably.Realtime({ authCallback: login });
+                return token;
+            }
 
-        console.log('Connected to Ably!');
-    }, [data]);
+            const ably = new Ably.Realtime({ authCallback: login });
+        });
+    }, []);
 
     return (
         <WidgetSocketContext.Provider value={{ list }}>

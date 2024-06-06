@@ -15,7 +15,7 @@ export default function PreviewWidget() {
             id: 'preview',
             name: 'Preview',
             icon: 'fa-regular fa-video',
-            scopes: [{id: "message"}],
+            scopes: ["message"],
             platforms: ["youtube", "twitch", "tiktok", "x", "kick"]
         });
     }, []);

@@ -47,8 +47,7 @@ export default function FeedWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
 
     useEffect(() => {
-        setMetadata({ id: 'feed', name: 'Feed', icon: 'fa-regular fa-bell', scopes: [
-                { id: 'donation' }, { id: 'gift' }, { id: 'subscription' }], platforms: ["youtube", "twitch"] });
+        setMetadata({ id: 'feed', name: 'Feed', icon: 'fa-regular fa-bell', scopes: ["donation", "gift", "subscription"], platforms: ["youtube", "twitch"] });
     }, []);
 
     if (metadata) {

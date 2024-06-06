@@ -10,7 +10,7 @@ export default function ViewersWidget() {
     const { metadata, setMetadata } = useContext(WidgetDataContext);
 
     useEffect(() => {
-        setMetadata({ id: 'views', name: 'Views', icon: 'fa-regular fa-wifi', scopes: [{ id: "statistic" }], platforms: ["twitch", "x"] });
+        setMetadata({ id: 'views', name: 'Views', icon: 'fa-regular fa-wifi', scopes: ["statistic"], platforms: ["twitch", "x"] });
     }, []);
 
     if (metadata) {

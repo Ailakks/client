@@ -48,7 +48,7 @@ export default function WidgetSocket({ children }) {
                 return token;
             }
 
-            const ably = new Ably.Realtime({ key: '' });
+            const ably = new Ably.Realtime({ authUrl: `${import.meta.VITE_API_REST_BASE_URL}/realtime/token`, authMethod: 'POST', authHeaders: { Authorization: `Bearer ${getToken()}` } });
 
             scopes.forEach(({ id: scope }) => {
                 const channel = ably.channels.get(JSON.stringify({ platform, scope, target: { username } }));

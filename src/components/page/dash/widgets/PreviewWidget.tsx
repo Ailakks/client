@@ -27,7 +27,9 @@ export default function PreviewWidget() {
                     meta {
                         platform {
                             id
+                            __typename
                         }
+                        __typename
                     }
                     data {
                         id
@@ -38,7 +40,6 @@ export default function PreviewWidget() {
                             }
                             __typename
                         }
-                        __typename
                         __typename
                     }
                     __typename

@@ -3,12 +3,14 @@ import {WidgetDataContext} from "./Widget";
 import {CookiesContext} from "../../../../wrapper/tool/Cookies";
 import {gql, useQuery} from "@apollo/client";
 import * as Ably from 'ably';
+import {AxiosContext} from "../../../../wrapper/Axios";
 
 export const WidgetSocketContext = createContext(null);
 
 export const MAX_EVENT_HISTORY = 60;
 
 export default function WidgetSocket({ children }) {
+    const { client } = useContext(AxiosContext);
     const { getToken } = useContext(CookiesContext);
 
     const { metadata: { scopes } } = useContext(WidgetDataContext);
@@ -61,6 +63,14 @@ export default function WidgetSocket({ children }) {
             });
         });
     }, [data]);
+
+    useEffect(() => {
+        client.get('history', { params: { scopes } }).then(({ data }) => {
+            const list = data.map(({ event }) => event);
+
+            setList((previous) => [...previous, ...list]);
+        });
+    }, []);
 
     return (
         <WidgetSocketContext.Provider value={{ list }}>

@@ -1,9 +1,10 @@
 import {createContext, useContext, useEffect, useState} from "react";
-import {io} from "socket.io-client";
 import {WidgetDataContext} from "./Widget";
 import {ChannelContext} from "../../../../wrapper/api/Channel";
 import {CookiesContext} from "../../../../wrapper/tool/Cookies";
 import {AxiosContext} from "../../../../wrapper/Axios";
+import {gql, useLazyQuery, useQuery} from "@apollo/client";
+import * as Ably from 'ably';
 
 export const WidgetSocketContext = createContext(null);
 
@@ -18,35 +19,26 @@ export default function WidgetSocket({ children }) {
 
     const [list, setList] = useState([]);
 
-    useEffect(() => {
-        const socket = io(import.meta.env.VITE_API_SOCKET_URL, { reconnectionDelay: 3000, retries: 10, extraHeaders: { Authorization: `Bearer ${getToken()}` } });
-
-        socket.on('connect', () =>  {
-            channelList.forEach(({ platform, username }) => {
-                socket.emit('join', JSON.stringify({ platform, username, scopes }))
-            });
-        });
-
-        socket.on('message', (data) =>  {
-            console.log(`New message: ${data}`);
-
-            const { meta: { scope } } = data;
-
-            if (!scopes.find(({ id }) => id === scope.id)) {
-                return;
+    const { data } = useQuery(gql`
+        query GetRealtimeToken {
+            getRealtimeToken {
+                token
+                __typename
             }
+        }`
+    );
 
-            setList((previous) => [...previous.slice(-MAX_EVENT_HISTORY), data]);
-        });
+    useEffect( () => {
+        //const roomId = JSON.stringify({ platform, username, scopes });
 
-        /*client.get('history', { params: { scopes } }).then(({ data }) => {
-            const list = data.map(({ event }) => event);
+        const login = () => {
+            return data;
+        };
 
-            setList((previous) => [...previous, ...list]);
-        });*/
+        const ably = new Ably.Realtime({ authCallback: login });
 
-        return () => socket.off();
-    }, []);
+        console.log('Connected to Ably!');
+    }, [data]);
 
     return (
         <WidgetSocketContext.Provider value={{ list }}>

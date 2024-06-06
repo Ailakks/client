@@ -50,8 +50,14 @@ export default function WidgetSocket({ children }) {
         listRooms.forEach(({ id }) => {
             const channel = ably.channels.get(id);
 
-            channel.subscribe((message) => {
-                console.log(message);
+            channel.subscribe(({ data }) => {
+                const { meta: { scope } } = JSON.parse(data);
+
+                if (!scopes.find(({ id }) => id === scope.id)) {
+                    return;
+                }
+
+                setList((previous) => [...previous.slice(-MAX_EVENT_HISTORY), JSON.parse(data)]);
             });
         });
     }, [data]);

@@ -43,12 +43,16 @@ export default function WidgetSocket({ children }) {
             return;
         }
 
-        const ably = new Ably.Realtime({ authUrl: `${import.meta.VITE_API_REST_BASE_URL}/realtime/token`, authMethod: 'POST', authHeaders: { Authorization: `Bearer ${getToken()}` } });
+        const { listRooms } = data;
 
-        const channel = ably.channels.get("6662077cfe282c8d769c9209");
+        const ably = new Ably.Realtime({ authUrl: `${import.meta.env.VITE_API_REST_BASE_URL}/realtime/token`, authMethod: 'POST', authHeaders: { Authorization: `Bearer ${getToken()}` } });
 
-        channel.subscribe((message) => {
-            console.log(message);
+        listRooms.forEach(({ id }) => {
+            const channel = ably.channels.get(id);
+
+            channel.subscribe((message) => {
+                console.log(message);
+            });
         });
     }, [data]);
 

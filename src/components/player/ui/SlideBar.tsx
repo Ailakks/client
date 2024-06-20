@@ -24,7 +24,7 @@ export function SlideBar({ onChange, ...props }) {
                        handleChange();
                        onChange(event);
                    }} {...props} />
-            <div className="absolute w-full h-[8px] bg-red-500 rounded-full" ref={track}/>
+            <div className="absolute w-full h-[8px] bg-red-500 rounded-full pointer-events-none" ref={track}/>
         </div>
     );
 }

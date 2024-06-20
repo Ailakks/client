@@ -1,9 +1,10 @@
-import {PlayerData} from "./Data";
-import {useContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import {QueueContext} from "./wrapper/Queue";
 import {TrackContext} from "./wrapper/Track";
 
-export function PlayerQueue() {
+export const PlayerQueueContext = createContext(null);
+
+export function PlayerQueue({ children }) {
     const LoopMode = {
         NONE: {icon: 'fa-regular fa-arrows-repeat'},
         LIST: {icon: 'fa-regular fa-arrows-repeat'},
@@ -97,6 +98,8 @@ export function PlayerQueue() {
     };
 
     return (
-        <p>test</p>
+        <PlayerQueueContext.Provider value={{ togglePlay, LoopMode, loop, shuffle, handleNext, handleBefore, handleEnded, alterLoop, alterShuffle }}>
+            {children}
+        </PlayerQueueContext.Provider>
     )
 }

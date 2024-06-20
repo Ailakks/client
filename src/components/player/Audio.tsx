@@ -1,8 +1,13 @@
-import {useContext, useEffect} from "react";
+import {Fragment, useContext, useEffect, useRef, useState} from "react";
 import {PlayerTrackContext} from "./wrapper/Track";
 
-export function PlayerAudio() {
+export function PlayerAudio({ children }) {
     const { current } = useContext(PlayerTrackContext);
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    const player = useRef();
 
     const play = () => {
         player.current?.play();
@@ -31,6 +36,17 @@ export function PlayerAudio() {
     }, [current]);
 
     return (
-        <p>test</p>
+        <Fragment>
+            <audio
+                ref={player}
+                src={source}
+                autoPlay={true}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onTimeUpdate={updateTime}
+                onEnded={() => handleEnded(play, setCurrentTime)}
+            />
+            {children}
+        </Fragment>
     )
 }

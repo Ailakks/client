@@ -5,12 +5,12 @@ import {PlayerTrackBar} from "./controls/bar/Track";
 
 export function Player({ children }) {
     return (
-        <PlayerAudio>
-            <PlayerQueue>
+        <PlayerQueue>
+            <PlayerAudio>
                 <PlayerControls />
                 <PlayerTrackBar />
-            </PlayerQueue>
+            </PlayerAudio>
             {children}
-        </PlayerAudio>
+        </PlayerQueue>
     )
 }

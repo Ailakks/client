@@ -66,7 +66,7 @@ export function PlayerQueue({ children }) {
         setLoop((loop + 1 + values.length) % values.length);
     };
 
-    const handlePrevious = () => {
+    const handlePrevious = (getPlayerCurrentTime, setPlayerCurrentTime) => {
         if (getPlayerCurrentTime() > 3) {
             setPlayerCurrentTime(0);
 
@@ -86,15 +86,15 @@ export function PlayerQueue({ children }) {
         setTrack(queue[index]);
     };
 
-    const handleEnded = (play, setCurrentTime) => {
+    const handleEnded = (play, pause, setCurrentTime) => {
         if (loop === 2) {
-            getPlayerCurrentTime(0);
+            setCurrentTime(0);
             play();
 
             return;
         }
 
-        handleNext();
+        handleNext(pause);
     };
 
     return (

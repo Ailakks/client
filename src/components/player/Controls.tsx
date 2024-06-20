@@ -4,7 +4,7 @@ import {PlayerAudioContext} from "./Audio";
 import {LoopMode, PlayerQueueContext} from "./Queue";
 
 export function PlayerControls() {
-    const { isPlaying } = useContext(PlayerAudioContext);
+    const { isPlaying, play, pause, getPlayerCurrentTime, setPlayerCurrentTime } = useContext(PlayerAudioContext);
     const { shuffle, loop, togglePlay, handleNext, alterLoop, handlePrevious, alterShuffle } = useContext(PlayerQueueContext);
 
     return (
@@ -15,15 +15,15 @@ export function PlayerControls() {
                 </button>
             </Tooltip>
             <Tooltip text="Previous">
-                <button onClick={() => handlePrevious()}>
+                <button onClick={() => handlePrevious(getPlayerCurrentTime, setPlayerCurrentTime)}>
                     <i className="fa-solid fa-backward-step" />
                 </button>
             </Tooltip>
-            <button onClick={() => togglePlay()}>
+            <button onClick={() => togglePlay(isPlaying, play, pause)}>
                 <i className={isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play'} />
             </button>
             <Tooltip text="Next">
-                <button onClick={() => handleNext()}>
+                <button onClick={() => handleNext(pause)}>
                     <i className="fa-solid fa-forward-step" />
                 </button>
             </Tooltip>

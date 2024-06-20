@@ -11,3 +11,16 @@ html {
 @layer components {
 
 }
+
+
+input::-webkit-slider-runnable-track {
+    @apply h-2 bg-gray-500 rounded-full;
+}
+
+input::-webkit-slider-thumb {
+    @apply appearance-none h-2 aspect-square rounded-full outline-2 bg-gray-700 invisible;
+}
+
+input:hover::-webkit-slider-thumb {
+    @apply visible;
+}

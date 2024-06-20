@@ -18,12 +18,13 @@ export function SliderBar({ onChange, ...props }) {
     };
 
     return (
-        <div>
-            <div ref={track}/>
-            <input className="w-full" ref={slider} type="range" onChange={(event) => {
-                handleChange();
-                onChange(event);
-            }} {...props} />
+        <div className="relative">
+            <input className="absolute w-full h-2 appearance-none cursor-pointer overflow-visible" ref={slider} type="range"
+                   onChange={(event) => {
+                       handleChange();
+                       onChange(event);
+                   }} {...props} />
+            <div className="absolute w-full h-2 bg-red-500 rounded-full" ref={track}/>
         </div>
     );
 }

@@ -1,13 +1,13 @@
-import {Fragment} from "react";
 import {PlayerAudio} from "./Audio";
 import {PlayerControls} from "./Controls";
+import {PlayerQueue} from "./Queue";
 
 export function Player({ children }) {
     return (
-        <Fragment>
+        <PlayerQueue>
             <PlayerAudio />
             <PlayerControls />
             {children}
-        </Fragment>
+        </PlayerQueue>
     )
 }

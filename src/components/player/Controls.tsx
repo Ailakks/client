@@ -1,10 +1,14 @@
 import {Tooltip} from "../Tooltip";
+import {useContext} from "react";
+import {PlayerQueueContext} from "./Queue";
 
 export function PlayerControls() {
+    const { isPlaying, shuffle, loop, LoopMode, togglePlay, handleNext, alterLoop, handleBefore, alterShuffle } = useContext(PlayerQueueContext);
+
     return (
         <div>
             <Tooltip text="Shuffle">
-                <button onClick={() => shuffle()}>
+                <button onClick={() => alterShuffle()}>
                     <i className="fa-solid fa-shuffle" />
                 </button>
             </Tooltip>

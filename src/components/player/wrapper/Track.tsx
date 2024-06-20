@@ -3,10 +3,10 @@ import {createContext, useState} from "react";
 export const PlayerTrackContext = createContext(null);
 
 export function PlayerTrackWrapper({ children }) {
-    const [current, setCurrent] = useState();
+    const [track, setTrack] = useState();
 
     return (
-        <PlayerTrackContext.Provider value={{ current, setCurrent }}>
+        <PlayerTrackContext.Provider value={{ track, setTrack }}>
             {children}
         </PlayerTrackContext.Provider>
     )

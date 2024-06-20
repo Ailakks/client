@@ -3,10 +3,10 @@ import {createContext, useState} from "react";
 export const PlayerSourceContext = createContext(null);
 
 export function PlayerSourceWrapper({ children }) {
-    const [current, setCurrent] = useState();
+    const [source, setSource] = useState();
 
     return (
-        <PlayerSourceContext.Provider value={{ current, setCurrent }}>
+        <PlayerSourceContext.Provider value={{ source, setSource }}>
             {children}
         </PlayerSourceContext.Provider>
     )

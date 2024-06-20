@@ -3,10 +3,10 @@ import {createContext, useState} from "react";
 export const PlayerQueueContext = createContext(null);
 
 export function PlayerQueueWrapper({ children }) {
-    const [current, setCurrent] = useState();
+    const [queue, setQueue] = useState();
 
     return (
-        <PlayerQueueContext.Provider value={{ current, setCurrent }}>
+        <PlayerQueueContext.Provider value={{ queue, setQueue }}>
             {children}
         </PlayerQueueContext.Provider>
     )

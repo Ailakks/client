@@ -1,9 +1,10 @@
 import {Fragment, useContext, useEffect, useRef, useState} from "react";
 import {PlayerTrackContext} from "./wrapper/Track";
+import {PlayerSourceContext} from "./wrapper/Source";
 
 export function PlayerAudio({ children }) {
-    const { current } = useContext(PlayerTrackContext);
-    const { current } = useContext(PlayerTrackContext);
+    const { current: track } = useContext(PlayerTrackContext);
+    const { source } = useContext(PlayerSourceContext);
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -34,7 +35,7 @@ export function PlayerAudio({ children }) {
 
     useEffect(() => {
         pause();
-    }, [current]);
+    }, [track]);
 
     return (
         <Fragment>

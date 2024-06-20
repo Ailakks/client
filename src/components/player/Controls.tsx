@@ -5,7 +5,7 @@ import {LoopMode, PlayerQueueContext} from "./Queue";
 
 export function PlayerControls() {
     const { isPlaying } = useContext(PlayerAudioContext);
-    const { shuffle, loop, togglePlay, handleNext, alterLoop, handleBefore, alterShuffle } = useContext(PlayerQueueContext);
+    const { shuffle, loop, togglePlay, handleNext, alterLoop, handlePrevious, alterShuffle } = useContext(PlayerQueueContext);
 
     return (
         <div>
@@ -15,7 +15,7 @@ export function PlayerControls() {
                 </button>
             </Tooltip>
             <Tooltip text="Previous">
-                <button onClick={() => handleBefore()}>
+                <button onClick={() => handlePrevious()}>
                     <i className="fa-solid fa-backward-step" />
                 </button>
             </Tooltip>

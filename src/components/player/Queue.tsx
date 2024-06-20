@@ -18,7 +18,7 @@ export function PlayerQueue({ children }) {
     const [loop, setLoop] = useState(0);
     const [shuffle, setShuffle] = useState(false);
 
-    const { isPlaying, play, pause } = useContext(PlayerAudioContext);
+    const { isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime } = useContext(PlayerAudioContext);
 
     const togglePlay = () => {
         if (isPlaying) {
@@ -33,7 +33,7 @@ export function PlayerQueue({ children }) {
         let random = index;
 
         while (random === index) {
-            random = Math.floor(Math.random() * queue.list.length - 1) + 1;
+            random = Math.floor(Math.random() * queue.length - 1) + 1;
         }
 
         return random;
@@ -44,7 +44,7 @@ export function PlayerQueue({ children }) {
             return getShuffle(index);
         }
 
-        return (index + 1) % queue.list.length;
+        return (index + 1) % queue.length;
     };
 
     const handleNext = (pause) => {
@@ -52,10 +52,11 @@ export function PlayerQueue({ children }) {
             setLoop(1);
         }
 
-        const index = queue.list.indexOf(track.value);
+        const index = queue.indexOf(track);
 
-        if (index + 1 >= queue.list.length && loop === 0) {
+        if (index + 1 >= queue.length && loop === 0) {
             pause();
+
             return;
         }
 
@@ -68,15 +69,16 @@ export function PlayerQueue({ children }) {
         setLoop((loop + 1 + values.length) % values.length);
     };
 
-    const handleBefore = (getCurrentTime, setCurrentTime) => {
+    const handlePrevious = () => {
         if (getCurrentTime() > 3) {
-            setCurrentTime(0);
+            setPlayerCurrentTime(0);
+
             return;
         }
 
-        const index = queue.list.indexOf(track.value);
+        const index = queue.indexOf(track);
 
-        set((index - 1 + queue.list.length) % queue.list.length);
+        set((index - 1 + queue.length) % queue.length);
     };
 
     const alterShuffle = () => {
@@ -84,16 +86,14 @@ export function PlayerQueue({ children }) {
     };
 
     const set = (index) => {
-        setTrack({
-            ...track,
-            value: queue.list[index],
-        });
+        setTrack(queue[index]);
     };
 
-    const handleEnded = (play, setCurrentTime) => {
+    const handleEnded = () => {
         if (loop === 2) {
             setCurrentTime(0);
             play();
+
             return;
         }
 
@@ -101,7 +101,7 @@ export function PlayerQueue({ children }) {
     };
 
     return (
-        <PlayerQueueContext.Provider value={{ togglePlay, loop, shuffle, handleNext, handleBefore, handleEnded, alterLoop, alterShuffle }}>
+        <PlayerQueueContext.Provider value={{ togglePlay, loop, shuffle, handleNext, handlePrevious, handleEnded, alterLoop, alterShuffle }}>
             {children}
         </PlayerQueueContext.Provider>
     )

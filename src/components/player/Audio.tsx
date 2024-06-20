@@ -42,7 +42,7 @@ export function PlayerAudio({ children }) {
     }, [track]);
 
     return (
-        <PlayerAudioContext.Provider value={{ isPlaying, play, pause }}>
+        <PlayerAudioContext.Provider value={{ isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime }}>
             <audio
                 ref={player}
                 src={source}

@@ -3,6 +3,7 @@ import {PlayerTrackContext} from "./wrapper/Track";
 
 export function PlayerAudio({ children }) {
     const { current } = useContext(PlayerTrackContext);
+    const { current } = useContext(PlayerTrackContext);
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);

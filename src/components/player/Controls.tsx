@@ -8,9 +8,9 @@ export function PlayerControls() {
     const { shuffle, loop, togglePlay, handleNext, alterLoop, handlePrevious, alterShuffle } = useContext(PlayerQueueContext);
 
     return (
-        <div className="flex w-full justify-center space-x-10 text-xl">
+        <div className="flex w-full justify-center space-x-8 controls">
             <Tooltip text="Shuffle">
-                <button onClick={() => alterShuffle()}>
+                <button className={shuffle && "selected"} onClick={() => alterShuffle()}>
                     <i className="fa-solid fa-shuffle" />
                 </button>
             </Tooltip>
@@ -28,7 +28,7 @@ export function PlayerControls() {
                 </button>
             </Tooltip>
             <Tooltip text="Loop">
-                <button onClick={() => alterLoop()}>
+                <button className={loop > 0 && "selected"} onClick={() => alterLoop()}>
                     <i className={Object.values(LoopMode)[loop].icon} />
                 </button>
             </Tooltip>

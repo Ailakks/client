@@ -1,7 +1,6 @@
 import {createContext, useContext, useState} from "react";
 import {QueueContext} from "./wrapper/Queue";
 import {TrackContext} from "./wrapper/Track";
-import {PlayerAudioContext} from "./Audio";
 
 export const PlayerQueueContext = createContext(null);
 
@@ -18,9 +17,7 @@ export function PlayerQueue({ children }) {
     const [loop, setLoop] = useState(0);
     const [shuffle, setShuffle] = useState(false);
 
-    const { isPlaying, play, pause, getPlayerCurrentTime, setPlayerCurrentTime } = useContext(PlayerAudioContext);
-
-    const togglePlay = () => {
+    const togglePlay = (isPlaying, play, pause) => {
         if (isPlaying) {
             pause();
             return;
@@ -89,7 +86,7 @@ export function PlayerQueue({ children }) {
         setTrack(queue[index]);
     };
 
-    const handleEnded = () => {
+    const handleEnded = (play, setCurrentTime) => {
         if (loop === 2) {
             getPlayerCurrentTime(0);
             play();

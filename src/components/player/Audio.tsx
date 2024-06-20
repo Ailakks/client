@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useRef, useState} from "react";
+import {cloneElement, createContext, useContext, useEffect, useRef, useState} from "react";
 import {TrackContext} from "./wrapper/Track";
 import {SourceContext} from "./wrapper/Source";
 import {QueueContext} from "./wrapper/Queue";
@@ -58,7 +58,13 @@ export function PlayerAudio({ children }) {
                 onTimeUpdate={updateTime}
                 onEnded={() => handleEnded(play, setCurrentTime)}
             />
-            {loaded ? children : <p>loading</p>}
+            {loaded ? <PlayerChild>{children}</PlayerChild> : <p>loading</p>}
         </PlayerAudioContext.Provider>
     )
+}
+
+function PlayerChild({ children }) {
+    const context = useContext(PlayerAudioContext);
+
+    return cloneElement(children, context);
 }

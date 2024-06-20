@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {SliderBar} from "../../ui/SlideBar";
+import {SlideBar} from "../../ui/SlideBar";
 
 export function PlayerVolumeBar() {
     const { audio } = useContext(AudioContext);
@@ -34,7 +34,7 @@ export function PlayerVolumeBar() {
     return (
         <div>
             <button className={volume <= 0 ? 'fa-regular fa-volume-mute' : Object.values(VolumeStates).find((value) => volume <= value.value).icon} onClick={toggleMute} />
-            <SliderBar
+            <SlideBar
                 value={Math.sqrt(volume)}
                 min={0}
                 max={1}

@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {SliderBar} from "../../ui/SlideBar";
+import {SlideBar} from "../../ui/SlideBar";
 import {PlayerAudioContext} from "../../Audio";
 
 export function PlayerTrackBar() {
@@ -18,15 +18,17 @@ export function PlayerTrackBar() {
     };
 
     return (
-        <div>
+        <div className="flex items-center space-x-2">
             <p>{format(currentTime)}</p>
-            <SliderBar
-                value={currentTime}
-                min={0}
-                max={duration || 0}
-                step={0.01}
-                onChange={handleRangeChange}
-            />
+            <div className="grow">
+                <SlideBar
+                    value={currentTime}
+                    min={0}
+                    max={duration || 0}
+                    step={0.01}
+                    onChange={handleRangeChange}
+                />
+            </div>
             <p>{format(duration || 0)}</p>
         </div>
     );

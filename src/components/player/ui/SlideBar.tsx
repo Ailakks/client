@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function SliderBar({ onChange, ...props }) {
+export function SlideBar({ onChange, ...props }) {
     const slider = useRef(null);
     const track = useRef(null);
 
@@ -18,13 +18,13 @@ export function SliderBar({ onChange, ...props }) {
     };
 
     return (
-        <div className="relative">
-            <input className="absolute w-full h-2 appearance-none cursor-pointer overflow-visible" ref={slider} type="range"
+        <div className="relative top-[-4px]">
+            <input className="absolute w-full h-[8px] appearance-none cursor-pointer overflow-visible" ref={slider} type="range"
                    onChange={(event) => {
                        handleChange();
                        onChange(event);
                    }} {...props} />
-            <div className="absolute w-full h-2 bg-red-500 rounded-full" ref={track}/>
+            <div className="absolute w-full h-[8px] bg-red-500 rounded-full" ref={track}/>
         </div>
     );
 }

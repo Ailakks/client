@@ -1,4 +1,4 @@
-import {Tooltip} from "../Tooltip";
+import {Tooltip} from "../ui/Tooltip";
 import {useContext} from "react";
 import {PlayerAudioContext} from "./Audio";
 import {LoopMode, PlayerQueueContext} from "./Queue";

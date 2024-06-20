@@ -1,9 +1,11 @@
-import {PlayerData} from "./Data";
+import {Fragment} from "react";
+import {PlayerAudio} from "./Audio";
 
-export function Player() {
+export function Player({ children }) {
     return (
-        <div>
-            <PlayerData />
-        </div>
+        <Fragment>
+            <PlayerAudio />
+            {children}
+        </Fragment>
     )
 }

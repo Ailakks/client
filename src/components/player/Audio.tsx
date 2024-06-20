@@ -4,7 +4,7 @@ import {SourceContext} from "./wrapper/Source";
 import {QueueContext} from "./wrapper/Queue";
 
 export function PlayerAudio({ children }) {
-    const { current: track } = useContext(TrackContext);
+    const { track } = useContext(TrackContext);
     const { source } = useContext(SourceContext);
     const { handleEnded } = useContext(QueueContext);
 

@@ -1,8 +1,7 @@
-import {useContext, useEffect, useRef, useState} from "react";
+import {Fragment, useContext, useEffect, useRef, useState} from "react";
 import {TrackContext} from "./wrapper/Track";
 import {SourceContext} from "./wrapper/Source";
 import {QueueContext} from "./wrapper/Queue";
-import {AudioContext} from "./wrapper/Audio";
 
 export function PlayerAudio({ children }) {
     const { track } = useContext(TrackContext);
@@ -41,7 +40,7 @@ export function PlayerAudio({ children }) {
     }, [track]);
 
     return (
-        <AudioContext.Provider value={{ isPlaying, play, pause }}>
+        <Fragment>
             <audio
                 ref={player}
                 src={source}
@@ -52,6 +51,6 @@ export function PlayerAudio({ children }) {
                 onEnded={() => handleEnded(play, setCurrentTime)}
             />
             {children}
-        </AudioContext.Provider>
+        </Fragment>
     )
 }

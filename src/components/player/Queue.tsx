@@ -1,26 +1,23 @@
 import {createContext, useContext, useState} from "react";
 import {QueueContext} from "./wrapper/Queue";
 import {TrackContext} from "./wrapper/Track";
-import {AudioContext} from "./wrapper/Audio";
 
 export const PlayerQueueContext = createContext(null);
 
-export const LoopMode = {
-    NONE: {icon: 'fa-regular fa-arrows-repeat'},
-    LIST: {icon: 'fa-regular fa-arrows-repeat'},
-    SONG: {icon: 'fa-regular fa-arrows-repeat-1'},
-};
-
 export function PlayerQueue({ children }) {
+    const LoopMode = {
+        NONE: {icon: 'fa-regular fa-arrows-repeat'},
+        LIST: {icon: 'fa-regular fa-arrows-repeat'},
+        SONG: {icon: 'fa-regular fa-arrows-repeat-1'},
+    };
+
     const { queue } = useContext(QueueContext);
     const { track, setTrack } = useContext(TrackContext);
 
     const [loop, setLoop] = useState(0);
     const [shuffle, setShuffle] = useState(false);
 
-    const { isPlaying, play, pause } = useContext(AudioContext);
-
-    const togglePlay = () => {
+    const togglePlay = (isPlaying, play, pause) => {
         if (isPlaying) {
             pause();
             return;
@@ -101,7 +98,7 @@ export function PlayerQueue({ children }) {
     };
 
     return (
-        <PlayerQueueContext.Provider value={{ togglePlay, loop, shuffle, handleNext, handleBefore, handleEnded, alterLoop, alterShuffle }}>
+        <PlayerQueueContext.Provider value={{ togglePlay, LoopMode, loop, shuffle, handleNext, handleBefore, handleEnded, alterLoop, alterShuffle }}>
             {children}
         </PlayerQueueContext.Provider>
     )

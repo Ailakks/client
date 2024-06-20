@@ -1,10 +1,9 @@
 import {Tooltip} from "../Tooltip";
 import {useContext} from "react";
-import {LoopMode} from "./Queue";
-import {AudioContext} from "./wrapper/Audio";
+import {PlayerQueueContext} from "./Queue";
 
 export function PlayerControls() {
-    const { isPlaying, shuffle, loop, togglePlay, handleNext, alterLoop, handleBefore, alterShuffle } = useContext(AudioContext);
+    const { isPlaying, shuffle, loop, LoopMode, togglePlay, handleNext, alterLoop, handleBefore, alterShuffle } = useContext(PlayerQueueContext);
 
     return (
         <div>

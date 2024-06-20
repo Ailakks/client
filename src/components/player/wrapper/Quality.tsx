@@ -1,13 +1,13 @@
 import {createContext, useState} from "react";
 
-export const PlayerQualityContext = createContext(null);
+export const QualityContext = createContext(null);
 
-export function PlayerQualityWrapper({ children }) {
+export function QualityWrapper({ children }) {
     const [quality, setQuality] = useState();
 
     return (
-        <PlayerQualityContext.Provider value={{ quality, setQuality }}>
+        <QualityContext.Provider value={{ quality, setQuality }}>
             {children}
-        </PlayerQualityContext.Provider>
+        </QualityContext.Provider>
     )
 }

@@ -1,13 +1,13 @@
 import {createContext, useState} from "react";
 
-export const PlayerSourceContext = createContext(null);
+export const SourceContext = createContext(null);
 
-export function PlayerSourceWrapper({ children }) {
+export function SourceWrapper({ children }) {
     const [source, setSource] = useState();
 
     return (
-        <PlayerSourceContext.Provider value={{ source, setSource }}>
+        <SourceContext.Provider value={{ source, setSource }}>
             {children}
-        </PlayerSourceContext.Provider>
+        </SourceContext.Provider>
     )
 }

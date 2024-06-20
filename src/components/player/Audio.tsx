@@ -1,10 +1,12 @@
 import {Fragment, useContext, useEffect, useRef, useState} from "react";
-import {PlayerTrackContext} from "./wrapper/Track";
-import {PlayerSourceContext} from "./wrapper/Source";
+import {TrackContext} from "./wrapper/Track";
+import {SourceContext} from "./wrapper/Source";
+import {QueueContext} from "./wrapper/Queue";
 
 export function PlayerAudio({ children }) {
-    const { current: track } = useContext(PlayerTrackContext);
-    const { source } = useContext(PlayerSourceContext);
+    const { current: track } = useContext(TrackContext);
+    const { source } = useContext(SourceContext);
+    const { handleEnded } = useContext(QueueContext);
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);

@@ -1,13 +1,13 @@
 import {createContext, useState} from "react";
 
-export const PlayerTrackContext = createContext(null);
+export const TrackContext = createContext(null);
 
-export function PlayerTrackWrapper({ children }) {
+export function TrackWrapper({ children }) {
     const [track, setTrack] = useState();
 
     return (
-        <PlayerTrackContext.Provider value={{ track, setTrack }}>
+        <TrackContext.Provider value={{ track, setTrack }}>
             {children}
-        </PlayerTrackContext.Provider>
+        </TrackContext.Provider>
     )
 }

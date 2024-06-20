@@ -1,11 +1,12 @@
 import {useContext} from "react";
 import {SliderBar} from "../../ui/SlideBar";
+import {PlayerAudioContext} from "../../Audio";
 
 export function PlayerTrackBar() {
-    const { audio } = useContext(AudioContext);
+    const { player } = useContext(PlayerAudioContext);
 
-    const { duration } = audio.current;
-    const { currentTime } = audio.current;
+    const { duration } = player.current;
+    const { currentTime } = player.current;
 
     const format = (time) => {
         const minutes = Math.floor(time / 60);
@@ -14,7 +15,7 @@ export function PlayerTrackBar() {
     };
 
     const handleRangeChange = (event) => {
-        audio.current.currentTime = event.target.value;
+        player.current.currentTime = event.target.value;
     };
 
     return (

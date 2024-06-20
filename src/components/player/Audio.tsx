@@ -42,7 +42,7 @@ export function PlayerAudio({ children }) {
     }, [track]);
 
     return (
-        <PlayerAudioContext.Provider value={{ isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime }}>
+        <PlayerAudioContext.Provider value={{ player, isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime }}>
             <audio
                 ref={player}
                 src={source}
@@ -52,7 +52,7 @@ export function PlayerAudio({ children }) {
                 onTimeUpdate={updateTime}
                 onEnded={() => handleEnded(play, setCurrentTime)}
             />
-            {children}
+            {player.current ? children : <p>loading</p>}
         </PlayerAudioContext.Provider>
     )
 }

@@ -8,7 +8,7 @@ export function PlayerControls() {
     const { shuffle, loop, togglePlay, handleNext, alterLoop, handlePrevious, alterShuffle } = useContext(PlayerQueueContext);
 
     return (
-        <div className="flex w-full justify-center space-x-8 controls">
+        <div className="flex w-full justify-center space-x-8 text-md">
             <Tooltip text="Shuffle">
                 <button className={shuffle && "selected"} onClick={() => alterShuffle()}>
                     <i className="fa-solid fa-shuffle" />

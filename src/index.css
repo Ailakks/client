@@ -25,14 +25,10 @@ input:hover::-webkit-slider-thumb {
     @apply visible;
 }
 
-.controls > button {
-    @apply relative h-10 aspect-square;
+button {
+    @apply aspect-square h-10 rounded-full;
 }
 
-.controls > button > i {
-    @apply absolute top-0 bottom-0 left-0 right-0;
-}
-
-.controls > button.selected {
+button.selected {
     @apply bg-red-500 rounded-full aspect-square;
 }

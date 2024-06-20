@@ -1,10 +1,10 @@
 import { Player } from "./components/player/Player";
-import { PlayerContext } from './components/player/PlayerContext';
+import { Context } from './components/player/Context';
 
 export default function App() {
     return (
-        <PlayerContext>
+        <Context>
             <Player />
-        </PlayerContext>
+        </Context>
     )
 }

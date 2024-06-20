@@ -1,5 +1,9 @@
+import {PlayerData} from "./Data";
+
 export function Player() {
     return (
-        <p>test</p>
+        <div>
+            <PlayerData />
+        </div>
     )
 }

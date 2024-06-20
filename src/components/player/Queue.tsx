@@ -18,7 +18,7 @@ export function PlayerQueue({ children }) {
     const [loop, setLoop] = useState(0);
     const [shuffle, setShuffle] = useState(false);
 
-    const { isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime } = useContext(PlayerAudioContext);
+    const { isPlaying, play, pause, getPlayerCurrentTime, setPlayerCurrentTime } = useContext(PlayerAudioContext);
 
     const togglePlay = () => {
         if (isPlaying) {
@@ -70,7 +70,7 @@ export function PlayerQueue({ children }) {
     };
 
     const handlePrevious = () => {
-        if (getCurrentTime() > 3) {
+        if (getPlayerCurrentTime() > 3) {
             setPlayerCurrentTime(0);
 
             return;
@@ -91,7 +91,7 @@ export function PlayerQueue({ children }) {
 
     const handleEnded = () => {
         if (loop === 2) {
-            setCurrentTime(0);
+            getPlayerCurrentTime(0);
             play();
 
             return;

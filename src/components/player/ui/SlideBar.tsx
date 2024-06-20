@@ -20,7 +20,7 @@ export function SliderBar({ onChange }) {
     return (
         <div>
             <div ref={track}/>
-            <input ref={slider} type="range" onChange={(event) => {
+            <input className="w-full" ref={slider} type="range" onChange={(event) => {
                 handleChange();
                 onChange(event);
             }}/>

@@ -25,7 +25,7 @@ export function PlayerAudio({ children }) {
         player.current?.pause();
     };
 
-    const getCurrentTime = () => {
+    const getPlayerCurrentTime = () => {
         return player.current?.currentTime;
     };
 
@@ -36,7 +36,7 @@ export function PlayerAudio({ children }) {
     };
 
     const updateTime = () => {
-        setCurrentTime(getCurrentTime());
+        setCurrentTime(getPlayerCurrentTime());
     };
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export function PlayerAudio({ children }) {
     }, [player.current]);
 
     return (
-        <PlayerAudioContext.Provider value={{ player, isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime }}>
+        <PlayerAudioContext.Provider value={{ player, isPlaying, play, pause, currentTime, setCurrentTime, getPlayerCurrentTime, setPlayerCurrentTime }}>
             <audio
                 ref={player}
                 src={source}

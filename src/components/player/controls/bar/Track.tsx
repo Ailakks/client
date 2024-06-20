@@ -18,8 +18,8 @@ export function PlayerTrackBar() {
     };
 
     return (
-        <div className="flex items-center space-x-2">
-            <p>{format(currentTime)}</p>
+        <div className="flex items-center space-x-4">
+            <p className="w-8">{format(currentTime)}</p>
             <div className="grow">
                 <SlideBar
                     value={currentTime}
@@ -29,7 +29,7 @@ export function PlayerTrackBar() {
                     onChange={handleRangeChange}
                 />
             </div>
-            <p>{format(duration || 0)}</p>
+            <p className="w-8">{format(duration || 0)}</p>
         </div>
     );
 }

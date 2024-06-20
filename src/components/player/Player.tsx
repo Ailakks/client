@@ -7,8 +7,10 @@ export function Player({ children }) {
     return (
         <PlayerQueue>
             <PlayerAudio>
-                <PlayerControls />
-                <PlayerTrackBar />
+                <div className="p-10 space-y-5">
+                    <PlayerControls />
+                    <PlayerTrackBar />
+                </div>
             </PlayerAudio>
             {children}
         </PlayerQueue>

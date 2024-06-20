@@ -1,10 +1,10 @@
 import { Player } from "./components/player/Player";
-import { Context } from './components/player/Context';
+import { PlayerTrackWrapper } from './components/player/wrapper/Track';
 
 export default function App() {
     return (
-        <Context>
+        <PlayerTrackWrapper>
             <Player />
-        </Context>
+        </PlayerTrackWrapper>
     )
 }

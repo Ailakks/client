@@ -1,8 +1,8 @@
 import {useContext} from "react";
-import {PlayerContext} from "./Context";
+import {PlayerTrackContext} from "./wrapper/Track";
 
 export function PlayerData() {
-    const { current: { track: { name } } } = useContext(PlayerContext);
+    const { current: { name } } = useContext(PlayerTrackContext);
 
     return (
         <div>

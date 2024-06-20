@@ -13,6 +13,8 @@ export function PlayerAudio({ children }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
 
+    const [loaded, setLoaded] = useState(false);
+
     const player = useRef();
 
     const play = () => {
@@ -41,6 +43,10 @@ export function PlayerAudio({ children }) {
         pause();
     }, [track]);
 
+    useEffect(() => {
+        setLoaded(true);
+    }, [player.current]);
+
     return (
         <PlayerAudioContext.Provider value={{ player, isPlaying, play, pause, getCurrentTime, setCurrentTime, setPlayerCurrentTime }}>
             <audio
@@ -52,7 +58,7 @@ export function PlayerAudio({ children }) {
                 onTimeUpdate={updateTime}
                 onEnded={() => handleEnded(play, setCurrentTime)}
             />
-            {player.current ? children : <p>loading</p>}
+            {loaded ? children : <p>loading</p>}
         </PlayerAudioContext.Provider>
     )
 }

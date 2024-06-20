@@ -17,7 +17,7 @@ input::-webkit-slider-runnable-track {
 }
 
 input::-webkit-slider-thumb {
-    @apply relative top-[-4px] appearance-none aspect-square rounded-full h-2 border-[8px] border-solid border-gray-400;
+    @apply relative top-[-2px] appearance-none aspect-square rounded-full h-2 border-[6px] border-solid border-gray-400 z-10;
 }
 
 input:hover::-webkit-slider-thumb {

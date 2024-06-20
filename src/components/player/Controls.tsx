@@ -10,7 +10,7 @@ export function PlayerControls() {
     return (
         <div className="flex w-full justify-center space-x-8 text-md">
             <Tooltip text="Shuffle">
-                <button className={shuffle && "selected"} onClick={() => alterShuffle()}>
+                <button className={shuffle ? 'selected' : ''} onClick={() => alterShuffle()}>
                     <i className="fa-solid fa-shuffle" />
                 </button>
             </Tooltip>
@@ -28,7 +28,7 @@ export function PlayerControls() {
                 </button>
             </Tooltip>
             <Tooltip text="Loop">
-                <button className={loop > 0 && "selected"} onClick={() => alterLoop()}>
+                <button className={loop > 0 ? "selected" : ''} onClick={() => alterLoop()}>
                     <i className={Object.values(LoopMode)[loop].icon} />
                 </button>
             </Tooltip>

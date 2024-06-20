@@ -13,7 +13,7 @@ export function PlayerVolumeBar() {
     };
 
     useEffect(() => {
-        player.current.volume = volume / 100;
+        player.current.volume = volume;
     }, [player, volume]);
 
     const VolumeStates = {

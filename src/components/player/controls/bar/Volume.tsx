@@ -1,6 +1,8 @@
 import {useContext, useEffect, useState} from "react";
 
 export function PlayerVolumeBar() {
+    const { audio } = useContext(AudioContext);
+
     const [previous, setPrevious] = useState(null);
     const [volume, setVolume] = useState(1);
 
@@ -9,8 +11,8 @@ export function PlayerVolumeBar() {
     };
 
     useEffect(() => {
-        player.current.volume = volume;
-    }, [player, volume]);
+        audio.current.volume = volume;
+    }, [audio, volume]);
 
     const VolumeStates = {
         LOW: {value: 0.3, icon: 'fa-regular fa-volume-low'},

@@ -12,13 +12,12 @@ html {
 
 }
 
-
 input::-webkit-slider-runnable-track {
     @apply h-2 bg-gray-500 rounded-full;
 }
 
 input::-webkit-slider-thumb {
-    @apply appearance-none h-2 aspect-square rounded-full outline-2 bg-gray-700 invisible;
+    @apply relative top-[-4px] appearance-none aspect-square rounded-full h-2 border-[8px] border-solid border-gray-400;
 }
 
 input:hover::-webkit-slider-thumb {

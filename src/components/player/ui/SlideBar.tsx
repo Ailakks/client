@@ -14,7 +14,7 @@ export function SlideBar({ onChange, ...props }) {
         const max = slider.current.max;
         const percentage = ((value - min) / (max - min)) * 100;
 
-        track.current.style.width = `calc(${percentage}% ${value < 2 && '+ 2px'})`;
+        track.current.style.width = `calc(${percentage}% ${value < 6 ? '+ 6px' : ''})`;
     };
 
     return (

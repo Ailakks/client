@@ -4,10 +4,11 @@ import {PlayerQueue} from "./Queue";
 
 export function Player({ children }) {
     return (
-        <PlayerQueue>
-            <PlayerAudio />
-            <PlayerControls />
+        <PlayerAudio>
+            <PlayerQueue>
+                <PlayerControls />
+            </PlayerQueue>
             {children}
-        </PlayerQueue>
+        </PlayerAudio>
     )
 }

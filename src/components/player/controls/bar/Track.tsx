@@ -3,10 +3,9 @@ import {SliderBar} from "../../ui/SlideBar";
 import {PlayerAudioContext} from "../../Audio";
 
 export function PlayerTrackBar() {
-    const { player } = useContext(PlayerAudioContext);
+    const { player, currentTime } = useContext(PlayerAudioContext);
 
     const { duration } = player.current;
-    const { currentTime } = player.current;
 
     const format = (time) => {
         const minutes = Math.floor(time / 60);

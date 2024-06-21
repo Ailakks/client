@@ -6,13 +6,16 @@ import {Form} from "../../components/query/Form";
 import {Input} from "../../components/query/Input";
 import {LoadStatus} from "../../components/load/LoadStatus";
 import {PasswordInput} from "../../components/input/PasswordInput";
+import {useNavigate} from "react-router-dom";
+import {AccountContext} from "../../components/wrapper/account/Account";
+import LoadSpinner from "../../components/load/spinner/LoadSpinner";
 
 export function Login() {
     const navigate = useNavigate();
 
     const { translate } = useContext(LanguageContext);
     const { setToken } = useContext(CookiesContext);
-    const { client } = useContext(AxiosContext);
+    const { useClient } = useContext(AxiosContext);
     const { data } = useContext(AccountContext);
 
     useEffect(() => {
@@ -21,9 +24,7 @@ export function Login() {
         }
     }, [data]);
 
-    const login = (params) => {
-        client.get('auth/login', { params }).then(({ data }) => data).then(({ id }) => console.log(id));
-    };
+    const [{ loading }, login] = useClient('auth/login', { manual: true });
 
     return (
         <div className="h-full flex flex-col">
@@ -41,7 +42,7 @@ export function Login() {
                         <PasswordInput />
                         <LoadStatus loading={loading} loader={
                             <div className="inline justify-center">
-                                <LoadSpinner/>
+                                <LoadSpinner />
                                 <p>{translate("auth.login.form.submit.loading")}</p>
                             </div>
                         }>

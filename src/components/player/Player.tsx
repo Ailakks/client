@@ -31,15 +31,19 @@ export function Player({ children }) {
                         <AudioWrapper>
                             <PlayerQueue>
                                 <PlayerAudio>
-                                    <PlayerData />
-                                    <div className="p-10 space-y-5">
-                                        <PlayerControls />
-                                        <div className="flex items-center space-x-5">
-                                            <div className="grow">
-                                                <PlayerTrackBar />
-                                            </div>
-                                            <div className="w-40">
-                                                <PlayerVolumeBar />
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-60">
+                                            <PlayerData />
+                                        </div>
+                                        <div className="grow p-10 space-y-5">
+                                            <PlayerControls />
+                                            <div className="flex items-center space-x-5">
+                                                <div className="grow">
+                                                    <PlayerTrackBar />
+                                                </div>
+                                                <div className="w-40">
+                                                    <PlayerVolumeBar />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

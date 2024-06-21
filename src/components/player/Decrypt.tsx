@@ -4,7 +4,13 @@ import axios from "axios";
 export const PlayerDecryptContext = createContext();
 
 export default function PlayerDecrypt({ children }) {
-    const fetch = (url) => {
+    const get = async (url) => {
+        const buffer = await this.fetch(url);
+
+        return this.toBlob(this.decrypt(buffer));
+    };
+
+    const fetch = async (url) => {
         return axios.get(url, { responseType: "arraybuffer" }).then(({ data }) => data);
     };
 
@@ -49,7 +55,7 @@ export default function PlayerDecrypt({ children }) {
     };
 
     return (
-        <PlayerDecryptContext.Provider value={{ decrypt }}>
+        <PlayerDecryptContext.Provider value={{ get, fetch, decrypt, toBlob }}>
             {children}
         </PlayerDecryptContext.Provider>
     )

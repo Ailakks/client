@@ -2,6 +2,7 @@ import {useContext} from "react";
 import Query from "../query/Query";
 import {AxiosAppContext} from "../wrapper/api/App";
 import {PlayerContext} from "../wrapper/player/Player";
+import PlayerDecrypt from "../player/Decrypt";
 
 export default function TrackPlayer() {
     const { track } = useContext(PlayerContext);
@@ -15,7 +16,9 @@ export default function TrackPlayer() {
     }
 
     return (
-        <Body />
+       <PlayerDecrypt>
+           <Body />
+       </PlayerDecrypt>
     )
 }
 
@@ -29,6 +32,8 @@ function Body() {
     return (
         <Query request={request}>
             {({ media: { sources: { [0]: { url } } } }) => {
+
+
                 return (
                     <p>{url}</p>
                 )

@@ -6,6 +6,7 @@ import CookiesWrapper from "./components/wrapper/tool/Cookies";
 import LanguageWrapper from "./components/wrapper/lang/Language";
 import AxiosWrapper from "./components/wrapper/Axios";
 import {BrowserRouter} from "react-router-dom";
+import TrackWrapper from "./components/wrapper/player/Track";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <CookiesWrapper>
                 <LanguageWrapper>
                     <AxiosWrapper>
-                        <App />
+                        <TrackWrapper>
+                            <App />
+                        </TrackWrapper>
                     </AxiosWrapper>
                 </LanguageWrapper>
             </CookiesWrapper>

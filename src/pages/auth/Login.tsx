@@ -4,14 +4,14 @@ import Input from "../../query/Input";
 import {useContext, useEffect} from "react";
 import {LanguageContext} from "../../components/wrapper/lang/Language";
 import {CookiesContext} from "../../components/wrapper/tool/Cookies";
+import {AxiosContext} from "../../components/wrapper/api/Api";
 
 export default function Login() {
-    const { translate } = useContext(LanguageContext);
-
     const navigate = useNavigate();
 
+    const { translate } = useContext(LanguageContext);
     const { setToken } = useContext(CookiesContext);
-
+    const { client } = useContext(AxiosContext);
     const { data } = useContext(AccountContext);
 
     useEffect(() => {
@@ -20,25 +20,9 @@ export default function Login() {
         }
     }, [data]);
 
-    const [update, { loading }] = useLazyQuery(gql`
-        query Login($email: String!, $password: String!) {
-            login(payload: {
-                email: $email,
-                password: $password
-            }) {
-                token
-                __typename
-            }
-        }`, {
-        onCompleted: ({ login: { token } }) => {
-            setToken(token);
-            navigate('/');
-
-            window.location.reload();
-        },
-        onError: () => {
-        }
-    });
+    const login = (params) => {
+        client.get('auth/login', { params }).then(({ data }) => data).then(({ id }) => console.log(id));
+    };
 
     return (
         <div className="h-full flex flex-col">
@@ -50,7 +34,7 @@ export default function Login() {
                         <span>{translate("auth.login.quick.google")}</span>
                     </button>
                     <hr/>
-                    <Form className="space-y-2" submit={(variables) => update({variables})}>
+                    <Form className="space-y-2" submit={login}>
                         <Input name="email" type="email" className="main w-full"
                                placeholder={translate("auth.login.form.email.label")} required/>
                         <PasswordInput />

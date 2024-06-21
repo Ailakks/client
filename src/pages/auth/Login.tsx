@@ -1,10 +1,10 @@
 import PasswordInput from "../../layout/components/input/PasswordInput";
-import Form from "../../query/Form";
 import Input from "../../query/Input";
 import {useContext, useEffect} from "react";
 import {LanguageContext} from "../../components/wrapper/lang/Language";
 import {CookiesContext} from "../../components/wrapper/tool/Cookies";
 import {AxiosContext} from "../../components/wrapper/api/Api";
+import Form from "../../components/query/Form";
 
 export default function Login() {
     const navigate = useNavigate();

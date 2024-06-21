@@ -7,6 +7,7 @@ import LanguageWrapper from "./components/wrapper/lang/Language";
 import AxiosWrapper from "./components/wrapper/api/Api";
 import {BrowserRouter} from "react-router-dom";
 import PlayerWrapper from "./components/wrapper/player/Player";
+import AxiosAppWrapper from "./components/wrapper/api/App";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <CookiesWrapper>
                 <LanguageWrapper>
                     <AxiosWrapper>
-                        <PlayerWrapper>
-                            <App />
-                        </PlayerWrapper>
+                        <AxiosAppWrapper>
+                            <PlayerWrapper>
+                                <App />
+                            </PlayerWrapper>
+                        </AxiosAppWrapper>
                     </AxiosWrapper>
                 </LanguageWrapper>
             </CookiesWrapper>

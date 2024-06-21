@@ -9,20 +9,8 @@ import {SourceWrapper} from "./wrapper/Source";
 import {AudioWrapper} from "./wrapper/Audio";
 import {TrackWrapper} from "./wrapper/Track";
 import {PlayerData} from "./Data";
-import {useContext} from "react";
-import {PlayerContext} from "../wrapper/player/Player";
 
 export function Player({ children }) {
-    const { track } = useContext(PlayerContext);
-
-    if (!track) {
-        return (
-            <div>
-                <p>Nothing here...</p>
-            </div>
-        )
-    }
-
     return (
         <TrackWrapper>
             <QualityWrapper>

@@ -13,10 +13,10 @@ export default function Layout({ children }) {
             <div className="h-full flex flex-col">
                 <div className="flex h-20 bg-gray-500 header shrink-0">
                     <div className="flex w-64 shrink-0 items-center">
-                        <Head/>
+                        <Head />
                     </div>
                     <div className="w-full">
-                        <Header/>
+                        <Header />
                     </div>
                 </div>
                 <div className="grow flex overflow-x-hidden overflow-y-auto">

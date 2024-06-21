@@ -1,6 +1,7 @@
 import {createContext} from "react";
 import axios from "axios";
 import {Buffer} from "buffer";
+import { createHash } from 'crypto-browserify';
 
 export const PlayerDecryptContext = createContext();
 

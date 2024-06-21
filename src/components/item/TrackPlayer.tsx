@@ -1,10 +1,11 @@
 import {useContext} from "react";
-import Query from "../query/Query";
+import Query, {QueryContext} from "../query/Query";
 import {AxiosAppContext} from "../wrapper/api/App";
 import {PlayerContext} from "../wrapper/player/Player";
 import PlayerDecrypt, {PlayerDecryptContext} from "../player/Decrypt";
 import {Player} from "../player/Player";
 import {PlayerSource} from "../player/Source";
+import {AxiosContext} from "../wrapper/api/Api";
 
 export default function TrackPlayer() {
     const { track } = useContext(PlayerContext);
@@ -26,7 +27,6 @@ export default function TrackPlayer() {
 
 function Body() {
     const { useClient } = useContext(AxiosAppContext);
-    const { get } = useContext(PlayerDecryptContext);
 
     const { track: { id } } = useContext(PlayerContext);
 
@@ -34,18 +34,25 @@ function Body() {
 
     return (
         <Query request={request}>
-            {({ media: { sources: { [0]: { url } } } }) => {
-                const blob = await get(url);
+            <Source />
+        </Query>
+    )
+}
 
-                if (!blob) {
-                    return (
-                        <p>loading</p>
-                    )
-                }
+function Source() {
+    const { useClient } = useContext(AxiosContext);
+    const { toBlob } = useContext(PlayerDecryptContext);
 
+    const { response: { data: { media: { sources: { [0]: { url } } } } } } = useContext(QueryContext);
+
+    const request = useClient({ url, responseType: "arraybuffer" });
+
+    return (
+        <Query request={request}>
+            {(buffer) => {
                 return (
                     <Player>
-                        <PlayerSource source={blob} />
+                        <PlayerSource source={toBlob(buffer)} />
                     </Player>
                 )
             }}

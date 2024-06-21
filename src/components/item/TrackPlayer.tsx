@@ -46,7 +46,7 @@ function Source() {
 
     const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
 
-    const request = useClient({ url, responseType: "arraybuffer" });
+    const request = useClient({ url: `${import.meta.env.VITE_API_PROXY_URL}/load`, params: { url }, responseType: "arraybuffer" });
 
     return (
         <Query request={request}>

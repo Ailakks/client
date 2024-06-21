@@ -8,8 +8,21 @@ import {QueueWrapper} from "./wrapper/Queue";
 import {SourceWrapper} from "./wrapper/Source";
 import {AudioWrapper} from "./wrapper/Audio";
 import {TrackWrapper} from "./wrapper/Track";
+import {PlayerData} from "./Data";
+import {useContext} from "react";
+import {PlayerContext} from "../wrapper/player/Player";
 
 export function Player({ children }) {
+    const { track } = useContext(PlayerContext);
+
+    if (!track) {
+        return (
+            <div>
+                <p>Nothing here...</p>
+            </div>
+        )
+    }
+
     return (
         <TrackWrapper>
             <QualityWrapper>
@@ -18,6 +31,7 @@ export function Player({ children }) {
                         <AudioWrapper>
                             <PlayerQueue>
                                 <PlayerAudio>
+                                    <PlayerData />
                                     <div className="p-10 space-y-5">
                                         <PlayerControls />
                                         <div className="flex items-center space-x-5">

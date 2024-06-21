@@ -1,10 +1,7 @@
-import {PlayerSource} from "../player/Source";
-import {Player} from "../player/Player";
+import TrackPlayer from "../item/TrackPlayer";
 
 export default function Footer() {
     return (
-        <Player>
-            <PlayerSource source="" />
-        </Player>
+        <TrackPlayer />
     )
 }

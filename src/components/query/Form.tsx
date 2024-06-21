@@ -6,7 +6,7 @@ interface Props extends React.FormHTMLAttributes<HTMLFormElement> {
     submit: (data: FormData) => Promise<void>;
 }
 
-export default class Form extends React.Component<Props, any> {
+export class Form extends React.Component<Props, any> {
     private readonly ref: RefObject<HTMLFormElement>;
 
     constructor(props: Props) {

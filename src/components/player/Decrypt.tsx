@@ -4,7 +4,7 @@ import axios from "axios";
 export const PlayerDecryptContext = createContext();
 
 export default function PlayerDecrypt({ children }) {
-    const fetch = ({ url }) => {
+    const fetch = (url) => {
         return axios.get(url, { responseType: "arraybuffer" }).then(({ data }) => data);
     };
 
@@ -42,6 +42,10 @@ export default function PlayerDecrypt({ children }) {
         }
 
         return buffer;
+    };
+
+    const toBlob = (buffer) => {
+        return URL.createObjectURL(new Blob([buffer], { type: 'audio/mp3' }));
     };
 
     return (

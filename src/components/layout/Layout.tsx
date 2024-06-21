@@ -1,8 +1,7 @@
 import Head from "./Head";
 import Header from "./Header";
 import {createContext, useState} from "react";
-import {PlayerSource} from "../player/Source";
-import {Player} from "../player/Player";
+import Footer from "./Footer";
 
 export const LayoutContext = createContext();
 
@@ -29,9 +28,7 @@ export default function Layout({ children }) {
                     </main>
                 </div>
                 <div>
-                    <Player>
-                        <PlayerSource source="https://link.storjshare.io/s/jufww76lrzupipxnoqt7dtsry62a/111/sample.mp3?wrap=0" />
-                    </Player>
+                    <Footer />
                 </div>
             </div>
         </LayoutContext.Provider>

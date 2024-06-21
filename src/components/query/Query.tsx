@@ -1,4 +1,5 @@
 import {createContext, useEffect} from "react";
+import LoadSpinner from "../load/spinner/LoadSpinner";
 
 export const QueryContext = createContext(null);
 
@@ -13,8 +14,8 @@ export default function Query({ request, action, fallback, children }) {
 
     if (loading) {
         return (
-            <div>
-
+            <div className="flex items-center justify-center h-full">
+                <LoadSpinner />
             </div>
         )
     }

@@ -24,9 +24,12 @@ export default function Playlist() {
 
 
 function Item() {
-    const { item: { track: { data: { name } } } } = useContext(ListContext);
+    const { item: { track: { data: { name, album: { image: { url } } } } } } = useContext(ListContext);
 
     return (
-        <p>{name}</p>
+        <div className="flex space-x-4 items-center">
+            <img className="h-14 rounded-md" alt={name} src={url} />
+            <p>{name}</p>
+        </div>
     )
 }

@@ -28,7 +28,7 @@ export default function Query({ request, action, fallback, children }) {
 
     return (
         <QueryContext.Provider value={{ response, refetch }}>
-            {children(response, refetch)}
+            {typeof children === "function" ? children(response, refetch) : children}
         </QueryContext.Provider>
     );
 }

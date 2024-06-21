@@ -8,6 +8,10 @@ html {
     font-family: 'Instrument Sans', sans-serif;
 }
 
+html, body, #root {
+    @apply h-full;
+}
+
 @layer components {
 
 }

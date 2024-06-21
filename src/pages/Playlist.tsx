@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useContext} from "react";
-import {AxiosContext} from "../components/wrapper/Axios";
+import {AxiosContext} from "../components/wrapper/api/Api";
 import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {Track} from "../components/item/Track";

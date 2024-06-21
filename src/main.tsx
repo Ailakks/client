@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import CookiesWrapper from "./components/wrapper/tool/Cookies";
 import LanguageWrapper from "./components/wrapper/lang/Language";
-import AxiosWrapper from "./components/wrapper/Axios";
+import AxiosWrapper from "./components/wrapper/api/Api";
 import {BrowserRouter} from "react-router-dom";
 import PlayerWrapper from "./components/wrapper/player/Player";
 

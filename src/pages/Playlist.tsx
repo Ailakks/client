@@ -3,6 +3,7 @@ import {useContext} from "react";
 import {AxiosContext} from "../components/wrapper/Axios";
 import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
+import {Track} from "../components/item/Track";
 
 export default function Playlist() {
     const { useClient } = useContext(AxiosContext);
@@ -13,7 +14,7 @@ export default function Playlist() {
 
     return (
         <Query request={request}>
-            {({ tracks }, refetch) => {
+            {({ tracks }) => {
                 return (
                     <List list={tracks}><Item /></List>
                 )
@@ -22,14 +23,10 @@ export default function Playlist() {
     )
 }
 
-
 function Item() {
-    const { item: { track: { data: { name, album: { image: { url } } } } } } = useContext(ListContext);
+    const { item: { track: { app, data } } } = useContext(ListContext);
 
     return (
-        <div className="flex space-x-4 items-center">
-            <img className="h-14 rounded-md" alt={name} src={url} />
-            <p>{name}</p>
-        </div>
+        <Track app={app} track={data} />
     )
 }

@@ -1,32 +1,13 @@
 import {createContext, useContext} from 'react';
-import Query, {QueryContext} from "../components/query/Query";
-import {gql, useQuery} from "@apollo/client";
+import {AxiosContext} from "../api/Api";
+import Query, {QueryContext} from "../../query/Query";
 
 export const AccountContext = createContext(null);
 
 export default function AccountWrapper({ children }) {
-    const request = useQuery(gql`
-        query CurrentUser {
-            currentUser {
-                id
-                name
-                email {
-                    value
-                    verified
-                }
-                picture {
-                    source
-                }
-                roles {
-                    id
-                    name
-                    displayName
-                    scopes
-                    __typename
-                }
-                __typename
-            }
-        }`);
+    const { useClient } = useContext(AxiosContext);
+
+    const request = useClient('user');
 
     return (
         <Query request={request}>

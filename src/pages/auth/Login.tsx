@@ -5,6 +5,7 @@ import {CookiesContext} from "../../components/wrapper/tool/Cookies";
 import {AxiosContext} from "../../components/wrapper/api/Api";
 import {Form} from "../../components/query/Form";
 import {Input} from "../../components/query/Input";
+import {LoadStatus} from "../../components/load/LoadStatus";
 
 export default function Login() {
     const navigate = useNavigate();

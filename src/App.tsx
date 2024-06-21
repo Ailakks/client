@@ -1,6 +1,7 @@
 import Layout from "./components/layout/Layout";
 import {Route, Routes, useLocation} from "react-router-dom";
-import Playlist from "./pages/Playlist";
+import {Playlist} from "./pages/Playlist";
+import {Login} from "./pages/auth/Login";
 
 export default function App() {
     const location = useLocation();
@@ -9,6 +10,8 @@ export default function App() {
         <Routes location={location}>
             <Route path="/" element={<Layout><p>test</p></Layout>} />
             <Route path="/playlist/:id" element={<Layout><Playlist /></Layout>} />
+
+            <Route path="/login" element={<Layout><Login /></Layout>} />
         </Routes>
     )
 }

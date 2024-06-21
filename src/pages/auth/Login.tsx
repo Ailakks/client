@@ -1,4 +1,3 @@
-import PasswordInput from "../../layout/components/input/PasswordInput";
 import {useContext, useEffect} from "react";
 import {LanguageContext} from "../../components/wrapper/lang/Language";
 import {CookiesContext} from "../../components/wrapper/tool/Cookies";
@@ -6,8 +5,9 @@ import {AxiosContext} from "../../components/wrapper/api/Api";
 import {Form} from "../../components/query/Form";
 import {Input} from "../../components/query/Input";
 import {LoadStatus} from "../../components/load/LoadStatus";
+import {PasswordInput} from "../../components/input/PasswordInput";
 
-export default function Login() {
+export function Login() {
     const navigate = useNavigate();
 
     const { translate } = useContext(LanguageContext);

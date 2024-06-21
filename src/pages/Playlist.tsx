@@ -5,7 +5,7 @@ import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {Track} from "../components/item/Track";
 
-export default function Playlist() {
+export function Playlist() {
     const { useClient } = useContext(AxiosContext);
 
     const { id } = useParams();

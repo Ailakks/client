@@ -45,14 +45,14 @@ function Source() {
 
     const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
 
-    const request = useClient({ url: `https://corsproxy.io/?${encodeURI(url)}`, responseType: "arraybuffer" });
+    const request = useClient({ url, responseType: "arraybuffer" });
 
     return (
         <Query request={request}>
-            {() => {
+            {(buffer) => {
                 return (
                     <Player>
-                        <PlayerSource source="" />
+                        <PlayerSource source={toBlob(buffer)} />
                     </Player>
                 )
             }}

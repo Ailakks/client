@@ -2,7 +2,6 @@ import {createContext, useContext} from 'react';
 import {CookiesContext} from "../tool/Cookies";
 
 import lang from "../../../resources/lang.json";
-import Language from "../../components/layout/components/button/Language";
 
 export const LanguageContext = createContext(null);
 

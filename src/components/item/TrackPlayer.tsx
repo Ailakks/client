@@ -43,16 +43,16 @@ function Source() {
     const { useClient } = useContext(AxiosContext);
     const { toBlob } = useContext(PlayerDecryptContext);
 
-    const { response: { data: { media: { sources: { [0]: { url } } } } } } = useContext(QueryContext);
+    const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
 
-    const request = useClient({ url, responseType: "arraybuffer" });
+    const request = useClient({ url: `https://corsproxy.io/?${encodeURI(url)}`, responseType: "arraybuffer" });
 
     return (
         <Query request={request}>
-            {(buffer) => {
+            {() => {
                 return (
                     <Player>
-                        <PlayerSource source={toBlob(buffer)} />
+                        <PlayerSource source="" />
                     </Player>
                 )
             }}

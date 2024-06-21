@@ -2,6 +2,7 @@ import {createContext} from "react";
 import axios from "axios";
 import {Buffer} from "buffer";
 import { createHash } from 'crypto-browserify';
+import { Blowfish } from 'egoroof-blowfish';
 
 export const PlayerDecryptContext = createContext();
 
@@ -34,6 +35,13 @@ export default function PlayerDecrypt({ children }) {
         }
 
         return blowfishKey;
+    };
+
+    const decryptChunk = (chunk, blowFishKey) => {
+        const blowfish = new Blowfish(blowFishKey, Blowfish.MODE.CBC, Blowfish.PADDING.NULL);
+        blowfish.setIv(Buffer.from([0, 1, 2, 3, 4, 5, 6, 7]));
+
+        return blowfish.decode(chunk, Blowfish.TYPE.UINT8_ARRAY);
     };
 
     const decrypt = (id, array) => {

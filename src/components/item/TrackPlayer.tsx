@@ -41,7 +41,7 @@ function Body() {
 
 function Source() {
     const { useClient } = useContext(AxiosContext);
-    const { toBlob } = useContext(PlayerDecryptContext);
+    const { decrypt, toBlob } = useContext(PlayerDecryptContext);
 
     const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
 
@@ -52,7 +52,7 @@ function Source() {
             {(buffer) => {
                 return (
                     <Player>
-                        <PlayerSource source={toBlob(buffer)} />
+                        <PlayerSource source={toBlob(decrypt(buffer))} />
                     </Player>
                 )
             }}

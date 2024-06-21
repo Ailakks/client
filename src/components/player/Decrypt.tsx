@@ -1,5 +1,6 @@
 import {createContext} from "react";
 import axios from "axios";
+import {Buffer} from "buffer";
 
 export const PlayerDecryptContext = createContext();
 
@@ -12,6 +13,19 @@ export default function PlayerDecrypt({ children }) {
 
     const fetch = async (url) => {
         return axios.get(url, { responseType: "arraybuffer" }).then(({ data }) => data);
+    };
+
+    const getBlowfishKey = (id) => {
+        let SECRET = "g4el58wc" + "0zvf9na1";
+        let idMd5 = md5(id);
+        let blowfishKey = "";
+        for (let i = 0; i < 16; i++) {
+            blowfishKey += String.fromCharCode(
+                idMd5.charCodeAt(i) ^ idMd5.charCodeAt(i + 16) ^ SECRET.charCodeAt(i)
+            );
+        }
+
+        return blowfishKey;
     };
 
     const decrypt = (array) => {

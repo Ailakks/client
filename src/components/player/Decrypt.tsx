@@ -15,6 +15,13 @@ export default function PlayerDecrypt({ children }) {
         return axios.get(url, { responseType: "arraybuffer" }).then(({ data }) => data);
     };
 
+    const md5 = (id) => {
+        const sum = createHash("md5");
+        sum.update(id, "ascii");
+
+        return sum.digest("hex");
+    };
+
     const getBlowfishKey = (id) => {
         let SECRET = "g4el58wc" + "0zvf9na1";
         let idMd5 = md5(id);

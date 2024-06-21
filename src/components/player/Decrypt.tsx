@@ -1,8 +1,13 @@
 import {createContext} from "react";
+import axios from "axios";
 
 export const PlayerDecryptContext = createContext();
 
 export default function PlayerDecrypt({ children }) {
+    const fetch = ({ url }) => {
+        return axios.get(url, { responseType: "arraybuffer" }).then(({ data }) => data);
+    };
+
     const decrypt = (array) => {
         const trackBuffer = Buffer.from(array, 'binary');
 

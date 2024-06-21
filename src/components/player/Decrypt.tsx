@@ -28,7 +28,7 @@ export default function PlayerDecrypt({ children }) {
         return blowfishKey;
     };
 
-    const decrypt = (array) => {
+    const decrypt = (id, array) => {
         const trackBuffer = Buffer.from(array, 'binary');
 
         let chunk_size = 2048;

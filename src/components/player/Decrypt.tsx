@@ -6,7 +6,7 @@ import { Blowfish } from 'egoroof-blowfish';
 
 export const PlayerDecryptContext = createContext();
 
-export default function PlayerDecrypt({ children }) {
+export function PlayerDecrypt({ children }) {
     const get = async (url) => {
         const buffer = await this.fetch(url);
 

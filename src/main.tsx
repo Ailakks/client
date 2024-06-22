@@ -2,12 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import {BrowserRouter} from "react-router-dom";
 import CookiesWrapper from "./components/wrapper/tool/Cookies";
 import LanguageWrapper from "./components/wrapper/lang/Language";
 import AxiosWrapper from "./components/wrapper/api/Api";
-import {BrowserRouter} from "react-router-dom";
 import PlayerWrapper from "./components/wrapper/player/Player";
-import AxiosAppWrapper from "./components/wrapper/api/App";
 import AccountWrapper from "./components/wrapper/account/Account";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -18,9 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <AxiosWrapper>
                         <AccountWrapper>
                             <PlayerWrapper>
-                                <AxiosAppWrapper>
-                                    <App />
-                                </AxiosAppWrapper>
+                                <App />
                             </PlayerWrapper>
                         </AccountWrapper>
                     </AxiosWrapper>

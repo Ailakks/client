@@ -1,8 +1,7 @@
 import {useContext} from "react";
 import Query, {QueryContext} from "../query/Query";
-import {AxiosAppContext} from "../wrapper/api/App";
 import {PlayerContext} from "../wrapper/player/Player";
-import PlayerDecrypt, {PlayerDecryptContext} from "../player/Decrypt";
+import {PlayerDecrypt, PlayerDecryptContext} from "../player/Decrypt";
 import {Player} from "../player/Player";
 import {PlayerSource} from "../player/Source";
 import {AxiosContext} from "../wrapper/api/Api";
@@ -26,7 +25,7 @@ export default function TrackPlayer() {
 }
 
 function Body() {
-    const { useClient } = useContext(AxiosAppContext);
+    const { useClient } = useContext(AxiosContext);
 
     const { track: { id }, app: { url } } = useContext(PlayerContext);
 

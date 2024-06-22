@@ -1,6 +1,5 @@
 import {useContext, useEffect} from "react";
 import {LanguageContext} from "../../components/wrapper/lang/Language";
-import {CookiesContext} from "../../components/wrapper/tool/Cookies";
 import {AxiosContext} from "../../components/wrapper/api/Api";
 import {Form} from "../../components/query/Form";
 import {Input} from "../../components/query/Input";
@@ -15,7 +14,6 @@ export function Login() {
     const navigate = useNavigate();
 
     const { translate } = useContext(LanguageContext);
-    const { setToken } = useContext(CookiesContext);
     const { useClient } = useContext(AxiosContext);
     const { account } = useContext(AccountContext);
 

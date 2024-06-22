@@ -15,13 +15,13 @@ export function Login() {
 
     const { translate } = useContext(LanguageContext);
     const { useClient } = useContext(AxiosContext);
-    const { account } = useContext(AccountContext);
+    const { response } = useContext(AccountContext);
 
     useEffect(() => {
-        if (account) {
+        if (response) {
             navigate('/');
         }
-    }, [account]);
+    }, [response]);
 
     const [{ data, loading }, login] = useClient('auth/login', { manual: true });
 

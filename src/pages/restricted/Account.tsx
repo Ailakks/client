@@ -5,15 +5,15 @@ import {AccountContext} from "../../components/wrapper/account/Account";
 export default function AccountRestricted({ children }) {
     const navigate = useNavigate();
 
-    const { account } = useContext(AccountContext);
+    const { response } = useContext(AccountContext);
 
     useEffect(() => {
-        if (!account) {
+        if (!response) {
             navigate('/login')
         }
-    }, [account]);
+    }, [response]);
 
-    if (!account) {
+    if (!response) {
         return null;
     }
 

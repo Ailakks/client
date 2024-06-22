@@ -19,10 +19,10 @@ export default function AccountWrapper({ children }) {
 }
 
 function Body({ children }) {
-    const { data } = useContext(QueryContext);
+    const { response } = useContext(QueryContext);
 
     return (
-        <AccountContext.Provider value={{ account: data }}>
+        <AccountContext.Provider value={{ response }}>
             {children}
         </AccountContext.Provider>
     );

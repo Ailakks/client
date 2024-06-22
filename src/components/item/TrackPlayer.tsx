@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import Query, {QueryContext} from "../query/Query";
 import {PlayerContext} from "../wrapper/player/Player";
-import {PlayerDecrypt, PlayerDecryptContext} from "../player/Decrypt";
+import {PlayerDecrypt} from "../player/Decrypt";
 import {Player} from "../player/Player";
 import {PlayerSource} from "../player/Source";
 import {AxiosContext} from "../wrapper/api/Api";
@@ -39,23 +39,13 @@ function Body() {
 }
 
 function Source() {
-    const { useClient } = useContext(AxiosContext);
     const { track: { id } } = useContext(PlayerContext);
-    const { decrypt, toBlob } = useContext(PlayerDecryptContext);
 
     const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
 
-    const request = useClient({ url: `${import.meta.env.VITE_API_PROXY_URL}/load`, params: { url }, responseType: "arraybuffer" });
-
     return (
-        <Query request={request}>
-            {(buffer) => {
-                return (
-                    <Player>
-                        <PlayerSource source={toBlob(decrypt(id, buffer))} />
-                    </Player>
-                )
-            }}
-        </Query>
+        <Player>
+            <PlayerSource source={`${import.meta.env.VITE_API_PROXY_URL}/load?url=${url}&key=${id}`} />
+        </Player>
     )
 }

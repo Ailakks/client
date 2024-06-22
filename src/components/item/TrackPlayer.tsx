@@ -28,9 +28,9 @@ export default function TrackPlayer() {
 function Body() {
     const { useClient } = useContext(AxiosAppContext);
 
-    const { track: { id } } = useContext(PlayerContext);
+    const { track: { id }, app: { url } } = useContext(PlayerContext);
 
-    const request = useClient({ url: 'play', params: { id, quality: 'MP3_320' } });
+    const request = useClient({ url: `${url}/play`, params: { id, quality: 'MP3_320' } });
 
     return (
         <Query request={request}>

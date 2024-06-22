@@ -17,11 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <LanguageWrapper>
                     <AxiosWrapper>
                         <AccountWrapper>
-                            <AxiosAppWrapper>
-                                <PlayerWrapper>
+                            <PlayerWrapper>
+                                <AxiosAppWrapper>
                                     <App />
-                                </PlayerWrapper>
-                            </AxiosAppWrapper>
+                                </AxiosAppWrapper>
+                            </PlayerWrapper>
                         </AccountWrapper>
                     </AxiosWrapper>
                 </LanguageWrapper>

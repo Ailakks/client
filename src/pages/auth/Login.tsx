@@ -9,6 +9,7 @@ import {PasswordInput} from "../../components/input/PasswordInput";
 import {useNavigate} from "react-router-dom";
 import {AccountContext} from "../../components/wrapper/account/Account";
 import LoadSpinner from "../../components/load/spinner/LoadSpinner";
+import {Load} from "./Load";
 
 export function Login() {
     const navigate = useNavigate();
@@ -16,15 +17,21 @@ export function Login() {
     const { translate } = useContext(LanguageContext);
     const { setToken } = useContext(CookiesContext);
     const { useClient } = useContext(AxiosContext);
-    const { data } = useContext(AccountContext);
+    const { account } = useContext(AccountContext);
 
     useEffect(() => {
-        if (data) {
+        if (account) {
             navigate('/');
         }
-    }, [data]);
+    }, [account]);
 
-    const [{ loading }, login] = useClient('auth/login', { manual: true });
+    const [{ data, loading }, login] = useClient('auth/login', { manual: true });
+
+    if (data) {
+        const { id } = data;
+
+        return <Load id={id} />;
+    }
 
     return (
         <div className="h-full flex flex-col">
@@ -36,7 +43,7 @@ export function Login() {
                         <span>{translate("auth.login.quick.google")}</span>
                     </button>
                     <hr/>
-                    <Form className="space-y-2" submit={login}>
+                    <Form className="space-y-2" submit={(params) => login({ params })}>
                         <Input name="email" type="email" className="main w-full"
                                placeholder={translate("auth.login.form.email.label")} required/>
                         <PasswordInput />

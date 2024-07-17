@@ -29,7 +29,7 @@ function Body() {
 
     const { track: { id }, app: { url } } = useContext(PlayerContext);
 
-    const request = useClient({ url: `${url}/play`, params: { id, quality: 'MP3_320' } });
+    const request = useClient({ url: `${url}/play`, params: { id, quality: 'MP3_128' } });
 
     return (
         <Query request={request}>
@@ -45,7 +45,7 @@ function Source() {
 
     return (
         <Player>
-            <PlayerSource source={`${import.meta.env.VITE_API_PROXY_URL}/load?url=${url}&key=${id}`} />
+            <PlayerSource source={`${import.meta.env.VITE_API_PROXY_URL}/play?url=${url}&key=${id}&decrypt=BF_CBC_STRIPE`} />
         </Player>
     )
 }

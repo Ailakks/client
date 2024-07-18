@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {clsx} from "clsx";
-import {LanguageContext} from "../wrapper/lang/Language";
+import {LanguageContext} from "../wrapper/header/LanguageMenu";
 import ContextMenu from "../context/ContextMenu";
 import {ListContext} from "../list/List";
 

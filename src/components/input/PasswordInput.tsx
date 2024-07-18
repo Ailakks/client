@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import {clsx} from "clsx";
-import {LanguageContext} from "../wrapper/lang/Language";
+import {LanguageContext} from "../wrapper/header/LanguageMenu";
 import {Input} from "../query/Input";
 
 export function PasswordInput() {

@@ -4,7 +4,7 @@ import {AxiosContext} from "../components/wrapper/api/Api";
 import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {Track} from "../components/item/Track";
-import {LanguageContext} from "../components/wrapper/lang/Language";
+import {LanguageContext} from "../components/wrapper/header/LanguageMenu";
 
 export function Playlist() {
     const { useClient } = useContext(AxiosContext);

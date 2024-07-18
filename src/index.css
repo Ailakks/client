@@ -25,7 +25,7 @@ a {
 }
 
 a:hover {
-    @apply text-gray-900 underline;
+    @apply text-gray-900;
 }
 
 table {

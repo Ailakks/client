@@ -5,7 +5,6 @@ import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {Track} from "../components/item/Track";
 import {LanguageContext} from "../components/wrapper/lang/Language";
-import Checkbox from "../components/input/Checkbox";
 
 export function Playlist() {
     const { useClient } = useContext(AxiosContext);

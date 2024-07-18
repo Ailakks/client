@@ -20,19 +20,19 @@ export function Player({ children }) {
                             <PlayerQueue>
                                 <PlayerAudio>
                                     <div className="flex justify-center items-center bg-gray-800 rounded-md m-4 p-2">
-                                        <div className="w-60">
-                                            <PlayerData />
+                                        <div className="w-96">
+                                            <PlayerData/>
                                         </div>
                                         <div className="grow p-10 space-y-5">
-                                            <PlayerControls />
+                                            <PlayerControls/>
                                             <div className="flex items-center space-x-5">
                                                 <div className="grow">
-                                                    <PlayerTrackBar />
-                                                </div>
-                                                <div className="w-40">
-                                                    <PlayerVolumeBar />
+                                                    <PlayerTrackBar/>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div className="w-40">
+                                            <PlayerVolumeBar/>
                                         </div>
                                     </div>
                                 </PlayerAudio>

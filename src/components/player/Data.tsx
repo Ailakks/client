@@ -6,7 +6,7 @@ export function PlayerData() {
 
     return (
         <div className="flex space-x-2 items-center">
-            <img className="h-20" alt={name} src={url} />
+            <img className="h-40 rounded-md" alt={name} src={url} />
             <p>{name}</p>
         </div>
     )

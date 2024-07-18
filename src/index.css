@@ -20,6 +20,10 @@ h1, h2, h3, p, a, i, button {
     @apply text-white;
 }
 
+input {
+    @apply bg-transparent;
+}
+
 input::-webkit-slider-runnable-track {
     @apply h-2 bg-gray-500 rounded-full;
 }

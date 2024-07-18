@@ -16,7 +16,9 @@ export function Playlist() {
         <Query request={request}>
             {({ tracks }) => {
                 return (
-                    <List list={tracks}><Item /></List>
+                    <div className="flex flex-col space-y-2">
+                        <List list={tracks}><Item /></List>
+                    </div>
                 )
             }}
         </Query>

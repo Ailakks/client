@@ -66,6 +66,31 @@
             "subtitle": "{0} canciones"
           }
         }
+      },
+      "header": {
+        "language": {
+          "label": "Lenguaje",
+          "context": {
+            "en_CA": "Inglés",
+            "es_ES": "Español"
+          }
+        },
+        "search": {
+          "label": "Buscar"
+        },
+        "account": {
+          "label": "{0}",
+          "context": {
+            "account": "Mi cuenta",
+            "logout": "Cerrar sesión"
+          },
+          "login": {
+            "label": "Iniciar sesión"
+          },
+          "signup": {
+            "label": "Crear cuenta"
+          }
+        }
       }
     },
     "table": {

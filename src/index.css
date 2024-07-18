@@ -16,8 +16,16 @@ html, body, #root {
 
 }
 
-h1, h2, h3, p, a, i, button {
+h1, h2, h3, p, i, button {
     @apply text-white;
+}
+
+a {
+    @apply text-gray-800;
+}
+
+a:hover {
+    @apply text-gray-900 underline;
 }
 
 input {

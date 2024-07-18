@@ -24,12 +24,12 @@ function Item() {
     const { id, icon } = item;
 
     return (
-        <div className="flex items-center justify-between text-white px-4 py-2 cursor-pointer hover:bg-gray-300" onClick={() => set(item)}>
+        <button className="context_item" onClick={() => set(item)}>
             <div className="flex items-center space-x-2">
                 <i className={clsx('w-6', icon)}/>
                 <p>{translate(`layout.header.language.context.${id}`)}</p>
             </div>
             {language === id && <i className="fa-regular fa-check"/>}
-        </div>
+        </button>
     )
 }

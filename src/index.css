@@ -9,11 +9,15 @@ html {
 }
 
 html, body, #root {
-    @apply h-full;
+    @apply h-full bg-gray-500;
 }
 
 @layer components {
 
+}
+
+h1, h2, h3, p, a {
+    @apply text-gray-100;
 }
 
 input::-webkit-slider-runnable-track {

@@ -3,6 +3,10 @@
 
   },
   "es_ES": {
-
+    "layout": {
+      "head": {
+        "title": "Beat"
+      }
+    }
   }
 }

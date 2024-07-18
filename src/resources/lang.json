@@ -3,6 +3,58 @@
 
   },
   "es_ES": {
+    "auth": {
+      "password": {
+        "label": "Contraseña"
+      },
+      "footer": {
+        "terms": "Términos y condiciones",
+        "help": "¿Necesitas ayuda?",
+        "back": "Volver al inicio"
+      },
+      "signup": {
+        "title": "Crear cuenta",
+        "quick": {
+          "google": "Continuar con Google"
+        },
+        "tip": {
+          "label": "¿Ya tienes cuenta?",
+          "link": "Inicia sesión"
+        },
+        "form": {
+          "name": {
+            "label": "Nombre"
+          },
+          "email": {
+            "label": "Correo electrónico"
+          },
+          "submit": {
+            "label": "Crear cuenta",
+            "loading": "Cargando..."
+          }
+        }
+      },
+      "login": {
+        "title": "Iniciar sesión",
+        "quick": {
+          "google": "Continuar con Google"
+        },
+        "tip": {
+          "forgot": "¿Has olvidado tu contraseña?",
+          "label": "¿No tienes cuenta aún?",
+          "link": "Regístrate"
+        },
+        "form": {
+          "email": {
+            "label": "Correo electrónico"
+          },
+          "submit": {
+            "label": "Iniciar sesión",
+            "loading": "Cargando..."
+          }
+        }
+      }
+    },
     "layout": {
       "head": {
         "title": "Beat"

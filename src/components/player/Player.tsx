@@ -19,7 +19,7 @@ export function Player({ children }) {
                         <AudioWrapper>
                             <PlayerQueue>
                                 <PlayerAudio>
-                                    <div className="flex justify-center items-center">
+                                    <div className="flex justify-center items-center bg-gray-800 rounded-md m-4 p-2">
                                         <div className="w-60">
                                             <PlayerData />
                                         </div>

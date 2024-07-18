@@ -6,9 +6,10 @@ export default function Header() {
 
     return (
         <div className="h-full flex items-center justify-end">
-            <a href="">
-                <p>{translate("layout.header.support.label")}</p>
-            </a>
+            <div className="flex w-full justify-end items-center space-x-6">
+                <Language/>
+                {data ? <Logged/> : <Guest/>}
+            </div>
         </div>
     )
 }

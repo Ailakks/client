@@ -40,6 +40,10 @@ hr {
     @apply border-gray-300;
 }
 
+button.inline,a.inline, div.inline {
+    @apply flex items-center space-x-2;
+}
+
 input.disabled, button.disabled {
     @apply bg-gray-500 cursor-no-drop;
 }
@@ -74,10 +78,6 @@ input::-webkit-slider-thumb {
 
 input:hover::-webkit-slider-thumb {
     @apply visible;
-}
-
-button.rounded {
-    @apply aspect-square h-10 rounded-full;
 }
 
 button.selected {

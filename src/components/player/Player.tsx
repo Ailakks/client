@@ -19,7 +19,7 @@ export function Player({ children }) {
                         <AudioWrapper>
                             <PlayerQueue>
                                 <PlayerAudio>
-                                    <div className="flex space-x-10 bg-gray-800 rounded-md m-4 p-6">
+                                    <div className="flex grow space-x-10">
                                         <div className="flex grow basis-0">
                                             <PlayerData/>
                                         </div>

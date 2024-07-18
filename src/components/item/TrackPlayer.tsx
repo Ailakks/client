@@ -11,7 +11,7 @@ export default function TrackPlayer() {
 
     if (!track) {
         return (
-            <div>
+            <div className="flex">
                 <p>Nothing here...</p>
             </div>
         )

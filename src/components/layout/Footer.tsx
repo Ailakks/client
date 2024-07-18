@@ -2,6 +2,8 @@ import TrackPlayer from "../item/TrackPlayer";
 
 export default function Footer() {
     return (
-        <TrackPlayer />
+        <div className="h-40 flex justify-center items-center bg-gray-800 rounded-md m-4 p-6">
+            <TrackPlayer />
+        </div>
     )
 }

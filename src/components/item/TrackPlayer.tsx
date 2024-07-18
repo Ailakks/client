@@ -41,7 +41,7 @@ function Body() {
 function Source() {
     const { track: { id } } = useContext(PlayerContext);
 
-    const { response: { media: { sources: { [0]: { url } } }, cipher: { type } } } = useContext(QueryContext);
+    const { response: { media: { sources: { [0]: { url } }, cipher: { type } } } } = useContext(QueryContext);
 
     return (
         <Player>

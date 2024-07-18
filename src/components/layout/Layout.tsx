@@ -10,7 +10,7 @@ export default function Layout({ children }) {
 
     return (
         <LayoutContext.Provider value={{side, setSide}}>
-            <div className="h-full flex flex-col">
+            <div className="h-full flex flex-col mx-auto max-w-screen-2xl">
                 <div className="flex h-20 shrink-0">
                     <div className="flex w-64 shrink-0 items-center">
                         <Head />

@@ -17,7 +17,7 @@ html, body, #root {
 }
 
 h1, h2, h3, p, a {
-    @apply text-gray-100;
+    @apply text-white;
 }
 
 input::-webkit-slider-runnable-track {

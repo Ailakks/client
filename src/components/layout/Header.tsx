@@ -1,15 +1,17 @@
 import {useContext} from "react";
 import {LanguageContext} from "../wrapper/lang/Language";
 import Language from "../language/Language";
+import {AccountContext} from "../wrapper/account/Account";
+import ContextMenu from "../context/ContextMenu";
 
 export default function Header() {
-    const { translate } = useContext(LanguageContext);
+    const { response } = useContext(AccountContext);
 
     return (
         <div className="h-full flex items-center justify-end">
             <div className="flex w-full justify-end items-center space-x-6">
                 <Language/>
-                {data ? <Logged/> : <Guest/>}
+                {response ? <Logged/> : <Guest/>}
             </div>
         </div>
     )
@@ -18,7 +20,7 @@ export default function Header() {
 function Logged() {
     const { translate } = useContext(LanguageContext);
 
-    const { data: { currentUser: { name } } } = useContext(AccountContext);
+    const { response: { name } } = useContext(AccountContext);
 
     const Category = {
         ACCOUNT: "account",

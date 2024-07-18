@@ -2,6 +2,7 @@ import Head from "./Head";
 import Header from "./Header";
 import {createContext, useState} from "react";
 import Footer from "./Footer";
+import Side from "./Side";
 
 export const LayoutContext = createContext();
 
@@ -20,9 +21,9 @@ export default function Layout({ children }) {
                     </div>
                 </div>
                 <div className="grow flex overflow-x-hidden overflow-y-auto">
-                    {side && <aside className="w-64 p-5">
-                        {side}
-                    </aside>}
+                    <aside className="w-64 p-5">
+                        <Side />
+                    </aside>
                     <main className="grow">
                         {children}
                     </main>

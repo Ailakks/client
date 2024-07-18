@@ -5,6 +5,7 @@ import Query from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {Track} from "../components/item/Track";
 import {LanguageContext} from "../components/wrapper/lang/Language";
+import Checkbox from "../components/input/Checkbox";
 
 export function Playlist() {
     const { useClient } = useContext(AxiosContext);
@@ -18,21 +19,19 @@ export function Playlist() {
         <Query request={request}>
             {({ tracks }) => {
                 return (
-                    <table className="flex flex-col space-y-2">
-                        <thead className="sticky top-0 h-14 bg-gray-900 shadow-[0px_1px] shadow-gray-300">
-                        <tr className="text-left">
-                            <th>
-                                <Checkbox status={checked} change={toggleAll} icon={selected.length > 0 && `fa-solid fa-hyphen`}/>
-                            </th>
+                    <table>
+                        <thead>
+                        <tr>
                             <th/>
-                            <th>{translate("table.track.head.image")}</th>
                             <th>{translate("table.track.head.name")}</th>
                             <th>{translate("table.track.head.album")}</th>
                             <th>{translate("table.track.head.duration")}</th>
                             <th/>
                         </tr>
                         </thead>
+                        <tbody>
                         <List list={tracks}><Item/></List>
+                        </tbody>
                     </table>
                 )
             }}

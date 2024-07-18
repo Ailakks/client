@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {PlayerContext} from "../wrapper/player/Player";
 import List, {ListContext} from "../list/List";
+import Checkbox from "../input/Checkbox";
 
 export function Track({ app, track }) {
     const { setApp, setTrack } = useContext(PlayerContext);
@@ -13,17 +14,20 @@ export function Track({ app, track }) {
     };
 
     return (
-        <tr className="flex space-x-4 items-center cursor-pointer" onClick={set}>
-            <td>
+        <tr className="cursor-pointer" onClick={set}>
+            <th>
+                <Checkbox status={true}/>
+            </th>
+            <td className="flex items-center space-x-2">
                 <img className="h-14 rounded-md" alt={name} src={url}/>
-            </td>
-            <td>
-                <p>{name}</p>
-                <p>
-                    <List list={artists}>
-                        <Artist/>
-                    </List>
-                </p>
+                <div>
+                    <p>{name}</p>
+                    <p>
+                        <List list={artists}>
+                            <Artist/>
+                        </List>
+                    </p>
+                </div>
             </td>
         </tr>
     )

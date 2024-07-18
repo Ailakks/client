@@ -6,7 +6,8 @@ import Checkbox from "../input/Checkbox";
 export function Track({ app, track }) {
     const { setApp, setTrack } = useContext(PlayerContext);
 
-    const { name, album: { image: { url } }, artists } = track;
+    const { name, album, artists, date } = track;
+    const { image: { url } } = album;
 
     const set = () => {
         setApp(app);
@@ -29,6 +30,12 @@ export function Track({ app, track }) {
                     </p>
                 </div>
             </td>
+            <th>
+                <p>{album.title}</p>
+            </th>
+            <th>
+                <p>{date.digital}</p>
+            </th>
         </tr>
     )
 }

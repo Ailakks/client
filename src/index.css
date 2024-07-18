@@ -28,6 +28,14 @@ a:hover {
     @apply text-gray-900 underline;
 }
 
+table {
+    @apply text-left;
+}
+
+thead {
+    @apply text-white;
+}
+
 input {
     @apply bg-transparent;
 }

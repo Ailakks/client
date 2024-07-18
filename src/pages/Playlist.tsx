@@ -25,7 +25,7 @@ export function Playlist() {
                             <th/>
                             <th>{translate("table.track.head.name")}</th>
                             <th>{translate("table.track.head.album")}</th>
-                            <th>{translate("table.track.head.duration")}</th>
+                            <th>{translate("table.track.head.release")}</th>
                             <th/>
                         </tr>
                         </thead>

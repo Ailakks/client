@@ -19,8 +19,8 @@ export function Playlist() {
         <Query request={request}>
             {({ tracks }) => {
                 return (
-                    <table>
-                        <thead>
+                    <table className="w-full">
+                        <thead className="sticky top-0 h-14 bg-gray-100">
                         <tr>
                             <th/>
                             <th>{translate("table.track.head.name")}</th>

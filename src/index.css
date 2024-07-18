@@ -48,6 +48,14 @@ button.main, a.main, input[type = "submit"].main {
     @apply bg-red-500 h-12 px-5 py-2 rounded-lg text-white hover:bg-red-700 transition-colors duration-150 ease-out;
 }
 
+button.secondary, a.secondary {
+    @apply bg-gray-500 h-10 px-5 py-2 rounded-lg text-white hover:bg-gray-300 transition-colors duration-150 ease-out;
+}
+
+button.rounded, a.rounded {
+    @apply hover:bg-gray-300 rounded-full;
+}
+
 a.highlight {
     @apply text-red-500;
 }

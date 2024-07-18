@@ -17,7 +17,7 @@ export const Locale = {
 export default function LanguageWrapper({ children }) {
     const { setCookie } = useContext(CookiesContext);
 
-    const change = ({ id }) => {
+    const set = ({ id }) => {
         setCookie("language", id);
 
         window.location.reload();
@@ -32,7 +32,7 @@ export default function LanguageWrapper({ children }) {
                     date: "enCA",
                     intl: "en-US"
                 },
-                action: change,
+                action: set,
             },
             [Locale.es_ES]: {
                 id: 'es_ES',
@@ -41,7 +41,7 @@ export default function LanguageWrapper({ children }) {
                     date: "es",
                     intl: "es-ES"
                 },
-                action: change,
+                action: set,
             }
         }
     }
@@ -62,7 +62,7 @@ export default function LanguageWrapper({ children }) {
     }
 
     return (
-        <LanguageContext.Provider value={{ locales, language, translate }}>
+        <LanguageContext.Provider value={{ set, locales, language, translate }}>
             {children}
         </LanguageContext.Provider>
     );

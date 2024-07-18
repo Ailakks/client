@@ -18,8 +18,13 @@ export default function Side() {
                     return (
                         <List list={data}>
                             {(key, item) => {
+                                const { name, tracksCount } = item;
+
                                 return (
-                                    <p>{JSON.stringify(item)}</p>
+                                    <div>
+                                        <p>{name}</p>
+                                        <p>{translate("layout.side.library.playlist.subtitle", [tracksCount])}</p>
+                                    </div>
                                 )
                             }}
                         </List>

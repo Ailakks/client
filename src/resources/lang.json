@@ -58,6 +58,14 @@
     "layout": {
       "head": {
         "title": "Beat"
+      },
+      "side": {
+        "library": {
+          "title": "Biblioteca",
+          "playlist": {
+            "subtitle": "{0} canciones"
+          }
+        }
       }
     },
     "table": {

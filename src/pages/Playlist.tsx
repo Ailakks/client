@@ -23,9 +23,15 @@ export function Playlist() {
                         <thead className="sticky top-0 h-14 bg-gray-100">
                         <tr>
                             <th/>
-                            <th>{translate("table.track.head.name")}</th>
-                            <th>{translate("table.track.head.album")}</th>
-                            <th>{translate("table.track.head.release")}</th>
+                            <th>
+                                <p>{translate("table.track.head.title")}</p>
+                            </th>
+                            <th>
+                                <p>{translate("table.track.head.album")}</p>
+                            </th>
+                            <th>
+                                <p>{translate("table.track.head.release")}</p>
+                            </th>
                             <th/>
                         </tr>
                         </thead>

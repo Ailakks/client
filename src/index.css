@@ -9,7 +9,7 @@ html {
 }
 
 html, body, #root {
-    @apply h-full bg-gray-500;
+    @apply h-full bg-gray-100;
 }
 
 @layer components {
@@ -33,7 +33,7 @@ input {
 }
 
 input::-webkit-slider-runnable-track {
-    @apply h-2 bg-gray-500 rounded-full;
+    @apply h-2 bg-gray-100 rounded-full;
 }
 
 input::-webkit-slider-thumb {

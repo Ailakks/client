@@ -41,11 +41,11 @@ function Body() {
 function Source() {
     const { track: { id } } = useContext(PlayerContext);
 
-    const { response: { media: { sources: { [0]: { url } } } } } = useContext(QueryContext);
+    const { response: { media: { sources: { [0]: { url } } }, cipher: { type } } } = useContext(QueryContext);
 
     return (
         <Player>
-            <PlayerSource source={`${import.meta.env.VITE_API_PROXY_URL}/play?url=${url}&key=${id}&decrypt=BF_CBC_STRIPE`} />
+            <PlayerSource source={`${import.meta.env.VITE_API_PROXY_URL}/play?url=${url}&decrypt=${type}&key=${id}`} />
         </Player>
     )
 }

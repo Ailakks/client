@@ -13,17 +13,19 @@ export function Track({ app, track }) {
     };
 
     return (
-        <div className="flex space-x-4 items-center cursor-pointer" onClick={set}>
-            <img className="h-14 rounded-md" alt={name} src={url}/>
-            <div>
+        <tr className="flex space-x-4 items-center cursor-pointer" onClick={set}>
+            <td>
+                <img className="h-14 rounded-md" alt={name} src={url}/>
+            </td>
+            <td>
                 <p>{name}</p>
                 <p>
                     <List list={artists}>
                         <Artist/>
                     </List>
                 </p>
-            </div>
-        </div>
+            </td>
+        </tr>
     )
 }
 

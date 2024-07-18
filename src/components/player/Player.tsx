@@ -19,20 +19,18 @@ export function Player({ children }) {
                         <AudioWrapper>
                             <PlayerQueue>
                                 <PlayerAudio>
-                                    <div className="flex grow space-x-10">
-                                        <div className="flex grow basis-0">
+                                    <div className="flex w-full justify-center">
+                                        <div className="md:flex hidden grow basis-0">
                                             <PlayerData/>
                                         </div>
-                                        <div className="grow space-y-5">
+                                        <div className="grow">
                                             <PlayerControls/>
-                                            <div className="flex items-center space-x-5">
-                                                <div className="grow">
-                                                    <PlayerTrackBar/>
-                                                </div>
+                                            <div className=" grow items-center space-x-5">
+                                                <PlayerTrackBar/>
                                             </div>
                                         </div>
-                                        <div className="flex grow basis-0 justify-end items-center">
-                                            <div className="w-60">
+                                        <div className="md:flex hidden grow basis-0 justify-end items-center">
+                                            <div className="w-40">
                                                 <PlayerVolumeBar/>
                                             </div>
                                         </div>

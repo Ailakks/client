@@ -6,6 +6,7 @@ import List, {ListContext} from "../components/list/List";
 import {LanguageContext} from "../components/wrapper/api/Language";
 import ContextMenu from "../components/context/ContextMenu";
 import {AppContext} from "../components/wrapper/app/App";
+import {Track} from "../components/item/Track";
 
 export function Search() {
     const { useClient } = useContext(AxiosContext);
@@ -68,40 +69,21 @@ function Result() {
 
     return (
         <Query request={request}>
-           <ResultList />
+           <p>eee</p>
         </Query>
     )
 }
 
 function ResultList() {
-    const { translate } = useContext(LanguageContext);
+    const { response } = useContext(QueryContext);
 
-    const { response: { track: { list } }, refetch } = useContext(QueryContext);
+    if (!response) {
+        return null;
+    }
 
-    useEffect(() => {
-        refetch();
-    }, []);
+    const { track: { list } } = response;
 
     return (
-        <table className="w-full">
-            <thead className="sticky top-0 h-14 bg-gray-100">
-            <tr>
-                <th/>
-                <th>
-                    <p>{translate("table.track.head.title")}</p>
-                </th>
-                <th>
-                    <p>{translate("table.track.head.album")}</p>
-                </th>
-                <th>
-                    <p>{translate("table.track.head.release")}</p>
-                </th>
-                <th/>
-            </tr>
-            </thead>
-            <tbody>
-            <List list={list}><Item/></List>
-            </tbody>
-        </table>
+        <p>{JSON.stringify(list)}</p>
     )
 }

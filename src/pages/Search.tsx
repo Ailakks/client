@@ -46,21 +46,29 @@ function App() {
 
 function Result() {
     const { app } = useContext(AppContext);
-
-    if (!app) {
-        return null;
-    }
-
-    const { url } = app;
-
     const { useClient } = useContext(AxiosContext);
     const { state: { query } } = useLocation();
 
-    const request = useClient({ url: `/${url}/search`, params: { query } });
+    const request = useClient({}, { manual: true });
+    const [{ data }, refetch] = request;
+
+    useEffect(() => {
+        if (!app) {
+            return;
+        }
+
+        const { url } = app;
+
+        refetch({ url: `${url}/search`, params: { query } });
+    }, [app, query]);
+
+    if (data) {
+        return;
+    }
 
     return (
         <Query request={request}>
-            <ResultList />
+           <ResultList />
         </Query>
     )
 }

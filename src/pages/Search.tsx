@@ -5,6 +5,7 @@ import Query, {QueryContext} from "../components/query/Query";
 import List, {ListContext} from "../components/list/List";
 import {LanguageContext} from "../components/wrapper/api/Language";
 import ContextMenu from "../components/context/ContextMenu";
+import {AppContext} from "../components/wrapper/app/App";
 
 export function Search() {
     const { useClient } = useContext(AxiosContext);
@@ -12,34 +13,50 @@ export function Search() {
     const request = useClient({ url: `app` });
 
     return (
-        <Query request={request}>
-            {(response) => {
-                return (
-                    <ContextMenu popup={<List list={response}><App /></List> }>
-                        <p>App</p>
-                    </ContextMenu>
-                )
-            }}
-        </Query>
+        <div>
+            <Query request={request}>
+                {(response) => {
+                    return (
+                        <ContextMenu popup={<List list={response}><App /></List> }>
+                            <p>App</p>
+                        </ContextMenu>
+                    )
+                }}
+            </Query>
+            <Result />
+        </div>
     )
 }
 
 function App() {
     const { item: { app } } = useContext(ListContext);
 
+    const { setApp } = useContext(AppContext);
+
+    const set = () => {
+        setApp(app);
+    };
+
     return (
-        <div onClick={}>
+        <div onClick={set}>
             <p>{app.name}</p>
         </div>
     )
 }
 
 function Result() {
-    const { useClient } = useContext(AxiosContext);
+    const { app } = useContext(AppContext);
 
+    if (!app) {
+        return null;
+    }
+
+    const { url } = app;
+
+    const { useClient } = useContext(AxiosContext);
     const { state: { query } } = useLocation();
 
-    const request = useClient({ url: `search`, params: { query } });
+    const request = useClient({ url: `/${url}/search`, params: { query } });
 
     return (
         <Query request={request}>

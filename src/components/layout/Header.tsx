@@ -11,7 +11,7 @@ export default function Header() {
     const { response } = useContext(AccountContext);
 
     const search = (query: string) => {
-        navigate('search', { state: { query } });
+        navigate('/search', { state: { query } });
     };
 
     return (

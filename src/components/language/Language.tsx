@@ -24,8 +24,8 @@ function Item() {
     const { id, icon } = item;
 
     return (
-        <button className="context_item" onClick={() => set(item)}>
-            <div className="flex items-center space-x-2">
+        <button className="context_item justify-between" onClick={() => set(item)}>
+            <div className="inline">
                 <i className={clsx('w-6', icon)}/>
                 <p>{translate(`layout.header.language.context.${id}`)}</p>
             </div>

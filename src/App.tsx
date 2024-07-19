@@ -10,7 +10,7 @@ export default function App() {
 
     return (
         <Routes location={location}>
-            <Route path="/" element={<AppLayout><p>test</p></AppLayout>} />
+            <Route path="/" element={<AccountRestricted><AppLayout><p>test</p></AppLayout></AccountRestricted>} />
             <Route path="/playlist/:id" element={<AccountRestricted><AppLayout><Playlist /></AppLayout></AccountRestricted>} />
 
             <Route path="/login" element={<Layout><Login /></Layout>} />

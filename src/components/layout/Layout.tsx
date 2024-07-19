@@ -10,7 +10,7 @@ export default function Layout({ head, header, side, footer, children }) {
                 </div>
             </div>
             <div className="grow flex overflow-x-hidden overflow-y-auto">
-                {side && <aside className="w-64 p-5">
+                {side && <aside className="w-64">
                     {side}
                 </aside>}
                 <main className="grow">

@@ -15,7 +15,7 @@ export function Track({ app, track }) {
     };
 
     return (
-        <tr className="rounded-md border-8 border-transparent cursor-pointer hover:bg-gray-600" onClick={set}>
+        <tr className="rounded-md border-[20px] border-transparent cursor-pointer hover:bg-gray-600" onClick={set}>
             <th>
                 <Checkbox status={true}/>
             </th>

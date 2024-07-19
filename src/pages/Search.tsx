@@ -1,14 +1,20 @@
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {AxiosContext} from "../components/wrapper/api/Api";
 import Query, {QueryContext} from "../components/query/Query";
 import List from "../components/list/List";
-import {LanguageContext} from "../components/wrapper/header/LanguageMenu";
+import {LanguageContext} from "../components/wrapper/api/Language";
 
 export function Search() {
+    return (
+        <p>a</p>
+    )
+}
+
+function Result() {
     const { useClient } = useContext(AxiosContext);
 
-    const { query } = useParams();
+    const { state: { query } } = useLocation();
 
     const request = useClient({ url: `search`, params: { query } });
 

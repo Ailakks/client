@@ -1,9 +1,9 @@
 import {clsx} from "clsx";
 import {useContext} from "react";
-import {LanguageContext} from "./LanguageMenu";
-import {AccountContext} from "../account/Account";
-import ContextMenu from "../../context/ContextMenu";
-import {ListContext} from "../../list/List";
+import {LanguageContext} from "../wrapper/api/Language";
+import {AccountContext} from "../wrapper/account/Account";
+import ContextMenu from "../context/ContextMenu";
+import {ListContext} from "../list/List";
 
 export function Logged() {
     const { translate } = useContext(LanguageContext);

@@ -1,5 +1,5 @@
 import {useContext, useEffect} from "react";
-import {LanguageContext} from "../../components/wrapper/header/LanguageMenu";
+import {LanguageContext} from "../../components/wrapper/api/Language";
 import {AxiosContext} from "../../components/wrapper/api/Api";
 import {Form} from "../../components/query/Form";
 import {Input} from "../../components/query/Input";

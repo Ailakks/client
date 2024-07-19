@@ -1,9 +1,9 @@
 import {useContext} from "react";
 import {AccountContext} from "../wrapper/account/Account";
-import {Guest, Logged} from "../wrapper/header/AccountMenu";
+import {Guest, Logged} from "../header/AccountMenu";
 import {useNavigate} from "react-router-dom";
 import {Input} from "../query/Input";
-import LanguageMenu from "../wrapper/header/LanguageMenu";
+import LanguageMenu from "../header/LanguageMenu";
 
 export default function Header() {
     const navigate = useNavigate();

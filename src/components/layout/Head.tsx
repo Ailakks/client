@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {LanguageContext} from "../wrapper/header/LanguageMenu";
+import {LanguageContext} from "../wrapper/api/Language";
 
 export default function Head() {
     const { translate } = useContext(LanguageContext);

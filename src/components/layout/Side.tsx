@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {LanguageContext} from "../wrapper/header/LanguageMenu";
+import {LanguageContext} from "../wrapper/api/Language";
 import Query from "../query/Query";
 import {AxiosContext} from "../wrapper/api/Api";
 import List from "../list/List";

@@ -14,7 +14,7 @@ export const Locale = {
     es_ES: "ES_ES"
 }
 
-export default function LanguageMenu({ children }) {
+export default function LanguageWrapper({ children }) {
     const { setCookie } = useContext(CookiesContext);
 
     const set = ({ id }) => {

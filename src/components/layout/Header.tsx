@@ -16,7 +16,7 @@ export default function Header() {
 
     return (
         <div className="h-full flex items-center justify-end">
-            <Input onChange={(value) => search(value)} />
+            <Input onChange={({ target: { value } }) => search(value)} />
             <div className="flex w-full justify-end items-center space-x-6">
                 <LanguageMenu/>
                 {response ? <Logged/> : <Guest/>}

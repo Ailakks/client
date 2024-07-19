@@ -2,20 +2,33 @@ import {useLocation, useParams} from "react-router-dom";
 import {useContext, useEffect} from "react";
 import {AxiosContext} from "../components/wrapper/api/Api";
 import Query, {QueryContext} from "../components/query/Query";
-import List from "../components/list/List";
+import List, {ListContext} from "../components/list/List";
 import {LanguageContext} from "../components/wrapper/api/Language";
+import ContextMenu from "../components/context/ContextMenu";
 
 export function Search() {
+    const { useClient } = useContext(AxiosContext);
+
     const request = useClient({ url: `app` });
 
     return (
         <Query request={request}>
             {(response) => {
                 return (
-                    <p>test</p>
+                    <ContextMenu popup={<List list={response}><App /></List> }>
+                        <p>App</p>
+                    </ContextMenu>
                 )
             }}
         </Query>
+    )
+}
+
+function App() {
+    const { item: { app: { name } } } = useContext(ListContext);
+
+    return (
+        <p>{name}</p>
     )
 }
 

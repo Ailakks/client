@@ -6,8 +6,16 @@ import List from "../components/list/List";
 import {LanguageContext} from "../components/wrapper/api/Language";
 
 export function Search() {
+    const request = useClient({ url: `app` });
+
     return (
-        <p>a</p>
+        <Query request={request}>
+            {(response) => {
+                return (
+                    <p>test</p>
+                )
+            }}
+        </Query>
     )
 }
 

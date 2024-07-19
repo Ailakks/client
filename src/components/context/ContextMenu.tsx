@@ -4,7 +4,7 @@ import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
 
 export const ContextMenuContext = createContext();
 
-export default function ContextMenu({ list, content, children }) {
+export default function ContextMenu({ content, popup, children }) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -15,7 +15,7 @@ export default function ContextMenu({ list, content, children }) {
             <PopoverContent>
                 <ContextMenuContext.Provider value={{ content }}>
                     <div className="bg-gray-500 rounded-xl min-w-52 divide-y-1 divide-gray-300 overflow-hidden">
-                        <List list={Object.values(list)}><Category /></List>
+                        {popup}
                     </div>
                 </ContextMenuContext.Provider>
             </PopoverContent>

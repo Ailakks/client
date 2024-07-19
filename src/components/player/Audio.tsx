@@ -1,4 +1,4 @@
-import {cloneElement, createContext, useContext, useEffect, useRef, useState} from "react";
+import {createContext, useContext, useEffect, useRef, useState} from "react";
 import {TrackContext} from "./wrapper/Track";
 import {SourceContext} from "./wrapper/Source";
 import {PlayerQueueContext} from "./Queue";

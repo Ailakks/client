@@ -8,6 +8,7 @@ import AxiosWrapper from "./components/wrapper/api/Api";
 import PlayerWrapper from "./components/wrapper/player/Player";
 import AccountWrapper from "./components/wrapper/account/Account";
 import LanguageWrapper from "./components/wrapper/api/Language";
+import AppWrapper from "./components/wrapper/app/App";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <LanguageWrapper>
                     <AxiosWrapper>
                         <AccountWrapper>
-                            <PlayerWrapper>
-                                <App />
-                            </PlayerWrapper>
+                           <AppWrapper>
+                               <PlayerWrapper>
+                                   <App />
+                               </PlayerWrapper>
+                           </AppWrapper>
                         </AccountWrapper>
                     </AxiosWrapper>
                 </LanguageWrapper>

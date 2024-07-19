@@ -25,10 +25,12 @@ export function Search() {
 }
 
 function App() {
-    const { item: { app: { name } } } = useContext(ListContext);
+    const { item: { app } } = useContext(ListContext);
 
     return (
-        <p>{name}</p>
+        <div onClick={}>
+            <p>{app.name}</p>
+        </div>
     )
 }
 

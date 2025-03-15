@@ -116,24 +116,23 @@ function SubathonItem() {
 function SubathonCounter() {
     const { data: { getSubathonStatus: { end_time } } } = useContext(QueryContext);
 
-    const [_, update] = useState(0);
+    const [timeLeft, setTimeLeft] = useState("");
 
     useEffect(() => {
-        const interval = setInterval(() => update((t) => t + 1), 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    return (
-        <>
-            {(() => {
-                let diff = end_time - Math.floor(Date.now() / 1000);
-                return diff > 0
+        const interval = setInterval(() => {
+            let diff = end_time - Math.floor(Date.now() / 1000);
+            setTimeLeft(
+                diff > 0
                     ? [Math.floor(diff / 86400), Math.floor((diff % 86400) / 3600), Math.floor((diff % 3600) / 60), diff % 60]
                         .map((t) => String(t).padStart(2, "0"))
                         .join(":")
-                    : "00:00:00:00";
-            })()}
-        </>
+                    : "00:00:00:00"
+            );
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [end_time]);
+
+    return (
+        <p>{timeLeft}</p>
     );
 }

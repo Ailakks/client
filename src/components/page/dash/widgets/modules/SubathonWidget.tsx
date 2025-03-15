@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { WidgetDataContext } from "../../item/Widget";
 import { gql, useQuery } from "@apollo/client";
 import Query, { QueryContext } from "../../../../query/Query";
@@ -116,7 +116,24 @@ function SubathonItem() {
 function SubathonCounter() {
     const { data: { getSubathonStatus: { end_time } } } = useContext(QueryContext);
 
+    const [_, update] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => update((t) => t + 1), 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <p>{end_time}</p>
-    )
+        <>
+            {(() => {
+                let diff = end_time - Math.floor(Date.now() / 1000);
+                return diff > 0
+                    ? [Math.floor(diff / 86400), Math.floor((diff % 86400) / 3600), Math.floor((diff % 3600) / 60), diff % 60]
+                        .map((t) => String(t).padStart(2, "0"))
+                        .join(":")
+                    : "00:00:00:00";
+            })()}
+        </>
+    );
 }

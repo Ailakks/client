@@ -3,6 +3,7 @@ import { WidgetDataContext } from "../../item/Widget";
 import { gql, useQuery } from "@apollo/client";
 import Query, { QueryContext } from "../../../../query/Query";
 import WidgetSocket from "../../item/WidgetSocket";
+import List, { ListContext } from "../../../../list/List";
 
 enum EventType {
     SUBSCRIPTION = 'subscription',
@@ -47,13 +48,13 @@ export default function SubathonWidget() {
     if (metadata) {
         return (
             <WidgetSocket>
-                <Data />
+                <SubathonData />
             </WidgetSocket>
         )
     }
 }
 
-function Data() {
+function SubathonData() {
     const request = useQuery(gql`
         query {
             listSubathon {
@@ -71,15 +72,51 @@ function Data() {
 
     return (
         <Query request={request}>
-            <List />
+            <SubathonList />
         </Query>
     )
 }
 
-function List({ children }) {
-    const { data } = useContext(QueryContext);
+function SubathonList({ children }) {
+    const { data: { listSubathon } } = useContext(QueryContext);
 
     return (
-        <p>{JSON.stringify(data)}</p>
+        <List list={listSubathon}>
+            <SubathonItem />
+        </List>
+    )
+}
+
+function SubathonItem() {
+    const { item: { id } } = useContext(ListContext);
+
+    const request = useQuery(gql`
+        query($id: String!) {
+            getSubathonStatus(payload: {
+                id: $id
+            }) {
+                end_time
+                __typename
+            }
+        }`,
+        {
+            variables: {
+                id
+            }
+        }
+    );
+
+    return (
+        <Query request={request}>
+            <SubathonCounter />
+        </Query>
+    )
+}
+
+function SubathonCounter() {
+    const { data: { getSubathonStatus: { end_time } } } = useContext(QueryContext);
+
+    return (
+        <p>{end_time}</p>
     )
 }

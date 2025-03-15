@@ -5,9 +5,10 @@ import ChannelWrapper from "../../../wrapper/api/Channel";
 import PlatformWrapper from "../../../wrapper/api/Platform";
 import ViewersWidget from "./widgets/ViewsWidget";
 import FeedWidget from "./widgets/FeedWidget";
+import SubathonWidget from "./widgets/modules/SubathonWidget";
 
 export default function Dashboard() {
-    const widgets = [<ChatWidget />, <PreviewWidget />, <ViewersWidget />, <FeedWidget />];
+    const widgets = [<ChatWidget />, <PreviewWidget />, <ViewersWidget />, <FeedWidget />, <SubathonWidget />];
 
     return (
         <ChannelWrapper>

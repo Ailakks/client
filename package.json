@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run vite:dev",
-
     "vite:dev": "bunx --bun vite",
-
     "bun:dev": "bun --hot src/index.tsx",
     "bun:build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
     "bun:start": "NODE_ENV=production bun src/index.tsx"

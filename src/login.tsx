@@ -1,4 +1,3 @@
-import "./index.css";
 import {
     Card,
     CardContent,
@@ -9,7 +8,6 @@ import {
 } from "@/components/ui/card"
 import {
     Field,
-    FieldDescription,
     FieldError,
     FieldGroup,
     FieldLabel,
@@ -20,6 +18,7 @@ import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { AxiosClient } from "./client";
+import { setCookie } from "./cookies"
 
 export function App() {
     const formSchema = z.object({
@@ -40,11 +39,6 @@ export function App() {
     });
 
     function onSubmit(data: z.infer<typeof formSchema>) {
-        function setCookie(name: string, value: string, days: number) {
-            const expires = new Date(Date.now() + days * 864e5).toUTCString();
-            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-        }
-
         AxiosClient.post('auth/login', data).then(({ data }) => setCookie('token', data.token, 7));
     };
 

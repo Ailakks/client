@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { AxiosClient } from "./client";
 
 export function App() {
     const formSchema = z.object({
@@ -26,7 +27,7 @@ export function App() {
             .email(),
         password: z
             .string()
-            .min(20)
+            .min(5)
             .max(100),
     });
 
@@ -39,6 +40,12 @@ export function App() {
     });
 
     function onSubmit(data: z.infer<typeof formSchema>) {
+        function setCookie(name: string, value: string, days: number) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+        }
+
+        AxiosClient.post('auth/login', data).then(({ data }) => setCookie('token', data.token, 7));
     };
 
     return (
@@ -90,7 +97,7 @@ export function App() {
             </CardContent>
             <CardFooter>
                 <Field orientation="horizontal">
-                    <Button type="submit" className="cursor-pointer">Iniciar sesión</Button>
+                    <Button type="submit" form="login" className="cursor-pointer">Iniciar sesión</Button>
                 </Field>
             </CardFooter>
         </Card>

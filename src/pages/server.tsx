@@ -35,14 +35,23 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                           server.channels.map((item: any, key: number) => {
+                            server.channels.map((item: any, key: number) => {
                                 return (
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>
-                                            {decodeMask(item.permission_overwrites[0].allow).includes("VIEW_CHANNEL") && <div>
-                                                <p>{item.name}</p>
-                                            </div>}
+                                            {(() => {
+                                                    const permission = item.permission_overwrites.find((item: { id: string }) => item.id === "302094807046684672");
+
+                                                    if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
+                                                        return (
+                                                            <div>
+                                                                <p>{item.name}</p>
+                                                            </div>
+                                                        );
+                                                    }
+                                                })()}
                                         </SidebarMenuButton>
+
                                     </SidebarMenuItem>
                                 )
                             })

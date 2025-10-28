@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import { getCookie } from "./cookies";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
 
 export function App() {
     const [data, setData] = useState<any>();
@@ -30,14 +40,25 @@ export function App() {
     }
 
     return (
-        <li>
-            {data.d.guilds.map((item: { name: string }, key: number) => {
-                return (
-                    <div key={key}>
-                        <p>{item.name}</p>
-                    </div>
-                )
-            })}
-        </li>
+        <Sidebar>
+            <SidebarContent>
+                <SidebarGroup>
+                    <SidebarGroupLabel>Servidores</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {
+                                data.d.guilds.map((item: { name: string }, key: number) => {
+                                    return (
+                                        <SidebarMenuItem key={key}>
+                                            <SidebarMenuButton asChild>{item.name}</SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    )
+                                })
+                            }
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+        </Sidebar>
     );
 }

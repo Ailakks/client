@@ -35,7 +35,7 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                            server.channels.sort((item: { position: number }) => item.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
+                            server.channels.filter((item: { parent_id: string }) => item.parent_id == null).sort((item: { position: number }) => item.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
                                 return (
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>

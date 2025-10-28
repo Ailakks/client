@@ -17,6 +17,7 @@ import {
 import { ProfileContext } from "@/context/profile";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import type { Profile } from "@/transform/profile.transform";
+import type { Guild } from "@/transform/guild.transform";
 
 export function HomeSidebar() {
     const { data } = useContext<{ data: Profile }>(ProfileContext);
@@ -29,21 +30,23 @@ export function HomeSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                data.data.guilds.map((item: { name: string }, key: number) => {
+                                data.data.guilds.map((item: Guild, key: number) => {
                                     return (
                                         <SidebarMenuItem key={key}>
                                             <SidebarMenuButton asChild>
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <Avatar>
-                                                            <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt={item.name} />
-                                                            <AvatarFallback>{item.name}</AvatarFallback>
-                                                        </Avatar>
-                                                    </TooltipTrigger>
-                                                    <TooltipContent side="left">
-                                                        <p>{item.name}</p>
-                                                    </TooltipContent>
-                                                </Tooltip>
+                                                <a href={`/${item.id}`}>
+                                                    <Tooltip>
+                                                        <TooltipTrigger asChild>
+                                                            <Avatar>
+                                                                <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt={item.name} />
+                                                                <AvatarFallback>{item.name}</AvatarFallback>
+                                                            </Avatar>
+                                                        </TooltipTrigger>
+                                                        <TooltipContent side="left">
+                                                            <p>{item.name}</p>
+                                                        </TooltipContent>
+                                                    </Tooltip>
+                                                </a>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     )

@@ -32,7 +32,7 @@ export function Channel({ serverData }: { serverData: any }) {
                                     </Avatar>
                                     <p>{item.author.username}</p>
                                     <p>{item.timestamp}</p>
-                                    {item.edited_timestamp && <p>edited</p>}
+                                    {item.edited_timestamp && <p>(editado)</p>}
                                 </div>
                                 {
                                     item.attachments.map((item, key: number) => {

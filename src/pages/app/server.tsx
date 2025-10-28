@@ -10,14 +10,13 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarProvider,
-    SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { checkVisible } from "@/lib/roles";
 import { Channel } from "./channel";
 import type { Guild } from "@/transform/guild.transform";
 
 export function Server() {
-    const { server } = useParams();
+    const { server, channel } = useParams();
     const { data } = useContext(ProfileContext);
 
     const [serverData, setServerData] = useState<Guild>(null);
@@ -34,7 +33,6 @@ export function Server() {
         <SidebarProvider>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Servidores</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
@@ -76,7 +74,7 @@ export function Server() {
                 </SidebarGroup>
             </SidebarContent>
             <main className="flex-1">
-                <Channel serverData={serverData} />
+                {channel && <Channel serverData={serverData} />}
             </main>
         </SidebarProvider>
     );

@@ -7,8 +7,9 @@ export function AppRouter() {
     return (
         <Routes>
             <Route path="" element={<Home />} />
+            <Route path="/:server" element={<Server />} />
             <Route path="/:server/:channel" element={<Server />} />
-             <Route path="/debug" element={<Debug />} />
+            <Route path="/debug" element={<Debug />} />
         </Routes>
     );
 }

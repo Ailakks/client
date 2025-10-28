@@ -1,6 +1,5 @@
 import { Expose, Type } from "class-transformer";
 import type { Guild } from "./guild.transform";
-import type { User } from "./user.transform";
 
 class GuildOverride {
     @Expose()
@@ -16,9 +15,6 @@ class UserGuildSettings {
 }
 
 class Data {
-    @Expose()
-    user: User;
-
     @Expose()
     guilds: Guild[];
 

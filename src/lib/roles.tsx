@@ -13,7 +13,8 @@ interface Member {
 interface Role {
     id: string
     name?: string
-    permissions?: string
+    permissions?: string,
+    position: number
 }
 
 interface Overwrite {
@@ -54,7 +55,11 @@ export function userRoles(member: Member, roles: Role[]): string[] {
 }
 
 export function channelRoles(member: Member, roles: Role[], permission_overwrites: Overwrite[]): any[] {
-    return permission_overwrites.filter(item => userRoles(member, roles).includes(item.id));
+    return permission_overwrites
+        .filter(item => userRoles(member, roles).includes(item.id))
+        .sort((a, b) => {
+            return (roles.find(r => r.id === b.id)?.position || 0) - (roles.find(r => r.id === a.id)?.position || 0)
+        })
 }
 
 export function me(server: Server): Member | undefined {

@@ -35,21 +35,22 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                            server.channels.map((item: any, key: number) => {
+                            server.channels.sort((item: { position: number }) => item.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
                                 return (
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>
                                             {(() => {
-                                                    const permission = item.permission_overwrites.find((item: { id: string }) => item.id === "302094807046684672");
+                                                const everyone = server.roles.find((item: { name: string }) => item.name == "@everyone");
+                                                const permission = item.permission_overwrites.find((item) => item.id === everyone.id);
 
-                                                    if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
-                                                        return (
-                                                            <div>
-                                                                <p>{item.name}</p>
-                                                            </div>
-                                                        );
-                                                    }
-                                                })()}
+                                                if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
+                                                    return (
+                                                        <div>
+                                                            <p>{item.name}</p>
+                                                        </div>
+                                                    );
+                                                }
+                                            })()}
                                         </SidebarMenuButton>
 
                                     </SidebarMenuItem>

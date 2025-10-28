@@ -6,24 +6,24 @@ export function App() {
     const [data, setData] = useState<any>();
 
     useEffect(() => {
-        const socket = io("wss://gateway.discord.gg/?encoding=json&v=9");
+        const socket = new WebSocket(`wss://gateway.discord.gg/?encoding=json&v=9`);
 
-        socket.on("connect", () => {
-            socket.send({
-                "op": 2,
-                "d": {
-                    "token": getCookie('token'),
-                    "properties": {
-                    }
+        socket.onopen = () => socket.send(JSON.stringify({
+            "op": 2,
+            "d": {
+                "token": getCookie('token'),
+                "properties": {
                 }
-            })
-        })
+            }
+        }));
 
-        socket.on("message", (data: { t: string }) => {
-            if (data.t == "READY") {
+        socket.onmessage = event => {
+            const data = JSON.parse(event.data);
+            if (data.t === "READY") {
                 setData(data);
             }
-        });
+        };
+
     }, []);
 
     return (

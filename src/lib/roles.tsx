@@ -57,12 +57,12 @@ export function channelRoles(member: Member, roles: Role[], permission_overwrite
     return permission_overwrites.filter(item => userRoles(member, roles).includes(item.id));
 }
 
-export function me(server: Server): Partial<Member> | undefined {
+export function me(server: Server): Member | undefined {
     return server.members.find(m => m.user.id === "1432477694259626248");
 }
 
 export function serverChannelRoles(server: Server, channel: Channel): any[] {
-    const member = server.members.find(m => m.user.id === "1432477694259626248");
+    const member = me(server);
 
     if (!member) return [];
 

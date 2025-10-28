@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 import { getCookie } from "./cookies";
 
 export function App() {
@@ -26,7 +25,19 @@ export function App() {
 
     }, []);
 
+    if (!data) {
+        return <p>Cargando...</p>
+    }
+
     return (
-        <p>{JSON.stringify(data)}</p>
+        <li>
+            {data.d.guilds.map((item: { name: string }, key: number) => {
+                return (
+                    <div key={key}>
+                        <p>{item.name}</p>
+                    </div>
+                )
+            })}
+        </li>
     );
 }

@@ -1,34 +1,34 @@
 import { decodeMask } from "@/util/permission"
 
 interface User {
-  id: string
-  username: string
+    id: string
+    username: string
 }
 
 interface Member {
-  user: User
-  roles: string[]
+    user: User
+    roles: string[]
 }
 
 interface Role {
-  id: string
-  name?: string
-  permissions?: string
+    id: string
+    name?: string
+    permissions?: string
 }
 
 interface Overwrite {
-  id: string
-  allow?: string
-  deny?: string
+    id: string
+    allow?: string
+    deny?: string
 }
 
 interface Server {
-  members: Member[]
-  roles: Role[]
+    members: Member[]
+    roles: Role[]
 }
 
 interface Channel {
-  permission_overwrites: Overwrite[]
+    permission_overwrites: Overwrite[]
 }
 
 export function rolesMask(mask: string[], overwrites: Overwrite[]): bigint {
@@ -61,6 +61,12 @@ export function me(server: Server): Member | undefined {
     return server.members.find(m => m.user.id === "1432477694259626248");
 }
 
+export function meRoles(server: Server): (Role | undefined)[] {
+    const everyone = everyoneRole(server.roles);
+
+    return [everyone, ...(me(server)?.roles || []).map(id => server.roles.find(r => r.id === id))];
+}
+
 export function serverChannelRoles(server: Server, channel: Channel): any[] {
     const member = me(server);
 
@@ -70,8 +76,8 @@ export function serverChannelRoles(server: Server, channel: Channel): any[] {
 }
 
 export function channelPermissions(server: Server, channel: Channel): bigint | undefined {
-    const base = (me(server)?.roles || [])
-        .map(id => server.roles.find(r => r.id === id)?.permissions || "0")
+    const base = meRoles(server)
+        .map(role => role?.permissions || "0")
         .map(BigInt)
         .reduce((acc, r) => acc | r, 0n);
 

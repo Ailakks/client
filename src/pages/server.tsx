@@ -10,7 +10,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { checkPermission } from "@/lib/roles";
+import { checkPermission, meRoles } from "@/lib/roles";
 
 export function Server() {
     const { id } = useParams();

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCookie } from "./cookies";
+import { getCookie } from "../pages/cookies";
 import {
     Sidebar,
     SidebarContent,
@@ -16,7 +16,7 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 
-export function Home() {
+export function HomeSidebar() {
     const [data, setData] = useState<any>();
 
     useEffect(() => {

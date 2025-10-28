@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./app";
 import "./index.css";
+import { Router } from "./pages/router";
 
 const elem = document.getElementById("root")!;
 const app = (
     <StrictMode>
-        <App />
+        <Router />
     </StrictMode>
 );
 

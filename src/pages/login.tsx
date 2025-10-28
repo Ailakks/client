@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { AxiosClient } from "./client";
+import { AxiosClient } from "../lib/client";
 import { setCookie } from "./cookies"
 
 export function Login() {

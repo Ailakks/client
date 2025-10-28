@@ -35,7 +35,7 @@ export function serverChannelRoles(server: { members: [{ user: { id: string, use
 }
 
 export function channelPermissions(server: { members: [{ user: { id: string, username: string }, roles: string[] }], roles: [{ id: string, name: string }] }, channel: { permission_overwrites: [{ id: string }] }): bigint {
-    const base = BigInt(everyoneRole(server.roles).permissions);
+    const base = everyoneRole(server.roles) ? BigInt(everyoneRole(server.roles).permissions || "0") : 0n;
 
     return serverChannelRoles(server, channel)
         .map(o => ({ allow: BigInt(o.allow), deny: BigInt(o.deny) }))

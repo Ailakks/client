@@ -34,23 +34,19 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                            server.channels.filter((item: { type: number }) => item.type == 4).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
-                                return (
-                                    <SidebarMenuItem key={key}>
-                                        <SidebarMenuButton asChild>
-                                            {(() => {
-                                                if (checkPermission(server, item, "VIEW_CHANNEL")) {
-                                                    return (
-                                                        <div>
-                                                            <p>{item.name}</p>
-                                                        </div>
-                                                    );
-                                                }
-                                            })()}
-                                        </SidebarMenuButton>
+                            server.channels.sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
+                                if (checkPermission(server, item, "VIEW_CHANNEL")) {
+                                    return (
+                                        <SidebarMenuItem key={key}>
+                                            <SidebarMenuButton asChild>
+                                                <div>
+                                                    <p>{item.name}</p>
+                                                </div>
+                                            </SidebarMenuButton>
 
-                                    </SidebarMenuItem>
-                                )
+                                        </SidebarMenuItem>
+                                    )
+                                }
                             })
                         }
                     </SidebarMenu>

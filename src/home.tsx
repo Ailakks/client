@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import { getCookie } from "./cookies";
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+    Sidebar,
+    SidebarContent,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 export function App() {
     const [data, setData] = useState<any>();
@@ -50,7 +55,13 @@ export function App() {
                                 data.d.guilds.map((item: { name: string }, key: number) => {
                                     return (
                                         <SidebarMenuItem key={key}>
-                                            <SidebarMenuButton asChild>{item.name}</SidebarMenuButton>
+                                            <SidebarMenuButton asChild>
+                                                <Avatar>
+                                                    <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt="@shadcn" />
+                                                    <AvatarFallback>{item.name}</AvatarFallback>
+                                                </Avatar>
+                                                <p>{item.name}</p>
+                                            </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     )
                                 })

@@ -17,8 +17,8 @@ import { Button } from "@/components/ui/button"
 import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { AxiosClient } from "../lib/client";
-import { setCookie } from "./cookies"
+import { AxiosClient } from "../../lib/client";
+import { setCookie } from "../../lib/cookies"
 
 export function Login() {
     const formSchema = z.object({

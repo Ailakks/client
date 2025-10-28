@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getCookie } from "../pages/cookies";
+import { getCookie } from "../lib/cookies";
 
 export const ProfileContext = createContext<{ data: any }>({ data: null });
 

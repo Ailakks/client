@@ -1,4 +1,4 @@
 import axios from 'axios';
-import { getCookie } from '../pages/cookies';
+import { getCookie } from './cookies';
 
 export const AxiosClient = axios.create({ baseURL: 'https://discord.com/api/v9', headers: { Authorization: `${getCookie('token')}` } });

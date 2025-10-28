@@ -15,6 +15,7 @@ import {
     AvatarImage,
 } from "@/components/ui/avatar"
 import { ProfileContext } from "@/context/profile";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function HomeSidebar() {
     const { data } = useContext(ProfileContext);
@@ -31,13 +32,17 @@ export function HomeSidebar() {
                                     return (
                                         <SidebarMenuItem key={key}>
                                             <SidebarMenuButton asChild>
-                                                <div>
-                                                    <Avatar>
-                                                        <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt="@shadcn" />
-                                                        <AvatarFallback>{item.name}</AvatarFallback>
-                                                    </Avatar>
-                                                    <p>{item.name}</p>
-                                                </div>
+                                                <Tooltip>
+                                                    <TooltipTrigger asChild>
+                                                        <Avatar>
+                                                            <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt={item.name} />
+                                                            <AvatarFallback>{item.name}</AvatarFallback>
+                                                        </Avatar>
+                                                    </TooltipTrigger>
+                                                    <TooltipContent side="left">
+                                                        <p>{item.name}</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     )

@@ -43,8 +43,7 @@ export function Server() {
                                                 const everyone = server.roles.find((item: { name: string }) => item.name == "@everyone");
                                                 const permission = item.permission_overwrites.find((item) => item.id === everyone.id);
 
-                                                //if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
-                                                if (true) {
+                                                if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
                                                     return (
                                                         <div>
                                                             <p>{item.name}</p>

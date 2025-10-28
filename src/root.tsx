@@ -1,19 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./home";
+import { App } from "./app";
 import "./index.css";
-
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 const elem = document.getElementById("root")!;
 const app = (
     <StrictMode>
-        <SidebarProvider>
-            <main>
-                <SidebarTrigger />
-                <App />
-            </main>
-        </SidebarProvider>
+        <App />
     </StrictMode>
 );
 

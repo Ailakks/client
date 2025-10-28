@@ -11,12 +11,12 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
 } from "@/components/ui/avatar"
 
-export function App() {
+export function Home() {
     const [data, setData] = useState<any>();
 
     useEffect(() => {
@@ -56,11 +56,13 @@ export function App() {
                                     return (
                                         <SidebarMenuItem key={key}>
                                             <SidebarMenuButton asChild>
-                                                <Avatar>
-                                                    <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt="@shadcn" />
-                                                    <AvatarFallback>{item.name}</AvatarFallback>
-                                                </Avatar>
-                                                <p>{item.name}</p>
+                                                <div>
+                                                    <Avatar>
+                                                        <AvatarImage src={`https://cdn.discordapp.com/icons/${item.id}/${item.icon}.png?size=80&quality=lossless`} alt="@shadcn" />
+                                                        <AvatarFallback>{item.name}</AvatarFallback>
+                                                    </Avatar>
+                                                    <p>{item.name}</p>
+                                                </div>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     )

@@ -20,7 +20,7 @@ import * as z from "zod"
 import { AxiosClient } from "./client";
 import { setCookie } from "./cookies"
 
-export function App() {
+export function Login() {
     const formSchema = z.object({
         login: z
             .email(),

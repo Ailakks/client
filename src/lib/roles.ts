@@ -8,6 +8,7 @@ import type { UserTransform } from "@/transform/user.transform"
 import type { RoleTransform } from "@/transform/role.transform"
 import type { MemberTransform } from "@/transform/member.transform"
 import type { OverwriteTransform } from "@/transform/overwrite.transform"
+import { Permissions } from "./permissions"
 
 export function rolesMask(mask: string[], overwrites: OverwriteTransform[]): bigint {
     const base = mask.map(role => BigInt(role)).reduce((acc, r) => acc | r, 0n)
@@ -57,7 +58,7 @@ export function guildChannelRoles(user: UserTransform, guild: GuildTransform, ch
     return channelRoles(member, guild.roles, channel.permission_overwrites);
 }
 
-export function channelPermissions(user: UserTransform, guild: GuildTransform, channel: ChannelTransform): bigint | undefined {
+export function channelPermissions(user: UserTransform, guild: GuildTransform, channel: ChannelTransform): bigint {
     const base = meRoles(user, guild)
         .map(role => role?.permissions || "0")
         .map(BigInt)
@@ -70,11 +71,11 @@ export function channelPermissions(user: UserTransform, guild: GuildTransform, c
         .reduce((acc, o) => (acc & ~o.deny) | o.allow, base);
 }
 
-export function checkPermission(user: UserTransform, guild: GuildTransform, channel: ChannelTransform, permission: string): boolean {
-    return decodeMask(`${channelPermissions(user, guild, channel)}`).includes(permission);
+export function checkPermission(user: UserTransform, guild: GuildTransform, channel: ChannelTransform, permission: Permissions): boolean {
+    return getActiveFlags<Permissions>(Number(channelPermissions(user, guild, channel)), Permissions).includes(permission);
 }
 
-export function checkVisible(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: string): boolean {
+export function check(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: Permissions): boolean {
     const override_flags = data.data.user_guild_settings.find((item) => item.guild_id == guild.id)?.channel_overrides?.find((item) => item.channel_id == channel.id);
 
     return data.data.user.id == guild.owner_id || checkPermission(data.data.user, guild, channel, permission) && override_flags && !getActiveFlags(channel.flags, ChannelFlags).includes(ChannelFlags.IsGuildResourceChannel);

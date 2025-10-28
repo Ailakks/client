@@ -1,3 +1,3 @@
-export function getActiveFlags(bitmask: number, flags: Record<string, number>): number[] {
+export function getActiveFlags<T>(bitmask: number, flags: T): T[] {
     return Object.values(flags).filter(value => (bitmask & value) === value);
 }

@@ -10,7 +10,7 @@ import {
     SidebarMenuItem,
     SidebarProvider,
 } from "@/components/ui/sidebar"
-import { checkVisible } from "@/lib/roles";
+import { check } from "@/lib/roles";
 import { Channel } from "./channel";
 import type { GuildTransform } from "@/transform/guild.transform";
 
@@ -36,7 +36,7 @@ export function Guild() {
                         <SidebarMenu>
                             {
                                 guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                    if (guildData.channels.filter((item) => item.type != 4).filter((target) => checkVisible(data, guildData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
+                                    if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
                                         return (
                                             <Fragment key={key}>
                                                 <SidebarMenuItem>
@@ -48,7 +48,7 @@ export function Guild() {
                                                 </SidebarMenuItem>
                                                 {
                                                     guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                                        if (checkVisible(data, guildData, item, "VIEW_CHANNEL")) {
+                                                        if (check(data, guildData, item, "VIEW_CHANNEL")) {
                                                             return (
                                                                 <Fragment key={key}>
                                                                     <SidebarMenuItem>

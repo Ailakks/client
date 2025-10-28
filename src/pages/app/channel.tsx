@@ -41,14 +41,14 @@ export function Channel({ guildData }: { guildData: GuildTransform }) {
                                         {
                                             item.attachments.map((item, key: number) => {
                                                 return (
-                                                    <img className="rounded-lg" src={item.proxy_url} />
+                                                    <img key={key} className="rounded-lg" src={item.proxy_url} />
                                                 )
                                             })
                                         }
                                         {
                                             item.embeds.map((item, key: number) => {
                                                 return (
-                                                    <Card>
+                                                    <Card key={key}>
                                                         <CardContent>
                                                             <Markdown>{item.description}</Markdown>
                                                         </CardContent>

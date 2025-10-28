@@ -1,29 +1,9 @@
-import { Expose, Type } from "class-transformer";
-import type { Guild } from "./guild.transform";
+import { Expose } from "class-transformer";
 
-class GuildOverride {
+export class UserTransform {
     @Expose()
-    channel_id: string;
-}
-
-class UserGuildSettings {
-    @Expose()
-    guild_id: string;
+    id: string;
 
     @Expose()
-    channel_overrides: GuildOverride[]
-}
-
-class Data {
-    @Expose()
-    guilds: Guild[];
-
-    @Expose()
-    user_guild_settings: UserGuildSettings[];
-}
-
-export class Profile {
-    @Expose({ name: 'd' })
-    @Type(() => Data)
-    data: Data;
+    username: string;
 }

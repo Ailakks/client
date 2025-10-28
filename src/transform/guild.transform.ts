@@ -1,9 +1,9 @@
 import { Expose } from "class-transformer";
-import type { Channel } from "./channel.transform";
-import type { Member } from "./member.transform";
-import type { Role } from "./role.transform";
+import type { ChannelTransform } from "./channel.transform";
+import type { MemberTransform } from "./member.transform";
+import type { RoleTransform } from "./role.transform";
 
-export class Guild {
+export class GuildTransform {
     @Expose()
     id: string;
 
@@ -14,11 +14,14 @@ export class Guild {
     icon: string;
 
     @Expose()
-    channels: Channel[];
+    channels: ChannelTransform[];
 
     @Expose()
-    members: Member[];
+    members: MemberTransform[];
 
     @Expose()
-    roles: Role[];
+    roles: RoleTransform[];
+
+    @Expose()
+    owner_id: string;
 }

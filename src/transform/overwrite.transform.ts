@@ -1,6 +1,6 @@
 import { Expose } from "class-transformer"
 
-export class Overwrite {
+export class OverwriteTransform {
     @Expose()
     id: string;
 

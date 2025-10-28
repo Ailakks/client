@@ -16,11 +16,11 @@ import {
 } from "@/components/ui/avatar"
 import { ProfileContext } from "@/context/profile";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import type { Profile } from "@/transform/profile.transform";
-import type { Guild } from "@/transform/guild.transform";
+import type { ProfileTransform } from "@/transform/profile.transform";
+import type { GuildTransform } from "@/transform/guild.transform";
 
 export function HomeSidebar() {
-    const { data } = useContext<{ data: Profile }>(ProfileContext);
+    const { data } = useContext<{ data: ProfileTransform }>(ProfileContext);
 
     return (
         <Sidebar>
@@ -30,7 +30,7 @@ export function HomeSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                data.data.guilds.map((item: Guild, key: number) => {
+                                data.data.guilds.map((item: GuildTransform, key: number) => {
                                     return (
                                         <SidebarMenuItem key={key}>
                                             <SidebarMenuButton asChild>

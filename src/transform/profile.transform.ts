@@ -1,6 +1,6 @@
 import { Expose, Type } from "class-transformer";
-import type { Guild } from "./guild.transform";
-import type { User } from "./user.transform";
+import type { GuildTransform } from "./guild.transform";
+import type { UserTransform } from "./user.transform";
 
 class GuildOverride {
     @Expose()
@@ -17,16 +17,16 @@ class UserGuildSettings {
 
 class Data {
     @Expose()
-    user: User;
+    user: UserTransform;
 
     @Expose()
-    guilds: Guild[];
+    guilds: GuildTransform[];
 
     @Expose()
     user_guild_settings: UserGuildSettings[];
 }
 
-export class Profile {
+export class ProfileTransform {
     @Expose({ name: 'd' })
     @Type(() => Data)
     data: Data;

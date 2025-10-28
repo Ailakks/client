@@ -5,7 +5,6 @@ import {
     SidebarContent,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -13,19 +12,19 @@ import {
 } from "@/components/ui/sidebar"
 import { checkVisible } from "@/lib/roles";
 import { Channel } from "./channel";
-import type { Guild } from "@/transform/guild.transform";
+import type { GuildTransform } from "@/transform/guild.transform";
 
-export function Server() {
-    const { server, channel } = useParams();
+export function Guild() {
+    const { guild, channel } = useParams();
     const { data } = useContext(ProfileContext);
 
-    const [serverData, setServerData] = useState<Guild>(null);
+    const [guildData, setGuildData] = useState<GuildTransform>(null);
 
     useEffect(() => {
-        setServerData(data.data.guilds.find((current) => current.id == server));
-    }, [server]);
+        setGuildData(data.data.guilds.find((current) => current.id == guild));
+    }, [guild]);
 
-    if (!serverData) {
+    if (!guildData) {
         return <p>test</p>
     }
 
@@ -36,8 +35,8 @@ export function Server() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                serverData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                    if (serverData.channels.filter((item) => item.type != 4).filter((target) => checkVisible(data, serverData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
+                                guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                    if (guildData.channels.filter((item) => item.type != 4).filter((target) => checkVisible(data, guildData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
                                         return (
                                             <Fragment key={key}>
                                                 <SidebarMenuItem>
@@ -48,13 +47,13 @@ export function Server() {
                                                     </SidebarMenuButton>
                                                 </SidebarMenuItem>
                                                 {
-                                                    serverData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                                        if (checkVisible(data, serverData, item, "VIEW_CHANNEL")) {
+                                                    guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                                        if (checkVisible(data, guildData, item, "VIEW_CHANNEL")) {
                                                             return (
                                                                 <Fragment key={key}>
                                                                     <SidebarMenuItem>
                                                                         <SidebarMenuButton asChild>
-                                                                            <a href={`/${server}/${item.id}`}>
+                                                                            <a href={`/${guild}/${item.id}`}>
                                                                                 <p>{item.name}</p>
                                                                             </a>
                                                                         </SidebarMenuButton>
@@ -74,7 +73,7 @@ export function Server() {
                 </SidebarGroup>
             </SidebarContent>
             <main className="flex-1">
-                {channel && <Channel serverData={serverData} />}
+                {channel && <Channel guildData={guildData} />}
             </main>
         </SidebarProvider>
     );

@@ -4,8 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Markdown from 'react-markdown'
+import type { GuildTransform } from "@/transform/guild.transform";
 
-export function Channel({ serverData }: { serverData: any }) {
+export function Channel({ guildData }: { guildData: GuildTransform }) {
     const { channel } = useParams();
 
     const [data, setData] = useState<any>([]);
@@ -21,38 +22,42 @@ export function Channel({ serverData }: { serverData: any }) {
     return (
         <ol>
             {
-                data.map((item: any, key: number) => {
+                data.map((item, key: number) => {
                     return (
-                        <li key={key} className="">
-                            <div className="flex-1 space-y-2">
-                                <div className="flex space-x-2 items-center">
-                                    <Avatar>
-                                        <AvatarImage className="w-10! rounded-full" src={`https://cdn.discordapp.com/avatars/${item.author.id}/${item.author.avatar}.webp?size=128`} alt={item.author.username} />
-                                        <AvatarFallback>{item.username}</AvatarFallback>
+                        <li key={key}>
+                            <div className="space-y-2">
+                                <div className="flex space-x-2">
+                                    <Avatar className="h-12 aspect-square bg-red-500 rounded-full overflow-hidden">
+                                        {item.author.avatar && <AvatarImage src={`https://cdn.discordapp.com/avatars/${item.author.id}/${item.author.avatar}.webp?size=128`} alt={item.author.username} />}
+                                        <AvatarFallback>{item.author.username}</AvatarFallback>
                                     </Avatar>
-                                    <p>{item.author.username}</p>
-                                    <p>{item.timestamp}</p>
-                                    {item.edited_timestamp && <p>(editado)</p>}
+                                    <div>
+                                        <div className="h-6 flex text-nowrap space-x-2">
+                                            <p>{item.author.username}</p>
+                                            <p>{item.timestamp}</p>
+                                            {item.edited_timestamp && <p>(editado)</p>}
+                                        </div>
+                                        {
+                                            item.attachments.map((item, key: number) => {
+                                                return (
+                                                    <img className="rounded-lg" src={item.proxy_url} />
+                                                )
+                                            })
+                                        }
+                                        {
+                                            item.embeds.map((item, key: number) => {
+                                                return (
+                                                    <Card>
+                                                        <CardContent>
+                                                            <Markdown>{item.description}</Markdown>
+                                                        </CardContent>
+                                                    </Card>
+                                                )
+                                            })
+                                        }
+                                        <p className="h-6">{item.content}</p>
+                                    </div>
                                 </div>
-                                {
-                                    item.attachments.map((item, key: number) => {
-                                        return (
-                                            <img className="rounded-lg" src={item.proxy_url} />
-                                        )
-                                    })
-                                }
-                                {
-                                    item.embeds.map((item, key: number) => {
-                                        return (
-                                            <Card>
-                                                <CardContent>
-                                                    <Markdown>{item.description}</Markdown>
-                                                </CardContent>
-                                            </Card>
-                                        )
-                                    })
-                                }
-                                <p>{item.content}</p>
                             </div>
                         </li>
                     )

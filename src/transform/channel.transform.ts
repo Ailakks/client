@@ -1,7 +1,7 @@
 import { Expose } from "class-transformer";
-import type { Overwrite } from "./overwrite.transform";
+import type { OverwriteTransform } from "./overwrite.transform";
 
-export class Channel {
+export class ChannelTransform {
     @Expose()
     id: string;
 
@@ -21,5 +21,5 @@ export class Channel {
     flags: number;
 
     @Expose()
-    permission_overwrites: Overwrite[];
+    permission_overwrites: OverwriteTransform[];
 }

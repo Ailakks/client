@@ -1,9 +1,9 @@
 import { Expose } from "class-transformer"
-import type { User } from "./user.transform";
+import type { UserTransform } from "./user.transform";
 
-export class Member {
+export class MemberTransform {
     @Expose()
-    user: User;
+    user: UserTransform;
 
     @Expose()
     roles: string[];

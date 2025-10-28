@@ -1,4 +1,6 @@
 import { decodeMask } from "@/util/permission"
+import { ChannelFlags } from "./channels"
+import { getActiveFlags } from "./flags"
 
 interface User {
     id: string
@@ -32,6 +34,7 @@ interface Server {
 interface Channel {
     id: string
     permission_overwrites: Overwrite[]
+    flags: number
 }
 
 export function rolesMask(mask: string[], overwrites: Overwrite[]): bigint {
@@ -100,5 +103,7 @@ export function checkPermission(server: Server, channel: Channel, permission: st
 }
 
 export function checkVisible(data: any, server: Server, channel: Channel, permission: string): boolean {
-    return checkPermission(server, channel, permission) && data.d.user_guild_settings.find((item: { guild_id: string }) => item.guild_id == server.id).channel_overrides.find((item: { channel_id: string }) => item.channel_id == channel.id);
+    const override_flags = data.d.user_guild_settings.find((item: { guild_id: string }) => item.guild_id == server.id).channel_overrides.find((item: { channel_id: string }) => item.channel_id == channel.id);
+
+    return checkPermission(server, channel, permission) && override_flags && !getActiveFlags(channel.flags, ChannelFlags).IsGuildResourceChannel;
 }

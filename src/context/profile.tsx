@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getCookie } from "../pages/cookies";
 
-export const ProfileContext = createContext({ data: null });
+export const ProfileContext = createContext<{ data: any }>({ data: null });
 
 export function ProfileWrapper({ children }: { children: any }) {
     const [data, setData] = useState<any>();

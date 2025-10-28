@@ -10,7 +10,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { checkPermission, meRoles } from "@/lib/roles";
+import { checkVisible } from "@/lib/roles";
 
 export function Server() {
     const { id } = useParams();
@@ -33,20 +33,8 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                            server.channels.filter((item: { type: number }) => item.type == 4).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: { id: string, name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
-                                if (checkPermission(server, item, "VIEW_CHANNEL")) {
-                                    return (
-                                        <Fragment key={key}>
-                                            <SidebarMenuItem>
-                                                <SidebarMenuButton asChild>
-                                                    <div>
-                                                        <p>{item.name}</p>
-                                                    </div>
-                                                </SidebarMenuButton>
-                                            </SidebarMenuItem>
-                                            {
-                                                server.channels.filter((item: { type: number }) => item.type != 4).filter((target: { parent_id: string }) => target.parent_id == item.id).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
-                                                    if (checkPermission(server, item, "VIEW_CHANNEL")) {
+                            server.channels.filter((item: { type: number }) => item.type != 4)/*.filter((target: { parent_id: string }) => target.parent_id == item.id)*/.sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: { name: string, permission_overwrites: [{ id: string, allow: string }] }, key: number) => {
+                                                    if (checkVisible(data, server, item, "VIEW_CHANNEL")) {
                                                         return (
                                                             <Fragment key={key}>
                                                                 <SidebarMenuItem>
@@ -60,11 +48,7 @@ export function Server() {
                                                         )
                                                     }
                                                 })
-                                            }
-                                        </Fragment>
-                                    )
-                                }
-                            })
+                                            
                         }
                     </SidebarMenu>
                 </SidebarGroupContent>

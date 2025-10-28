@@ -24,11 +24,13 @@ interface Overwrite {
 }
 
 interface Server {
+    id: string
     members: Member[]
     roles: Role[]
 }
 
 interface Channel {
+    id: string
     permission_overwrites: Overwrite[]
 }
 
@@ -58,7 +60,7 @@ export function channelRoles(member: Member, roles: Role[], permission_overwrite
     return permission_overwrites
         .filter(item => userRoles(member, roles).includes(item.id))
         .sort((a, b) => {
-            return (roles.find(r => r.id === b.id)?.position || 0) - (roles.find(r => r.id === a.id)?.position || 0)
+            return (roles.find(r => r.id === a.id)?.position || 0) - (roles.find(r => r.id === b.id)?.position || 0)
         })
 }
 
@@ -94,5 +96,9 @@ export function channelPermissions(server: Server, channel: Channel): bigint | u
 }
 
 export function checkPermission(server: Server, channel: Channel, permission: string): boolean {
-    return decodeMask(`${channelPermissions(server, channel)}`).includes(permission)
+    return decodeMask(`${channelPermissions(server, channel)}`).includes(permission);
+}
+
+export function checkVisible(data: any, server: Server, channel: Channel, permission: string): boolean {
+    return checkPermission(server, channel, permission) && data.d.user_guild_settings.find((item: { guild_id: string }) => item.guild_id == server.id).channel_overrides.find((item: { channel_id: string }) => item.channel_id == channel.id);
 }

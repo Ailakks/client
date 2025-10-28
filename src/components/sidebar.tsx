@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { getCookie } from "../pages/cookies";
 import {
     Sidebar,
     SidebarContent,

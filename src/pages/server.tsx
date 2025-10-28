@@ -11,6 +11,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { decodeMask } from "@/util/permission";
 
 export function Server() {
     const { id } = useParams();
@@ -19,8 +20,13 @@ export function Server() {
     const [server, setServer] = useState<any>(null);
 
     useEffect(() => {
+        console.log(data)
         setServer(data.d.guilds.find((current: { id: string }) => current.id == id));
     }, [data]);
+
+    if (!server) {
+        return <p>test</p>
+    }
 
     return (
         <SidebarContent>
@@ -29,11 +35,13 @@ export function Server() {
                 <SidebarGroupContent>
                     <SidebarMenu>
                         {
-                           server.channels.map((item: { name: string }, key: number) => {
+                           server.channels.map((item: any, key: number) => {
                                 return (
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>
-                                            <p>{item.name}</p>
+                                            {decodeMask(item.permission_overwrites[0].allow).includes("VIEW_CHANNEL") && <div>
+                                                <p>{item.name}</p>
+                                            </div>}
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 )

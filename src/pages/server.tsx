@@ -34,7 +34,7 @@ export function Server() {
                     <SidebarMenu>
                         {
                             server.channels.filter((item: { type: number }) => item.type == 4).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: any, key: number) => {
-                                if (true) {
+                                if (server.channels.filter((item: { type: number }) => item.type != 4).filter((target: any) => checkVisible(data, server, target, "VIEW_CHANNEL")).find((target: { parent_id: string }) => target.parent_id == item.id)) {
                                     return (
                                         <Fragment key={key}>
                                             <SidebarMenuItem>

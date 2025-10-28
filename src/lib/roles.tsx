@@ -1,3 +1,5 @@
+import { decodeMask } from "@/util/permission"
+
 export function rolesMask(mask: string[], overwrites: { allow: string, deny: string }[]): bigint {
     const base = mask.map(role => BigInt(role)).reduce((acc, r) => acc | r, 0n)
 
@@ -38,4 +40,8 @@ export function channelPermissions(server: { members: [{ user: { id: string, use
     return serverChannelRoles(server, channel)
         .map(o => ({ allow: BigInt(o.allow), deny: BigInt(o.deny) }))
         .reduce((acc, o) => (acc & ~o.deny) | o.allow, base);
+}
+
+export function checkPermission(server: { members: [{ user: { id: string, username: string }, roles: string[] }], roles: [{ id: string, name: string }] }, channel: { permission_overwrites: [{ id: string }] }, permission: string): boolean {
+    return decodeMask(`${channelPermissions(server, channel)}`).includes(permission)
 }

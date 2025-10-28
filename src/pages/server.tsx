@@ -10,7 +10,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { channelPermissions } from "@/lib/roles";
+import { checkPermission } from "@/lib/roles";
 
 export function Server() {
     const { id } = useParams();
@@ -39,11 +39,10 @@ export function Server() {
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>
                                             {(() => {
-                                                if (true) {
+                                                if (checkPermission(server, item, "VIEW_CHANNEL")) {
                                                     return (
                                                         <div>
                                                             <p>{item.name}</p>
-                                                            <p>{channelPermissions(server, item)}</p>
                                                         </div>
                                                     );
                                                 }

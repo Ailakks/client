@@ -2,7 +2,6 @@ import { ProfileContext } from "@/context/profile";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-    Sidebar,
     SidebarContent,
     SidebarGroup,
     SidebarGroupContent,
@@ -11,7 +10,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { decodeMask } from "@/util/permission";
+import { channelPermissions } from "@/lib/roles";
 
 export function Server() {
     const { id } = useParams();
@@ -40,13 +39,11 @@ export function Server() {
                                     <SidebarMenuItem key={key}>
                                         <SidebarMenuButton asChild>
                                             {(() => {
-                                                const everyone = server.roles.find((item: { name: string }) => item.name == "@everyone");
-                                                const permission = item.permission_overwrites.find((item) => item.id === everyone.id);
-
-                                                if (permission && decodeMask(permission.allow).includes("VIEW_CHANNEL")) {
+                                                if (true) {
                                                     return (
                                                         <div>
                                                             <p>{item.name}</p>
+                                                            <p>{channelPermissions(server, item)}</p>
                                                         </div>
                                                     );
                                                 }

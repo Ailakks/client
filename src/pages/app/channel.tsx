@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Markdown from 'react-markdown'
 import type { GuildTransform } from "@/transform/guild.transform";
+import type { MessageTransform } from "@/transform/message.transform";
 
 export function Channel({ guildData }: { guildData: GuildTransform }) {
     const { channel } = useParams();
 
-    const [data, setData] = useState<any>([]);
+    const [data, setData] = useState<MessageTransform[]>([]);
 
     useEffect(() => {
         const update = async () => {

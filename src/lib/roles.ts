@@ -1,41 +1,9 @@
 import { decodeMask } from "@/util/permission"
 import { ChannelFlags } from "./channels"
 import { getActiveFlags } from "./flags"
-
-interface User {
-    id: string
-    username: string
-}
-
-interface Member {
-    user: User
-    roles: string[]
-}
-
-interface Role {
-    id: string
-    name?: string
-    permissions?: string,
-    position: number
-}
-
-interface Overwrite {
-    id: string
-    allow?: string
-    deny?: string
-}
-
-interface Server {
-    id: string
-    members: Member[]
-    roles: Role[]
-}
-
-interface Channel {
-    id: string
-    permission_overwrites: Overwrite[]
-    flags: number
-}
+import type { Profile } from "@/transform/profile.transform"
+import type { Guild } from "@/transform/guild.transform"
+import type { Channel } from "@/transform/channel.transform"
 
 export function rolesMask(mask: string[], overwrites: Overwrite[]): bigint {
     const base = mask.map(role => BigInt(role)).reduce((acc, r) => acc | r, 0n)
@@ -67,17 +35,17 @@ export function channelRoles(member: Member, roles: Role[], permission_overwrite
         })
 }
 
-export function me(server: Server): Member | undefined {
+export function me(server: Guild): Member | undefined {
     return server.members.find(m => m.user.id === "1432477694259626248");
 }
 
-export function meRoles(server: Server): (Role | undefined)[] {
+export function meRoles(server: Guild): (Role | undefined)[] {
     const everyone = everyoneRole(server.roles);
 
     return [everyone, ...(me(server)?.roles || []).map(id => server.roles.find(r => r.id === id))];
 }
 
-export function serverChannelRoles(server: Server, channel: Channel): any[] {
+export function serverChannelRoles(server: Guild, channel: Channel): any[] {
     const member = me(server);
 
     if (!member) return [];
@@ -85,7 +53,7 @@ export function serverChannelRoles(server: Server, channel: Channel): any[] {
     return channelRoles(member, server.roles, channel.permission_overwrites);
 }
 
-export function channelPermissions(server: Server, channel: Channel): bigint | undefined {
+export function channelPermissions(server: Guild, channel: Channel): bigint | undefined {
     const base = meRoles(server)
         .map(role => role?.permissions || "0")
         .map(BigInt)
@@ -98,12 +66,12 @@ export function channelPermissions(server: Server, channel: Channel): bigint | u
         .reduce((acc, o) => (acc & ~o.deny) | o.allow, base);
 }
 
-export function checkPermission(server: Server, channel: Channel, permission: string): boolean {
+export function checkPermission(server: Guild, channel: Channel, permission: string): boolean {
     return decodeMask(`${channelPermissions(server, channel)}`).includes(permission);
 }
 
-export function checkVisible(data: any, server: Server, channel: Channel, permission: string): boolean {
-    const override_flags = data.d.user_guild_settings.find((item: { guild_id: string }) => item.guild_id == server.id).channel_overrides.find((item: { channel_id: string }) => item.channel_id == channel.id);
+export function checkVisible(data: Profile, server: Guild, channel: Channel, permission: string): boolean {
+    const override_flags = data.data.user_guild_settings.find((item) => item.guild_id == server.id).channel_overrides.find((item) => item.channel_id == channel.id);
 
     return checkPermission(server, channel, permission) && override_flags && !getActiveFlags(channel.flags, ChannelFlags).includes(ChannelFlags.IsGuildResourceChannel);
 }

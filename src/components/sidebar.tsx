@@ -16,9 +16,10 @@ import {
 } from "@/components/ui/avatar"
 import { ProfileContext } from "@/context/profile";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import type { Profile } from "@/transform/profile.transform";
 
 export function HomeSidebar() {
-    const { data } = useContext(ProfileContext);
+    const { data } = useContext<{ data: Profile }>(ProfileContext);
 
     return (
         <Sidebar>
@@ -28,7 +29,7 @@ export function HomeSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                data.d.guilds.map((item: { name: string }, key: number) => {
+                                data.data.guilds.map((item: { name: string }, key: number) => {
                                     return (
                                         <SidebarMenuItem key={key}>
                                             <SidebarMenuButton asChild>

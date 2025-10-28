@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { getCookie } from "../lib/cookies";
+import { plainToInstance } from "class-transformer";
+import { Profile } from "@/transform/profile.transform";
 
-export const ProfileContext = createContext<{ data: any }>({ data: null });
+export const ProfileContext = createContext<{ data: Profile }>({ data: null });
 
 export function ProfileWrapper({ children }: { children: any }) {
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<Profile>();
 
     useEffect(() => {
         const socket = new WebSocket(`wss://gateway.discord.gg/?encoding=json&v=9`);
@@ -21,7 +23,7 @@ export function ProfileWrapper({ children }: { children: any }) {
         socket.onmessage = event => {
             const data = JSON.parse(event.data);
             if (data.t === "READY") {
-                setData(data);
+                setData(plainToInstance(Profile, data));
             }
         };
 

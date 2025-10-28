@@ -14,15 +14,16 @@ import {
 } from "@/components/ui/sidebar"
 import { checkVisible } from "@/lib/roles";
 import { Channel } from "./channel";
+import type { Guild } from "@/transform/guild.transform";
 
 export function Server() {
     const { server } = useParams();
     const { data } = useContext(ProfileContext);
 
-    const [serverData, setServerData] = useState<any>(null);
+    const [serverData, setServerData] = useState<Guild>(null);
 
     useEffect(() => {
-        setServerData(data.d.guilds.find((current: { id: string }) => current.id == server));
+        setServerData(data.data.guilds.find((current) => current.id == server));
     }, [server]);
 
     if (!serverData) {
@@ -37,8 +38,8 @@ export function Server() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                serverData.channels.filter((item: { type: number }) => item.type == 4).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: any, key: number) => {
-                                    if (serverData.channels.filter((item: { type: number }) => item.type != 4).filter((target: any) => checkVisible(data, serverData, target, "VIEW_CHANNEL")).find((target: { parent_id: string }) => target.parent_id == item.id)) {
+                                serverData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                    if (serverData.channels.filter((item) => item.type != 4).filter((target) => checkVisible(data, serverData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
                                         return (
                                             <Fragment key={key}>
                                                 <SidebarMenuItem>
@@ -49,7 +50,7 @@ export function Server() {
                                                     </SidebarMenuButton>
                                                 </SidebarMenuItem>
                                                 {
-                                                    serverData.channels.filter((item: { type: number }) => item.type != 4).filter((target: { parent_id: string }) => target.parent_id == item.id).sort((a: { position: number }, b: { position: number }) => a.position - b.position).map((item: any, key: number) => {
+                                                    serverData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
                                                         if (checkVisible(data, serverData, item, "VIEW_CHANNEL")) {
                                                             return (
                                                                 <Fragment key={key}>

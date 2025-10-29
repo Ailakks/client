@@ -1,5 +1,5 @@
 import { Expose } from "class-transformer";
-import type { OverwriteTransform } from "./overwrite.transform";
+import type { Overwrite } from "./overwrite.transform";
 
 export class ChannelTransform {
     @Expose()
@@ -18,8 +18,8 @@ export class ChannelTransform {
     parent_id: string;
 
     @Expose()
-    flags: bigint;
+    flags: number;
 
     @Expose()
-    permission_overwrites: OverwriteTransform[];
+    permission_overwrites: Overwrite[];
 }

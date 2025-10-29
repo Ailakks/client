@@ -47,7 +47,7 @@ export function Guild() {
                                                             <p>{item.name}</p>
                                                         </div>
                                                     </SidebarMenuButton>
-                                                    {check(data, guildData, item, Permissions.ManageChannels) && <Button>p</Button>}
+                                                    {check(data, guildData, item, Permissions.ManageChannels) && <Button>new</Button>}
                                                 </SidebarMenuItem>
                                                 {
                                                     guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {

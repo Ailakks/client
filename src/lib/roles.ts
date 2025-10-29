@@ -71,12 +71,12 @@ export function channelPermissions(user: UserTransform, guild: GuildTransform, c
         .reduce((acc, o) => (acc & ~o.deny) | o.allow, base);
 }
 
-export function checkPermission(user: UserTransform, guild: GuildTransform, channel: ChannelTransform, permission: Permissions): boolean {
-    return getActiveFlags<Permissions>(Number(channelPermissions(user, guild, channel)), Permissions).includes(permission);
+export function checkPermission(user: UserTransform, guild: GuildTransform, channel: ChannelTransform, permission: number): boolean {
+    return decodeMask(channelPermissions(user, guild, channel), Permissions).includes(permission);
 }
 
-export function check(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: Permissions): boolean {
+export function check(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: number): boolean {
     const override_flags = data.data.user_guild_settings.find((item) => item.guild_id == guild.id)?.channel_overrides?.find((item) => item.channel_id == channel.id);
 
-    return data.data.user.id == guild.owner_id || checkPermission(data.data.user, guild, channel, permission) && override_flags && !getActiveFlags(channel.flags, ChannelFlags).includes(ChannelFlags.IsGuildResourceChannel);
+    return data.data.user.id == guild.owner_id || (checkPermission(data.data.user, guild, channel, permission) && override_flags && !getActiveFlags(channel.flags, ChannelFlags).includes(ChannelFlags.IsGuildResourceChannel));
 }

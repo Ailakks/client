@@ -18,7 +18,7 @@ export class ChannelTransform {
     parent_id: string;
 
     @Expose()
-    flags: number;
+    flags: bigint;
 
     @Expose()
     permission_overwrites: OverwriteTransform[];

@@ -13,6 +13,8 @@ import {
 import { check } from "@/lib/roles";
 import { Channel } from "./channel";
 import type { GuildTransform } from "@/transform/guild.transform";
+import { Permissions } from "@/lib/permissions";
+import { Button } from "@/components/ui/button";
 
 export function Guild() {
     const { guild, channel } = useParams();
@@ -35,8 +37,8 @@ export function Guild() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                    if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, "VIEW_CHANNEL")).find((target) => target.parent_id == item.id)) {
+                                guildData.channels?.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                    if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, Permissions.ViewChannel)).find((target) => target.parent_id == item.id)) {
                                         return (
                                             <Fragment key={key}>
                                                 <SidebarMenuItem>
@@ -45,10 +47,11 @@ export function Guild() {
                                                             <p>{item.name}</p>
                                                         </div>
                                                     </SidebarMenuButton>
+                                                    {check(data, guildData, item, Permissions.ManageChannels) && <Button>p</Button>}
                                                 </SidebarMenuItem>
                                                 {
                                                     guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                                        if (check(data, guildData, item, "VIEW_CHANNEL")) {
+                                                        if (check(data, guildData, item, Permissions.ViewChannel)) {
                                                             return (
                                                                 <Fragment key={key}>
                                                                     <SidebarMenuItem>

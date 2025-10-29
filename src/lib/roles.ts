@@ -72,7 +72,7 @@ export function channelPermissions(user: UserTransform, guild: GuildTransform, c
 }
 
 export function checkPermission(user: UserTransform, guild: GuildTransform, channel: ChannelTransform, permission: number): boolean {
-    return decodeMask(channelPermissions(user, guild, channel), Permissions).some(v => [permission, 3].includes(v));
+    return decodeMask(channelPermissions(user, guild, channel), Permissions).some(v => [permission, Permissions.Administrator].includes(v));
 }
 
 export function check(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: number): boolean {

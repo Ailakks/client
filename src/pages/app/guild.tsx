@@ -37,7 +37,7 @@ export function Guild() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {
-                                guildData.channels?.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
                                     if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, Permissions.ViewChannel)).find((target) => target.parent_id == item.id)) {
                                         return (
                                             <Fragment key={key}>

@@ -20,6 +20,12 @@ class Data {
     user: UserTransform;
 
     @Expose()
+    bio: string;
+
+    @Expose()
+    avatar: string;
+
+    @Expose()
     guilds: GuildTransform[];
 
     @Expose()

@@ -28,7 +28,7 @@ export function Channel({ guildData }: { guildData: GuildTransform }) {
                         <li key={key}>
                             <div className="space-y-2">
                                 <div className="flex space-x-2">
-                                    <Avatar className="h-12 aspect-square bg-red-500 rounded-full overflow-hidden">
+                                    <Avatar>
                                         {item.author.avatar && <AvatarImage src={`https://cdn.discordapp.com/avatars/${item.author.id}/${item.author.avatar}.webp?size=128`} alt={item.author.username} />}
                                         <AvatarFallback>{item.author.username}</AvatarFallback>
                                     </Avatar>

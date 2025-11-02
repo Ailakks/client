@@ -17,6 +17,7 @@ import { Permissions } from "@/lib/permissions";
 import { InviteUserButton } from "./channel/invite-user-button";
 import { ChannelSettingsButton } from "./channel/channel-settings-button";
 import { CreateChannelButton } from "./channel/create-channel-button";
+import { ChannelTypes } from "@/data/channel-types";
 
 export function Guild() {
     const { guild, channel } = useParams();
@@ -30,29 +31,6 @@ export function Guild() {
 
     if (!guildData) {
         return <p>test</p>
-    }
-
-    const types = {
-        0: {
-            name: 'chat channel',
-            icon: "fa-solid fa-hashtag"
-        },
-        2: {
-            name: 'voice channel',
-            icon: "fa-solid fa-volume"
-        },
-        5: {
-            name: 'announcements',
-            icon: "fa-solid fa-megaphone"
-        },
-        13: {
-            name: 'stages',
-            icon: "fa-solid fa-podcast"
-        },
-        15: {
-            name: 'forum',
-            icon: "fa-solid fa-comments"
-        }
     }
 
     return (
@@ -76,7 +54,7 @@ export function Guild() {
                                                     return (
                                                         <SidebarMenuItem key={key}>
                                                             <SidebarMenuButton className="flex group">
-                                                                <i className={types[item.type]?.icon} />
+                                                                <i className={ChannelTypes[item.type]?.icon} />
                                                                 <p className="flex-1">{item.name}</p>
                                                                 <div className="space-x-2 hidden group-hover:block">
                                                                     <InviteUserButton data={data} guildData={guildData} item={item} />

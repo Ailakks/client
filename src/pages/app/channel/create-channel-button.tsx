@@ -8,12 +8,14 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldTitle } from "@/components/ui/field";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosClient } from "@/lib/client";
 import { useState } from "react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ChannelTypes } from "@/data/channel-types";
 
 export function CreateChannelButton({ data, guildData, item }: { data: ProfileTransform, guildData: GuildTransform, item: ChannelTransform }) {
     const [open, setOpen] = useState(false);
@@ -23,9 +25,16 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
             .string()
             .min(1)
             .max(100),
+        type: z
+            .number()
     });
 
-    const form = useForm<z.infer<typeof formSchema>>({
+    interface Type {
+        type: number,
+        parent_id: string
+    }
+
+    const form = useForm<Partial<Type> & z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         mode: "onBlur",
         defaultValues: {
@@ -33,8 +42,8 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
         },
     });
 
-    function onSubmit({ name }: z.infer<typeof formSchema>) {
-        AxiosClient.post(`guilds/${guildData.id}/channels`, { name, parent_id: item.id }).then(() => {
+    function onSubmit({ type, name, parent_id }: Partial<Type> & z.infer<typeof formSchema>) {
+        AxiosClient.post(`guilds/${guildData.id}/channels`, { type, name, parent_id: item.id }).then(() => {
             form.reset();
             setOpen(false);
         });
@@ -56,22 +65,47 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Create channel</DialogTitle>
-                        <DialogDescription>Create on category:</DialogDescription>
+                        <DialogDescription>Create on category {item.name}</DialogDescription>
                     </DialogHeader>
                     <form id="create" onSubmit={form.handleSubmit(onSubmit)}>
                         <FieldGroup>
                             <Controller
+                                name="type"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <RadioGroup value={`${field.value}`} onValueChange={(e) => field.onChange(Number(e))}>
+                                        {Object.entries(ChannelTypes).map(([id, item]) => {
+                                            return (
+                                                <FieldLabel key={id} htmlFor={`${id}`}>
+                                                    <Field>
+                                                        <div className="flex items-center space-x-5">
+                                                            <i className={item.icon} />
+                                                            <FieldContent>
+                                                                <FieldTitle>{item.title}</FieldTitle>
+                                                                <FieldDescription>{item.body}</FieldDescription>
+                                                            </FieldContent>
+                                                            <p>{id}</p>
+                                                            <RadioGroupItem id={`${id}`} value={`${id}`} />
+                                                        </div>
+                                                    </Field>
+                                                </FieldLabel>
+                                            )
+                                        })}
+                                    </RadioGroup>
+                                )}
+                            />
+                            <Controller
                                 name="name"
                                 control={form.control}
                                 render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.isTouched && fieldState.invalid}>
+                                    <Field data-invalid={fieldState.invalid}>
                                         <FieldLabel>Name</FieldLabel>
                                         <Input
                                             {...field}
-                                            aria-invalid={fieldState.isTouched && fieldState.invalid}
+                                            aria-invalid={fieldState.invalid}
                                             placeholder="new-channel"
                                         />
-                                        {fieldState.isTouched && fieldState.invalid && (
+                                        {fieldState.invalid && (
                                             <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>

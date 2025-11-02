@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import {
     Sidebar,
     SidebarContent,
+    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
@@ -18,6 +19,7 @@ import { ProfileContext } from "@/context/profile";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import type { ProfileTransform } from "@/transform/profile.transform";
 import type { GuildTransform } from "@/transform/guild.transform";
+import { Button } from "./ui/button";
 
 export function HomeSidebar() {
     const { data } = useContext<{ data: ProfileTransform }>(ProfileContext);
@@ -56,6 +58,21 @@ export function HomeSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                <div className="flex items-center space-x-4">
+                    <Avatar>
+                        <AvatarImage src={`https://cdn.discordapp.com/avatars/${data.data.user.id}/${data.data.user.avatar}.webp?size=28`} alt={data.data.user.username} />
+                        <AvatarFallback>{data.data.user.username}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                        <p>{data.data.user.username}</p>
+                        <p>{data.data.user.bio}</p>
+                    </div>
+                    <Button>
+                        <i className="fa-solid fa-gear" />
+                    </Button>
+                </div>
+            </SidebarFooter>
         </Sidebar>
     );
 }

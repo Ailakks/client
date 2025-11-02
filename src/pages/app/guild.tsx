@@ -65,7 +65,16 @@ export function Guild() {
                                         <SidebarGroupLabel>{item.name}</SidebarGroupLabel>
                                         {check(data, guildData, item, Permissions.ManageChannels) && (
                                             <SidebarGroupAction>
-                                                <span>New</span>
+                                                <Tooltip>
+                                                    <TooltipTrigger asChild>
+                                                        <button>
+                                                            <i className="fa-solid fa-plus" />
+                                                        </button>
+                                                    </TooltipTrigger>
+                                                    <TooltipContent>
+                                                        <p>New</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
                                             </SidebarGroupAction>
                                         )}
                                         {

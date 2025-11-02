@@ -1,4 +1,4 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { HomeSidebar } from "../components/sidebar";
 import { ProfileWrapper } from "@/context/profile";
 import { AppRouter } from "./app-router";
@@ -9,7 +9,6 @@ export function App() {
             <SidebarProvider>
                 <HomeSidebar />
                 <main>
-                    <SidebarTrigger />
                     <AppRouter />
                 </main>
             </SidebarProvider>

@@ -6,9 +6,9 @@ import {
     SidebarGroup,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarProvider,
     SidebarGroupLabel,
-    SidebarGroupAction
+    SidebarGroupAction,
+    Sidebar
 } from "@/components/ui/sidebar"
 import { check } from "@/lib/roles";
 import { Channel } from "./channel";
@@ -30,7 +30,7 @@ export function Guild() {
     }
 
     return (
-        <SidebarProvider>
+        <div className="w-(--sidebar-width) bg-sidebar text-sidebar-foreground h-full flex-col">
             <SidebarContent>
                 {
                     guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
@@ -68,6 +68,6 @@ export function Guild() {
             <main className="flex-1">
                 {channel && <Channel guildData={guildData} />}
             </main>
-        </SidebarProvider>
+        </div>
     );
 }

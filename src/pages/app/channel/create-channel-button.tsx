@@ -8,16 +8,42 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Controller, useForm } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosClient } from "@/lib/client";
+import { useState } from "react";
 
 export function CreateChannelButton({ data, guildData, item }: { data: ProfileTransform, guildData: GuildTransform, item: ChannelTransform }) {
+    const [open, setOpen] = useState(false);
+
+    const formSchema = z.object({
+        name: z
+            .string()
+            .min(1)
+            .max(100),
+    });
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: ""
+        },
+    });
+
+    function onSubmit({ name }: z.infer<typeof formSchema>) {
+        AxiosClient.post(`guilds/${guildData.id}/channels`, { name, parent_id: item.id }).then(() => setOpen(false));
+    };
+
     return (
         check(data, guildData, item, Permissions.ManageChannels) && (
-            <Dialog>
-                <form onSubmit={(e) => e.preventDefault()}>
+            <Dialog open={open} onOpenChange={setOpen}>
+                <form id="create" onSubmit={form.handleSubmit(onSubmit)}>
                     <DialogTrigger>
                         <Tooltip>
                             <TooltipTrigger>
-                                <Button>a</Button>
+                                <i className="fa-solid fa-plus" />
                             </TooltipTrigger>
                             <TooltipContent>
                                 <p>Create</p>
@@ -29,15 +55,32 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
                             <DialogTitle>Create channel</DialogTitle>
                             <DialogDescription>Create on category:</DialogDescription>
                         </DialogHeader>
-                        <div className="grid gap-4">
-                            <Label>Name</Label>
-                            <Input name="name" placeholder="new-channel" />
-                        </div>
+                        <FieldGroup>
+                            <Controller
+                                name="name"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel>Name</FieldLabel>
+                                        <Input
+                                            {...field}
+                                            aria-invalid={fieldState.invalid}
+                                            placeholder="new-channel"
+                                        />
+                                        {fieldState.invalid && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
+                                    </Field>
+                                )}
+                            />
+                        </FieldGroup>
                         <DialogFooter>
                             <DialogClose>
                                 <Button variant="outline">Cancel</Button>
                             </DialogClose>
-                            <Button type="submit">Create</Button>
+                            <Field orientation="horizontal">
+                                <Button type="submit" form="create" className="cursor-pointer">Create</Button>
+                            </Field>
                         </DialogFooter>
                     </DialogContent>
                 </form>

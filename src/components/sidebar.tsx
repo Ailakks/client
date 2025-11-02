@@ -33,7 +33,7 @@ export function HomeSidebar() {
                                 data.data.guilds.map((item: GuildTransform, key: number) => {
                                     return (
                                         <SidebarMenuItem key={key}>
-                                            <SidebarMenuButton asChild>
+                                            <SidebarMenuButton>
                                                 <a href={`/${item.id}`}>
                                                     <Tooltip>
                                                         <TooltipTrigger asChild>

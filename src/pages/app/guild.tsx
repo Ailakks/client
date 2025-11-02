@@ -1,5 +1,5 @@
 import { ProfileContext } from "@/context/profile";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
     SidebarContent,
@@ -15,6 +15,9 @@ import { Channel } from "./channel";
 import type { GuildTransform } from "@/transform/guild.transform";
 import { Permissions } from "@/lib/permissions";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { InviteUserButton } from "./channel/invite-user-button";
+import { ChannelSettingsButton } from "./channel/channel-settings-button";
+import { CreateChannelButton } from "./channel/create-channel-button";
 
 export function Guild() {
     const { guild, channel } = useParams();
@@ -65,16 +68,7 @@ export function Guild() {
                                         <SidebarGroupLabel>{item.name}</SidebarGroupLabel>
                                         {check(data, guildData, item, Permissions.ManageChannels) && (
                                             <SidebarGroupAction>
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <button>
-                                                            <i className="fa-solid fa-plus" />
-                                                        </button>
-                                                    </TooltipTrigger>
-                                                    <TooltipContent>
-                                                        <p>New</p>
-                                                    </TooltipContent>
-                                                </Tooltip>
+                                                <CreateChannelButton data={data} guildData={guildData} item={item} />
                                             </SidebarGroupAction>
                                         )}
                                         {
@@ -82,29 +76,13 @@ export function Guild() {
                                                 if (check(data, guildData, item, Permissions.ViewChannel)) {
                                                     return (
                                                         <SidebarMenuItem key={key}>
-                                                            <SidebarMenuButton className="flex">
+                                                            <SidebarMenuButton className="flex group">
                                                                 <i className={types[item.type]?.icon} />
                                                                 <p className="flex-1">{item.name}</p>
-                                                                <Tooltip>
-                                                                    <TooltipTrigger asChild>
-                                                                        <button>
-                                                                            <i className="fa-solid fa-user-plus" />
-                                                                        </button>
-                                                                    </TooltipTrigger>
-                                                                    <TooltipContent>
-                                                                        <p>Invite</p>
-                                                                    </TooltipContent>
-                                                                </Tooltip>
-                                                                <Tooltip>
-                                                                    <TooltipTrigger asChild>
-                                                                        <button>
-                                                                            <i className="fa-solid fa-gear" />
-                                                                        </button>
-                                                                    </TooltipTrigger>
-                                                                    <TooltipContent>
-                                                                        <p>Edit</p>
-                                                                    </TooltipContent>
-                                                                </Tooltip>
+                                                                <div className="space-x-2 hidden group-hover:block">
+                                                                    <InviteUserButton data={data} guildData={guildData} item={item} />
+                                                                    <ChannelSettingsButton data={data} guildData={guildData} item={item} />
+                                                                </div>
                                                             </SidebarMenuButton>
                                                         </SidebarMenuItem>
                                                     )

@@ -27,63 +27,67 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
+        mode: "onBlur",
         defaultValues: {
             name: ""
         },
     });
 
     function onSubmit({ name }: z.infer<typeof formSchema>) {
-        AxiosClient.post(`guilds/${guildData.id}/channels`, { name, parent_id: item.id }).then(() => setOpen(false));
+        AxiosClient.post(`guilds/${guildData.id}/channels`, { name, parent_id: item.id }).then(() => {
+            form.reset();
+            setOpen(false);
+        });
     };
 
     return (
         check(data, guildData, item, Permissions.ManageChannels) && (
             <Dialog open={open} onOpenChange={setOpen}>
-                <form id="create" onSubmit={form.handleSubmit(onSubmit)}>
-                    <DialogTrigger>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <i className="fa-solid fa-plus" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Create</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Create channel</DialogTitle>
-                            <DialogDescription>Create on category:</DialogDescription>
-                        </DialogHeader>
+                <DialogTrigger>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <i className="fa-solid fa-plus" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Create</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Create channel</DialogTitle>
+                        <DialogDescription>Create on category:</DialogDescription>
+                    </DialogHeader>
+                    <form id="create" onSubmit={form.handleSubmit(onSubmit)}>
                         <FieldGroup>
                             <Controller
                                 name="name"
                                 control={form.control}
                                 render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid}>
+                                    <Field data-invalid={fieldState.isTouched && fieldState.invalid}>
                                         <FieldLabel>Name</FieldLabel>
                                         <Input
                                             {...field}
-                                            aria-invalid={fieldState.invalid}
+                                            aria-invalid={fieldState.isTouched && fieldState.invalid}
                                             placeholder="new-channel"
                                         />
-                                        {fieldState.invalid && (
+                                        {fieldState.isTouched && fieldState.invalid && (
                                             <FieldError errors={[fieldState.error]} />
                                         )}
                                     </Field>
                                 )}
                             />
                         </FieldGroup>
-                        <DialogFooter>
-                            <DialogClose>
-                                <Button variant="outline">Cancel</Button>
-                            </DialogClose>
-                            <Field orientation="horizontal">
-                                <Button type="submit" form="create" className="cursor-pointer">Create</Button>
-                            </Field>
-                        </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                    <DialogFooter>
+                        <DialogClose>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Field orientation="horizontal">
+                            <Button type="submit" form="create" className="cursor-pointer">Create</Button>
+                        </Field>
+                    </DialogFooter>
+                </DialogContent>
             </Dialog >)
     );
 }

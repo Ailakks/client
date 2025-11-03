@@ -52,9 +52,9 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
     return (
         check(data, guildData, item, Permissions.ManageChannels) && (
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger>
+                <DialogTrigger asChild>
                     <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                             <i className="fa-solid fa-plus" />
                         </TooltipTrigger>
                         <TooltipContent>

@@ -13,13 +13,6 @@ export class Group {
 
 class Operations {
     @Expose()
-    @Type(() => {
-        return (obj: any) => {
-            if ('group' in obj) return Group;
-            if ('member' in obj) return Member;
-            return null;
-        };
-    })
     items: Group[] | Member[];
 
     @Expose()

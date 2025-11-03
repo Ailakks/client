@@ -10,6 +10,7 @@ import { WebSocketClient } from "@/lib/websocket";
 import { plainToInstance } from "class-transformer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { MemberCard } from "./member-card";
 
 export function MemberList() {
     const { guild, channel } = useParams();
@@ -35,10 +36,11 @@ export function MemberList() {
         <SidebarProvider className="h-full">
             <p>b</p>
             <Sidebar side="right">
-                {data.data.operations[0].items.map((item) => {
+                {data.data.operations[0].items.map((item, key) => {
                     return (
-                        <div>
-                            <p>{item instanceof Group && 'group'}</p>
+                        <div key={key}>
+                            {item.group && <p>{item.group.id}</p>}
+                            {item.member && <MemberCard member={item.member} />}
                         </div>
                     )
                 })}

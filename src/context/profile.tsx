@@ -3,6 +3,7 @@ import { getCookie } from "../lib/cookies";
 import { plainToInstance } from "class-transformer";
 import { ProfileTransform } from "@/api/transform/profile.transform";
 import { WebSocketClient } from "@/lib/websocket";
+import type { WebSocketEventType } from "@/api/type/websocket-event.type";
 
 export const ProfileContext = createContext<{ data: ProfileTransform }>({ data: null });
 
@@ -20,7 +21,7 @@ export function ProfileWrapper({ children }: { children: any }) {
         }));
 
         WebSocketClient.onmessage = event => {
-            const data = JSON.parse(event.data);
+            const data: WebSocketEventType = JSON.parse(event.data);
             if (data.t === "READY") {
                 setData(plainToInstance(ProfileTransform, data));
             }

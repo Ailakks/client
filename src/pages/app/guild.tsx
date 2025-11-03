@@ -85,6 +85,7 @@ export function Guild() {
                     {channel && <Channel guildData={guildData} />}
                 </main>
             </SidebarProvider>
+            <p>e</p>
             <MemberList />
         </div>
     );

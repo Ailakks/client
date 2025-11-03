@@ -1,9 +1,9 @@
 import { check } from "@/lib/roles";
-import type { GuildTransform } from "@/transform/guild.transform";
+import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Permissions } from "@/lib/permissions";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import type { ChannelTransform } from "@/transform/channel.transform";
-import type { ProfileTransform } from "@/transform/profile.transform";
+import type { ChannelTransform } from "@/api/transform/channel.transform";
+import type { ProfileTransform } from "@/api/transform/profile.transform";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLab
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AxiosClient } from "@/lib/client";
+import { AxiosClient } from "@/lib/axios";
 import { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ChannelTypes } from "@/data/channel-types";

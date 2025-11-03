@@ -1,0 +1,1 @@
+export const WebSocketClient = new WebSocket(`wss://gateway.discord.gg/?encoding=json&v=9`);

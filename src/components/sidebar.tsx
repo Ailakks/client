@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/avatar"
 import { ProfileContext } from "@/context/profile";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import type { ProfileTransform } from "@/transform/profile.transform";
-import type { GuildTransform } from "@/transform/guild.transform";
+import type { ProfileTransform } from "@/api/transform/profile.transform";
+import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Button } from "./ui/button";
 
 export function HomeSidebar() {

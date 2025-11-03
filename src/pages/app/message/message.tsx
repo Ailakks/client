@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Markdown from 'react-markdown'
-import type { MessageTransform } from "@/transform/message.transform";
+import type { MessageTransform } from "@/api/transform/message.transform";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

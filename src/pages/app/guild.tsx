@@ -14,12 +14,13 @@ import {
 } from "@/components/ui/sidebar"
 import { check } from "@/lib/roles";
 import { Channel } from "./channel";
-import type { GuildTransform } from "@/transform/guild.transform";
+import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Permissions } from "@/lib/permissions";
 import { InviteUserButton } from "./channel/invite-user-button";
 import { ChannelSettingsButton } from "./channel/channel-settings-button";
 import { CreateChannelButton } from "./channel/create-channel-button";
 import { ChannelTypes } from "@/data/channel-types";
+import { MemberList } from "./member/member-list";
 
 export function Guild() {
     const { guild, channel } = useParams();
@@ -84,11 +85,7 @@ export function Guild() {
                     {channel && <Channel guildData={guildData} />}
                 </main>
             </SidebarProvider>
-            <SidebarProvider className="h-full">
-                <Sidebar side="right">
-                    <p>test</p>
-                </Sidebar>
-            </SidebarProvider>
+            <MemberList />
         </div>
     );
 }

@@ -1,9 +1,9 @@
 import { check } from "@/lib/roles";
-import type { GuildTransform } from "@/transform/guild.transform";
+import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Permissions } from "@/lib/permissions";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import type { ChannelTransform } from "@/transform/channel.transform";
-import type { ProfileTransform } from "@/transform/profile.transform";
+import type { ChannelTransform } from "@/api/transform/channel.transform";
+import type { ProfileTransform } from "@/api/transform/profile.transform";
 
 export function ChannelSettingsButton({ data, guildData, item }: { data: ProfileTransform, guildData: GuildTransform, item: ChannelTransform }) {
     return (

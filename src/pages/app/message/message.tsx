@@ -5,20 +5,47 @@ import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MessageActions } from "@/data/message-actions";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Fragment } from "react/jsx-runtime";
 
 export function Message({ message }: { message: MessageTransform }) {
     return (
         <div className="space-y-2">
             <div className="flex space-x-2">
                 <ButtonGroup>
-                    {Object.values(MessageActions).map((item) => {
+                    {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item) => {
                         return (
                             <Button variant="outline">
                                 <i className={item.icon} />
-                                <p>{item.title}</p>
                             </Button>
                         )
                     })}
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline">
+                                <i className="fa-solid fa-ellipsis" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            {MessageActions.map((item, key) => {
+                                return (
+                                    <Fragment key={key}>
+                                        <DropdownMenuGroup>
+                                            {item.items.map((item, key) => {
+                                                return (
+                                                    <DropdownMenuItem key={key}>
+                                                        <i className={item.icon} />
+                                                        <p>{item.title}</p>
+                                                    </DropdownMenuItem>
+                                                )
+                                            })}
+                                        </DropdownMenuGroup>
+                                        {key < MessageActions.length - 1 && <DropdownMenuSeparator />}
+                                    </Fragment>
+                                )
+                            })}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </ButtonGroup>
                 <Avatar>
                     {message.author.avatar && <AvatarImage src={`https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp?size=128`} alt={message.author.username} />}

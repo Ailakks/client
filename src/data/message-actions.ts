@@ -1,32 +1,66 @@
-export const MessageActions = {
-    0: {
-        name: 'add reaction',
-        title: 'Añadir reacción',
-        icon: 'fa-solid fa-face-smile',
-        featured: true
+export const MessageActions = [
+    {
+        items: [
+            {
+                name: 'add reaction',
+                title: 'Añadir reacción',
+                icon: 'fa-solid fa-face-smile',
+                featured: true
+            }
+        ]
     },
-    1: {
-        name: 'reply',
-        title: 'Responder',
-        icon: 'fa-solid fa-arrow-turn-left',
-        featured: true
+    {
+        items: [
+            {
+                name: 'reply',
+                title: 'Responder',
+                icon: 'fa-solid fa-arrow-turn-left',
+                featured: true
+            },
+            {
+                name: 'resend',
+                title: 'Reeenviar',
+                icon: 'fa-solid fa-arrow-turn-right',
+                featured: true
+            },
+            {
+                name: 'create thread',
+                title: 'Crear hilo',
+                icon: 'fa-solid fa-reel',
+                featured: false
+            }
+        ]
     },
-    2: {
-        name: 'resend',
-        title: 'Reeenviar',
-        icon: 'fa-solid fa-arrow-turn-right',
-        featured: true
+    {
+        items: [
+            {
+                name: 'copy text',
+                title: 'Copiar texto',
+                icon: 'fa-solid fa-clipboard',
+                featured: false
+            },
+            {
+                name: 'mask as unread',
+                title: 'Marcar no leídos',
+                icon: 'fa-solid fa-message-dot',
+                featured: false
+            },
+            {
+                name: 'mask as unread',
+                title: 'Copiar enlace del mensaje',
+                icon: 'fa-solid fa-link',
+                featured: false
+            }
+        ]
     },
-    3: {
-        name: 'create thread',
-        title: 'Crear hilo',
-        icon: 'fa-solid fa-reel',
-        featured: false
-    },
-    4: {
-        name: 'copy text',
-        title: 'Copy text',
-        icon: 'fa-solid fa-clipboard',
-        featured: false
+    {
+        items: [
+             {
+                name: 'delete message',
+                title: 'Eliminar mensaje',
+                icon: 'fa-solid fa-trash',
+                featured: false
+            }
+        ]
     }
-}
+]

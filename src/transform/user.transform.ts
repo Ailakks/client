@@ -6,4 +6,10 @@ export class UserTransform {
 
     @Expose()
     username: string;
+
+    @Expose()
+    bio: string;
+
+    @Expose()
+    avatar: string;
 }

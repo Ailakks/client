@@ -1,11 +1,7 @@
 import { Expose, Type } from "class-transformer";
+import { MemberTransform } from "./member.transform";
 
-class Author {
-    @Expose()
-    username: string;
-
-    @Expose()
-    avatar: string;
+class Author extends MemberTransform {
 }
 
 class Attachment {

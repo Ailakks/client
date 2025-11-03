@@ -1,7 +1,7 @@
 import { Expose } from "class-transformer"
-import type { UserTransform } from "./user.transform";
+import { UserTransform } from "./user.transform";
 
-export class MemberTransform {
+export class MemberTransform extends UserTransform {
     @Expose()
     user: UserTransform;
 

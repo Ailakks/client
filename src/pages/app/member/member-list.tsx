@@ -29,12 +29,17 @@ export function MemberList() {
     }, []);
 
     if (!data) {
-        return;
+        return (
+            <SidebarProvider className="h-full">
+                <Sidebar side="right">
+                    <p>test</p>
+                </Sidebar>
+            </SidebarProvider>
+        );
     }
 
     return (
         <SidebarProvider className="h-full">
-            <p>b</p>
             <Sidebar side="right">
                 {data.data.operations[0].items.map((item, key) => {
                     return (

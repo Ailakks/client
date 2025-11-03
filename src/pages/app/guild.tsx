@@ -38,7 +38,7 @@ export function Guild() {
 
     return (
         <div>
-            <SidebarProvider className="w-fit h-full">
+            <SidebarProvider className="h-full">
                 <Sidebar collapsible="none">
                     <SidebarContent>
                         {
@@ -81,11 +81,10 @@ export function Guild() {
                         }
                     </SidebarContent>
                 </Sidebar>
-                <main>
+                <main className="flex-0">
                     {channel && <Channel guildData={guildData} />}
                 </main>
             </SidebarProvider>
-            <p>e</p>
             <MemberList />
         </div>
     );

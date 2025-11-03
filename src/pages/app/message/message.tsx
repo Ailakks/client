@@ -7,50 +7,61 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MessageActions } from "@/data/message-actions";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Fragment } from "react/jsx-runtime";
+import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+import { UserProfileCard } from "../member/member-profile-card";
 
 export function Message({ message }: { message: MessageTransform }) {
     return (
-        <div className="space-y-2">
+        <div className="relative space-y-2 p-5">
+            <ButtonGroup className="absolute top-0 right-0">
+                {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item) => {
+                    return (
+                        <Button variant="outline">
+                            <i className={item.icon} />
+                        </Button>
+                    )
+                })}
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline">
+                            <i className="fa-solid fa-ellipsis" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        {MessageActions.map((item, key) => {
+                            return (
+                                <Fragment key={key}>
+                                    <DropdownMenuGroup>
+                                        {item.items.map((item, key) => {
+                                            return (
+                                                <DropdownMenuItem key={key}>
+                                                    <i className={item.icon} />
+                                                    <p>{item.title}</p>
+                                                </DropdownMenuItem>
+                                            )
+                                        })}
+                                    </DropdownMenuGroup>
+                                    {key < MessageActions.length - 1 && <DropdownMenuSeparator />}
+                                </Fragment>
+                            )
+                        })}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </ButtonGroup>
             <div className="flex space-x-2">
-                <ButtonGroup>
-                    {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item) => {
-                        return (
-                            <Button variant="outline">
-                                <i className={item.icon} />
-                            </Button>
-                        )
-                    })}
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline">
-                                <i className="fa-solid fa-ellipsis" />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            {MessageActions.map((item, key) => {
-                                return (
-                                    <Fragment key={key}>
-                                        <DropdownMenuGroup>
-                                            {item.items.map((item, key) => {
-                                                return (
-                                                    <DropdownMenuItem key={key}>
-                                                        <i className={item.icon} />
-                                                        <p>{item.title}</p>
-                                                    </DropdownMenuItem>
-                                                )
-                                            })}
-                                        </DropdownMenuGroup>
-                                        {key < MessageActions.length - 1 && <DropdownMenuSeparator />}
-                                    </Fragment>
-                                )
-                            })}
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </ButtonGroup>
-                <Avatar>
-                    {message.author.avatar && <AvatarImage src={`https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp?size=128`} alt={message.author.username} />}
-                    <AvatarFallback>{message.author.username}</AvatarFallback>
-                </Avatar>
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <div className="flex items-center space-x-2">
+                            <Avatar>
+                                {message.author.avatar && <AvatarImage src={`https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.webp?size=128`} alt={message.author.username} />}
+                                <AvatarFallback>{message.author.username}</AvatarFallback>
+                            </Avatar>
+                        </div>
+                    </PopoverTrigger>
+                    <PopoverContent side="right">
+                        <UserProfileCard user={message.author} />
+                    </PopoverContent >
+                </Popover>
                 <div>
                     <div className="h-6 flex text-nowrap space-x-2">
                         <p>{message.author.username}</p>

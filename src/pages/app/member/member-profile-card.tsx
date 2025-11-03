@@ -1,22 +1,22 @@
+import type { AuthorTransform } from "@/api/transform/author.transform";
 import type { MemberTransform } from "@/api/transform/member.transform";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { UserProfileCard } from "./member-profile-card";
 
-export function MemberCard({ member }: { member: MemberTransform }) {
+export function UserProfileCard({ user: user }: { user: AuthorTransform }) {
     return (
         <Popover>
             <PopoverTrigger asChild>
                 <div className="flex items-center space-x-2">
                     <Avatar>
-                        <AvatarImage src={`https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png?size=80&quality=lossless`} alt={member.user.username} />
-                        <AvatarFallback>{member.user.username}</AvatarFallback>
+                        <AvatarImage src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=80&quality=lossless`} alt={user.username} />
+                        <AvatarFallback>{user.username}</AvatarFallback>
                     </Avatar>
-                    <p>{member.user.username}</p>
+                    <p>{user.username}</p>
                 </div>
             </PopoverTrigger>
             <PopoverContent side="right">
-                <UserProfileCard user={member} />
+                <p>{user.username}</p>
             </PopoverContent >
         </Popover>
     );

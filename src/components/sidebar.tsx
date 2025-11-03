@@ -68,7 +68,7 @@ export function HomeSidebar() {
                         <p>{data.data.user.username}</p>
                         <p>{data.data.user.bio}</p>
                     </div>
-                    <Button>
+                    <Button variant="outline">
                         <i className="fa-solid fa-gear" />
                     </Button>
                 </div>

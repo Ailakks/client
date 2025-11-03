@@ -53,14 +53,16 @@ export function Guild() {
                                                 if (check(data, guildData, item, Permissions.ViewChannel)) {
                                                     return (
                                                         <SidebarMenuItem key={key}>
-                                                            <SidebarMenuButton className="flex group">
-                                                                <i className={ChannelTypes[item.type]?.icon} />
-                                                                <p className="flex-1">{item.name}</p>
-                                                                <div className="space-x-2 hidden group-hover:block">
-                                                                    <InviteUserButton data={data} guildData={guildData} item={item} />
-                                                                    <ChannelSettingsButton data={data} guildData={guildData} item={item} />
-                                                                </div>
-                                                            </SidebarMenuButton>
+                                                            <a href={`/${guildData.id}/${item.id}`}>
+                                                                <SidebarMenuButton className="flex group">
+                                                                    <i className={ChannelTypes[item.type]?.icon} />
+                                                                    <p className="flex-1">{item.name}</p>
+                                                                    <div className="space-x-2 hidden group-hover:block">
+                                                                        <InviteUserButton data={data} guildData={guildData} item={item} />
+                                                                        <ChannelSettingsButton data={data} guildData={guildData} item={item} />
+                                                                    </div>
+                                                                </SidebarMenuButton>
+                                                            </a>
                                                         </SidebarMenuItem>
                                                     )
                                                 }

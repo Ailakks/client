@@ -84,7 +84,6 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
                                                                 <FieldTitle>{item.title}</FieldTitle>
                                                                 <FieldDescription>{item.body}</FieldDescription>
                                                             </FieldContent>
-                                                            <p>{id}</p>
                                                             <RadioGroupItem id={`${id}`} value={`${id}`} />
                                                         </div>
                                                     </Field>

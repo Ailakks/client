@@ -37,8 +37,8 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
             <header className="sticky top-0 flex shrink-0 items-center gap-2 border-b bg-background px-3 py-2">
                 <p>header</p>
             </header>
-            <div className="flex h-full">
-                <div className="flex-1 overflow-auto">
+            <div className="flex h-full overflow-hidden">
+                <div className="flex-1">
                     {channel && <Channel guildData={guildData} />}
                 </div>
                 <SidebarProvider className="w-fit overflow-hidden max-h-dvh">

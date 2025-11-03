@@ -19,15 +19,22 @@ export function Channel({ guildData }: { guildData: GuildTransform }) {
     }, [channel]);
 
     return (
-        <ol>
-            {
-                data.map((item, key: number) => {
-                    return (
-                        <li key={key}>
-                            <Message message={item} />
-                        </li>
-                    )
-                })}
-        </ol>
+        <div className="h-full overflow-hidden">
+            <div className="h-full overflow-scroll">
+                <ol>
+                {
+                    data.map((item, key: number) => {
+                        return (
+                            <li key={key}>
+                                <Message message={item} />
+                            </li>
+                        )
+                    })}
+            </ol>
+            </div>
+            <footer className="sticky bottom-0 flex shrink-0 items-center gap-2 border-t bg-background px-3 py-2">
+                <p>footer</p>
+            </footer>
+        </div>
     );
 }

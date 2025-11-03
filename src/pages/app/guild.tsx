@@ -38,8 +38,8 @@ export function Guild() {
     }
 
     return (
-        <div className="flex flex-1">
-            <SidebarProvider className="h-full w-fit">
+        <div className="flex">
+            <SidebarProvider className="w-fit">
                 <Sidebar collapsible="none">
                     <SidebarContent>
                         {

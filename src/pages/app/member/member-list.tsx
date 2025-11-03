@@ -34,12 +34,12 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
 
     return (
         <SidebarInset>
-            <div className="flex h-full overflow-auto">
-                <div className="flex flex-1 flex-col p-10">
+            <div className="flex h-full">
+                <div className="flex-1 overflow-auto">
                     {channel && <Channel guildData={guildData} />}
                 </div>
                 <SidebarProvider className="w-fit overflow-hidden max-h-dvh">
-                    <Sidebar side="right">
+                    <Sidebar side="right" variant="inset">
                         {data ?
                             (<SidebarContent>
                                 {data.data.operations[0].items.map((item, key) => {

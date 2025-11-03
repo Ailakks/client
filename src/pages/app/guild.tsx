@@ -8,7 +8,9 @@ import {
     SidebarMenuItem,
     SidebarGroupLabel,
     SidebarGroupAction,
-    SidebarMenu
+    SidebarMenu,
+    SidebarProvider,
+    Sidebar
 } from "@/components/ui/sidebar"
 import { check } from "@/lib/roles";
 import { Channel } from "./channel";
@@ -34,50 +36,59 @@ export function Guild() {
     }
 
     return (
-        <div className="w-(--sidebar-width) bg-sidebar text-sidebar-foreground h-full flex-col">
-            <SidebarContent>
-                {
-                    guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                        if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, Permissions.ViewChannel)).find((target) => target.parent_id == item.id)) {
-                            return (
-                                <SidebarGroup key={key}>
-                                    <SidebarMenu>
-                                        <SidebarGroupLabel>{item.name}</SidebarGroupLabel>
-                                        {check(data, guildData, item, Permissions.ManageChannels) && (
-                                            <SidebarGroupAction>
-                                                <CreateChannelButton data={data} guildData={guildData} item={item} />
-                                            </SidebarGroupAction>
-                                        )}
-                                        {
-                                            guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
-                                                if (check(data, guildData, item, Permissions.ViewChannel)) {
-                                                    return (
-                                                        <SidebarMenuItem key={key}>
-                                                            <a href={`/${guildData.id}/${item.id}`}>
-                                                                <SidebarMenuButton className="flex group">
-                                                                    <i className={ChannelTypes[item.type]?.icon} />
-                                                                    <p className="flex-1">{item.name}</p>
-                                                                    <div className="space-x-2 hidden group-hover:block">
-                                                                        <InviteUserButton data={data} guildData={guildData} item={item} />
-                                                                        <ChannelSettingsButton data={data} guildData={guildData} item={item} />
-                                                                    </div>
-                                                                </SidebarMenuButton>
-                                                            </a>
-                                                        </SidebarMenuItem>
-                                                    )
+        <div>
+            <SidebarProvider className="w-fit h-full">
+                <Sidebar collapsible="none">
+                    <SidebarContent>
+                        {
+                            guildData.channels.filter((item) => item.type == 4).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                if (guildData.channels.filter((item) => item.type != 4).filter((target) => check(data, guildData, target, Permissions.ViewChannel)).find((target) => target.parent_id == item.id)) {
+                                    return (
+                                        <SidebarGroup key={key}>
+                                            <SidebarMenu>
+                                                <SidebarGroupLabel>{item.name}</SidebarGroupLabel>
+                                                {check(data, guildData, item, Permissions.ManageChannels) && (
+                                                    <SidebarGroupAction>
+                                                        <CreateChannelButton data={data} guildData={guildData} item={item} />
+                                                    </SidebarGroupAction>
+                                                )}
+                                                {
+                                                    guildData.channels.filter((item: { type: number }) => item.type != 4).filter((target) => target.parent_id == item.id).sort((a, b) => a.position - b.position).map((item, key: number) => {
+                                                        if (check(data, guildData, item, Permissions.ViewChannel)) {
+                                                            return (
+                                                                <SidebarMenuItem key={key}>
+                                                                    <a href={`/${guildData.id}/${item.id}`}>
+                                                                        <SidebarMenuButton className="flex group">
+                                                                            <i className={ChannelTypes[item.type]?.icon} />
+                                                                            <p className="flex-1">{item.name}</p>
+                                                                            <div className="space-x-2 hidden group-hover:block">
+                                                                                <InviteUserButton data={data} guildData={guildData} item={item} />
+                                                                                <ChannelSettingsButton data={data} guildData={guildData} item={item} />
+                                                                            </div>
+                                                                        </SidebarMenuButton>
+                                                                    </a>
+                                                                </SidebarMenuItem>
+                                                            )
+                                                        }
+                                                    })
                                                 }
-                                            })
-                                        }
-                                    </SidebarMenu>
-                                </SidebarGroup>
-                            )
+                                            </SidebarMenu>
+                                        </SidebarGroup>
+                                    )
+                                }
+                            })
                         }
-                    })
-                }
-            </SidebarContent>
-            <main className="flex-1">
-                {channel && <Channel guildData={guildData} />}
-            </main>
+                    </SidebarContent>
+                </Sidebar>
+                <main>
+                    {channel && <Channel guildData={guildData} />}
+                </main>
+            </SidebarProvider>
+            <SidebarProvider className="h-full">
+                <Sidebar side="right">
+                    <p>test</p>
+                </Sidebar>
+            </SidebarProvider>
         </div>
     );
 }

@@ -6,12 +6,10 @@ import { AppRouter } from "./app-router";
 export function App() {
     return (
         <ProfileWrapper>
-            <SidebarProvider>
+            <div className="flex h-full overflow-hidden">
                 <HomeSidebar />
-                <main>
-                    <AppRouter />
-                </main>
-            </SidebarProvider>
+                <AppRouter />
+            </div>
         </ProfileWrapper>
     );
 }

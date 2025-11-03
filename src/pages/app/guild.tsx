@@ -1,5 +1,5 @@
 import { ProfileContext } from "@/context/profile";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
     SidebarContent,
@@ -10,7 +10,8 @@ import {
     SidebarGroupAction,
     SidebarMenu,
     SidebarProvider,
-    Sidebar
+    Sidebar,
+    SidebarInset
 } from "@/components/ui/sidebar"
 import { check } from "@/lib/roles";
 import { Channel } from "./channel";
@@ -37,8 +38,8 @@ export function Guild() {
     }
 
     return (
-        <div>
-            <SidebarProvider className="h-full">
+        <div className="flex flex-1">
+            <SidebarProvider className="h-full w-fit">
                 <Sidebar collapsible="none">
                     <SidebarContent>
                         {
@@ -81,11 +82,8 @@ export function Guild() {
                         }
                     </SidebarContent>
                 </Sidebar>
-                <main className="flex-0">
-                    {channel && <Channel guildData={guildData} />}
-                </main>
             </SidebarProvider>
-            <MemberList />
+            <MemberList guildData={guildData} />
         </div>
     );
 }

@@ -1,15 +1,5 @@
 import { Expose } from "class-transformer";
+import { UserTransform } from "./user.transform";
 
-export class UserTransform {
-    @Expose()
-    id: string;
-
-    @Expose()
-    username: string;
-
-    @Expose()
-    bio: string;
-
-    @Expose()
-    avatar: string;
+export class AuthorTransform extends UserTransform {
 }

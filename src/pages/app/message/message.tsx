@@ -14,9 +14,9 @@ export function Message({ message }: { message: MessageTransform }) {
     return (
         <div className="relative space-y-2 p-5">
             <ButtonGroup className="absolute top-0 right-0">
-                {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item) => {
+                {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item, key) => {
                     return (
-                        <Button variant="outline">
+                        <Button variant="outline" key={key}>
                             <i className={item.icon} />
                         </Button>
                     )
@@ -86,7 +86,7 @@ export function Message({ message }: { message: MessageTransform }) {
                             )
                         })
                     }
-                    <p className="h-6">{message.content}</p>
+                    <p className="h-6 break-all">{message.content}</p>
                 </div>
             </div>
         </div>

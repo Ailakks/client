@@ -1,18 +1,22 @@
 import type { ChannelSubscribePayload } from "@/api/payload/channel-subscribe.payload";
 import { ChannelSubscribeTransform } from "@/api/transform/channel-subscribe.transform";
-import { Group, GuildMemberListUpdateTransform, Member } from "@/api/transform/discord/guild-member-list-update.transform";
+import { GuildMemberListUpdateTransform, Member } from "@/api/transform/discord/guild-member-list-update.transform";
 import type { WebSocketEventType } from "@/api/type/websocket-event.type";
 import {
     SidebarProvider,
-    Sidebar
+    Sidebar,
+    SidebarInset,
+    SidebarContent
 } from "@/components/ui/sidebar"
 import { WebSocketClient } from "@/lib/websocket";
 import { plainToInstance } from "class-transformer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MemberCard } from "./member-card";
+import { Channel } from "../channel";
+import type { GuildTransform } from "@/api/transform/guild.transform";
 
-export function MemberList() {
+export function MemberList({ guildData }: { guildData: GuildTransform }) {
     const { guild, channel } = useParams();
 
     const [data, setData] = useState<GuildMemberListUpdateTransform>(null);
@@ -28,28 +32,28 @@ export function MemberList() {
         };
     }, []);
 
-    if (!data) {
-        return (
-            <SidebarProvider className="h-full">
-                <Sidebar side="right">
-                    <p>test</p>
-                </Sidebar>
-            </SidebarProvider>
-        );
-    }
-
     return (
-        <SidebarProvider className="h-full">
-            <Sidebar side="right">
-                {data.data.operations[0].items.map((item, key) => {
-                    return (
-                        <div key={key}>
-                            {item.group && <p>{item.group.id}</p>}
-                            {item.member && <MemberCard member={item.member} />}
-                        </div>
-                    )
-                })}
-            </Sidebar>
-        </SidebarProvider>
+        <SidebarInset>
+            <div className="flex h-full overflow-auto">
+                <div className="flex flex-1 flex-col p-10">
+                    {channel && <Channel guildData={guildData} />}
+                </div>
+                <SidebarProvider className="w-fit overflow-hidden max-h-dvh">
+                    <Sidebar side="right">
+                        {data ?
+                            (<SidebarContent>
+                                {data.data.operations[0].items.map((item, key) => {
+                                    return (
+                                        <div key={key}>
+                                            {item.group && <p>{item.group.id}</p>}
+                                            {item.member && <MemberCard member={item.member} />}
+                                        </div>
+                                    )
+                                })}
+                            </SidebarContent>) : <p>loading</p>}
+                    </Sidebar>
+                </SidebarProvider>
+            </div>
+        </SidebarInset>
     );
 }

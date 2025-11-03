@@ -1,7 +1,3 @@
 html, body, #root {
     @apply h-full;
 }
-
-p, i {
-    color: white;
-}

@@ -1,7 +1,7 @@
 import { Expose, Type } from "class-transformer";
-import { MemberTransform } from "./member.transform";
+import { AuthorTransform } from "./author.transform";
 
-class Author extends MemberTransform {
+class Author extends AuthorTransform {
 }
 
 class Attachment {

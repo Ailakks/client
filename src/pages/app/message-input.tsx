@@ -4,17 +4,9 @@ import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupTextarea } fro
 import { Field, FieldError } from "@/components/ui/field";
 import { Controller, useForm } from "react-hook-form";
 import { AxiosClient } from "@/lib/axios";
-import { useEffect, useState } from "react";
-import { ChannelTransform } from "@/api/transform/channel.transform";
 
 export function MessageInput({ guildData }: { guildData: GuildTransform }) {
     const { channel } = useParams();
-
-    const [channelData, setChannelData] = useState<ChannelTransform>(null);
-
-    useEffect(() => {
-        
-    }, []);
 
     interface MessageType {
         content: string

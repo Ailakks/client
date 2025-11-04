@@ -9,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Fragment } from "react/jsx-runtime";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { UserProfileCard } from "../member/member-profile-card";
+import { ArrowLeftIcon } from "lucide-react";
 
 export function Message({ message }: { message: MessageTransform }) {
     return (

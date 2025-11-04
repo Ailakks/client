@@ -21,7 +21,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import type { ProfileTransform } from "@/api/transform/profile.transform";
 import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
 
 export function HomeSidebar() {
     const { data } = useContext<{ data: ProfileTransform }>(ProfileContext);
@@ -39,7 +38,7 @@ export function HomeSidebar() {
                                         return (
                                             <SidebarMenuItem key={key}>
                                                 <SidebarMenuButton>
-                                                    <Link to={`/${item.id}`}>
+                                                    <a href={`/${item.id}`}>
                                                         <Tooltip>
                                                             <TooltipTrigger asChild>
                                                                 <Avatar>
@@ -51,7 +50,7 @@ export function HomeSidebar() {
                                                                 <p>{item.name}</p>
                                                             </TooltipContent>
                                                         </Tooltip>
-                                                    </Link>
+                                                    </a>
                                                 </SidebarMenuButton>
                                             </SidebarMenuItem>
                                         )

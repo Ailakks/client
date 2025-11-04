@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { GuildTransform } from "@/api/transform/guild.transform";
 import type { MessageTransform } from "@/api/transform/message.transform";
-import { Message } from "./chat/message";
+import { Message } from "./message/message";
 import { MessageInput } from "./message-input";
 
 export function Channel({ guildData }: { guildData: GuildTransform }) {

@@ -39,3 +39,21 @@ export class MessageTransform {
     @Type(() => Embed)
     embeds: Embed[];
 }
+
+class MessagePinTransform {
+    @Expose({ name: 'pinned_at' })
+    timestamp: number;
+
+    @Expose()
+    @Type(() => MessageTransform)
+    message: MessageTransform;
+}
+
+export class MessagePinsTransform {
+    @Expose()
+    @Type(() => MessagePinTransform)
+    items: MessagePinTransform[];
+
+    @Expose({ name: 'has_more' })
+    next: boolean;
+}

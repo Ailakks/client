@@ -5,7 +5,7 @@ import { Field, FieldError } from "@/components/ui/field";
 import { Controller, useForm } from "react-hook-form";
 import { AxiosClient } from "@/lib/axios";
 
-export function MessageInput({ guildData }: { guildData: GuildTransform }) {
+export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
     const { channel } = useParams();
 
     interface MessageType {

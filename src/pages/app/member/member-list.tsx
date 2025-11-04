@@ -15,6 +15,10 @@ import { useParams } from "react-router-dom";
 import { MemberCard } from "./member-card";
 import { Channel } from "../channel";
 import type { GuildTransform } from "@/api/transform/guild.transform";
+import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { MessagePins } from "../chat/message-pins";
 
 export function MemberList({ guildData }: { guildData: GuildTransform }) {
     const { guild, channel } = useParams();
@@ -41,7 +45,25 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
     return (
         <SidebarInset>
             <header className="sticky top-0 flex shrink-0 items-center gap-2 border-b bg-background px-3 py-2">
-                <p>header</p>
+                <Button variant="outline">
+                    <i className="fa-solid fa-reel" />
+                </Button>
+                <Button variant="outline">
+                    <i className="fa-solid fa-bell" />
+                </Button>
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button variant="outline">
+                            <i className="fa-solid fa-thumbtack" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80" side="bottom">
+                        <MessagePins />
+                    </PopoverContent >
+                </Popover>
+                <Button variant="outline">
+                    <i className="fa-solid fa-users" />
+                </Button>
             </header>
             <div className="flex h-full overflow-hidden">
                 <div className="flex-1">

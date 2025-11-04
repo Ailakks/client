@@ -10,9 +10,12 @@ export function MemberCard({ member }: { member: MemberTransform }) {
                 <div className="flex items-center space-x-2">
                     <Avatar>
                         <AvatarImage src={`https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png?size=80&quality=lossless`} alt={member.user.username} />
-                        <AvatarFallback>{member.user.username}</AvatarFallback>
+                        <AvatarFallback>{member.user.display_name}</AvatarFallback>
                     </Avatar>
-                    <p>{member.user.username}</p>
+                    <div>
+                        <p>{member.user.display_name}</p>
+                        <p>{member.presence?.activities[0]?.body}</p>
+                    </div>
                 </div>
             </PopoverTrigger>
             <PopoverContent side="right">

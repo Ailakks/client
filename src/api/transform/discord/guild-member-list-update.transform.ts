@@ -1,8 +1,9 @@
 import { Expose, Type } from "class-transformer";
-import type { MemberTransform } from "../member.transform";
+import { MemberTransform } from "../member.transform";
 
 export class Member {
     @Expose()
+    @Type(() => MemberTransform)
     member: MemberTransform;
 }
 
@@ -13,6 +14,7 @@ export class Group {
 
 class Operations {
     @Expose()
+    @Type(() => Member)
     items: Group[] | Member[];
 
     @Expose()

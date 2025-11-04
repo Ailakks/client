@@ -1,6 +1,6 @@
 import { ProfileContext } from "@/context/profile";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
     SidebarContent,
     SidebarGroup,
@@ -59,7 +59,7 @@ export function Guild() {
                                                         if (check(data, guildData, item, Permissions.ViewChannel)) {
                                                             return (
                                                                 <SidebarMenuItem key={key}>
-                                                                    <a href={`/${guildData.id}/${item.id}`}>
+                                                                    <Link to={`/${guildData.id}/${item.id}`}>
                                                                         <SidebarMenuButton className="flex group">
                                                                             <i className={ChannelTypes[item.type]?.icon} />
                                                                             <p className="flex-1">{item.name}</p>
@@ -68,7 +68,7 @@ export function Guild() {
                                                                                 <ChannelSettingsButton data={data} guildData={guildData} item={item} />
                                                                             </div>
                                                                         </SidebarMenuButton>
-                                                                    </a>
+                                                                    </Link>
                                                                 </SidebarMenuItem>
                                                             )
                                                         }

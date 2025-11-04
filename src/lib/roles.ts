@@ -76,7 +76,7 @@ export function checkPermission(user: UserTransform, guild: GuildTransform, chan
 }
 
 export function check(data: ProfileTransform, guild: GuildTransform, channel: ChannelTransform, permission: number): boolean {
-    const override_flags = data.data.user_guild_settings.find((item) => item.guild_id == guild.id)?.channel_overrides
+    const override_flags = data.data.user_guild_settings.entries.find((item) => item.guild_id == guild.id)?.channel_overrides
     const channel_override_flags = override_flags?.find((item) => item.channel_id == channel.id);
 
     return data.data.user.id == guild.owner_id || (checkPermission(data.data.user, guild, channel, permission) && (!override_flags || channel_override_flags) && !getActiveFlags(channel.flags, ChannelFlags).includes(ChannelFlags.IsGuildResourceChannel));

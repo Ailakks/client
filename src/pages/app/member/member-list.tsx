@@ -23,14 +23,13 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
 
     useEffect(() => {
         WebSocketClient.send(JSON.stringify(plainToInstance<ChannelSubscribeTransform, ChannelSubscribePayload>(ChannelSubscribeTransform, { guild, channel }, { excludeExtraneousValues: true })));
-
         WebSocketClient.onmessage = event => {
             const data: WebSocketEventType = JSON.parse(event.data);
             if (data.t === "GUILD_MEMBER_LIST_UPDATE") {
                 setData(plainToInstance(GuildMemberListUpdateTransform, data, { excludeExtraneousValues: true }));
             }
         };
-    }, []);
+    }, [channel]);
 
     return (
         <SidebarInset>
@@ -45,7 +44,7 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
                     <Sidebar side="right" collapsible="none">
                         {data ?
                             (<SidebarContent>
-                                {data.data.operations[0].items.map((item, key) => {
+                                {data.data.operations[0].items?.map((item, key) => {
                                     return (
                                         <div key={key}>
                                             {item.group && <p>{item.group.id}</p>}

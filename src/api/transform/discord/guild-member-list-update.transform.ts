@@ -16,6 +16,9 @@ class Operations {
     items: Group[] | Member[];
 
     @Expose()
+    item: Group | Member;
+
+    @Expose()
     range: number[];
 }
 

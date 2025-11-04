@@ -7,12 +7,17 @@ class GuildOverride {
     channel_id: string;
 }
 
-class UserGuildSettings {
+class UserGuildSetting {
     @Expose()
     guild_id: string;
 
     @Expose()
     channel_overrides: GuildOverride[]
+}
+
+class UserGuildSettings {
+    @Expose()
+    entries: UserGuildSetting[];
 }
 
 class Data {
@@ -23,7 +28,8 @@ class Data {
     guilds: GuildTransform[];
 
     @Expose()
-    user_guild_settings: UserGuildSettings[];
+    @Type(() => UserGuildSettings)
+    user_guild_settings: UserGuildSettings;
 }
 
 export class ProfileTransform {

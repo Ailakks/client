@@ -9,21 +9,22 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Fragment } from "react/jsx-runtime";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { UserProfileCard } from "../member/member-profile-card";
+import { ArrowLeftIcon } from "lucide-react";
 
 export function Message({ message }: { message: MessageTransform }) {
     return (
         <div className="relative space-y-2 p-5">
-            <ButtonGroup className="absolute top-0 right-0">
+            <ButtonGroup className="absolute top-0 right-5">
                 {MessageActions.flatMap((list) => list.items).filter((item) => item.featured).map((item, key) => {
                     return (
-                        <Button variant="outline" key={key}>
+                        <Button variant="secondary" key={key}>
                             <i className={item.icon} />
                         </Button>
                     )
                 })}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline">
+                        <Button variant="secondary">
                             <i className="fa-solid fa-ellipsis" />
                         </Button>
                     </DropdownMenuTrigger>

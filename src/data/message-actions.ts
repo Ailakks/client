@@ -42,7 +42,7 @@ export const MessageActions = [
             {
                 name: 'mask as unread',
                 title: 'Marcar no leídos',
-                icon: 'fa-solid fa-message-dot',
+                icon: 'fa-solid fa-message-dots',
                 featured: false
             },
             {

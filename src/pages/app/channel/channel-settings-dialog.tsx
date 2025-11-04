@@ -5,14 +5,7 @@ import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sideba
 
 export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
     return (
-        <DialogContent className="fixed inset-0 m-0 h-full w-full rounded-none p-0">
-            <SidebarProvider>
-                <Sidebar>
-                    <SidebarContent>
-                        <p>#{item.name}</p>
-                    </SidebarContent>
-                </Sidebar>
-            </SidebarProvider>
+        <DialogContent className="inset-0 rounded-none sm:max-w-none top-0 left-0 translate-x-0 translate-y-0">
             <DialogHeader>
                 <DialogTitle>Vista general</DialogTitle>
             </DialogHeader>

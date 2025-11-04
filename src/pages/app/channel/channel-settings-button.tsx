@@ -23,11 +23,10 @@ export function ChannelSettingsButton({ data, guildData, item }: { data: Profile
                         </Tooltip>
                     </span>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="inset-0 rounded-none sm:max-w-none top-0 left-0 translate-x-0 translate-y-0">
                     <ChannelSettingsDialog item={item} />
                 </DialogContent>
             </Dialog>
-
         )
     );
 }

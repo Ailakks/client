@@ -19,17 +19,23 @@ import type { GuildTransform } from "@/api/transform/guild.transform";
 export function MemberList({ guildData }: { guildData: GuildTransform }) {
     const { guild, channel } = useParams();
 
-    const [data, setData] = useState<GuildMemberListUpdateTransform>(null);
+    const [memberListData, setMemberListData] = useState<GuildMemberListUpdateTransform>(null);
 
     useEffect(() => {
+        if (!guild || !channel) {
+            return;
+        }
+
+        setMemberListData(null);
+
         WebSocketClient.send(JSON.stringify(plainToInstance<ChannelSubscribeTransform, ChannelSubscribePayload>(ChannelSubscribeTransform, { guild, channel }, { excludeExtraneousValues: true })));
 
-        WebSocketClient.addEventListener("message", (event) => {
+        WebSocketClient.onmessage = event => {
             const data: WebSocketEventType = JSON.parse(event.data);
             if (data.t === "GUILD_MEMBER_LIST_UPDATE") {
-                setData(plainToInstance(GuildMemberListUpdateTransform, data, { excludeExtraneousValues: true }));
+                setMemberListData(previous => previous ?? plainToInstance(GuildMemberListUpdateTransform, data, { excludeExtraneousValues: true }));
             }
-        }, { once: true });
+        };
     }, [channel]);
 
     return (
@@ -43,9 +49,9 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
                 </div>
                 <SidebarProvider className="w-fit overflow-hidden max-h-dvh">
                     <Sidebar side="right" collapsible="none">
-                        {data ?
+                        {memberListData ?
                             (<SidebarContent>
-                                {data.data.operations[0].items?.map((item, key) => {
+                                {memberListData.data.operations[0].items?.map((item, key) => {
                                     return (
                                         <div key={key}>
                                             {item.group && <p>{item.group.id}</p>}

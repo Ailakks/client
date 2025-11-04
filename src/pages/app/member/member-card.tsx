@@ -13,13 +13,15 @@ export function MemberCard({ member }: { member: MemberTransform }) {
                         <AvatarFallback>{member.user.display_name}</AvatarFallback>
                     </Avatar>
                     <div>
-                        <p>{member.user.display_name}</p>
+                        <p>{member.nick ?? member.user.global_name ?? member.user.username}</p>
                         <p>{member.presence?.activities[0]?.body}</p>
                     </div>
+                    <p>{member.user.guild?.tag}</p>
+                    {member.user.bot && <p>APP</p>}
                 </div>
             </PopoverTrigger>
             <PopoverContent side="right">
-                <UserProfileCard user={member} />
+                <UserProfileCard user={member.user} />
             </PopoverContent >
         </Popover>
     );

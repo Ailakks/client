@@ -32,11 +32,17 @@ export class UserTransform {
     display_name: string;
 
     @Expose()
+    global_name: string;
+
+    @Expose()
     bio: string;
+
+    @Expose()
+    bot: boolean;
 
     @Expose({ name: 'primary_guild' })
     @Type(() => GuildTransform)
-    guild: AvatarDecoratorTransform;
+    guild: GuildTransform;
 
     @Expose()
     avatar: string;
@@ -44,7 +50,4 @@ export class UserTransform {
     @Expose({ name: 'avatar_decoration_data' })
     @Type(() => AvatarDecoratorTransform)
     avatar_decorator: AvatarDecoratorTransform;
-
-    @Expose()
-    bot: boolean;
 }

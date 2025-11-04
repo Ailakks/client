@@ -51,6 +51,9 @@ export class MemberTransform {
     roles: string[];
 
     @Expose()
+    nick: string;
+
+    @Expose()
     @Type(() => PresenceTransform)
     presence: PresenceTransform;
 }

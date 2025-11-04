@@ -52,15 +52,17 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
     return (
         check(data, guildData, item, Permissions.ManageChannels) && (
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <i className="fa-solid fa-plus" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Create</p>
-                        </TooltipContent>
-                    </Tooltip>
+                <DialogTrigger asChild>
+                    <span>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <i className="fa-solid fa-plus" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Create</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </span>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
@@ -113,7 +115,7 @@ export function CreateChannelButton({ data, guildData, item }: { data: ProfileTr
                         </FieldGroup>
                     </form>
                     <DialogFooter>
-                        <DialogClose>
+                        <DialogClose asChild>
                             <Button variant="outline">Cancel</Button>
                         </DialogClose>
                         <Field orientation="horizontal">

@@ -11,20 +11,23 @@ export function ChannelSettingsButton({ data, guildData, item }: { data: Profile
     return (
         check(data, guildData, item, Permissions.ManageChannels) && (
             <Dialog>
-                <DialogTrigger>
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <i className="fa-solid fa-gear" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Manage</p>
-                        </TooltipContent>
-                    </Tooltip>
+                <DialogTrigger asChild>
+                    <span>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <i className="fa-solid fa-gear" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Manage</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </span>
                 </DialogTrigger>
                 <DialogContent>
                     <ChannelSettingsDialog item={item} />
                 </DialogContent>
             </Dialog>
+
         )
     );
 }

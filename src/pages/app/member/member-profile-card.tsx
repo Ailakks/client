@@ -4,19 +4,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 export function UserProfileCard({ user: user }: { user: AuthorTransform }) {
     return (
-        <Popover>
-            <PopoverTrigger asChild>
-                <div className="flex items-center space-x-2">
-                    <Avatar>
-                        <AvatarImage src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=80&quality=lossless`} alt={user.username} />
-                        <AvatarFallback>{user.username}</AvatarFallback>
-                    </Avatar>
-                    <p>{user.username}</p>
-                </div>
-            </PopoverTrigger>
-            <PopoverContent side="right">
-                <p>{user.username}</p>
-            </PopoverContent >
-        </Popover>
+        <div className="flex items-center space-x-2">
+            <Avatar>
+                <AvatarImage src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=80&quality=lossless`} alt={user.username} />
+                <AvatarFallback>{user.username}</AvatarFallback>
+            </Avatar>
+            <p>{user.username}</p>
+        </div>
     );
 }

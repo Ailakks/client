@@ -3,7 +3,7 @@ import type { ChannelSubscribePayload } from "../payload/channel-subscribe.paylo
 
 class Data {
     @Expose()
-    @Transform(({ obj: { guild, channel } }: { obj: ChannelSubscribePayload }) => ({ [guild]: { typing: true, activities: true, channels: { [channel]: [[0, 99]] } } }))
+    @Transform(({ obj: { guild, channel } }: { obj: ChannelSubscribePayload }) => ({ [guild]: { typing: true, channels: { [channel]: [[0, 99]] } } }))
     subscriptions: ChannelSubscribePayload;
 }
 

@@ -24,12 +24,12 @@ export function MemberList({ guildData }: { guildData: GuildTransform }) {
     useEffect(() => {
         WebSocketClient.send(JSON.stringify(plainToInstance<ChannelSubscribeTransform, ChannelSubscribePayload>(ChannelSubscribeTransform, { guild, channel }, { excludeExtraneousValues: true })));
 
-        WebSocketClient.onmessage = event => {
+        WebSocketClient.addEventListener("message", (event) => {
             const data: WebSocketEventType = JSON.parse(event.data);
             if (data.t === "GUILD_MEMBER_LIST_UPDATE") {
                 setData(plainToInstance(GuildMemberListUpdateTransform, data, { excludeExtraneousValues: true }));
             }
-        };
+        }, { once: true });
     }, [channel]);
 
     return (

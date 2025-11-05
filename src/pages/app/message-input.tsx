@@ -68,7 +68,7 @@ export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
                                 </InputGroupButton>
                             </InputGroupAddon>
                         </PopoverTrigger>
-                        <PopoverContent>
+                        <PopoverContent className="w-full">
                             <ImagePicker />
                         </PopoverContent>
                     </Popover>

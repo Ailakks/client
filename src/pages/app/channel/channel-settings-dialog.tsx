@@ -4,14 +4,15 @@ import { DialogHeader } from "@/components/ui/dialog";
 import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sidebar";
 import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { TabsList } from "@radix-ui/react-tabs";
+import { Fragment } from "react/jsx-runtime";
 
 export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
     return (
-        <DialogContent className="inset-0 rounded-none sm:max-w-none top-0 left-0 translate-x-0 translate-y-0">
+        <Fragment>
             <DialogHeader>
                 <DialogTitle>Vista general</DialogTitle>
             </DialogHeader>
-            <Tabs defaultValue="general">
+            <Tabs defaultValue="general2">
                 <div className="flex">
                     <SidebarProvider className="w-fit">
                         <Sidebar>
@@ -38,6 +39,6 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
                     </div>
                 </div>
             </Tabs>
-        </DialogContent>
+        </Fragment>
     );
 }

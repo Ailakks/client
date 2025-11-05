@@ -22,7 +22,7 @@ export function MemberCard({ member }: { member: MemberTransform }) {
                 </div>
             </PopoverTrigger>
             <PopoverContent side="left">
-                <RichMemberCard member_id={member.user.id} guild_id="803314649251840030" />
+                <RichMemberCard member_id="1432477694259626248" guild_id="803314649251840030" />
             </PopoverContent >
         </Popover>
     );

@@ -58,12 +58,15 @@ export class RichMemberTransform {
     @Type(() => ConnectedAccount)
     connected_accounts: ConnectedAccount;
 
+    @Expose()
     @Type(() => MutualGuild)
     mutual_guilds: MutualGuild[];
 
+    @Expose()
     @Type(() => MutualFreind)
     mutual_friends: MutualFreind[];
 
+    @Expose()
     @Type(() => Badge)
     badges: Badge[];
 }

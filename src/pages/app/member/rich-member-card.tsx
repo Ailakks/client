@@ -10,13 +10,13 @@ import { useEffect, useState } from "react";
 export function RichMemberCard({ member_id, guild_id }: { member_id: string, guild_id: string }) {
     const [memberData, setMemberData] = useState<RichMemberTransform>(null);
 
-    const [{ loading, data }] = useAxiosClient({ url: `https://corsproxy.io/?url=https://discord.com/api/v9/users/${member_id}/profile`, params: {} });
+    const [{ loading, data }] = useAxiosClient({ url: `https://discord.com/api/v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false } });
 
     useEffect(() => {
         setMemberData(plainToInstance(RichMemberTransform, data, { excludeExtraneousValues: true }));
     }, [data]);
 
-    if (loading) {
+    if (!memberData) {
         return (
             <Spinner />
         )

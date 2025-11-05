@@ -7,9 +7,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MessageActions } from "@/data/message-actions";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Fragment } from "react/jsx-runtime";
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import { UserProfileCard } from "../member/member-profile-card";
 import { ArrowLeftIcon } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export function Message({ message }: { message: MessageTransform }) {
     return (

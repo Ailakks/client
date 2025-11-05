@@ -20,7 +20,7 @@ export function MemberCard({ member }: { member: MemberTransform }) {
                     {member.user.bot && <p>APP</p>}
                 </div>
             </PopoverTrigger>
-            <PopoverContent side="right">
+            <PopoverContent side="left">
                 <UserProfileCard user={member.user} />
             </PopoverContent >
         </Popover>

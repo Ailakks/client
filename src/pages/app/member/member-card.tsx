@@ -2,6 +2,7 @@ import type { MemberTransform } from "@/api/transform/member.transform";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { UserProfileCard } from "./member-profile-card";
+import { RichMemberCard } from "./rich-member-card";
 
 export function MemberCard({ member }: { member: MemberTransform }) {
     return (
@@ -21,7 +22,7 @@ export function MemberCard({ member }: { member: MemberTransform }) {
                 </div>
             </PopoverTrigger>
             <PopoverContent side="left">
-                <UserProfileCard user={member.user} />
+                <RichMemberCard member_id={member.user.id} guild_id="803314649251840030" />
             </PopoverContent >
         </Popover>
     );

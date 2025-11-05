@@ -9,7 +9,24 @@ class Category {
     src: string;
 }
 
-export class StickersListTransform {
+export class StickersTrendingTransform {
     @Expose()
     categories: Category[];
+}
+
+export class StickerTransform {
+    @Expose()
+    id: string;
+
+    @Expose()
+    title: string;
+
+    @Expose()
+    src: string;
+
+    @Expose()
+    width: number;
+
+    @Expose()
+    height: number;
 }

@@ -23,7 +23,7 @@ export function ImagePicker() {
                 </InputGroup>
             </CardHeader>
             <TabsContent value="gif" className="p-2 grid grid-cols-2 gap-2 overflow-auto">
-                <GifPicker />
+                <GifPicker search={search} />
             </TabsContent>
         </Tabs>
     );

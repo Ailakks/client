@@ -1,18 +1,13 @@
-import type { StickersListTransform } from "@/api/transform/emoji/stickers.transform";
+import { StickersListTransform } from "@/api/transform/emoji/stickers.transform";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AxiosClient } from "@/lib/axios";
-import { useEffect, useState } from "react";
+import { useAxiosClient } from "@/lib/axios";
 
 export function GifPicker() {
-    const [data, setData] = useState<StickersListTransform>(null);
+    const [{ data, loading }] = useAxiosClient<StickersListTransform>({ url: `gifs/trending`, params: { provider: 'tenor', media_format: 'webm' } }, { useCache: true })
 
-    useEffect(() => {
-        AxiosClient.get(`gifs/trending?provider=tenor&locale=es-ES&media_format=webm`, { params: { provider: 'tenor', media_format: 'webm' } }).then(({ data }) => setData(data));
-    }, []);
-
-    if (!data) {
+    if (loading) {
         return <p>test</p>
     }
 

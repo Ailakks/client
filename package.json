@@ -28,6 +28,7 @@
     "@tailwindcss/vite": "^4.1.16",
     "@vitejs/plugin-react": "^5.1.0",
     "axios": "^1.13.0",
+    "axios-hooks": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

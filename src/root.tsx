@@ -6,9 +6,7 @@ import "./style.css";
 
 const elem = document.getElementById("root")!;
 const app = (
-    <StrictMode>
-        <Router />
-    </StrictMode>
+    <Router />
 );
 
 if (import.meta.hot) {

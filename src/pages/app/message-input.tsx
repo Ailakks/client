@@ -4,6 +4,8 @@ import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupTextarea } fro
 import { Field, FieldError } from "@/components/ui/field";
 import { Controller, useForm } from "react-hook-form";
 import { AxiosClient } from "@/lib/axios";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { ImagePicker } from "./chat/image-picker";
 
 export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
     const { channel } = useParams();
@@ -58,11 +60,18 @@ export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
                             <i className="fa-solid fa-note-sticky" />
                         </InputGroupButton>
                     </InputGroupAddon>
-                    <InputGroupAddon align="inline-end">
-                        <InputGroupButton variant="default" size="icon-xs">
-                            <i className="fa-solid fa-smile" />
-                        </InputGroupButton>
-                    </InputGroupAddon>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <InputGroupAddon align="inline-end">
+                                <InputGroupButton variant="default" size="icon-xs">
+                                    <i className="fa-solid fa-smile" />
+                                </InputGroupButton>
+                            </InputGroupAddon>
+                        </PopoverTrigger>
+                        <PopoverContent>
+                            <ImagePicker />
+                        </PopoverContent>
+                    </Popover>
                 </InputGroup>
             </footer>
         </form>

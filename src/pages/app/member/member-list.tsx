@@ -16,9 +16,8 @@ import { MemberCard } from "./member-card";
 import { Channel } from "../channel";
 import type { GuildTransform } from "@/api/transform/guild.transform";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessagePins } from "../chat/message-pins";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export function MemberList({ guildData }: { guildData: GuildTransform }) {
     const { guild, channel } = useParams();

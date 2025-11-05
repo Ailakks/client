@@ -1,15 +1,14 @@
 import type { ChannelTransform } from "@/api/transform/channel.transform";
 import { Button } from "@/components/ui/button";
 import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select, SelectSeparator } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sidebar";
-import { Tabs, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@radix-ui/react-select";
-import { TabsList } from "@radix-ui/react-tabs";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 
@@ -47,19 +46,15 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
             <DialogHeader>
                 <DialogTitle>Vista general</DialogTitle>
             </DialogHeader>
-            <Tabs defaultValue="general">
+            <Tabs defaultValue="general" orientation="vertical">
                 <div className="flex">
                     <SidebarProvider className="w-fit">
                         <Sidebar>
                             <SidebarContent className="p-5">
                                 <p>#{item.name}</p>
-                                <TabsList className="flex flex-col space-y-2">
-                                    <TabsTrigger value="general" asChild>
-                                        <Button variant="outline">General</Button>
-                                    </TabsTrigger>
-                                    <TabsTrigger value="permissions" asChild>
-                                        <Button variant="outline">Roles</Button>
-                                    </TabsTrigger>
+                                <TabsList className="flex-col w-full *:w-full space-y-2">
+                                    <TabsTrigger value="general">General</TabsTrigger>
+                                    <TabsTrigger value="permissions">Roles</TabsTrigger>
                                 </TabsList>
                             </SidebarContent>
                         </Sidebar>
@@ -83,8 +78,6 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
                                         </Field>
                                     )}
                                 />
-                            </FieldGroup>
-                            <FieldGroup>
                                 <Controller
                                     name="topic"
                                     control={form.control}
@@ -101,18 +94,16 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
                                         </Field>
                                     )}
                                 />
-                            </FieldGroup>
-                            <FieldGroup>
                                 <Controller
-                                    name="topic"
+                                    name="rate_limit_per_user"
                                     control={form.control}
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
                                             <FieldLabel>Modo pausado</FieldLabel>
                                             <Select
                                                 name={field.name}
-                                                value={field.value}
-                                                onValueChange={field.onChange}>
+                                                value={String(field.value)}
+                                                onValueChange={(val) => field.onChange(Number(val))}>
                                                 <SelectTrigger
                                                     aria-invalid={fieldState.invalid}>
                                                     <SelectValue placeholder="Select" />
@@ -120,7 +111,7 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
                                                 <SelectContent position="item-aligned">
                                                     <SelectItem value="0">Auto</SelectItem>
                                                     <SelectSeparator />
-                                                    {[5, 10, 15, 30].map((item, key) => (
+                                                    {[5, 10, 15, 30, 60, 120, 300, 300, 600, 900, 1800, 3600, 7200, 21600].map((item, key) => (
                                                         <SelectItem key={key} value={`${item}`}>
                                                             <p>{item}</p>
                                                         </SelectItem>
@@ -134,15 +125,52 @@ export function ChannelSettingsDialog({ item }: { item: ChannelTransform }) {
                                         </Field>
                                     )}
                                 />
-                            </FieldGroup>
-                            <FieldGroup>
                                 <Controller
                                     name="nsfw"
                                     control={form.control}
                                     render={({ field, fieldState }) => (
+                                        <Field orientation="horizontal" data-invalid={fieldState.invalid} className="items-center!">
+                                            <FieldContent>
+                                                <FieldLabel>Canal con restricción por edad</FieldLabel>
+                                                <FieldDescription>Los usuarios tendrán que confirmar que son mayores de edad para ver el contenido de este canal. Los canales con restricción por edad están exentos del filtro de contenido explícito.</FieldDescription>
+                                                {fieldState.invalid && (
+                                                    <FieldError errors={[fieldState.error]} />
+                                                )}
+                                            </FieldContent>
+                                            <Switch
+                                                    name={field.name}
+                                                    checked={field.value}
+                                                    onCheckedChange={field.onChange}
+                                                    aria-invalid={fieldState.invalid}
+                                                />
+                                        </Field>
+                                    )}
+                                />
+                                <Controller
+                                    name="default_auto_archive_duration"
+                                    control={form.control}
+                                    render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
-                                            <FieldLabel>Canal con restricción por edad</FieldLabel>
-                                            <FieldDescription>Los usuarios tendrán que confirmar que son mayores de edad para ver el contenido de este canal. Los canales con restricción por edad están exentos del filtro de contenido explícito.</FieldDescription>
+                                            <FieldLabel>Ocultar por inactividad</FieldLabel>
+                                            <Select
+                                                name={field.name}
+                                                value={String(field.value)}
+                                                onValueChange={(val) => field.onChange(Number(val))}>
+                                                <SelectTrigger
+                                                    aria-invalid={fieldState.invalid}>
+                                                    <SelectValue placeholder="Select" />
+                                                </SelectTrigger>
+                                                <SelectContent position="item-aligned">
+                                                    <SelectItem value="0">Auto</SelectItem>
+                                                    <SelectSeparator />
+                                                    {[60, 1440, 259200, 691200].map((item, key) => (
+                                                        <SelectItem key={key} value={`${item}`}>
+                                                            <p>{item}</p>
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
+                                            <FieldDescription>Los hilos nuevos no se mostrarán en la lista de canales si están inactivos un periodo específico de tiempo.</FieldDescription>
                                             {fieldState.invalid && (
                                                 <FieldError errors={[fieldState.error]} />
                                             )}

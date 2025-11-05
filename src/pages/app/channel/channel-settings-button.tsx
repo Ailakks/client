@@ -24,9 +24,7 @@ export function ChannelSettingsButton({ data, guildData, item }: { data: Profile
                     </span>
                 </DialogTrigger>
 
-                <DialogContent className="inset-0 rounded-none sm:max-w-none top-0 left-0 translate-x-0 translate-y-0">
-                    <ChannelSettingsDialog item={item} />
-                </DialogContent>
+                <ChannelSettingsDialog item={item} />
 
             </Dialog>
         )

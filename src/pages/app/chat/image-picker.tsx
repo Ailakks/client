@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GifPicker } from "./gif-picker";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useState } from "react";
+import { EmojiPicker } from "./emoji-picker";
 
 export function ImagePicker() {
     const [search, setSearch] = useState("");
@@ -22,8 +23,11 @@ export function ImagePicker() {
                     </InputGroupAddon>
                 </InputGroup>
             </CardHeader>
-            <TabsContent value="gif" className="p-2 grid grid-cols-2 gap-2 overflow-auto">
+            <TabsContent value="gif" className="p-2 grid grid-cols-2 gap-2 overflow-auto overflow-x-hidden">
                 <GifPicker search={search} />
+            </TabsContent>
+            <TabsContent value="emojis" className="flex flex-wrap gap-2 overflow-auto overflow-x-hidden">
+                <EmojiPicker search={search} />
             </TabsContent>
         </Tabs>
     );

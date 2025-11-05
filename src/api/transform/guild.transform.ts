@@ -1,7 +1,18 @@
-import { Expose } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 import type { ChannelTransform } from "./channel.transform";
 import type { MemberTransform } from "./member.transform";
 import type { RoleTransform } from "./role.transform";
+
+class EmojiTransform {
+    @Expose()
+    id: string;
+
+    @Expose()
+    name: string;
+
+    @Expose()
+    animated: boolean;
+}
 
 export class GuildTransform {
     @Expose()
@@ -24,4 +35,8 @@ export class GuildTransform {
 
     @Expose()
     owner_id: string;
+
+    @Expose()
+    @Type(() => EmojiTransform)
+    emojis: EmojiTransform[];
 }

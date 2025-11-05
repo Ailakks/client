@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { TabsContent } from "@/components/ui/tabs";
 import { ProfileContext } from "@/context/profile"
 import { useContext } from "react";
 
@@ -42,5 +43,9 @@ function EmojiList() {
 
 
 export function EmojiPicker({ search }: { search: string }) {
-    return search ? <SearchEmoji search={search} /> : <EmojiList />
+    return (
+        <div className="flex flex-wrap gap-2 overflow-auto overflow-x-hidden">
+            {search ? <SearchEmoji search={search} /> : <EmojiList />}
+        </div>
+    )
 }

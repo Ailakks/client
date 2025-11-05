@@ -1,15 +1,15 @@
-import { Card, CardHeader } from "@/components/ui/card";
+import {CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GifPicker } from "./gif-picker";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useState } from "react";
 import { EmojiPicker } from "./emoji-picker";
 
-export function ImagePicker() {
+export function ImagePicker({ defaultValue }: { defaultValue: string }) {
     const [search, setSearch] = useState("");
 
     return (
-        <Tabs defaultValue="gif" className="overflow-hidden h-100 w-100">
+        <Tabs defaultValue={defaultValue} className="overflow-hidden h-100 w-100">
             <CardHeader>
                 <TabsList>
                     <TabsTrigger value="gif">GIF</TabsTrigger>
@@ -23,10 +23,10 @@ export function ImagePicker() {
                     </InputGroupAddon>
                 </InputGroup>
             </CardHeader>
-            <TabsContent value="gif" className="p-2 grid grid-cols-2 gap-2 overflow-auto overflow-x-hidden">
+            <TabsContent value="gif">
                 <GifPicker search={search} />
             </TabsContent>
-            <TabsContent value="emojis" className="flex flex-wrap gap-2 overflow-auto overflow-x-hidden">
+            <TabsContent value="emojis">
                 <EmojiPicker search={search} />
             </TabsContent>
         </Tabs>

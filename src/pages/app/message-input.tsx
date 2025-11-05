@@ -50,16 +50,30 @@ export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
                             <i className="fa-solid fa-plus" />
                         </InputGroupButton>
                     </InputGroupAddon>
-                    <InputGroupAddon align="inline-end">
-                        <InputGroupButton variant="default" size="icon-xs">
-                            <i className="fa-solid fa-gif" />
-                        </InputGroupButton>
-                    </InputGroupAddon>
-                    <InputGroupAddon align="inline-end">
-                        <InputGroupButton variant="default" size="icon-xs">
-                            <i className="fa-solid fa-note-sticky" />
-                        </InputGroupButton>
-                    </InputGroupAddon>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <InputGroupAddon align="inline-end">
+                                <InputGroupButton variant="default" size="icon-xs">
+                                    <i className="fa-solid fa-gif" />
+                                </InputGroupButton>
+                            </InputGroupAddon>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full">
+                            <ImagePicker defaultValue="gifs" />
+                        </PopoverContent>
+                    </Popover>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <InputGroupAddon align="inline-end">
+                                <InputGroupButton variant="default" size="icon-xs">
+                                    <i className="fa-solid fa-note-sticky" />
+                                </InputGroupButton>
+                            </InputGroupAddon>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full">
+                            <ImagePicker defaultValue="stickers" />
+                        </PopoverContent>
+                    </Popover>
                     <Popover>
                         <PopoverTrigger asChild>
                             <InputGroupAddon align="inline-end">
@@ -69,7 +83,7 @@ export function MessageInput({ guildData }: { guildData?: GuildTransform }) {
                             </InputGroupAddon>
                         </PopoverTrigger>
                         <PopoverContent className="w-full">
-                            <ImagePicker />
+                            <ImagePicker defaultValue="emojis" />
                         </PopoverContent>
                     </Popover>
                 </InputGroup>

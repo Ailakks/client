@@ -48,5 +48,9 @@ function SearchGifs({ search }: { search: string }) {
 }
 
 export function GifPicker({ search }: { search: string }) {
-    return search ? <SearchGifs search={search} /> : <TrendingGifs />
+    return (
+        <div className="p-2 grid grid-cols-2 gap-2 overflow-auto overflow-x-hidden">
+            {search ? <SearchGifs search={search} /> : <TrendingGifs />}
+        </div>
+    )
 }

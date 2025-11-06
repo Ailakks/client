@@ -5,10 +5,15 @@ import { Link } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Spinner } from "@/components/ui/spinner";
 import { plainToInstance } from "class-transformer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import type { ProfileTransform } from "@/api/transform/profile.transform";
+import { ProfileContext } from "@/context/profile";
+import { Button } from "@/components/ui/button";
 
 export function RichMemberCard({ member_id, guild_id }: { member_id: string, guild_id: string }) {
+    const { data: profileData } = useContext(ProfileContext);
+
     const [memberData, setMemberData] = useState<RichMemberTransform>(null);
 
     const [{ loading, data }] = useProxyAxiosClient({ url: `v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false, guild_id } });
@@ -47,6 +52,16 @@ export function RichMemberCard({ member_id, guild_id }: { member_id: string, gui
                                 </TooltipContent>
                             </Tooltip>
                         </Link>
+                    )
+                })}
+            </div>
+            <div className="flex flex-wrap gap-2">
+                {memberData.member.roles.map((item, key) => {
+                    const guild = profileData.data.guilds.find((item) => item.id == guild_id);
+                    const role = guild.roles.find((target) => target.id == item);
+
+                    return (
+                        <Button key={key}>{role.name}</Button>
                     )
                 })}
             </div>

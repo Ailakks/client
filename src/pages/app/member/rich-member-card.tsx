@@ -1,5 +1,5 @@
 import { PopoverContent } from "@/components/ui/popover";
-import { useAxiosClient } from "@/lib/axios";
+import { useAxiosClient, useProxyAxiosClient } from "@/lib/axios";
 import { RichMemberTransform } from "@/api/transform/rich-member.transform";
 import { Link } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export function RichMemberCard({ member_id, guild_id }: { member_id: string, guild_id: string }) {
     const [memberData, setMemberData] = useState<RichMemberTransform>(null);
 
-    const [{ loading, data }] = useAxiosClient({ url: `https://discord.com/api/v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false } });
+    const [{ loading, data }] = useProxyAxiosClient({ url: `v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false } });
 
     useEffect(() => {
         setMemberData(plainToInstance(RichMemberTransform, data, { excludeExtraneousValues: true }));

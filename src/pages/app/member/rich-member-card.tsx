@@ -1,4 +1,4 @@
-import { PopoverContent } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAxiosClient, useProxyAxiosClient } from "@/lib/axios";
 import { RichMemberTransform } from "@/api/transform/rich-member.transform";
 import { Link } from "react-router-dom";
@@ -10,6 +10,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { ProfileTransform } from "@/api/transform/profile.transform";
 import { ProfileContext } from "@/context/profile";
 import { Button } from "@/components/ui/button";
+import { InputGroup, InputGroupAddon, InputGroupButton } from "@/components/ui/input-group";
+import { Controller, useForm } from "react-hook-form";
+import { Field, FieldError } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { ImagePicker } from "../chat/image-picker";
 
 export function RichMemberCard({ member_id, guild_id }: { member_id: string, guild_id: string }) {
     const { data: profileData } = useContext(ProfileContext);
@@ -22,6 +27,19 @@ export function RichMemberCard({ member_id, guild_id }: { member_id: string, gui
         setMemberData(plainToInstance(RichMemberTransform, data, { excludeExtraneousValues: true }));
     }, [data]);
 
+    interface MessageType {
+        content: string
+    }
+
+    const form = useForm<MessageType>({
+        defaultValues: {
+            content: ''
+        },
+    });
+
+    function onSubmit(data: MessageType) {
+    };
+
     if (!memberData) {
         return (
             <Spinner />
@@ -31,7 +49,7 @@ export function RichMemberCard({ member_id, guild_id }: { member_id: string, gui
     return (
         <PopoverContent side="left">
             <Avatar className="size-20">
-                <AvatarImage  src={`https://cdn.discordapp.com/avatars/${memberData.user.id}/${memberData.member.avatar ?? memberData.member.user.avatar}.webp?size=80`} alt={memberData.user.username} />
+                <AvatarImage src={`https://cdn.discordapp.com/avatars/${memberData.user.id}/${memberData.member.avatar ?? memberData.member.user.avatar}.webp?size=80`} alt={memberData.user.username} />
                 <AvatarFallback>{memberData.user.username}</AvatarFallback>
             </Avatar>
             <p>{memberData.member.nick ?? memberData.member.user.global_name}</p>
@@ -65,6 +83,34 @@ export function RichMemberCard({ member_id, guild_id }: { member_id: string, gui
                     )
                 })}
             </div>
+            <form id="message" onSubmit={form.handleSubmit(onSubmit)}>
+                <InputGroup>
+                    <Controller
+                        name="content"
+                        control={form.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <Input {...field} placeholder="Send message to" />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <InputGroupAddon align="inline-end">
+                                <InputGroupButton variant="default" size="icon-xs">
+                                    <i className="fa-solid fa-smile" />
+                                </InputGroupButton>
+                            </InputGroupAddon>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full">
+                            <ImagePicker defaultValue="emojis" />
+                        </PopoverContent>
+                    </Popover>
+                </InputGroup>
+            </form>
         </PopoverContent >
     );
 }

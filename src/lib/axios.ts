@@ -9,20 +9,18 @@ export const useAxiosClient = makeUseAxios({
 })
 
 export const ProxyAxiosClient = axios.create({
-  ...AxiosClient.defaults,
+    ...AxiosClient.defaults,
 });
 
 ProxyAxiosClient.interceptors.request.use((config) => {
-    const target = `${AxiosClient.defaults.baseURL}${config.url || ''}`;
-    const fullUrl = config.params
-        ? `${target}?${new URLSearchParams(config.params as any).toString()}`
-        : target;
+  const url = config.url?.startsWith('http') ? config.url: `${ProxyAxiosClient.defaults.baseURL?.replace(/\/$/, '')}/${config.url?.replace(/^v9\//, '')}`;
+  const query = config.params ? `?${new URLSearchParams(config.params as any).toString()}` : '';
 
-    config.url = `https://corsproxy.io/?url=${encodeURIComponent(fullUrl)}`;
+  config.url = `https://corsproxy.io/?url=${encodeURI(`${url}${query}`)}`;
 
-    delete config.params;
+  delete config.params;
 
-    return config;
+  return config;
 });
 
 export const useProxyAxiosClient = makeUseAxios({

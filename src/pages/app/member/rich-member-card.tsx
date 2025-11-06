@@ -6,11 +6,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { Spinner } from "@/components/ui/spinner";
 import { plainToInstance } from "class-transformer";
 import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function RichMemberCard({ member_id, guild_id }: { member_id: string, guild_id: string }) {
     const [memberData, setMemberData] = useState<RichMemberTransform>(null);
 
-    const [{ loading, data }] = useProxyAxiosClient({ url: `v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false } });
+    const [{ loading, data }] = useProxyAxiosClient({ url: `v9/users/${member_id}/profile`, params: { type: 'popout', with_mutual_guilds: true, with_mutual_friends: true, with_mutual_friends_count: false, guild_id } });
 
     useEffect(() => {
         setMemberData(plainToInstance(RichMemberTransform, data, { excludeExtraneousValues: true }));
@@ -24,25 +25,31 @@ export function RichMemberCard({ member_id, guild_id }: { member_id: string, gui
 
     return (
         <PopoverContent side="left">
-            <p>{memberData.member.nick ?? memberData.member.user.display_name}</p>
-            <p>{memberData.member.user.display_name}</p>
-            <p>{memberData.user.guild.badge}</p>
-            <p>{memberData.mutual_guilds.length} {memberData.mutual_friends.length}</p>
-            {memberData.badges.map((item, key) => {
-                return (
-                    <Link key={key} to={item.link}>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-
-                                <img src={`${item.icon}`} />
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>{item.description}</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </Link>
-                )
-            })}
+            <Avatar className="size-20">
+                <AvatarImage  src={`https://cdn.discordapp.com/avatars/${memberData.user.id}/${memberData.member.avatar ?? memberData.member.user.avatar}.webp?size=80`} alt={memberData.user.username} />
+                <AvatarFallback>{memberData.user.username}</AvatarFallback>
+            </Avatar>
+            <p>{memberData.member.nick ?? memberData.member.user.global_name}</p>
+            <p>{memberData.member.user.username}</p>
+            <p>{memberData.user.guild?.badge}</p>
+            <p>{memberData.mutual_guilds.length} servidores en común</p>
+            <p>{memberData.mutual_friends.length} amigos en común</p>
+            <div className="flex gap-2">
+                {memberData.badges.map((item, key) => {
+                    return (
+                        <Link key={key} to={item.link}>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <img className="h-5" src={`https://cdn.discordapp.com/badge-icons/${item.icon}.png`} />
+                                </TooltipTrigger>
+                                <TooltipContent side="left">
+                                    <p>{item.description}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </Link>
+                    )
+                })}
+            </div>
         </PopoverContent >
     );
 }

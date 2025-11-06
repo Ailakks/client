@@ -54,6 +54,9 @@ export class MemberTransform {
     nick: string;
 
     @Expose()
+    avatar: string;
+
+    @Expose()
     @Type(() => PresenceTransform)
     presence: PresenceTransform;
 }
